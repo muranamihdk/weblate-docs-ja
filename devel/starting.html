@@ -31,7 +31,7 @@
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
     <link rel="next" title="Translation component alerts" href="alerts.html" />
-    <link rel="prev" title="Application developer guide" href="index.html" /> 
+    <link rel="prev" title="アプリケーション開発者のためのガイド" href="index.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -86,8 +86,8 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Application developer guide</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">翻訳者のためのガイド</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">アプリケーション開発者のためのガイド</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Starting with internationalization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#choosing-internationalization-framework">Choosing internationalization framework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#translating-software-using-gnu-gettext">Translating software using GNU Gettext</a><ul>
@@ -113,18 +113,18 @@
 <li class="toctree-l2"><a class="reference internal" href="reporting.html">Translation progress reporting</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrators guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">管理者のためのガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">翻訳ワークフロー</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートするフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">バージョン管理との統合</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate ウェブ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate クライアント</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">変更履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">貢献する</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">ライセンス</a></li>
 </ul>
 
             
@@ -170,7 +170,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Application developer guide</a> &raquo;</li>
+          <li><a href="index.html">アプリケーション開発者のためのガイド</a> &raquo;</li>
         
       <li>Starting with internationalization</li>
     
@@ -211,7 +211,7 @@ might be actually used as an abbreviation for Sunday.</p>
 <h2>Choosing internationalization framework<a class="headerlink" href="#choosing-internationalization-framework" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Choose whatever is standard on your platform, try to avoid reinventing the
 wheel by creating your own framework to handle localizations. Weblate supports
-most of the widely used frameworks, see <a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートされるフォーマット</span></a> for more information.</p>
+most of the widely used frameworks, see <a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートするフォーマット</span></a> for more information.</p>
 <p>Following chapters describe two use cases - GNU Gettext and Sphinx, but many of
 the steps are quite generic and apply to the other frameworks as well.</p>
 </div>
@@ -469,7 +469,7 @@ Docs and translated using Weblate.</p>
 repository (either from filesystem or it can be made available through
 <a class="reference internal" href="../admin/optionals.html#git-exporter"><span class="std std-ref">Git exporter</span></a>). Prior to this, you might want to commit any pending
 changes (see <a class="reference internal" href="../admin/continuous.html#lazy-commit"><span class="std std-ref">省力コミット</span></a>). This can be achieved in the user interface
-(in the <span class="guilabel">Repository maintenance</span>) or from command line using <a class="reference internal" href="../wlc.html#wlc"><span class="std std-ref">Weblate Client</span></a>.</p>
+(in the <span class="guilabel">Repository maintenance</span>) or from command line using <a class="reference internal" href="../wlc.html#wlc"><span class="std std-ref">Weblate クライアント</span></a>.</p>
 <p>This can be automated if you grant Weblate push access to your repository and
 configure <span class="guilabel">Push URL</span> in the <a class="reference internal" href="../admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a>.</p>
 <div class="admonition seealso">
@@ -481,7 +481,7 @@ configure <span class="guilabel">Push URL</span> in the <a class="reference inte
 <h3>Pushing string changes to Weblate<a class="headerlink" href="#pushing-string-changes-to-weblate" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>To push newly updated strings to Weblate, just let it to pull from the upstream
 repo. This can be achieved in the user interface (in the <span class="guilabel">Repository
-maintenance</span>) or from command line using <a class="reference internal" href="../wlc.html#wlc"><span class="std std-ref">Weblate Client</span></a>.</p>
+maintenance</span>) or from command line using <a class="reference internal" href="../wlc.html#wlc"><span class="std std-ref">Weblate クライアント</span></a>.</p>
 <p>This can be automated by installing a webhook on your repository to trigger
 Weblate whenever there is new commit, see <a class="reference internal" href="../admin/continuous.html#update-vcs"><span class="std std-ref">リポジトリを更新する</span></a> for more details.</p>
 <div class="admonition seealso">
@@ -503,7 +503,7 @@ Weblate whenever there is new commit, see <a class="reference internal" href="..
         <a href="alerts.html" class="btn btn-neutral float-right" title="Translation component alerts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Application developer guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="アプリケーション開発者のためのガイド" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

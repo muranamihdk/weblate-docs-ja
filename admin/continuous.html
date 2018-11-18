@@ -86,9 +86,9 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrators guide</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">翻訳者のためのガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">アプリケーション開発者のためのガイド</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">管理者のためのガイド</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
@@ -132,17 +132,17 @@
 <li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">翻訳ワークフロー</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートするフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">バージョン管理との統合</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate ウェブ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate クライアント</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">変更履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">貢献する</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">ライセンス</a></li>
 </ul>
 
             
@@ -188,7 +188,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Administrators guide</a> &raquo;</li>
+          <li><a href="index.html">管理者のためのガイド</a> &raquo;</li>
         
       <li>継続的トランスレーション</li>
     
@@ -260,7 +260,7 @@ digraph translations {
 <div class="section" id="avoiding-merge-conflicts">
 <span id="avoid-merge-conflicts"></span><h3>マージ時の競合を避ける<a class="headerlink" href="#avoiding-merge-conflicts" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>マージ時の競合を避けるためには、リモートリポジトリでの翻訳ファイルの更新タイミングをコントロールし、Weblate が同じファイルを変更するのを避けなければいけません。</p>
-<p><a class="reference internal" href="../api.html#api"><span class="std std-ref">Weblate's Web API</span></a> を使って、Weblate で保留中の変更をすべてリモートリポジトリに反映させることと、ローカルで変更を行っている間は Weblate での翻訳にロックをかけておくことによって、これを行うことができます。</p>
+<p><a class="reference internal" href="../api.html#api"><span class="std std-ref">Weblate ウェブ API</span></a> を使って、Weblate で保留中の変更をすべてリモートリポジトリに反映させることと、ローカルで変更を行っている間は Weblate での翻訳にロックをかけておくことによって、これを行うことができます。</p>
 <p>更新を行うスクリプトは次のようになります。</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lock Weblate translation</span>
 wlc lock
@@ -288,7 +288,7 @@ wlc lock foo/baj
 </div>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">これらのスクリプト例では <a class="reference internal" href="../wlc.html#wlc"><span class="std std-ref">Weblate Client</span></a> を使っていますが、これには Weblate をリモートコントロールするための設定（API キー）が必要です。 wlc ではなく、例えば curl などの HTTP クライアントを使っても同じことを実現できます。<a class="reference internal" href="../api.html#api"><span class="std std-ref">Weblate's Web API</span></a> を参照してください。</p>
+<p class="last">これらのスクリプト例では <a class="reference internal" href="../wlc.html#wlc"><span class="std std-ref">Weblate クライアント</span></a> を使っていますが、これには Weblate をリモートコントロールするための設定（API キー）が必要です。 wlc ではなく、例えば curl などの HTTP クライアントを使っても同じことを実現できます。<a class="reference internal" href="../api.html#api"><span class="std std-ref">Weblate ウェブ API</span></a> を参照してください。</p>
 </div>
 </div>
 <div class="section" id="automatically-receiving-changes-from-github">
@@ -346,7 +346,7 @@ example <code class="docutils literal notranslate"><span class="pre">https://hos
 <span id="push-changes"></span><h2>変更をプッシュする<a class="headerlink" href="#pushing-changes" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>プロジェクトごとにプッシュ URL を設定することができます。設定すると Weblate のウェブインターフェイスにプッシュボタンが現れ、リモートリポジトリに変更をプッシュすることができるようになります。またすべてのコミットごとに自動的に変更のプッシュが行われるように Weblate を設定することもできます。</p>
 <p>SSH をプッシュに使用している場合は、パスフレーズを設定していないキー（もしくは Django 用の ssh-agent）が必要になります。そしてまず管理インターフェイスでリモートサーバを認証する必要があります。これをしないとプッシュしても失敗します。</p>
-<p>プッシュのオプションは使用している <a class="reference internal" href="../vcs.html#vcs"><span class="std std-ref">Version control integration</span></a> によって違いますので、詳しくはそちらの章を参照してください。</p>
+<p>プッシュのオプションは使用している <a class="reference internal" href="../vcs.html#vcs"><span class="std std-ref">バージョン管理との統合</span></a> によって違いますので、詳しくはそちらの章を参照してください。</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
 <p class="last">コミットした時に自動的に変更がプッシュされるようにすることもできます。これは <a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a> で可能です。</p>
@@ -377,7 +377,7 @@ so and we will enable pushing changes from Hosted Weblate for you.</p>
 <p>Weblate は API を使うことにより、他のサービスとのやりとりを簡単にすることができます。</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="../api.html#api"><span class="std std-ref">Weblate's Web API</span></a></p>
+<p class="last"><a class="reference internal" href="../api.html#api"><span class="std std-ref">Weblate ウェブ API</span></a></p>
 </div>
 </div>
 <div class="section" id="lazy-commits">

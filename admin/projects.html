@@ -86,9 +86,9 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrators guide</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">翻訳者のためのガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">アプリケーション開発者のためのガイド</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">管理者のためのガイド</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
@@ -132,17 +132,17 @@
 <li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">翻訳ワークフロー</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートするフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">バージョン管理との統合</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate ウェブ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate クライアント</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">変更履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">貢献する</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">ライセンス</a></li>
 </ul>
 
             
@@ -188,7 +188,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Administrators guide</a> &raquo;</li>
+          <li><a href="index.html">管理者のためのガイド</a> &raquo;</li>
         
       <li>翻訳プロジェクト</li>
     
@@ -224,7 +224,7 @@ files (matching mask defined in <a class="reference internal" href="#component">
 <p>All translation components need to be available as VCS repositories and are
 organized as project/component structure.</p>
 <p>Weblate supports wide range of translation formats (both bilingual and
-monolingual) supported by translate toolkit, see <a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートされるフォーマット</span></a> for more
+monolingual) supported by translate toolkit, see <a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートするフォーマット</span></a> for more
 information.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
@@ -298,7 +298,7 @@ translation project:</p>
 <div class="section" id="component-configuration">
 <span id="component"></span><h2>コンポーネント設定<a class="headerlink" href="#component-configuration" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>実際に翻訳する構成要素がコンポーネントです。VCSレポジトリの場所と、どのファイルを翻訳すべきかのファイルマスクを入力すると、Weblateは自動的にVCSから取得し、マッチするすべての翻訳ファイルを見つけます。</p>
-<p>典型的な設定例を <a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートされるフォーマット</span></a> のセクションで見ることができます。</p>
+<p>典型的な設定例を <a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートするフォーマット</span></a> のセクションで見ることができます。</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
 <p>コンポーネントは適当なサイズに保つことをお勧めします。それぞれの事例に応じて、個々のアプリケーションやアドオン、本の各章や個々のウェブサイトなど、意味のある基準で翻訳を分割してください。</p>
@@ -311,7 +311,7 @@ next release.</p>
 <p>コンポーネントには、VCSを使用してそこから翻訳を取得するための、すべての重要なパラメータが含まれています。</p>
 <dl class="docutils">
 <dt>バージョンコントロールシステム</dt>
-<dd>使用するVCSです。詳しくは <a class="reference internal" href="../vcs.html#vcs"><span class="std std-ref">Version control integration</span></a> を参照してください。</dd>
+<dd>使用するVCSです。詳しくは <a class="reference internal" href="../vcs.html#vcs"><span class="std std-ref">バージョン管理との統合</span></a> を参照してください。</dd>
 <dt>ソースコードリポジトリ</dt>
 <dd><p class="first">変更を取得するために使用するVCSリポジトリです。より詳しくは <a class="reference internal" href="../vcs.html#vcs-repos"><span class="std std-ref">Accessing repositories</span></a> を参照してください。</p>
 <p class="last">これは実際のVCSのURLであることもできますし、そのリポジトリが他のコンポーネントと共有されるべきであることを示す、<code class="docutils literal notranslate"><span class="pre">weblate://project/component</span></code> であることもできます。より詳しくは <a class="reference internal" href="../vcs.html#internal-urls"><span class="std std-ref">Weblate internal URLs</span></a> を参照してください。</p>
@@ -346,7 +346,7 @@ next release.</p>
 <dt>新規翻訳のためのベースファイル</dt>
 <dd>新規に翻訳ファイルを生成するためのベースとなるファイルです。例えばGettextにおいては <code class="docutils literal notranslate"><span class="pre">.pot</span></code> ファイルがそれにあたります。より詳しい情報は <a class="reference internal" href="../formats.html#new-translations"><span class="std std-ref">Adding new translations</span></a> を参照してください。</dd>
 <dt>ファイルフォーマット</dt>
-<dd>翻訳ファイルのフォーマットです。<a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートされるフォーマット</span></a> も参照してください。</dd>
+<dd>翻訳ファイルのフォーマットです。<a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートするフォーマット</span></a> も参照してください。</dd>
 <dt>原文のバグレポートのためのアドレス</dt>
 <dd>原文のバグを報告するために使われるメールアドレスです。このメールアドレスは、Weblateにおいて原文に対して行われた、あらゆるコメントの通知を受け取るアドレスにもなります。</dd>
 <dt>翻訳のロック</dt>
@@ -370,7 +370,7 @@ next release.</p>
 <dt>ライセンスのURL</dt>
 <dd>ユーザがライセンスの全文を読むことのできるURLです。</dd>
 <dt>新規言語</dt>
-<dd>新規言語の作成のリクエストをどのように扱うかを設定します。ここでの選択肢はファイルフォーマットに依存することに注意してください。<a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートされるフォーマット</span></a> を参照してください。</dd>
+<dd>新規言語の作成のリクエストをどのように扱うかを設定します。ここでの選択肢はファイルフォーマットに依存することに注意してください。<a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートするフォーマット</span></a> を参照してください。</dd>
 <dt>マージのスタイル</dt>
 <dd>上流リポジトリにおける変更をどのように扱うかを設定することができます。使用するVCSによってはこの設定はサポートされないかもしれません。より詳しくは <a class="reference internal" href="continuous.html#merge-rebase"><span class="std std-ref">マージあるいはリベース</span></a> を参照してください。</dd>
 <dt>コミットメッセージ</dt>

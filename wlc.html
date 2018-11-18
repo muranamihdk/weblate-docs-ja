@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Weblate Client &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  <title>Weblate クライアント &mdash; Weblate Documentation 3.3 ドキュメント</title>
   
 
   
@@ -30,8 +30,8 @@
     <link rel="author" title="このドキュメントについて" href="about.html" />
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="検索" href="search.html" />
-    <link rel="next" title="Weblate&#39;s Python API" href="python.html" />
-    <link rel="prev" title="Weblate&#39;s Web API" href="api.html" /> 
+    <link rel="next" title="Weblate Python API" href="python.html" />
+    <link rel="prev" title="Weblate ウェブ API" href="api.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -86,15 +86,15 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="about.html">Weblate について</a></li>
-<li class="toctree-l1"><a class="reference internal" href="user/index.html">Translators guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="devel/index.html">Application developer guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="admin/index.html">Administrators guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">翻訳者のためのガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devel/index.html">アプリケーション開発者のためのガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin/index.html">管理者のためのガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflows.html">翻訳ワークフロー</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">よくある質問</a></li>
-<li class="toctree-l1"><a class="reference internal" href="formats.html">サポートされるフォーマット</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vcs.html">Version control integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">Weblate's Web API</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Weblate Client</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="formats.html">サポートするフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vcs.html">バージョン管理との統合</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Weblate ウェブ API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Weblate クライアント</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#description">Description</a><ul>
@@ -106,11 +106,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="python.html">Weblate's Python API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="changes.html">Changes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Weblate Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">変更履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">貢献する</a></li>
 <li class="toctree-l1"><a class="reference internal" href="internals.html">内部構造</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">ライセンス</a></li>
 </ul>
 
             
@@ -156,7 +156,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Weblate Client</li>
+      <li>Weblate クライアント</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -176,7 +176,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="weblate-client">
-<span id="wlc"></span><span id="index-0"></span><h1>Weblate Client<a class="headerlink" href="#weblate-client" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="wlc"></span><span id="index-0"></span><h1>Weblate クライアント<a class="headerlink" href="#weblate-client" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="versionadded">
 <p><span class="versionmodified">バージョン 2.7 で追加: </span>The wlc utility is fully supported since Weblate 2.7. If you are using an older version
 some incompatibilities with the API might occur.</p>
@@ -199,7 +199,7 @@ You need to install <a class="reference internal" href="python.html#module-wlc" 
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Weblate Client is Python library and command line utility to manage Weblate remotely
-using <a class="reference internal" href="api.html#api"><span class="std std-ref">Weblate's Web API</span></a>. The command line utility can be invoked as <strong class="command">wlc</strong> and is
+using <a class="reference internal" href="api.html#api"><span class="std std-ref">Weblate ウェブ API</span></a>. The command line utility can be invoked as <strong class="command">wlc</strong> and is
 built on <a class="reference internal" href="python.html#module-wlc" title="wlc: Weblate API"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wlc</span></code></a>.</p>
 <div class="section" id="global-options">
 <h3>Global options<a class="headerlink" href="#global-options" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -515,10 +515,10 @@ web_url: https://hosted.weblate.org/projects/weblate/master/
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="python.html" class="btn btn-neutral float-right" title="Weblate&#39;s Python API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="python.html" class="btn btn-neutral float-right" title="Weblate Python API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="api.html" class="btn btn-neutral" title="Weblate&#39;s Web API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral" title="Weblate ウェブ API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
