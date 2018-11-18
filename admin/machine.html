@@ -1,0 +1,600 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Machine translation &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Addons" href="addons.html" />
+    <link rel="prev" title="Checks and fixups" href="checks.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrators guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access.html">Access control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html">翻訳プロジェクト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html">継続的トランスレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks and fixups</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Machine translation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#amagama">Amagama</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#apertium">Apertium</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aws">AWS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#baidu-api-machine-translation">Baidu API machine translation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deepl">DeepL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#glosbe">Glosbe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#google-translate">Google Translate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#microsoft-cognitive-services-translator">Microsoft Cognitive Services Translator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#microsoft-terminology-service">Microsoft Terminology Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mymemory">MyMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#netease-sight-api-machine-translation">Netease Sight API machine translation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tmserver">tmserver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#yandex-translate">Yandex Translate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#youdao-zhiyun-api-machine-translation">Youdao Zhiyun API machine translation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#weblate">Weblate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#weblate-translation-memory">Weblate Translation Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sap-translation-hub">SAP Translation Hub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-machine-translation">Custom machine translation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html">Addons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html">Management commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Administrators guide</a> &raquo;</li>
+        
+      <li>Machine translation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/admin/machine.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="machine-translation">
+<span id="machine-translation-setup"></span><h1>Machine translation<a class="headerlink" href="#machine-translation" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Weblate has built in support for several machine translation services and it's
+up to the administrator to enable them. The services have different terms of use, so
+please check whether you are allowed to use them before enabling them in Weblate.
+The individual services are enabled using <a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a>.</p>
+<p>The source language can be configured at <a class="reference internal" href="projects.html#project"><span class="std std-ref">プロジェクトの設定</span></a>.</p>
+<div class="section" id="amagama">
+<h2>Amagama<a class="headerlink" href="#amagama" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Special installation of <a class="reference internal" href="#tmserver"><span class="std std-ref">tmserver</span></a> run by Virtaal authors.</p>
+<p>To enable this service, add <code class="docutils literal notranslate"><span class="pre">weblate.machinery.tmserver.AmagamaTranslation</span></code> to
+<a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://virtaal.readthedocs.io/en/latest/amagama.html" title="(in Virtaal v0.7.1)"><span>Amagama</span></a>,
+<a class="reference external" href="https://amagama.translatehouse.org/">Amagama Translation Memory</a></p>
+</div>
+</div>
+<div class="section" id="apertium">
+<span id="id1"></span><h2>Apertium<a class="headerlink" href="#apertium" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>A free/open-source machine translation platform providing translation to
+a limited set of languages.</p>
+<p>The recommended way to use Apertium is to run your own Apertium APy server.</p>
+<p>To enable this service, add <code class="docutils literal notranslate"><span class="pre">weblate.machinery.apertium.ApertiumAPYTranslation</span></code> to
+<a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a> and set <a class="reference internal" href="config.html#std:setting-MT_APERTIUM_APY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_APERTIUM_APY</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="config.html#std:setting-MT_APERTIUM_APY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_APERTIUM_APY</span></code></a>, <a class="reference external" href="https://www.apertium.org/">Apertium website</a>,
+<a class="reference external" href="http://wiki.apertium.org/wiki/Apertium-apy">Apertium APy documentation</a></p>
+</div>
+</div>
+<div class="section" id="aws">
+<span id="id2"></span><h2>AWS<a class="headerlink" href="#aws" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.1 で追加.</span></p>
+</div>
+<p>Amazon Translate is a neural machine translation service for translating text
+to and from English across a breadth of supported languages.</p>
+<p>To enable this service, add <code class="docutils literal notranslate"><span class="pre">weblate.machinery.aws.AWSTranslation</span></code> to
+<a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a>, install the <cite>boto3</cite> module and set the settings.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="config.html#std:setting-MT_AWS_REGION"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_AWS_REGION</span></code></a>, <a class="reference internal" href="config.html#std:setting-MT_AWS_ACCESS_KEY_ID"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_AWS_ACCESS_KEY_ID</span></code></a>, <a class="reference internal" href="config.html#std:setting-MT_AWS_SECRET_ACCESS_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_AWS_SECRET_ACCESS_KEY</span></code></a>
+<a class="reference external" href="https://aws.amazon.com/documentation/translate/">Amazon Translate Documentation</a></p>
+</div>
+</div>
+<div class="section" id="baidu-api-machine-translation">
+<span id="baidu-translate"></span><h2>Baidu API machine translation<a class="headerlink" href="#baidu-api-machine-translation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.2 で追加.</span></p>
+</div>
+<p>Machine translation service provided by Baidu.</p>
+<p>This service uses an API and you need to obtain ID and API key from Baidu.</p>
+<p>To enable this service, add <code class="docutils literal notranslate"><span class="pre">weblate.machinery.baidu.BaiduTranslation</span></code> to
+<a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a> and set <a class="reference internal" href="config.html#std:setting-MT_BAIDU_ID"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_BAIDU_ID</span></code></a> and
+<a class="reference internal" href="config.html#std:setting-MT_BAIDU_SECRET"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_BAIDU_SECRET</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="config.html#std:setting-MT_BAIDU_ID"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_BAIDU_ID</span></code></a>,
+<a class="reference internal" href="config.html#std:setting-MT_BAIDU_SECRET"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_BAIDU_SECRET</span></code></a>
+<a class="reference external" href="https://api.fanyi.baidu.com/api/trans/product/index">Baidu Translate API</a></p>
+</div>
+</div>
+<div class="section" id="deepl">
+<span id="id3"></span><h2>DeepL<a class="headerlink" href="#deepl" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.20 で追加.</span></p>
+</div>
+<p>DeepL is paid service providing good machine translation for few languages.
+According to some benchmark it's currently best available service.</p>
+<p>To enable this service, add <code class="docutils literal notranslate"><span class="pre">weblate.machinery.deepl.DeepLTranslation</span></code> to
+<a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a> and set <a class="reference internal" href="config.html#std:setting-MT_DEEPL_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_DEEPL_KEY</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="config.html#std:setting-MT_DEEPL_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_DEEPL_KEY</span></code></a>, <a class="reference external" href="https://www.deepl.com/">DeepL website</a>,
+<a class="reference external" href="https://www.deepl.com/api.html">DeepL API documentation</a></p>
+</div>
+</div>
+<div class="section" id="glosbe">
+<span id="id4"></span><h2>Glosbe<a class="headerlink" href="#glosbe" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Free dictionary and translation memory for almost every living language.</p>
+<p>API is free to use, but subject to the used data source license. There is a limit
+of calls that may be done from one IP in fixed period of time, to prevent
+abuse.</p>
+<p>To enable this service, add <code class="docutils literal notranslate"><span class="pre">weblate.machinery.glosbe.GlosbeTranslation</span></code> to
+<a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://glosbe.com/">Glosbe website</a></p>
+</div>
+</div>
+<div class="section" id="google-translate">
+<span id="id5"></span><h2>Google Translate<a class="headerlink" href="#google-translate" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Machine translation service provided by Google.</p>
+<p>This service uses Translation API and you need to obtain an API key and enable
+billing on Google API console.</p>
+<p>To enable this service, add <code class="docutils literal notranslate"><span class="pre">weblate.machinery.google.GoogleTranslation</span></code> to
+<a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a> and set <a class="reference internal" href="config.html#std:setting-MT_GOOGLE_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_GOOGLE_KEY</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="config.html#std:setting-MT_GOOGLE_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_GOOGLE_KEY</span></code></a>,
+<a class="reference external" href="https://cloud.google.com/translate/docs">Google translate documentation</a></p>
+</div>
+</div>
+<div class="section" id="microsoft-cognitive-services-translator">
+<span id="ms-cognitive-translate"></span><h2>Microsoft Cognitive Services Translator<a class="headerlink" href="#microsoft-cognitive-services-translator" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.10 で追加.</span></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">This is replacement service for <a class="reference external" href="https://docs.weblate.org/en/weblate-3.0.1/admin/machine.html#ms-translate" title="(in Weblate v3.0.1)"><span>Microsoft Translator</span></a>.</p>
+</div>
+<p>Machine translation service provided by Microsoft in Azure portal as a one of
+Cognitive Services.</p>
+<p>You need to register at Azure portal and use the key you obtain there.</p>
+<p>To enable this service, add <code class="docutils literal notranslate"><span class="pre">weblate.machinery.microsoft.MicrosoftCognitiveTranslation</span></code> to
+<a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a> and set <a class="reference internal" href="config.html#std:setting-MT_MICROSOFT_COGNITIVE_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_MICROSOFT_COGNITIVE_KEY</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="config.html#std:setting-MT_MICROSOFT_COGNITIVE_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_MICROSOFT_COGNITIVE_KEY</span></code></a>,
+<a class="reference external" href="https://azure.microsoft.com/services/cognitive-services/translator-text-api/">Cognitive Services - Text Translation API</a>,
+<a class="reference external" href="https://portal.azure.com/">Microsoft Azure Portal</a></p>
+</div>
+</div>
+<div class="section" id="microsoft-terminology-service">
+<span id="ms-terminology"></span><h2>Microsoft Terminology Service<a class="headerlink" href="#microsoft-terminology-service" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.19 で追加.</span></p>
+</div>
+<p>The Microsoft Terminology Service API allows you to programmatically access the
+terminology, definitions and user interface (UI) strings available on the
+Language Portal through a web service.</p>
+<p>To enable this service, add <code class="docutils literal notranslate"><span class="pre">weblate.machinery.microsoftterminology.MicrosoftTerminologyService</span></code> to
+<a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://www.microsoft.com/en-us/language/Microsoft-Terminology-API">Microsoft Terminology Service API</a></p>
+</div>
+</div>
+<div class="section" id="mymemory">
+<span id="id6"></span><h2>MyMemory<a class="headerlink" href="#mymemory" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Huge translation memory with machine translation.</p>
+<p>Free, anonymous usage is currently limited to 100 requests/day, or to 1000
+requests/day when you provide contact email in <a class="reference internal" href="config.html#std:setting-MT_MYMEMORY_EMAIL"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_MYMEMORY_EMAIL</span></code></a>.
+You can also ask them for more.</p>
+<p>To enable this service, add <code class="docutils literal notranslate"><span class="pre">weblate.machinery.mymemory.MyMemoryTranslation</span></code> to
+<a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a> and  set <a class="reference internal" href="config.html#std:setting-MT_MYMEMORY_EMAIL"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_MYMEMORY_EMAIL</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="config.html#std:setting-MT_MYMEMORY_EMAIL"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_MYMEMORY_EMAIL</span></code></a>,
+<a class="reference internal" href="config.html#std:setting-MT_MYMEMORY_USER"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_MYMEMORY_USER</span></code></a>,
+<a class="reference internal" href="config.html#std:setting-MT_MYMEMORY_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_MYMEMORY_KEY</span></code></a>,
+<a class="reference external" href="https://mymemory.translated.net/">MyMemory website</a></p>
+</div>
+</div>
+<div class="section" id="netease-sight-api-machine-translation">
+<span id="netease-translate"></span><h2>Netease Sight API machine translation<a class="headerlink" href="#netease-sight-api-machine-translation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.3 で追加.</span></p>
+</div>
+<p>Machine translation service provided by Netease.</p>
+<p>This service uses an API and you need to obtain key and secret from Netease.</p>
+<p>To enable this service, add <code class="docutils literal notranslate"><span class="pre">weblate.machinery.youdao.NeteaseSightTranslation</span></code> to
+<a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a> and set <a class="reference internal" href="config.html#std:setting-MT_NETEASE_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_NETEASE_KEY</span></code></a> and
+<a class="reference internal" href="config.html#std:setting-MT_NETEASE_SECRET"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_NETEASE_SECRET</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="config.html#std:setting-MT_NETEASE_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_NETEASE_KEY</span></code></a>,
+<a class="reference internal" href="config.html#std:setting-MT_NETEASE_SECRET"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_NETEASE_SECRET</span></code></a>
+<a class="reference external" href="https://sight.netease.com/">Netease Sight Translation Platform</a></p>
+</div>
+</div>
+<div class="section" id="tmserver">
+<span id="id7"></span><h2>tmserver<a class="headerlink" href="#tmserver" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>You can run your own translation memory server which is bundled with
+Translate-toolkit and let Weblate talk to it. You can also use it with
+amaGama server, which is an enhanced version of tmserver.</p>
+<p>First you will want to import some data to the translation memory:</p>
+<p>To enable this service, add <code class="docutils literal notranslate"><span class="pre">weblate.machinery.tmserver.TMServerTranslation</span></code> to
+<a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a>.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>build_tmdb -d /var/lib/tm/db -s en -t cs locale/cs/LC_MESSAGES/django.po
+build_tmdb -d /var/lib/tm/db -s en -t de locale/de/LC_MESSAGES/django.po
+build_tmdb -d /var/lib/tm/db -s en -t fr locale/fr/LC_MESSAGES/django.po
+</pre></div>
+</div>
+<p>Now you can start tmserver to listen to your requests:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>tmserver -d /var/lib/tm/db
+</pre></div>
+</div>
+<p>And configure Weblate to talk to it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MT_TMSERVER</span> <span class="o">=</span> <span class="s1">&#39;http://localhost:8888/tmserver/&#39;</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="config.html#std:setting-MT_TMSERVER"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_TMSERVER</span></code></a>,
+<a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/commands/tmserver.html" title="(in Translate Toolkit v2.3.1)"><span>tmserver</span></a>
+<a class="reference external" href="https://virtaal.readthedocs.io/en/latest/amagama.html" title="(in Virtaal v0.7.1)"><span>Amagama</span></a>,
+<a class="reference external" href="https://amagama.translatehouse.org/">Amagama Translation Memory</a></p>
+</div>
+</div>
+<div class="section" id="yandex-translate">
+<span id="id9"></span><h2>Yandex Translate<a class="headerlink" href="#yandex-translate" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Machine translation service provided by Yandex.</p>
+<p>This service uses Translation API and you need to obtain API key from Yandex.</p>
+<p>To enable this service, add <code class="docutils literal notranslate"><span class="pre">weblate.machinery.yandex.YandexTranslation</span></code> to
+<a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a> and set <a class="reference internal" href="config.html#std:setting-MT_YANDEX_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_YANDEX_KEY</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="config.html#std:setting-MT_YANDEX_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_YANDEX_KEY</span></code></a>,
+<a class="reference external" href="https://tech.yandex.com/translate/">Yandex Translate API</a>,
+<a class="reference external" href="https://translate.yandex.com/">Powered by Yandex.Translate</a></p>
+</div>
+</div>
+<div class="section" id="youdao-zhiyun-api-machine-translation">
+<span id="youdao-translate"></span><h2>Youdao Zhiyun API machine translation<a class="headerlink" href="#youdao-zhiyun-api-machine-translation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.2 で追加.</span></p>
+</div>
+<p>Machine translation service provided by Youdao.</p>
+<p>This service uses an API and you need to obtain ID and API key from Youdao.</p>
+<p>To enable this service, add <code class="docutils literal notranslate"><span class="pre">weblate.machinery.youdao.YoudaoTranslation</span></code> to
+<a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a> and set <a class="reference internal" href="config.html#std:setting-MT_YOUDAO_ID"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_YOUDAO_ID</span></code></a> and
+<a class="reference internal" href="config.html#std:setting-MT_YOUDAO_SECRET"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_YOUDAO_SECRET</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="config.html#std:setting-MT_YOUDAO_ID"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_YOUDAO_ID</span></code></a>,
+<a class="reference internal" href="config.html#std:setting-MT_YOUDAO_SECRET"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_YOUDAO_SECRET</span></code></a>
+<a class="reference external" href="https://ai.youdao.com/product-fanyi.s">Youdao Zhiyun Natural Language Translation Service</a></p>
+</div>
+</div>
+<div class="section" id="weblate">
+<h2>Weblate<a class="headerlink" href="#weblate" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblate can be source of machine translation as well. It is based on the fulltext
+engine Whoosh and provides both exact and inexact matches.</p>
+<p>To enable these services, add
+<code class="docutils literal notranslate"><span class="pre">weblate.machinery.weblatetm.WeblateTranslation</span></code> to
+<a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a>.</p>
+</div>
+<div class="section" id="weblate-translation-memory">
+<span id="id10"></span><h2>Weblate Translation Memory<a class="headerlink" href="#weblate-translation-memory" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.20 で追加.</span></p>
+</div>
+<p>The <a class="reference internal" href="memory.html#translation-memory"><span class="std std-ref">Translation Memory</span></a> can be used as source for machine translation
+suggestions as well.</p>
+<p>To enable these services, add <code class="docutils literal notranslate"><span class="pre">weblate.memory.machine.WeblateMemory</span></code> to
+the <a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a>. This service is enabled by
+default.</p>
+</div>
+<div class="section" id="sap-translation-hub">
+<span id="saptranslationhub"></span><h2>SAP Translation Hub<a class="headerlink" href="#sap-translation-hub" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Machine translation service provided by SAP.</p>
+<p>You need to have a SAP account (and enabled the SAP Translation Hub in the SAP Cloud
+Platform) to use this service.</p>
+<p>To enable this service, add
+<code class="docutils literal notranslate"><span class="pre">weblate.machinery.saptranslationhub.SAPTranslationHub</span></code> to
+<a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a> and set appropriate access to either
+sandbox or productive API.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>To access the Sandbox API, you need to set <a class="reference internal" href="config.html#std:setting-MT_SAP_BASE_URL"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SAP_BASE_URL</span></code></a>
+and <a class="reference internal" href="config.html#std:setting-MT_SAP_SANDBOX_APIKEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SAP_SANDBOX_APIKEY</span></code></a>.</p>
+<p class="last">To access the productive API, you need to set <a class="reference internal" href="config.html#std:setting-MT_SAP_BASE_URL"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SAP_BASE_URL</span></code></a>,
+<a class="reference internal" href="config.html#std:setting-MT_SAP_USERNAME"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SAP_USERNAME</span></code></a> and <a class="reference internal" href="config.html#std:setting-MT_SAP_PASSWORD"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SAP_PASSWORD</span></code></a>.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="config.html#std:setting-MT_SAP_BASE_URL"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SAP_BASE_URL</span></code></a>,
+<a class="reference internal" href="config.html#std:setting-MT_SAP_SANDBOX_APIKEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SAP_SANDBOX_APIKEY</span></code></a>,
+<a class="reference internal" href="config.html#std:setting-MT_SAP_USERNAME"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SAP_USERNAME</span></code></a>,
+<a class="reference internal" href="config.html#std:setting-MT_SAP_PASSWORD"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SAP_PASSWORD</span></code></a>,
+<a class="reference internal" href="config.html#std:setting-MT_SAP_USE_MT"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SAP_USE_MT</span></code></a>
+<a class="reference external" href="https://api.sap.com/shell/discover/contentpackage/SAPTranslationHub/api/translationhub">SAP Translation Hub API</a></p>
+</div>
+</div>
+<div class="section" id="custom-machine-translation">
+<h2>Custom machine translation<a class="headerlink" href="#custom-machine-translation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>You can also implement your own machine translation services using a few lines of
+Python code. This example implements translation to a fixed list of
+languages using <code class="docutils literal notranslate"><span class="pre">dictionary</span></code> Python module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright © 2012 - 2018 Michal Čihař &lt;michal@cihar.com&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of Weblate &lt;https://weblate.org/&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot;Machine translation example.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">weblate.machinery.base</span> <span class="kn">import</span> <span class="n">MachineTranslation</span>
+<span class="kn">import</span> <span class="nn">dictionary</span>
+
+
+<span class="k">class</span> <span class="nc">SampleTranslation</span><span class="p">(</span><span class="n">MachineTranslation</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sample machine translation interface.&quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Sample&#39;</span>
+
+    <span class="k">def</span> <span class="nf">download_languages</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return list of languages your machine translation supports.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">((</span><span class="s1">&#39;cs&#39;</span><span class="p">,))</span>
+
+    <span class="k">def</span> <span class="nf">download_translations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">language</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return tuple with translations.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[(</span><span class="n">t</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">text</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>You can list own class in <a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a> and Weblate
+will start using that.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="addons.html" class="btn btn-neutral float-right" title="Addons" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="checks.html" class="btn btn-neutral" title="Checks and fixups" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,735 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Checks and fixups &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Application developer guide" href="../devel/index.html" />
+    <link rel="prev" title="Downloading and uploading translations" href="files.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Translators guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basic.html">Weblate の基本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profile.html">Registration and user profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translating using Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="files.html">Downloading and uploading translations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Checks and fixups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#automatic-fixups">Automatic fixups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quality-checks">Quality checks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#translation-checks">Translation checks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#unchanged-translation">Unchanged translation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#starting-or-trailing-newline">Starting or trailing newline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#starting-spaces">Starting spaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trailing-space">Trailing space</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trailing-stop">Trailing stop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trailing-colon">Trailing colon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trailing-question-mark">Trailing question mark</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trailing-exclamation">Trailing exclamation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trailing-ellipsis">Trailing ellipsis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trailing-semicolon">Trailing semicolon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#maximum-length">Maximum Length</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#formatted-strings">Formatted strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#missing-plurals">Missing plurals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#same-plurals">Same plurals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inconsistent">Inconsistent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#has-been-translated">Has been translated</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mismatched-n">Mismatched \n</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mismatched-bbcode">Mismatched BBCode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#zero-width-space">Zero-width space</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#invalid-xml-markup">Invalid XML markup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xml-tags-mismatch">XML tags mismatch</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#source-checks">Source checks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#optional-plural">Optional plural</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ellipsis">Ellipsis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multiple-failing-checks">Multiple failing checks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Translators guide</a> &raquo;</li>
+        
+      <li>Checks and fixups</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/user/checks.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="checks-and-fixups">
+<h1>Checks and fixups<a class="headerlink" href="#checks-and-fixups" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>The quality checks help catch common translator errors, ensuring the
+translation is in good shape. The checks are divided into three levels of severity,
+and can be ignored in case of false positives.</p>
+<p>Once submitting a translation with a failing check, this is immediately shown to
+the user:</p>
+<img alt="../_images/checks.png" src="../_images/checks.png" />
+<div class="section" id="automatic-fixups">
+<span id="autofix"></span><h2>Automatic fixups<a class="headerlink" href="#automatic-fixups" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>In addition to <a class="reference internal" href="#checks"><span class="std std-ref">Quality checks</span></a>, Weblate can also fix some common
+errors in translated strings automatically. Use it with caution to not have
+it add errors.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../admin/config.html#std:setting-AUTOFIX_LIST"><code class="xref std std-setting docutils literal notranslate"><span class="pre">AUTOFIX_LIST</span></code></a></p>
+</div>
+</div>
+<div class="section" id="quality-checks">
+<span id="checks"></span><h2>Quality checks<a class="headerlink" href="#quality-checks" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblate employs a wide range of quality checks on strings. The following section
+describes them all in further detail. There are also language specific checks.
+Please file a bug if anything is reported in error.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../admin/config.html#std:setting-CHECK_LIST"><code class="xref std std-setting docutils literal notranslate"><span class="pre">CHECK_LIST</span></code></a>, <a class="reference internal" href="../admin/checks.html#custom-checks"><span class="std std-ref">Customizing behavior</span></a></p>
+</div>
+</div>
+<div class="section" id="translation-checks">
+<h2>Translation checks<a class="headerlink" href="#translation-checks" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Executed upon every translation change, helping translators maintain
+good quality translations.</p>
+<div class="section" id="unchanged-translation">
+<span id="check-same"></span><h3>Unchanged translation<a class="headerlink" href="#unchanged-translation" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Happens if the source and correspanding translation strings is identical, down to
+at least one of the plural forms. Some strings commonly found across all
+languages are ignored, and various markup is stripped. This reduces
+the number of false positives.</p>
+<p>This check can help find strings mistakenly untranslated.</p>
+</div>
+<div class="section" id="starting-or-trailing-newline">
+<span id="check-end-newline"></span><span id="check-begin-newline"></span><h3>Starting or trailing newline<a class="headerlink" href="#starting-or-trailing-newline" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Source and translation do not both start (or end) with a newline.</p>
+<p>Newlines usually appear in source strings for good reason, omissions or additions
+can lead to formatting problems when the translated text is put to use.</p>
+</div>
+<div class="section" id="starting-spaces">
+<span id="check-begin-space"></span><h3>Starting spaces<a class="headerlink" href="#starting-spaces" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Source and translation do not both start with the same number of spaces.</p>
+<p>A space in the beginning of a string is usually used for indentation in the interface and thus
+important to keep.</p>
+</div>
+<div class="section" id="trailing-space">
+<span id="check-end-space"></span><h3>Trailing space<a class="headerlink" href="#trailing-space" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Checks that trailing spaces are replicated between both source and translation.</p>
+<p>Trailing space is usually utilized to space out neighbouring elements, so
+removing it might break layout.</p>
+</div>
+<div class="section" id="trailing-stop">
+<span id="check-end-stop"></span><h3>Trailing stop<a class="headerlink" href="#trailing-stop" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Checks that full stops are replicated between both source and translation.
+The presence of full stops is checked for various languages where they do not belong
+(Chinese, Japanese, Devanagari or Urdu).</p>
+</div>
+<div class="section" id="trailing-colon">
+<span id="check-end-colon"></span><h3>Trailing colon<a class="headerlink" href="#trailing-colon" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Checks that colons are replicated between both source and translation, and
+that the they are correctly spaced. This includes rules for languages like French or
+Breton. The presence of colons is also checked for various languages where they do not belong
+(Chinese or Japanese).</p>
+</div>
+<div class="section" id="trailing-question-mark">
+<span id="check-end-question"></span><h3>Trailing question mark<a class="headerlink" href="#trailing-question-mark" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Checks that question marks are replicated between both source and translation, and
+that they are correctly spaced or similar. This includes spacing rules for languages like French or
+Breton. The presence of question marks is also checked for various languages where they
+do not belong (Armenian, Arabic, Chinese, Korean, Japanese, Ethiopic, Vai or Coptic).</p>
+</div>
+<div class="section" id="trailing-exclamation">
+<span id="check-end-exclamation"></span><h3>Trailing exclamation<a class="headerlink" href="#trailing-exclamation" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Checks that exclamations are replicated between both source and translation, and that they are
+correctly spaced. This includes spacing rules for languages like French or
+Breton. The presence of exclamation marks is also checked for various languages where they
+do not belong (Chinese, Japanese, Korean, Armenian, Limbu, Myanmar or Nko).</p>
+</div>
+<div class="section" id="trailing-ellipsis">
+<span id="check-end-ellipsis"></span><h3>Trailing ellipsis<a class="headerlink" href="#trailing-ellipsis" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Checks that trailing ellipsises are replicated between both source and translation.
+This only checks for real ellipsis (<code class="docutils literal notranslate"><span class="pre">…</span></code>) not for three dots (<code class="docutils literal notranslate"><span class="pre">...</span></code>).</p>
+<p>An ellipsis is usually rendered nicer than three dots in print, and sound better with text-to-speech.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://en.wikipedia.org/wiki/Ellipsis">Ellipsis on wikipedia</a></p>
+</div>
+</div>
+<div class="section" id="trailing-semicolon">
+<span id="check-end-semicolon"></span><h3>Trailing semicolon<a class="headerlink" href="#trailing-semicolon" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Checks that semicolons at the end of sentences are replicated between both source and translation.
+This can be useful to keep formatting of entries such as desktop files.</p>
+</div>
+<div class="section" id="maximum-length">
+<span id="check-max-length"></span><h3>Maximum Length<a class="headerlink" href="#maximum-length" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Checks that translations are of acceptable length to fit available space.
+This only checks for the length of translation characters.</p>
+<p>Unlike the other checks, the flag should be set as a <code class="docutils literal notranslate"><span class="pre">key:value</span></code> pair like
+<code class="docutils literal notranslate"><span class="pre">max-length:100</span></code>.</p>
+</div>
+<div class="section" id="formatted-strings">
+<span id="check-java-messageformat"></span><span id="check-java-format"></span><span id="check-c-sharp-format"></span><span id="check-angularjs-format"></span><span id="check-javascript-format"></span><span id="check-perl-format"></span><span id="check-c-format"></span><span id="check-php-format"></span><span id="check-python-brace-format"></span><span id="check-python-format"></span><h3>Formatted strings<a class="headerlink" href="#formatted-strings" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Checks that formatting in strings are replicated between both source and translation.
+Omitting format strings in translation usually cause severe problems, so the formatting in strings
+should usually match the source.</p>
+<p>Weblate supports checking format strings in several languages. The check is not
+enabled automatically, only if a string is flagged appropriately (e.g.
+<cite>c-format</cite> for C format). Gettext adds this automatically, but you will
+probably have to add it manually for other file formats or if your PO files are
+not generated by <strong class="program">xgettext</strong>.</p>
+<p>This can be done per unit (see <a class="reference internal" href="../admin/translating.html#additional"><span class="std std-ref">Additional information on source strings</span></a>) or in <a class="reference internal" href="../admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a>.
+Having it defined per component is simpler, but can lead to false positives in
+case the string is not interpreted as a formating string, but format string syntax
+happens to be used.</p>
+<p>Besides checking, this will also highligh the formatting strings to easily
+insert them into translated strings:</p>
+<img alt="../_images/format-highlight.png" src="../_images/format-highlight.png" />
+<div class="section" id="python-format">
+<h4>Python format<a class="headerlink" href="#python-format" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Simple format string</td>
+<td><code class="docutils literal notranslate"><span class="pre">There</span> <span class="pre">are</span> <span class="pre">%d</span> <span class="pre">apples</span></code></td>
+</tr>
+<tr class="row-even"><td>Named format string</td>
+<td><code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">balance</span> <span class="pre">is</span> <span class="pre">%(amount)</span> <span class="pre">%(currency)</span></code></td>
+</tr>
+<tr class="row-odd"><td>Flag to enable</td>
+<td><cite>python-format</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.python.org/2.7/library/stdtypes.html#string-formatting" title="(in Python v2.7)"><span class="xref std std-ref">Python string formatting</span></a>,
+<a class="reference external" href="https://www.gnu.org/software/gettext/manual/html_node/python_002dformat.html">Python Format Strings</a></p>
+</div>
+</div>
+<div class="section" id="python-brace-format">
+<h4>Python brace format<a class="headerlink" href="#python-brace-format" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Simple format string</td>
+<td><code class="docutils literal notranslate"><span class="pre">There</span> <span class="pre">are</span> <span class="pre">{}</span> <span class="pre">apples</span></code></td>
+</tr>
+<tr class="row-even"><td>Named format string</td>
+<td><code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">balance</span> <span class="pre">is</span> <span class="pre">{amount}</span> <span class="pre">{currency}</span></code></td>
+</tr>
+<tr class="row-odd"><td>Flag to enable</td>
+<td><cite>python-brace-format</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.python.org/3.5/library/string.html#formatstrings" title="(in Python v3.5)"><span class="xref std std-ref">Python brace format</span></a>,
+<a class="reference external" href="https://www.gnu.org/software/gettext/manual/html_node/python_002dformat.html">Python Format Strings</a></p>
+</div>
+</div>
+<div class="section" id="php-format">
+<h4>PHP format<a class="headerlink" href="#php-format" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Simple format string</td>
+<td><code class="docutils literal notranslate"><span class="pre">There</span> <span class="pre">are</span> <span class="pre">%d</span> <span class="pre">apples</span></code></td>
+</tr>
+<tr class="row-even"><td>Position format string</td>
+<td><code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">balance</span> <span class="pre">is</span> <span class="pre">%1$d</span> <span class="pre">%2$s</span></code></td>
+</tr>
+<tr class="row-odd"><td>Flag to enable</td>
+<td><cite>php-format</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://secure.php.net/manual/en/function.sprintf.php">PHP sprintf documentation</a>,
+<a class="reference external" href="https://www.gnu.org/software/gettext/manual/html_node/php_002dformat.html">PHP Format Strings</a></p>
+</div>
+</div>
+<div class="section" id="c-format">
+<h4>C format<a class="headerlink" href="#c-format" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Simple format string</td>
+<td><code class="docutils literal notranslate"><span class="pre">There</span> <span class="pre">are</span> <span class="pre">%d</span> <span class="pre">apples</span></code></td>
+</tr>
+<tr class="row-even"><td>Position format string</td>
+<td><code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">balance</span> <span class="pre">is</span> <span class="pre">%1$d</span> <span class="pre">%2$s</span></code></td>
+</tr>
+<tr class="row-odd"><td>Flag to enable</td>
+<td><cite>c-format</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://www.gnu.org/software/gettext/manual/html_node/c_002dformat.html">C format strings</a>,
+<a class="reference external" href="https://en.wikipedia.org/wiki/Printf_format_string">C printf format</a></p>
+</div>
+</div>
+<div class="section" id="perl-format">
+<h4>Perl format<a class="headerlink" href="#perl-format" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Simple format string</td>
+<td><code class="docutils literal notranslate"><span class="pre">There</span> <span class="pre">are</span> <span class="pre">%d</span> <span class="pre">apples</span></code></td>
+</tr>
+<tr class="row-even"><td>Position format string</td>
+<td><code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">balance</span> <span class="pre">is</span> <span class="pre">%1$d</span> <span class="pre">%2$s</span></code></td>
+</tr>
+<tr class="row-odd"><td>Flag to enable</td>
+<td><cite>perl-format</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://perldoc.perl.org/functions/sprintf.html">Perl sprintf</a>,
+<a class="reference external" href="https://www.gnu.org/software/gettext/manual/html_node/perl_002dformat.html">Perl Format Strings</a></p>
+</div>
+</div>
+<div class="section" id="javascript-format">
+<h4>Javascript format<a class="headerlink" href="#javascript-format" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Simple format string</td>
+<td><code class="docutils literal notranslate"><span class="pre">There</span> <span class="pre">are</span> <span class="pre">%d</span> <span class="pre">apples</span></code></td>
+</tr>
+<tr class="row-even"><td>Flag to enable</td>
+<td><cite>javascript-format</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://www.gnu.org/software/gettext/manual/html_node/javascript_002dformat.html">JavaScript formatting strings</a></p>
+</div>
+</div>
+<div class="section" id="angularjs-interpolation-string">
+<h4>AngularJS interpolation string<a class="headerlink" href="#angularjs-interpolation-string" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Named format string</td>
+<td><code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">balance</span> <span class="pre">is</span> <span class="pre">{{amount}}</span> <span class="pre">{{</span> <span class="pre">currency</span> <span class="pre">}}</span></code></td>
+</tr>
+<tr class="row-even"><td>Flag to enable</td>
+<td><cite>angularjs-format</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.angularjs.org/api/ng/service/$interpolate">AngularJS: API: $interpolate</a></p>
+</div>
+</div>
+<div class="section" id="id2">
+<h4>C# format<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Position format string</td>
+<td><code class="docutils literal notranslate"><span class="pre">There</span> <span class="pre">are</span> <span class="pre">{0}</span> <span class="pre">apples</span></code></td>
+</tr>
+<tr class="row-even"><td>Flag to enable</td>
+<td><cite>c-sharp-format</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/api/system.string.format?view=netframework-4.7.2">C# String Format</a></p>
+</div>
+</div>
+<div class="section" id="java-format">
+<h4>Java format<a class="headerlink" href="#java-format" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Simple format string</td>
+<td><code class="docutils literal notranslate"><span class="pre">There</span> <span class="pre">are</span> <span class="pre">%d</span> <span class="pre">apples</span></code></td>
+</tr>
+<tr class="row-even"><td>Position format string</td>
+<td><code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">balance</span> <span class="pre">is</span> <span class="pre">%1$d</span> <span class="pre">%2$s</span></code></td>
+</tr>
+<tr class="row-odd"><td>Flag to enable</td>
+<td><cite>java-format</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html">Java Format Strings</a></p>
+</div>
+</div>
+<div class="section" id="java-messageformat">
+<h4>Java MessageFormat<a class="headerlink" href="#java-messageformat" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Position format string</td>
+<td><code class="docutils literal notranslate"><span class="pre">There</span> <span class="pre">are</span> <span class="pre">{0}</span> <span class="pre">apples</span></code></td>
+</tr>
+<tr class="row-even"><td>Flag to enable</td>
+<td><cite>java-messageformat</cite> enables the check unconditionally</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td><cite>auto-java-messageformat</cite> enables check only if there is a
+format string in the source</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html">Java MessageFormat</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="missing-plurals">
+<span id="check-plurals"></span><h3>Missing plurals<a class="headerlink" href="#missing-plurals" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Checks that all plural forms of a source string have been translated.
+Specifics on how each plural form is used can be found in the string definition.</p>
+<p>Failing to fill in plural forms will in some cases lead to displaying nothing when
+the plural tense is in use.</p>
+</div>
+<div class="section" id="same-plurals">
+<span id="check-same-plurals"></span><h3>Same plurals<a class="headerlink" href="#same-plurals" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Check that fails if some plural forms duplicated in the translation.
+In most languages they have to be different.</p>
+</div>
+<div class="section" id="inconsistent">
+<span id="check-inconsistent"></span><h3>Inconsistent<a class="headerlink" href="#inconsistent" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate checks translations of the same string across all translation within a
+project to help you keep consistent translations.</p>
+<p>The check fails on differing translations of one string within a project. This can also lead to
+inconsistencies in displayed checks. You can find other translations of this
+string on the <span class="guilabel">All locations</span> tab.</p>
+</div>
+<div class="section" id="has-been-translated">
+<span id="check-translated"></span><h3>Has been translated<a class="headerlink" href="#has-been-translated" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Means a string has been translated already. This can happen when the
+translations have been reverted in VCS or lost otherwise.</p>
+</div>
+<div class="section" id="mismatched-n">
+<span id="check-escaped-newline"></span><h3>Mismatched \n<a class="headerlink" href="#mismatched-n" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Usually escaped newlines are important for formatting program output.
+Check fails if the number of <code class="docutils literal notranslate"><span class="pre">\\n</span></code> literals in translation do not match the source.</p>
+</div>
+<div class="section" id="mismatched-bbcode">
+<span id="check-bbcode"></span><h3>Mismatched BBCode<a class="headerlink" href="#mismatched-bbcode" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>BBCode represents simple markup, like for example highlighting important parts of a
+message in bold font, or italics.</p>
+<p>This check ensures they are also found in translation.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">The method for detecting BBcode is currently quite simple so this check
+might produce false positives.</p>
+</div>
+</div>
+<div class="section" id="zero-width-space">
+<span id="check-zero-width-space"></span><h3>Zero-width space<a class="headerlink" href="#zero-width-space" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Zero-width space (&lt;U+200B&gt;) character are used to truncate messages within words.</p>
+<p>As they are usually inserted by mistake, this check is triggered once they are present
+in translation. Some programs might have problems when this character is used.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://en.wikipedia.org/wiki/Zero-width_space">Zero width space on Wikipedia</a></p>
+</div>
+</div>
+<div class="section" id="invalid-xml-markup">
+<span id="check-xml-invalid"></span><h3>Invalid XML markup<a class="headerlink" href="#invalid-xml-markup" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.8 で追加.</span></p>
+</div>
+<p>The XML markup is not valid.</p>
+</div>
+<div class="section" id="xml-tags-mismatch">
+<span id="check-xml-tags"></span><h3>XML tags mismatch<a class="headerlink" href="#xml-tags-mismatch" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This usually means the resulting output will look different. In most cases this is
+not desired result from changing the translation, but occasionally it is.</p>
+<p>Checks that XML tags are replicated between both source and translation.</p>
+</div>
+</div>
+<div class="section" id="source-checks">
+<h2>Source checks<a class="headerlink" href="#source-checks" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Source checks can help developers improve the quality of source strings.</p>
+<div class="section" id="optional-plural">
+<span id="check-optional-plural"></span><h3>Optional plural<a class="headerlink" href="#optional-plural" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The string is optionally used as a plural, but does not use plural forms. In case
+your translation system supports this, you should use the plural aware variant of
+it.</p>
+<p>For example with Gettext in Python it could be:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gettext</span> <span class="kn">import</span> <span class="n">ngettext</span>
+
+<span class="k">print</span> <span class="n">ngettext</span><span class="p">(</span><span class="s1">&#39;Selected </span><span class="si">%d</span><span class="s1"> file&#39;</span><span class="p">,</span> <span class="s1">&#39;Selected </span><span class="si">%d</span><span class="s1"> files&#39;</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span> <span class="o">%</span> <span class="n">files</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ellipsis">
+<span id="check-ellipsis"></span><h3>Ellipsis<a class="headerlink" href="#ellipsis" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This fails when the string uses three dots (<code class="docutils literal notranslate"><span class="pre">...</span></code>) when it should use an ellipsis character (<code class="docutils literal notranslate"><span class="pre">…</span></code>).</p>
+<p>Using the Unicode character is in most cases the better approach and looks better
+rendered, and may sound better with text-to-speech.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://en.wikipedia.org/wiki/Ellipsis">Ellipsis on Wikipedia</a></p>
+</div>
+</div>
+<div class="section" id="multiple-failing-checks">
+<span id="check-multiple-failures"></span><h3>Multiple failing checks<a class="headerlink" href="#multiple-failing-checks" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Numerous translations of this string have failing quality checks. This is
+usually an indication that something could be done to improving the source
+string.</p>
+<p>This check failing can quite often be caused by a missing full stop at the end of
+a sentence, or similar minor issues which translators tend to fix in
+translation, while it would be better to fix it in the source string.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../devel/index.html" class="btn btn-neutral float-right" title="Application developer guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="files.html" class="btn btn-neutral" title="Downloading and uploading translations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

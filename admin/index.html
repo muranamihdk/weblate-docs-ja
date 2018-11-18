@@ -1,0 +1,759 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Administrators guide &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Quick setup guide" href="quick.html" />
+    <link rel="prev" title="Translation progress reporting" href="../devel/reporting.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Administrators guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access.html">Access control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html">翻訳プロジェクト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html">継続的トランスレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks and fixups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html">Machine translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html">Addons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html">Management commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Administrators guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/admin/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="administrators-guide">
+<h1>Administrators guide<a class="headerlink" href="#administrators-guide" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quick.html">Quick setup guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quick.html#choosing-installation-method">Choosing installation method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick.html#installing-in-a-virtualenv">Installing in a virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick.html#installing-from-sources">Installing from sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick.html#installing-using-docker">Installing using Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick.html#installing-on-openshift-2">Installing on OpenShift 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick.html#adding-translation">Adding translation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation instructions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#hardware-requirements">Hardware requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#software-requirements">Software requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install.html#python-dependencies">Python dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#other-system-requirements">Other system requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#compile-time-dependencies">Compile time dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#installing-weblate">Installing Weblate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install.html#installing-in-virtualenv">Installing in virtualenv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#installing-weblate-from-git">Installing Weblate from Git</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#installing-weblate-by-pip">Installing Weblate by pip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#requirements-on-debian-or-ubuntu">Requirements on Debian or Ubuntu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#requirements-on-opensuse">Requirements on openSUSE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#requirements-on-osx">Requirements on OSX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#requirements-using-pip-installer">Requirements using pip installer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#filesystem-permissions">Filesystem permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#database-setup-for-weblate">Database setup for Weblate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install.html#postgresql">PostgreSQL</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="install.html#creating-database-in-postgresql">Creating database in PostgreSQL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="install.html#configuring-weblate-to-use-postgresql">Configuring Weblate to use PostgreSQL</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#mysql-or-mariadb">MySQL or MariaDB</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="install.html#unicode-issues-in-mysql">Unicode issues in MySQL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="install.html#transaction-locking">Transaction locking</a></li>
+<li class="toctree-l4"><a class="reference internal" href="install.html#creating-database-in-mysql">Creating database in MySQL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="install.html#configuring-weblate-to-use-mysql">Configuring Weblate to use MySQL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#other-configurations">Other configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install.html#configuring-outgoing-mail">Configuring outgoing mail</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#background-tasks-using-celery">Background tasks using Celery</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#filling-up-the-database">Filling up the database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#production-setup">Production setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install.html#disable-debug-mode">Disable debug mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#properly-configure-admins">Properly configure admins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#set-correct-site-name">Set correct site name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#correctly-configure-https">Correctly configure HTTPS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#use-powerful-database-engine">Use powerful database engine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#enable-caching">Enable caching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#avatar-caching">Avatar caching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#configure-email-addresses">Configure email addresses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#allowed-hosts-setup">Allowed hosts setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#pyuca-library">pyuca library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#django-secret-key">Django secret key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#static-files">Static files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#home-directory">Home directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#template-loading">Template loading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#running-maintenance-tasks">Running maintenance tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#running-server">Running server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install.html#serving-static-files">Serving static files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#content-security-policy">Content security policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#sample-configuration-for-apache">Sample configuration for Apache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#sample-configuration-for-apache-and-gunicorn">Sample configuration for Apache and gunicorn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#sample-configuration-for-nginx-and-uwsgi">Sample configuration for nginx and uwsgi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#running-weblate-under-path">Running Weblate under path</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#monitoring-weblate">Monitoring Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#collecting-error-reports">Collecting error reports</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install.html#sentry">Sentry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#rollbar">Rollbar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#migrating-weblate-to-another-server">Migrating Weblate to another server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install.html#migrating-database">Migrating database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#migrating-vcs-repositories">Migrating VCS repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#migrating-fulltext-index">Migrating fulltext index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#other-notes">Other notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployments.html">Weblate deployments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html#running-weblate-in-the-docker">Running Weblate in the Docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deployments.html#deployment">Deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployments.html#docker-container-with-https-support">Docker container with https support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployments.html#upgrading-docker-container">Upgrading Docker container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployments.html#docker-environment-variables">Docker environment variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="deployments.html#generic-settings">Generic settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deployments.html#machine-translation-settings">Machine translation settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deployments.html#authentication-settings">Authentication settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deployments.html#postgresql-database-setup">PostgreSQL database setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deployments.html#caching-server-setup">Caching server setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deployments.html#email-server-setup">Email server setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deployments.html#error-reporting">Error reporting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="deployments.html#further-configuration-customization">Further configuration customization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployments.html#hub-setup">Hub setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployments.html#select-your-machine-local-or-cloud-providers">Select your machine - local or cloud providers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html#running-weblate-on-openshift-2">Running Weblate on OpenShift 2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deployments.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployments.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployments.html#default-configuration">Default Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="deployments.html#retrieve-admin-password">Retrieve Admin Password</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deployments.html#indexing-offloading">Indexing Offloading</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deployments.html#pending-changes">Pending Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deployments.html#customize-weblate-configuration">Customize Weblate Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="deployments.html#updating">Updating</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html#bitnami-weblate-stack">Bitnami Weblate stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html#weblate-in-yunohost">Weblate in YunoHost</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html#generic-upgrade-instructions">Generic upgrade instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html#version-specific-instructions">Version specific instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="upgrade.html#upgrade-from-2-x">Upgrade from 2.x</a></li>
+<li class="toctree-l3"><a class="reference internal" href="upgrade.html#upgrade-from-3-0-1-to-3-1">Upgrade from 3.0.1 to 3.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="upgrade.html#upgrade-from-3-1-to-3-2">Upgrade from 3.1 to 3.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="upgrade.html#upgrade-from-3-2-to-3-3">Upgrade from 3.2 to 3.3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html#upgrading-from-python-2-to-python-3">Upgrading from Python 2 to Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html#migrating-from-pootle">Migrating from Pootle</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="backup.html#backing-up">Backing up</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="backup.html#database">Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="backup.html#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="backup.html#dumped-data-for-backups">Dumped data for backups</a></li>
+<li class="toctree-l4"><a class="reference internal" href="backup.html#version-control-repositories">Version control repositories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="backup.html#ssh-and-gpg-keys">SSH and GPG keys</a></li>
+<li class="toctree-l4"><a class="reference internal" href="backup.html#user-uploaded-files">User uploaded files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="backup.html#translation-memory">Translation memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="backup.html#fulltext-index">Fulltext index</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html#celery-tasks">Celery tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html#restoring">Restoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html#moving-weblate-installation">Moving Weblate installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">Authentication</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#user-registration">User registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#authentication-backends">Authentication backends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#social-authentication">Social authentication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="auth.html#openid-authentication">OpenID authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auth.html#github-authentication">GitHub authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auth.html#bitbucket-authentication">Bitbucket authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auth.html#google-oauth2">Google OAuth2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auth.html#facebook-oauth2">Facebook OAuth2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auth.html#gitlab-oauth2">GitLab OAuth2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#password-authentication">Password authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#ldap-authentication">LDAP authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#cas-authentication">CAS authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#configuring-third-party-django-authentication">Configuring third party Django authentication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="access.html">Access control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="access.html#most-usual-setups">Most usual setups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="access.html#locking-down-weblate">Locking down Weblate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="access.html#site-wide-permissions">Site wide permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="access.html#per-project-permissions">Per project permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="access.html#adding-permissions-to-languages-projects-or-component-sets">Adding permissions to languages, projects or component sets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="access.html#per-project-access-control">Per project access control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access.html#automatic-group-assignments">Automatic group assignments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access.html#users-roles-groups-and-permissions">Users, roles, groups and permissions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="access.html#permission-checking">Permission checking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="access.html#checking-access-to-a-project">Checking access to a project</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="access.html#managing-users-and-groups">Managing users and groups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="access.html#managing-per-project-access-control">Managing per project access control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="access.html#predefined-groups">Predefined groups</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="access.html#custom-access-control">Custom access control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access.html#default-groups-and-roles">Default groups and roles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="access.html#list-of-privileges">List of privileges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="access.html#list-of-groups">List of groups</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="projects.html">翻訳プロジェクト</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="projects.html#translation-organization">翻訳の編成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html#adding-translation-projects-and-components">翻訳プロジェクトとコンポーネントを追加する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html#project-configuration">プロジェクトの設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="projects.html#adjusting-interaction">インタラクションの調整</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html#component-configuration">コンポーネント設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html#template-markup">Template markup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html#importing-speed">Importing speed</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="projects.html#optimize-configuration">Optimize configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="projects.html#check-resource-limits">Check resource limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="projects.html#disable-not-needed-checks">Disable not needed checks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html#automatic-creation-of-components">Automatic creation of components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html#fulltext-search">Fulltext search</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="languages.html">Language definitions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="languages.html#parsing-language-codes">Parsing language codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="languages.html#changing-language-definitions">Changing language definitions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="continuous.html">継続的トランスレーション</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html#updating-repositories">リポジトリを更新する</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="continuous.html#avoiding-merge-conflicts">マージ時の競合を避ける</a></li>
+<li class="toctree-l3"><a class="reference internal" href="continuous.html#automatically-receiving-changes-from-github">GitHub から自動的に変更を受け取る</a></li>
+<li class="toctree-l3"><a class="reference internal" href="continuous.html#automatically-receiving-changes-from-bitbucket">Automatically receiving changes from Bitbucket</a></li>
+<li class="toctree-l3"><a class="reference internal" href="continuous.html#automatically-receiving-changes-from-gitlab">Automatically receiving changes from GitLab</a></li>
+<li class="toctree-l3"><a class="reference internal" href="continuous.html#automatically-receiving-changes-from-pagure">Automatically receiving changes from Pagure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html#pushing-changes">変更をプッシュする</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="continuous.html#pushing-changes-from-hosted-weblate">Pushing changes from Hosted Weblate</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html#merge-or-rebase">マージあるいはリベース</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html#interacting-with-others">他のサービスとのやりとり</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html#lazy-commits">省力コミット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html#processing-repository-with-scripts">リポジトリをスクリプトで処理する</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="licensing.html">Licensing translations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html#license-information">License information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html#contributor-agreement">Contributor agreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html#signed-off-by">Signed off by</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html#user-licenses">User licenses</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="translating.html">Translation process</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="translating.html#suggestion-voting">提案の投票</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html#translation-locking">Translation locking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html#additional-information-on-source-strings">Additional information on source strings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="translating.html#strings-prioritization">Strings prioritization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="translating.html#translation-flags">翻訳フラグ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="translating.html#visual-context-for-strings">Visual context for strings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="checks.html">Checks and fixups</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="checks.html#custom-automatic-fixups">Custom automatic fixups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html#customizing-behavior">Customizing behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html#writing-own-checks">Writing own checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#checking-translation-text-does-not-contain-foo">Checking translation text does not contain &quot;foo&quot;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#checking-czech-translation-text-plurals-differ">Checking Czech translation text plurals differ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html#using-custom-modules-and-classes">Using custom modules and classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="machine.html">Machine translation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="machine.html#amagama">Amagama</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html#apertium">Apertium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html#aws">AWS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html#baidu-api-machine-translation">Baidu API machine translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html#deepl">DeepL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html#glosbe">Glosbe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html#google-translate">Google Translate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html#microsoft-cognitive-services-translator">Microsoft Cognitive Services Translator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html#microsoft-terminology-service">Microsoft Terminology Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html#mymemory">MyMemory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html#netease-sight-api-machine-translation">Netease Sight API machine translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html#tmserver">tmserver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html#yandex-translate">Yandex Translate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html#youdao-zhiyun-api-machine-translation">Youdao Zhiyun API machine translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html#weblate">Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html#weblate-translation-memory">Weblate Translation Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html#sap-translation-hub">SAP Translation Hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html#custom-machine-translation">Custom machine translation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="addons.html">Addons</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="addons.html#built-in-addons">Built in addons</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#cleanup-translation-files">Cleanup translation files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#language-consistency">Language consistency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#component-discovery">Component discovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#flag-unchanged-translations-to-need-edit">Flag unchanged translations to need edit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#flag-new-source-strings-to-need-edit">Flag new source strings to need edit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#flag-new-translations-to-need-edit">Flag new translations to need edit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#statistics-generator">Statistics generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#contributors-in-comment">Contributors in comment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#update-all-linguas-variable-in-the-configure-file">Update ALL_LINGUAS variable in the configure file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#customize-gettext-output">Customize gettext output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#update-linguas-file">Update LINGUAS file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#generate-mo-files">Generate MO files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#update-po-files-to-match-pot-msgmerge">Update PO files to match POT (msgmerge)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#customize-json-output">Customize JSON output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#formats-the-java-properties-file">Formats the Java properties file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html#customizing-list-of-addons">Customizing list of addons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html#writing-addon">Writing addon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html#executing-scripts-from-addon">Executing scripts from addon</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#post-update-repository-processing">Post update repository processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#pre-commit-processing-of-translations">Pre commit processing of translations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Translation Memory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#translation-memory-scopes">Translation memory scopes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="memory.html#imported-translation-memory">Imported translation memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html#per-user-translation-memory">Per user translation memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html#per-project-translation-memory">Per project translation memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html#shared-translation-memory">Shared translation memory</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#managing-translation-memory">Managing translation memory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="memory.html#user-interface">User interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html#management-interface">Management interface</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">設定について</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="config.html#akismet-api-key">AKISMET_API_KEY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#anonymous-user-name">ANONYMOUS_USER_NAME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#auth-lock-attempts">AUTH_LOCK_ATTEMPTS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#auto-update">AUTO_UPDATE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#avatar-url-prefix">AVATAR_URL_PREFIX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#ratelimit-attempts">RATELIMIT_ATTEMPTS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#ratelimit-window">RATELIMIT_WINDOW</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#ratelimit-lockout">RATELIMIT_LOCKOUT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#auth-token-valid">AUTH_TOKEN_VALID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#auth-password-days">AUTH_PASSWORD_DAYS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#auto-lock">AUTO_LOCK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#auto-lock-time">AUTO_LOCK_TIME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#autofix-list">AUTOFIX_LIST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#base-dir">BASE_DIR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#check-list">CHECK_LIST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#commit-pending-hours">COMMIT_PENDING_HOURS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#data-dir">DATA_DIR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#default-access-control">DEFAULT_ACCESS_CONTROL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#default-commiter-email">DEFAULT_COMMITER_EMAIL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#default-commiter-name">DEFAULT_COMMITER_NAME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#default-translation-propagation">DEFAULT_TRANSLATION_PROPAGATION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#default-pull-message">DEFAULT_PULL_MESSAGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#enable-avatars">ENABLE_AVATARS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#enable-hooks">ENABLE_HOOKS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#enable-https">ENABLE_HTTPS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#enable-sharing">ENABLE_SHARING</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#git-root">GIT_ROOT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#github-username">GITHUB_USERNAME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#google-analytics-id">GOOGLE_ANALYTICS_ID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#hide-repo-credentials">HIDE_REPO_CREDENTIALS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#ip-behind-reverse-proxy">IP_BEHIND_REVERSE_PROXY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#ip-proxy-header">IP_PROXY_HEADER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#ip-proxy-offset">IP_PROXY_OFFSET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#lazy-commits">LAZY_COMMITS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#lock-time">LOCK_TIME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#login-required-urls">LOGIN_REQUIRED_URLS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#login-required-urls-exceptions">LOGIN_REQUIRED_URLS_EXCEPTIONS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-services">MT_SERVICES</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-apertium-apy">MT_APERTIUM_APY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-aws-access-key-id">MT_AWS_ACCESS_KEY_ID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-aws-secret-access-key">MT_AWS_SECRET_ACCESS_KEY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-aws-region">MT_AWS_REGION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-baidu-id">MT_BAIDU_ID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-baidu-secret">MT_BAIDU_SECRET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-deepl-key">MT_DEEPL_KEY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-google-key">MT_GOOGLE_KEY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-microsoft-cognitive-key">MT_MICROSOFT_COGNITIVE_KEY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-mymemory-email">MT_MYMEMORY_EMAIL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-mymemory-key">MT_MYMEMORY_KEY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-mymemory-user">MT_MYMEMORY_USER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-netease-key">MT_NETEASE_KEY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-netease-secret">MT_NETEASE_SECRET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-tmserver">MT_TMSERVER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-yandex-key">MT_YANDEX_KEY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-youdao-id">MT_YOUDAO_ID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-youdao-secret">MT_YOUDAO_SECRET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-sap-base-url">MT_SAP_BASE_URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-sap-sandbox-apikey">MT_SAP_SANDBOX_APIKEY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-sap-username">MT_SAP_USERNAME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-sap-password">MT_SAP_PASSWORD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#mt-sap-use-mt">MT_SAP_USE_MT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#nearby-messages">NEARBY_MESSAGES</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#piwik-site-id">PIWIK_SITE_ID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#piwik-url">PIWIK_URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#registration-captcha">REGISTRATION_CAPTCHA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#registration-email-match">REGISTRATION_EMAIL_MATCH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#registration-open">REGISTRATION_OPEN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#simplify-languages">SIMPLIFY_LANGUAGES</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#site-title">SITE_TITLE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#special-chars">SPECIAL_CHARS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#status-url">STATUS_URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#suggestion-cleanup-days">SUGGESTION_CLEANUP_DAYS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#ttf-path">TTF_PATH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#url-prefix">URL_PREFIX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#weblate-addons">WEBLATE_ADDONS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#weblate-formats">WEBLATE_FORMATS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#weblate-gpg-identity">WEBLATE_GPG_IDENTITY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#whoosh-index">WHOOSH_INDEX</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="management.html">Management commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="management.html#invoking-management-commands">Invoking management commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#add-suggestions">add_suggestions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#auto-translate">auto_translate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#changesite">changesite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#checkgit">checkgit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#commitgit">commitgit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#commit-pending">commit_pending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#cleanup-avatar-cache">cleanup_avatar_cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#cleanuptrans">cleanuptrans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#createadmin">createadmin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#delete-memory">delete_memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#dump-memory">dump_memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#dumpuserdata">dumpuserdata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#import-json">import_json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#import-memory">import_memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#import-project">import_project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#importuserdata">importuserdata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#importusers">importusers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#install-addon">install_addon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#list-ignored-checks">list_ignored_checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#list-languages">list_languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#list-memory">list_memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#list-translators">list_translators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#list-versions">list_versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#loadpo">loadpo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#lock-translation">lock_translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#optimize-memory">optimize_memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#pushgit">pushgit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#rebuild-index">rebuild_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#unlock-translation">unlock_translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#setupgroups">setupgroups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#setuplang">setuplang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#updatechecks">updatechecks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html#updategit">updategit</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="componentlists.html">Component Lists</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="componentlists.html#automatic-component-lists">Automatic component lists</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="optionals.html">Optional Weblate modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html#git-exporter">Git exporter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="optionals.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optionals.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html#billing">Billing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="optionals.html#id3">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optionals.html#id4">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html#legal">Legal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="optionals.html#id7">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optionals.html#id8">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html#avatars">Avatars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html#spam-protection">Spam protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html#signing-git-commits-by-gnupg">Signing Git commits by GnuPG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html#rate-limiting">Rate limiting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="optionals.html#ip-address-for-rate-limiting">IP address for rate limiting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="admin.html">Django admin interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="admin.html#adding-project">Adding project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html#bilingual-components">Bilingual components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html#monolingual-components">Monolingual components</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="quick.html" class="btn btn-neutral float-right" title="Quick setup guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../devel/reporting.html" class="btn btn-neutral" title="Translation progress reporting" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

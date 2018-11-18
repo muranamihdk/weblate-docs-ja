@@ -1,0 +1,396 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Weblate&#39;s Python API &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="about.html" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="Changes" href="changes.html" />
+    <link rel="prev" title="Weblate Client" href="wlc.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin/index.html">Administrators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wlc.html">Weblate Client</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Weblate's Python API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-wlc"><code class="docutils literal notranslate"><span class="pre">wlc</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#weblateexception"><code class="docutils literal notranslate"><span class="pre">WeblateException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#weblate"><code class="docutils literal notranslate"><span class="pre">Weblate</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-wlc.config"><code class="docutils literal notranslate"><span class="pre">wlc.config</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#weblateconfig"><code class="docutils literal notranslate"><span class="pre">WeblateConfig</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-wlc.main"><code class="docutils literal notranslate"><span class="pre">wlc.main</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#command"><code class="docutils literal notranslate"><span class="pre">Command</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Weblate's Python API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/python.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="weblate-s-python-api">
+<span id="python"></span><span id="index-0"></span><h1>Weblate's Python API<a class="headerlink" href="#weblate-s-python-api" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The Python API is shipped separately, you need to install
+<a class="reference internal" href="wlc.html#wlc"><span class="std std-ref">Weblate Client</span></a>:, wlc, to have it.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install wlc
+</pre></div>
+</div>
+</div>
+<div class="section" id="module-wlc">
+<span id="wlc"></span><h2><a class="reference internal" href="#module-wlc" title="wlc: Weblate API"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wlc</span></code></a><a class="headerlink" href="#module-wlc" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="weblateexception">
+<h3><a class="reference internal" href="#wlc.WeblateException" title="wlc.WeblateException"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WeblateException</span></code></a><a class="headerlink" href="#weblateexception" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<dl class="exception">
+<dt id="wlc.WeblateException">
+<em class="property">exception </em><code class="descclassname">wlc.</code><code class="descname">WeblateException</code><a class="headerlink" href="#wlc.WeblateException" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Base class for all exceptions.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="weblate">
+<h3><a class="reference internal" href="#wlc.Weblate" title="wlc.Weblate"><code class="xref py py-class docutils literal notranslate"><span class="pre">Weblate</span></code></a><a class="headerlink" href="#weblate" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<dl class="class">
+<dt id="wlc.Weblate">
+<em class="property">class </em><code class="descclassname">wlc.</code><code class="descname">Weblate</code><span class="sig-paren">(</span><em>key=''</em>, <em>url=None</em>, <em>config=None</em><span class="sig-paren">)</span><a class="headerlink" href="#wlc.Weblate" title="この定義へのパーマリンク">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメータ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> (<a class="reference external" href="https://docs.python.org/2.7/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) -- User key</li>
+<li><strong>url</strong> (<a class="reference external" href="https://docs.python.org/2.7/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) -- API server URL, if not specified default is used</li>
+<li><strong>config</strong> (<a class="reference internal" href="#wlc.config.WeblateConfig" title="wlc.config.WeblateConfig"><em>WeblateConfig</em></a>) -- Configuration object, overrides any other parameters.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Access class to the API, define API key and optionally API URL.</p>
+<dl class="method">
+<dt id="wlc.Weblate.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#wlc.Weblate.get" title="この定義へのパーマリンク">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメータ:</th><td class="field-body"><strong>path</strong> (<a class="reference external" href="https://docs.python.org/2.7/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) -- Request path</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値の型:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)">object</a></td>
+</tr>
+</tbody>
+</table>
+<p>Performs single API GET call.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="wlc.Weblate.post">
+<code class="descname">post</code><span class="sig-paren">(</span><em>path</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#wlc.Weblate.post" title="この定義へのパーマリンク">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメータ:</th><td class="field-body"><strong>path</strong> (<a class="reference external" href="https://docs.python.org/2.7/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) -- Request path</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値の型:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)">object</a></td>
+</tr>
+</tbody>
+</table>
+<p>Performs single API GET call.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-wlc.config">
+<span id="wlc-config"></span><h2><a class="reference internal" href="#module-wlc.config" title="wlc.config: Configuration parsing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wlc.config</span></code></a><a class="headerlink" href="#module-wlc.config" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="weblateconfig">
+<h3><a class="reference internal" href="#wlc.config.WeblateConfig" title="wlc.config.WeblateConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeblateConfig</span></code></a><a class="headerlink" href="#weblateconfig" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<dl class="class">
+<dt id="wlc.config.WeblateConfig">
+<em class="property">class </em><code class="descclassname">wlc.config.</code><code class="descname">WeblateConfig</code><span class="sig-paren">(</span><em>section='wlc'</em><span class="sig-paren">)</span><a class="headerlink" href="#wlc.config.WeblateConfig" title="この定義へのパーマリンク">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメータ:</th><td class="field-body"><strong>section</strong> (<a class="reference external" href="https://docs.python.org/2.7/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) -- Configuration section to use</td>
+</tr>
+</tbody>
+</table>
+<p>Configuration file parser following XDG specification.</p>
+<dl class="method">
+<dt id="wlc.config.WeblateConfig.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>path=None</em><span class="sig-paren">)</span><a class="headerlink" href="#wlc.config.WeblateConfig.load" title="この定義へのパーマリンク">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメータ:</th><td class="field-body"><strong>path</strong> (<a class="reference external" href="https://docs.python.org/2.7/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) -- Path from which to load configuration.</td>
+</tr>
+</tbody>
+</table>
+<p>Loads configuration from a file, if none is specified it loads from
+<cite>wlc</cite> configuration file placed in XDG configuration path
+(<code class="file docutils literal notranslate"><span class="pre">~/.config/wlc</span></code> and <code class="file docutils literal notranslate"><span class="pre">/etc/xdg/wlc</span></code>).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-wlc.main">
+<span id="wlc-main"></span><h2><a class="reference internal" href="#module-wlc.main" title="wlc.main: Command line interface"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wlc.main</span></code></a><a class="headerlink" href="#module-wlc.main" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="function">
+<dt id="wlc.main.main">
+<code class="descclassname">wlc.main.</code><code class="descname">main</code><span class="sig-paren">(</span><em>settings=None</em>, <em>stdout=None</em>, <em>args=None</em><span class="sig-paren">)</span><a class="headerlink" href="#wlc.main.main" title="この定義へのパーマリンク">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメータ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>settings</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#list" title="(in Python v3.5)"><em>list</em></a>) -- settings to override as list of tuples</li>
+<li><strong>stdout</strong> (<a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><em>object</em></a>) -- stdout file object for printing output, uses <code class="docutils literal notranslate"><span class="pre">sys.stdout</span></code> as default</li>
+<li><strong>args</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#list" title="(in Python v3.5)"><em>list</em></a>) -- command line arguments to process, uses <code class="docutils literal notranslate"><span class="pre">sys.args</span></code> as default</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Main entry point for command line interface.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="wlc.main.register_command">
+<code class="descclassname">&#64;</code><code class="descclassname">wlc.main.</code><code class="descname">register_command</code><span class="sig-paren">(</span><em>command</em><span class="sig-paren">)</span><a class="headerlink" href="#wlc.main.register_command" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Decorator to register <a class="reference internal" href="#wlc.main.Command" title="wlc.main.Command"><code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></a> class in main parser used by
+<a class="reference internal" href="#wlc.main.main" title="wlc.main.main"><code class="xref py py-func docutils literal notranslate"><span class="pre">main()</span></code></a>.</p>
+</dd></dl>
+
+<div class="section" id="command">
+<h3><a class="reference internal" href="#wlc.main.Command" title="wlc.main.Command"><code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></a><a class="headerlink" href="#command" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<dl class="class">
+<dt id="wlc.main.Command">
+<em class="property">class </em><code class="descclassname">wlc.main.</code><code class="descname">Command</code><span class="sig-paren">(</span><em>args</em>, <em>config</em>, <em>stdout=None</em><span class="sig-paren">)</span><a class="headerlink" href="#wlc.main.Command" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Main class for invoking commands.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="changes.html" class="btn btn-neutral float-right" title="Changes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="wlc.html" class="btn btn-neutral" title="Weblate Client" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

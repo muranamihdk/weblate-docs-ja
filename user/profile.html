@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Registration and user profile &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Translating using Weblate" href="translating.html" />
+    <link rel="prev" title="Weblate の基本" href="basic.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Translators guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basic.html">Weblate の基本</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Registration and user profile</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#registration">Registration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dashboard">Dashboard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-profile">User profile</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#translated-languages">Translated languages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#secondary-languages">Secondary languages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#default-dashboard-view">Default dashboard view</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subscriptions">Subscriptions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#authentication">Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#avatar">Avatar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#editor-link">Editor link</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translating using Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="files.html">Downloading and uploading translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks and fixups</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Translators guide</a> &raquo;</li>
+        
+      <li>Registration and user profile</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/user/profile.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="registration-and-user-profile">
+<h1>Registration and user profile<a class="headerlink" href="#registration-and-user-profile" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="registration">
+<h2>Registration<a class="headerlink" href="#registration" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>While everybody can browse projects, view translations or suggest them, only
+registered users are allowed to actually save changes and are credited for
+every translation made.</p>
+<p>You can register by following a few simple steps:</p>
+<ol class="arabic simple">
+<li>Fill out the registration form with your credentials</li>
+<li>Activate registration by following in email you receive</li>
+<li>Possibly adjust your profile to choose which languages you know</li>
+</ol>
+</div>
+<div class="section" id="dashboard">
+<span id="id1"></span><h2>Dashboard<a class="headerlink" href="#dashboard" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>When you log in to Weblate, you will see an overview of projects and components
+as well as their translation progress.</p>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.5 で追加.</span></p>
+</div>
+<p>By default, this will show the components of projects you are watching,
+cross-referenced with your preferred languages.  You can switch to different
+views using the navigation tabs.</p>
+<img alt="../_images/dashboard-dropdown.png" src="../_images/dashboard-dropdown.png" />
+<p>The tabs will show several options:</p>
+<ul class="simple">
+<li><span class="guilabel">All projects</span> will show translation status of all projects on the
+Weblate instance.</li>
+<li><span class="guilabel">Your languages</span> will show translation status of all projects,
+filtered by your primary languages.</li>
+<li><span class="guilabel">Watched</span> will show translation status of only those
+projects you are watching, filtered by your primary languages.</li>
+</ul>
+<p>In addition, the drop-down can also show any number of <em>component lists</em>, sets
+of project components preconfigured by the Weblate administrator, see
+<a class="reference internal" href="../admin/componentlists.html#componentlists"><span class="std std-ref">Component Lists</span></a>.</p>
+<p>You can configure your preferred view in the <span class="guilabel">Preferences</span> section of
+your user profile settings.</p>
+</div>
+<div class="section" id="user-profile">
+<span id="id2"></span><h2>User profile<a class="headerlink" href="#user-profile" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>User profile contains your preferences, name and email. Name and email
+are being used in VCS commits, so keep this information accurate.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">All language selections offers only languages which are currently being
+translated. If you want to translate to other language, please request it
+first on the project you want to translate.</p>
+</div>
+<div class="section" id="translated-languages">
+<h3>Translated languages<a class="headerlink" href="#translated-languages" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Choose here which languages you prefer to translate. These will be offered to
+you on main page for watched projects to have easier access to these translations.</p>
+<img alt="../_images/your-translations.png" src="../_images/your-translations.png" />
+</div>
+<div class="section" id="secondary-languages">
+<span id="id3"></span><h3>Secondary languages<a class="headerlink" href="#secondary-languages" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>You can define secondary languages, which will be shown you while translating
+together with source language. Example can be seen on following image, where
+Slovak language is shown as secondary:</p>
+<img alt="../_images/secondary-language.png" src="../_images/secondary-language.png" />
+</div>
+<div class="section" id="default-dashboard-view">
+<h3>Default dashboard view<a class="headerlink" href="#default-dashboard-view" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>On the <span class="guilabel">Preferences</span> tab, you can pick which of the available
+dashboard views will be displayed by default. If you pick <span class="guilabel">Component
+list</span>, you have to select which component list will be displayed from the
+<span class="guilabel">Default component list</span> drop-down.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../admin/componentlists.html#componentlists"><span class="std std-ref">Component Lists</span></a></p>
+</div>
+</div>
+<div class="section" id="subscriptions">
+<span id="id4"></span><h3>Subscriptions<a class="headerlink" href="#subscriptions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>You can subscribe to various notifications on <span class="guilabel">Subscriptions</span> tab.
+You will receive notifications for selected events on chosen projects for
+languages you have indicated for translation (see above).</p>
+<p>If you are an owner of some project, you will always receive some important
+notifications, like merge failures or new language requests.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">You will not receive notifications for actions you've done.</p>
+</div>
+<img alt="../_images/profile-subscriptions.png" src="../_images/profile-subscriptions.png" />
+</div>
+<div class="section" id="authentication">
+<h3>Authentication<a class="headerlink" href="#authentication" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>On the <span class="guilabel">Authentication</span> tab you can connect various services which
+you can use to login into Weblate. List of services depends on Weblate
+configuration, but can include popular sites such as Google, Facebook, GitHub
+or Bitbucket.</p>
+<img alt="../_images/authentication.png" src="../_images/authentication.png" />
+</div>
+<div class="section" id="avatar">
+<h3>Avatar<a class="headerlink" href="#avatar" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate can be configured to show avatar for each user (depending on
+<a class="reference internal" href="../admin/config.html#std:setting-ENABLE_AVATARS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">ENABLE_AVATARS</span></code></a>). These images are obtained using
+<a class="reference external" href="https://gravatar.com/">https://gravatar.com/</a>.</p>
+</div>
+<div class="section" id="editor-link">
+<h3>Editor link<a class="headerlink" href="#editor-link" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>By default Weblate does display source code in web browser configured in the
+<a class="reference internal" href="../admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a>. By setting <span class="guilabel">Editor link</span> you can override this to
+use your local editor to open the source code where translated strings is being
+used.</p>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">%(branch)s</span></code> for branch, <code class="docutils literal notranslate"><span class="pre">%(file)s</span></code> and <code class="docutils literal notranslate"><span class="pre">%(line)s</span></code> as
+filename and line placeholders.  Usually something like
+<code class="docutils literal notranslate"><span class="pre">editor://open/?file=%(file)s&amp;line=%(line)s</span></code> is good option.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">You can find more information on registering custom URL protocols for editor in
+<a class="reference external" href="https://tracy.nette.org/en/open-files-in-ide">nette documentation</a>.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="translating.html" class="btn btn-neutral float-right" title="Translating using Weblate" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="basic.html" class="btn btn-neutral" title="Weblate の基本" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

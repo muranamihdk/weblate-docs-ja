@@ -1,0 +1,1213 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Changes &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="about.html" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="prev" title="Weblate&#39;s Python API" href="python.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin/index.html">Administrators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Weblate's Python API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Changes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-3-2-2">weblate 3.2.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-3-2-1">weblate 3.2.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-3-2">weblate 3.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-3-1-1">weblate 3.1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-3-1">weblate 3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-3-0-1">weblate 3.0.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-3-0">weblate 3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-20">weblate 2.20</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-19-1">weblate 2.19.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-19">weblate 2.19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-18">weblate 2.18</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-17-1">weblate 2.17.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-17">weblate 2.17</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-16">weblate 2.16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-15">weblate 2.15</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-14-1">weblate 2.14.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-14">weblate 2.14</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-13-1">weblate 2.13.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-13">weblate 2.13</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-12">weblate 2.12</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-11">weblate 2.11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-10-1">weblate 2.10.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-10">weblate 2.10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-9">weblate 2.9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-8">weblate 2.8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-7">weblate 2.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-6">weblate 2.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-5">weblate 2.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-4">weblate 2.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-3">weblate 2.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-2">weblate 2.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-1">weblate 2.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-2-0">weblate 2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-1-9">weblate 1.9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-1-8">weblate 1.8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-1-7">weblate 1.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-1-6">weblate 1.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-1-5">weblate 1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-1-4">weblate 1.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-1-3">weblate 1.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-1-2">weblate 1.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-1-1">weblate 1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-1-0">weblate 1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-0-9">weblate 0.9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-0-8">weblate 0.8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-0-7">weblate 0.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-0-6">weblate 0.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-0-5">weblate 0.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-0-4">weblate 0.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-0-3">weblate 0.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-0-2">weblate 0.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblate-0-1">weblate 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Changes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/changes.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="changes">
+<h1>Changes<a class="headerlink" href="#changes" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="weblate-3-2-2">
+<h2>weblate 3.2.2<a class="headerlink" href="#weblate-3-2-2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on October 20th 2018.</p>
+<ul class="simple">
+<li>Remove no longer needed Babel dependency.</li>
+<li>Updated language definitions.</li>
+<li>Improve documentation for addons, LDAP and Celery.</li>
+<li>Fixed enabling new dos-eol and auto-java-messageformat flags.</li>
+<li>Fixed running setup.py test from PyPI package.</li>
+<li>Improved plurals handling.</li>
+<li>Fixed translation upload API failure in some corner cases.</li>
+<li>Fixed updating Git configuration in case it was changed manually.</li>
+<li>Added support for component and project removal.</li>
+<li>Improved performance for some monolingual translations.</li>
+<li>Added translation component alerts to highlight problems with a translation.</li>
+<li>Expose Xliff unit resname as context when available.</li>
+</ul>
+</div>
+<div class="section" id="weblate-3-2-1">
+<h2>weblate 3.2.1<a class="headerlink" href="#weblate-3-2-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on October 10th 2018.</p>
+<ul class="simple">
+<li>Document dependency on backports.csv on Python 2.7.</li>
+<li>Fix running tests under root.</li>
+<li>Improved error handling in gitexport module.</li>
+<li>Fixed progress reporting for newly added languages.</li>
+<li>Correctly report Celery worker errors to Sentry.</li>
+<li>Fixed creating new translations with Qt Linguist.</li>
+<li>Fixed occasional fulltext index update failures.</li>
+<li>Improved validation when creating new components.</li>
+<li>Added support for cleanup of old suggestions.</li>
+</ul>
+</div>
+<div class="section" id="weblate-3-2">
+<h2>weblate 3.2<a class="headerlink" href="#weblate-3-2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on October 6th 2018.</p>
+<ul class="simple">
+<li>Add install_addon management command for automated addon installation.</li>
+<li>Allow more fine grained ratelimit settings.</li>
+<li>Added support for export and import of Excel files.</li>
+<li>Improve component cleanup in case of multiple component discovery addons.</li>
+<li>Rewritten Microsoft Terminology machine translation backend.</li>
+<li>Weblate now uses Celery to offload some processing.</li>
+<li>Improved search capabilities and added regular expression search.</li>
+<li>Added support for Youdao Zhiyun API machine translation.</li>
+<li>Added support for Baidu API machine translation.</li>
+<li>Integrated maintenance and cleanup tasks using Celery.</li>
+<li>Improved performance of loading translations by almost 25%.</li>
+<li>Removed support for merging headers on upload.</li>
+<li>Removed support for custom commit messages.</li>
+<li>Configurable editing mode (zen/full).</li>
+<li>Added support for error reporting to Sentry.</li>
+<li>Added support for automated daily update of repositories.</li>
+<li>Added support for creating projects and components by users.</li>
+<li>Built in translation memory now automatically stores translations done.</li>
+<li>Users and projects can import their existing translation memories.</li>
+<li>Better management of related strings for screenshots.</li>
+<li>Added support for checking Java MessageFormat.</li>
+</ul>
+<p>See <a class="reference external" href="https://github.com/WeblateOrg/weblate/milestone/36?closed=1">3.2 milestone on GitHub</a>
+for detailed list of addressed issues.</p>
+</div>
+<div class="section" id="weblate-3-1-1">
+<h2>weblate 3.1.1<a class="headerlink" href="#weblate-3-1-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on July 27th 2018.</p>
+<ul class="simple">
+<li>Fix testsuite failure on some setup.</li>
+</ul>
+</div>
+<div class="section" id="weblate-3-1">
+<h2>weblate 3.1<a class="headerlink" href="#weblate-3-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on July 27th 2018.</p>
+<ul class="simple">
+<li>Upgrades from older version than 3.0.1 are not supported.</li>
+<li>Allow to override default commit messages from settings.</li>
+<li>Improve webhooks compatibility with self hosted environments.</li>
+<li>Added support for Amazon Translate.</li>
+<li>Compatibility with Django 2.1.</li>
+<li>Django system checks are now used to diagnose problems with installation.</li>
+<li>Removed support for soon shutdown libravatar service.</li>
+<li>New addon to mark unchanged translations as needing edit.</li>
+<li>Add support for jumping to specific location while translating.</li>
+<li>Downloaded translations can now be customized.</li>
+<li>Improved calculation of string similarity in translation memory matches.</li>
+<li>Added support by signing Git commits by GnuPG.</li>
+</ul>
+</div>
+<div class="section" id="weblate-3-0-1">
+<h2>weblate 3.0.1<a class="headerlink" href="#weblate-3-0-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on June 10th 2018.</p>
+<ul class="simple">
+<li>Fixed possible migration issue from 2.20.</li>
+<li>Localization updates.</li>
+<li>Removed obsolete hook examples.</li>
+<li>Improved caching documentation.</li>
+<li>Fixed displaying of admin documentation.</li>
+<li>Improved handling of long language names.</li>
+</ul>
+</div>
+<div class="section" id="weblate-3-0">
+<h2>weblate 3.0<a class="headerlink" href="#weblate-3-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on June 1st 2018.</p>
+<ul class="simple">
+<li>Rewritten access control.</li>
+<li>Several code cleanups that lead to moved and renamed modules.</li>
+<li>New addon for automatic component discovery.</li>
+<li>The import_project management command has now slightly different parameters.</li>
+<li>Added basic support for Windows RC files.</li>
+<li>New addon to store contributor names in PO file headers.</li>
+<li>The per component hook scripts are removed, use addons instead.</li>
+<li>Add support for collecting contributor agreements.</li>
+<li>Access control changes are now tracked in history.</li>
+<li>New addon to ensure all components in a project have same translations.</li>
+<li>Support for more variables in commit message templates.</li>
+<li>Add support for providing additional textual context.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-20">
+<h2>weblate 2.20<a class="headerlink" href="#weblate-2-20" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on April 4th 2018.</p>
+<ul class="simple">
+<li>Improved speed of cloning subversion repositories.</li>
+<li>Changed repository locking to use third party library.</li>
+<li>Added support for downloading only strings needing action.</li>
+<li>Added support for searching in several languages at once.</li>
+<li>New addon to configure Gettext output wrapping.</li>
+<li>New addon to configure JSON formatting.</li>
+<li>Added support for authentication in API using RFC 6750 compatible Bearer authentication.</li>
+<li>Added support for automatic translation using machine translation services.</li>
+<li>Added support for HTML markup in whiteboard messages.</li>
+<li>Added support for mass changing state of strings.</li>
+<li>Translate-toolkit at least 2.3.0 is now required, older versions are no longer supported.</li>
+<li>Added built in translation memory.</li>
+<li>Added componentlists overview to dashboard and per component list overview pages.</li>
+<li>Added support for DeepL machine translation service.</li>
+<li>Machine translation results are now cached inside Weblate.</li>
+<li>Added support for reordering commited changes.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-19-1">
+<h2>weblate 2.19.1<a class="headerlink" href="#weblate-2-19-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on February 20th 2018.</p>
+<ul class="simple">
+<li>Fixed migration issue on upgrade from 2.18.</li>
+<li>Improved file upload API validation.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-19">
+<h2>weblate 2.19<a class="headerlink" href="#weblate-2-19" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on February 15th 2018.</p>
+<ul class="simple">
+<li>Fixed imports across some file formats.</li>
+<li>Display human friendly browser information in audit log.</li>
+<li>Added TMX exporter for files.</li>
+<li>Various performance improvements for loading translation files.</li>
+<li>Added option to disable access management in Weblate in favor of Django one.</li>
+<li>Improved glossary lookup speed for large strings.</li>
+<li>Compatibility with django_auth_ldap 1.3.0.</li>
+<li>Configuration errors are now stored and reported persistently.</li>
+<li>Honor ignore flags in whitespace autofixer.</li>
+<li>Improved compatibility with some Subversion setups.</li>
+<li>Improved built in machine translation service.</li>
+<li>Added support for SAP Translation Hub service.</li>
+<li>Added support for Microsoft Terminology service.</li>
+<li>Removed support for advertisement in notification mails.</li>
+<li>Improved translation progress reporting at language level.</li>
+<li>Improved support for different plural formulas.</li>
+<li>Added support for Subversion repositories not using stdlayout.</li>
+<li>Added addons to customize translation workflows.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-18">
+<h2>weblate 2.18<a class="headerlink" href="#weblate-2-18" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on December 15th 2017.</p>
+<ul class="simple">
+<li>Extended contributor stats.</li>
+<li>Improved configuration of special chars virtual keyboard.</li>
+<li>Added support for DTD file format.</li>
+<li>Changed keyboard shortcuts to less likely collide with browser/system ones.</li>
+<li>Improved support for approved flag in Xliff files.</li>
+<li>Added support for not wrapping long strings in Gettext po files.</li>
+<li>Added button to copy permalink for current translation.</li>
+<li>Dropped support for Django 1.10 and added support for Django 2.0.</li>
+<li>Removed locking of translations while translating.</li>
+<li>Added support for adding new units to monolingual translations.</li>
+<li>Added support for translation workflows with dedicated reviewers.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-17-1">
+<h2>weblate 2.17.1<a class="headerlink" href="#weblate-2-17-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on October 13th 2017.</p>
+<ul class="simple">
+<li>Fixed running testsuite in some specific situations.</li>
+<li>Locales updates.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-17">
+<h2>weblate 2.17<a class="headerlink" href="#weblate-2-17" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on October 13th 2017.</p>
+<ul class="simple">
+<li>Weblate by default does shallow Git clones now.</li>
+<li>Improved performance when updating large translation files.</li>
+<li>Added support for blocking certain emails from registration.</li>
+<li>Users can now delete their own comments.</li>
+<li>Added preview step to search and replace feature.</li>
+<li>Client side persistence of settings in search and upload forms.</li>
+<li>Extended search capabilities.</li>
+<li>More fine grained per project ACL configuration.</li>
+<li>Default value of BASE_DIR has been changed.</li>
+<li>Added two step account removal to prevent accidental removal.</li>
+<li>Project access control settings is now editable.</li>
+<li>Added optional spam protection for suggestions using Akismet.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-16">
+<h2>weblate 2.16<a class="headerlink" href="#weblate-2-16" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on August 11th 2017.</p>
+<ul class="simple">
+<li>Various performance improvements.</li>
+<li>Added support for nested JSON format.</li>
+<li>Added support for WebExtension JSON format.</li>
+<li>Fixed git exporter authentication.</li>
+<li>Improved CSV import in certain situations.</li>
+<li>Improved look of Other translations widget.</li>
+<li>The max-length checks is now enforcing length of text in form.</li>
+<li>Make the commit_pending age configurable per component.</li>
+<li>Various user interface cleanups.</li>
+<li>Fixed component/project/sitewide search for translations.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-15">
+<h2>weblate 2.15<a class="headerlink" href="#weblate-2-15" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on June 30th 2017.</p>
+<ul class="simple">
+<li>Show more related translations in other translations.</li>
+<li>Add option to see translations of current unit to other languages.</li>
+<li>Use 4 plural forms for Lithuanian by default.</li>
+<li>Fixed upload for monolingual files of different format.</li>
+<li>Improved error messages on failed authentication.</li>
+<li>Keep page state when removing word from glossary.</li>
+<li>Added direct link to edit secondary language translation.</li>
+<li>Added Perl format quality check.</li>
+<li>Added support for rejecting reused passwords.</li>
+<li>Extended toolbar for editing RTL languages.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-14-1">
+<h2>weblate 2.14.1<a class="headerlink" href="#weblate-2-14-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on May 24th 2017.</p>
+<ul class="simple">
+<li>Fixed possible error when paginating search results.</li>
+<li>Fixed migrations from older versions in some corner cases.</li>
+<li>Fixed possible CSRF on project watch and unwatch.</li>
+<li>The password reset no longer authenticates user.</li>
+<li>Fixed possible captcha bypass on forgotten password.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-14">
+<h2>weblate 2.14<a class="headerlink" href="#weblate-2-14" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on May 17th 2017.</p>
+<ul class="simple">
+<li>Add glossary entries using AJAX.</li>
+<li>The logout now uses POST to avoid CSRF.</li>
+<li>The API key token reset now uses POST to avoid CSRF.</li>
+<li>Weblate sets Content-Security-Policy by default.</li>
+<li>The local editor URL is validated to avoid self-XSS.</li>
+<li>The password is now validated against common flaws by default.</li>
+<li>Notify users about important activity with their account such as password change.</li>
+<li>The CSV exports now escape potential formulas.</li>
+<li>Various minor improvements in security.</li>
+<li>The authentication attempts are now rate limited.</li>
+<li>Suggestion content is stored in the history.</li>
+<li>Store important account activity in audit log.</li>
+<li>Ask for password confirmation when removing account or adding new associations.</li>
+<li>Show time when suggestion has been made.</li>
+<li>There is new quality check for trailing semicolon.</li>
+<li>Ensure that search links can be shared.</li>
+<li>Included source string information and screenshots in the API.</li>
+<li>Allow to overwrite translations through API upload.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-13-1">
+<h2>weblate 2.13.1<a class="headerlink" href="#weblate-2-13-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on Apr 12th 2017.</p>
+<ul class="simple">
+<li>Fixed listing of managed projects in profile.</li>
+<li>Fixed migration issue where some permissions were missing.</li>
+<li>Fixed listing of current file format in translation download.</li>
+<li>Return HTTP 404 when trying to access project where user lacks privileges.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-13">
+<h2>weblate 2.13<a class="headerlink" href="#weblate-2-13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on Apr 12th 2017.</p>
+<ul class="simple">
+<li>Fixed quality checks on translation templates.</li>
+<li>Added quality check to trigger on losing translation.</li>
+<li>Add option to view pending suggestions from user.</li>
+<li>Add option to automatically build component lists.</li>
+<li>Default dashboard for unauthenticated users can be configured.</li>
+<li>Add option to browse 25 random strings for review.</li>
+<li>History now indicates string change.</li>
+<li>Better error reporting when adding new translation.</li>
+<li>Added per language search within project.</li>
+<li>Group ACLs can now be limited to certain permissions.</li>
+<li>The per project ALCs are now implemented using Group ACL.</li>
+<li>Added more fine grained privileges control.</li>
+<li>Various minor UI improvements.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-12">
+<h2>weblate 2.12<a class="headerlink" href="#weblate-2-12" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on Mar 3rd 2017.</p>
+<ul class="simple">
+<li>Improved admin interface for groups.</li>
+<li>Added support for Yandex Translate API.</li>
+<li>Improved speed of sitewide search.</li>
+<li>Added project and component wide search.</li>
+<li>Added project and component wide search and replace.</li>
+<li>Improved rendering of inconsistent translations.</li>
+<li>Added support for opening source files in local editor.</li>
+<li>Added support for configuring visual keyboard with special characters.</li>
+<li>Improved screenshot management with OCR support for matching source strings.</li>
+<li>Default commit message now includes translation information and URL.</li>
+<li>Added support for Joomla translation format.</li>
+<li>Improved reliability of import across file formats.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-11">
+<h2>weblate 2.11<a class="headerlink" href="#weblate-2-11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on Jan 31st 2017.</p>
+<ul class="simple">
+<li>Include language detailed information on language page.</li>
+<li>Mercurial backend improvements.</li>
+<li>Added option to specify translation component priority.</li>
+<li>More consistent usage of Group ACL even with less used permissions.</li>
+<li>Added WL_BRANCH variable to hook scripts.</li>
+<li>Improved developer documentation.</li>
+<li>Better compatibility with various Git versions in Git exporter addon.</li>
+<li>Included per project and component stats.</li>
+<li>Added language code mapping for better support of Microsoft Translate API.</li>
+<li>Moved fulltext cleanup to background job to make translation removal faster.</li>
+<li>Fixed displaying of plural source for languages with single plural form.</li>
+<li>Improved error handling in import_project.</li>
+<li>Various performance improvements.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-10-1">
+<h2>weblate 2.10.1<a class="headerlink" href="#weblate-2-10-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on Jan 20th 2017.</p>
+<ul class="simple">
+<li>Do not leak account existence on password reset form (CVE-2017-5537).</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-10">
+<h2>weblate 2.10<a class="headerlink" href="#weblate-2-10" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on Dec 15th 2016.</p>
+<ul class="simple">
+<li>Added quality check to check whether plurals are translated differently.</li>
+<li>Fixed GitHub hooks for repositories with authentication.</li>
+<li>Added optional Git exporter module.</li>
+<li>Support for Microsoft Cognitive Services Translator API.</li>
+<li>Simplified project and component user interface.</li>
+<li>Added automatic fix to remove control chars.</li>
+<li>Added per language overview to project.</li>
+<li>Added support for CSV export.</li>
+<li>Added CSV download for stats.</li>
+<li>Added matrix view for quick overview of all translations</li>
+<li>Added basic API for changes and units.</li>
+<li>Added support for Apertium APy server for machine translations.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-9">
+<h2>weblate 2.9<a class="headerlink" href="#weblate-2-9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on Nov 4th 2016.</p>
+<ul class="simple">
+<li>Extended parameters for createadmin management command.</li>
+<li>Extended import_json to be able to handle with existing components.</li>
+<li>Added support for YAML files.</li>
+<li>Project owners can now configure translation component and project details.</li>
+<li>Use &quot;Watched&quot; instead of &quot;Subscribed&quot; projects.</li>
+<li>Projects can be watched directly from project page.</li>
+<li>Added multi language status widget.</li>
+<li>Highlight secondary language if not showing source.</li>
+<li>Record suggestion deletion in history.</li>
+<li>Improved UX of languages selection in profile.</li>
+<li>Fixed showing whiteboard messages for component.</li>
+<li>Keep preferences tab selected after saving.</li>
+<li>Show source string comment more prominently.</li>
+<li>Automatically install Gettext PO merge driver for Git repositories.</li>
+<li>Added search and replace feature.</li>
+<li>Added support for uploading visual context (screenshots) for translations.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-8">
+<h2>weblate 2.8<a class="headerlink" href="#weblate-2-8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on Aug 31st 2016.</p>
+<ul class="simple">
+<li>Documentation improvements.</li>
+<li>Translations.</li>
+<li>Updated bundled javascript libraries.</li>
+<li>Added list_translators management command.</li>
+<li>Django 1.8 is no longer supported.</li>
+<li>Fixed compatibility with Django 1.10.</li>
+<li>Added Subversion support.</li>
+<li>Separated XML validity check from XML mismatched tags.</li>
+<li>Fixed API to honor HIDE_REPO_CREDENTIALS settings.</li>
+<li>Show source change in zen mode.</li>
+<li>Alt+PageUp/PageDown/Home/End now works in zen mode as well.</li>
+<li>Add tooltip showing exact time of changes.</li>
+<li>Add option to select filters and search from translation page.</li>
+<li>Added UI for translation removal.</li>
+<li>Improved behavior when inserting placeables.</li>
+<li>Fixed auto locking issues in zen mode.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-7">
+<h2>weblate 2.7<a class="headerlink" href="#weblate-2-7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on Jul 10th 2016.</p>
+<ul class="simple">
+<li>Removed Google web translate machine translation.</li>
+<li>Improved commit message when adding translation.</li>
+<li>Fixed Google Translate API for Hebrew language.</li>
+<li>Compatibility with Mercurial 3.8.</li>
+<li>Added import_json management command.</li>
+<li>Correct ordering of listed translations.</li>
+<li>Show full suggestion text, not only a diff.</li>
+<li>Extend API (detailed repository status, statistics, ...).</li>
+<li>Testsuite no longer requires network access to test repositories.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-6">
+<h2>weblate 2.6<a class="headerlink" href="#weblate-2-6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on Apr 28th 2016.</p>
+<ul class="simple">
+<li>Fixed validation of components with language filter.</li>
+<li>Improved support for XLIFF files.</li>
+<li>Fixed machine translation for non English sources.</li>
+<li>Added REST API.</li>
+<li>Django 1.10 compatibility.</li>
+<li>Added categories to whiteboard messages.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-5">
+<h2>weblate 2.5<a class="headerlink" href="#weblate-2-5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on Mar 10th 2016.</p>
+<ul class="simple">
+<li>Fixed automatic translation for project owners.</li>
+<li>Improved performance of commit and push operations.</li>
+<li>New management command to add suggestions from command line.</li>
+<li>Added support for merging comments on file upload.</li>
+<li>Added support for some GNU extensions to C printf format.</li>
+<li>Documentation improvements.</li>
+<li>Added support for generating translator credits.</li>
+<li>Added support for generating contributor stats.</li>
+<li>Site wide search can search only in one language.</li>
+<li>Improve quality checks for Armenian.</li>
+<li>Support for starting translation components without existing translations.</li>
+<li>Support for adding new translations in Qt TS.</li>
+<li>Improved support for translating PHP files.</li>
+<li>Performance improvements for quality checks.</li>
+<li>Fixed sitewide search for failing checks.</li>
+<li>Added option to specify source language.</li>
+<li>Improved support for XLIFF files.</li>
+<li>Extended list of options for import_project.</li>
+<li>Improved targeting for whiteboard messages.</li>
+<li>Support for automatic translation across projects.</li>
+<li>Optimized fulltext search index.</li>
+<li>Added management command for auto translation.</li>
+<li>Added placeables highlighting.</li>
+<li>Added keyboard shortcuts for placeables, checks and machine translations.</li>
+<li>Improved translation locking.</li>
+<li>Added quality check for AngularJS interpolation.</li>
+<li>Added extensive group based ACLs.</li>
+<li>Clarified terminology on strings needing review (formerly fuzzy).</li>
+<li>Clarified terminology on strings needing action and not translated strings.</li>
+<li>Support for Python 3.</li>
+<li>Dropped support for Django 1.7.</li>
+<li>Dropped dependency on msginit for creating new Gettext po files.</li>
+<li>Added configurable dashboard views.</li>
+<li>Improved notifications on parse errors.</li>
+<li>Added option to import components with duplicate name to import_project.</li>
+<li>Improved support for translating PHP files</li>
+<li>Added XLIFF export for dictionary.</li>
+<li>Added XLIFF and Gettext PO export for all translations.</li>
+<li>Documentation improvements.</li>
+<li>Added support for configurable automatic group assignments.</li>
+<li>Improved adding of new translations.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-4">
+<h2>weblate 2.4<a class="headerlink" href="#weblate-2-4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on Sep 20th 2015.</p>
+<ul class="simple">
+<li>Improved support for PHP files.</li>
+<li>Ability to add ACL to anonymous user.</li>
+<li>Improved configurability of import_project command.</li>
+<li>Added CSV dump of history.</li>
+<li>Avoid copy/paste errors with whitespace chars.</li>
+<li>Added support for Bitbucket webhooks.</li>
+<li>Tigher control on fuzzy strings on translation upload.</li>
+<li>Several URLs have changed, you might have to update your bookmarks.</li>
+<li>Hook scripts are executed with VCS root as current directory.</li>
+<li>Hook scripts are executed with environment variables describing current component.</li>
+<li>Add management command to optimize fulltext index.</li>
+<li>Added support for error reporting to Rollbar.</li>
+<li>Projects now can have multiple owners.</li>
+<li>Project owners can manage themselves.</li>
+<li>Added support for javascript-format used in Gettext PO.</li>
+<li>Support for adding new translations in XLIFF.</li>
+<li>Improved file format autodetection.</li>
+<li>Extended keyboard shortcuts.</li>
+<li>Improved dictionary matching for several languages.</li>
+<li>Improved layout of most of pages.</li>
+<li>Support for adding words to dictionary while translating.</li>
+<li>Added support for filtering languages to be managed by Weblate.</li>
+<li>Added support for translating and importing CSV files.</li>
+<li>Rewritten handling of static files.</li>
+<li>Direct login/registration links to third party service if that's the only one.</li>
+<li>Commit pending changes on account removal.</li>
+<li>Add management command to change site name.</li>
+<li>Add option to configure default committer.</li>
+<li>Add hook after adding new translation.</li>
+<li>Add option to specify multiple files to add to commit.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-3">
+<h2>weblate 2.3<a class="headerlink" href="#weblate-2-3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on May 22nd 2015.</p>
+<ul class="simple">
+<li>Dropped support for Django 1.6 and South migrations.</li>
+<li>Support for adding new translations when using Java Property files</li>
+<li>Allow to accept suggestion without editing.</li>
+<li>Improved support for Google OAuth2.</li>
+<li>Added support for Microsoft .resx files.</li>
+<li>Tuned default robots.txt to disallow big crawling of translations.</li>
+<li>Simplified workflow for accepting suggestions.</li>
+<li>Added project owners who always receive important notifications.</li>
+<li>Allow to disable editing of monolingual template.</li>
+<li>More detailed repository status view.</li>
+<li>Direct link for editing template when changing translation.</li>
+<li>Allow to add more permissions to project owners.</li>
+<li>Allow to show secondary language in zen mode.</li>
+<li>Support for hiding source string in favor of secondary language.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-2">
+<h2>weblate 2.2<a class="headerlink" href="#weblate-2-2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on Feb 19th 2015.</p>
+<ul class="simple">
+<li>Performance improvements.</li>
+<li>Fulltext search on location and comments fields.</li>
+<li>New SVG/javascript based activity charts.</li>
+<li>Support for Django 1.8.</li>
+<li>Support for deleting comments.</li>
+<li>Added own SVG badge.</li>
+<li>Added support for Google Analytics.</li>
+<li>Improved handling of translation file names.</li>
+<li>Added support for monolingual JSON translations.</li>
+<li>Record component locking in a history.</li>
+<li>Support for editing source (template) language for monolingual translations.</li>
+<li>Added basic support for Gerrit.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-1">
+<h2>weblate 2.1<a class="headerlink" href="#weblate-2-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on Dec 5th 2014.</p>
+<ul class="simple">
+<li>Added support for Mercurial repositories.</li>
+<li>Replaced Glyphicon font by Awesome.</li>
+<li>Added icons for social authentication services.</li>
+<li>Better consistency of button colors and icons.</li>
+<li>Documentation improvements.</li>
+<li>Various bugfixes.</li>
+<li>Automatic hiding of columns in translation listing for small screens.</li>
+<li>Changed configuration of filesystem paths.</li>
+<li>Improved SSH keys handling and storage.</li>
+<li>Improved repository locking.</li>
+<li>Customizable quality checks per source string.</li>
+<li>Allow to hide completed translations from dashboard.</li>
+</ul>
+</div>
+<div class="section" id="weblate-2-0">
+<h2>weblate 2.0<a class="headerlink" href="#weblate-2-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on Nov 6th 2014.</p>
+<ul class="simple">
+<li>New responsive UI using Bootstrap.</li>
+<li>Rewritten VCS backend.</li>
+<li>Documentation improvements.</li>
+<li>Added whiteboard for site wide messages.</li>
+<li>Configurable strings priority.</li>
+<li>Added support for JSON file format.</li>
+<li>Fixed generating mo files in certain cases.</li>
+<li>Added support for GitLab notifications.</li>
+<li>Added support for disabling translation suggestions.</li>
+<li>Django 1.7 support.</li>
+<li>ACL projects now have user management.</li>
+<li>Extended search possibilities.</li>
+<li>Give more hints to translators about plurals.</li>
+<li>Fixed Git repository locking.</li>
+<li>Compatibility with older Git versions.</li>
+<li>Improved ACL support.</li>
+<li>Added buttons for per language quotes and other special chars.</li>
+<li>Support for exporting stats as JSONP.</li>
+</ul>
+</div>
+<div class="section" id="weblate-1-9">
+<h2>weblate 1.9<a class="headerlink" href="#weblate-1-9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on May 6th 2014.</p>
+<ul class="simple">
+<li>Django 1.6 compatibility.</li>
+<li>No longer maintained compatibility with Django 1.4.</li>
+<li>Management commands for locking/unlocking translations.</li>
+<li>Improved support for Qt TS files.</li>
+<li>Users can now delete their account.</li>
+<li>Avatars can be disabled.</li>
+<li>Merged first and last name attributes.</li>
+<li>Avatars are now fetched and cached server side.</li>
+<li>Added support for shields.io badge.</li>
+</ul>
+</div>
+<div class="section" id="weblate-1-8">
+<h2>weblate 1.8<a class="headerlink" href="#weblate-1-8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on November 7th 2013.</p>
+<ul class="simple">
+<li>Please check manual for upgrade instructions.</li>
+<li>Nicer listing of project summary.</li>
+<li>Better visible options for sharing.</li>
+<li>More control over anonymous users privileges.</li>
+<li>Supports login using third party services, check manual for more details.</li>
+<li>Users can login by email instead of username.</li>
+<li>Documentation improvements.</li>
+<li>Improved source strings review.</li>
+<li>Searching across all units.</li>
+<li>Better tracking of source strings.</li>
+<li>Captcha protection for registration.</li>
+</ul>
+</div>
+<div class="section" id="weblate-1-7">
+<h2>weblate 1.7<a class="headerlink" href="#weblate-1-7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on October 7th 2013.</p>
+<ul class="simple">
+<li>Please check manual for upgrade instructions.</li>
+<li>Support for checking Python brace format string.</li>
+<li>Per component customization of quality checks.</li>
+<li>Detailed per translation stats.</li>
+<li>Changed way of linking suggestions, checks and comments to units.</li>
+<li>Users can now add text to commit message.</li>
+<li>Support for subscribing on new language requests.</li>
+<li>Support for adding new translations.</li>
+<li>Widgets and charts are now rendered using Pillow instead of Pango + Cairo.</li>
+<li>Add status badge widget.</li>
+<li>Dropped invalid text direction check.</li>
+<li>Changes in dictionary are now logged in history.</li>
+<li>Performance improvements for translating view.</li>
+</ul>
+</div>
+<div class="section" id="weblate-1-6">
+<h2>weblate 1.6<a class="headerlink" href="#weblate-1-6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on July 25th 2013.</p>
+<ul class="simple">
+<li>Nicer error handling on registration.</li>
+<li>Browsing of changes.</li>
+<li>Fixed sorting of machine translation suggestions.</li>
+<li>Improved support for MyMemory machine translation.</li>
+<li>Added support for Amagama machine translation.</li>
+<li>Various optimizations on frequently used pages.</li>
+<li>Highlights searched phrase in search results.</li>
+<li>Support for automatic fixups while saving the message.</li>
+<li>Tracking of translation history and option to revert it.</li>
+<li>Added support for Google Translate API.</li>
+<li>Added support for managing SSH host keys.</li>
+<li>Various form validation improvements.</li>
+<li>Various quality checks improvements.</li>
+<li>Performance improvements for import.</li>
+<li>Added support for voting on suggestions.</li>
+<li>Cleanup of admin interface.</li>
+</ul>
+</div>
+<div class="section" id="weblate-1-5">
+<h2>weblate 1.5<a class="headerlink" href="#weblate-1-5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on April 16th 2013.</p>
+<ul class="simple">
+<li>Please check manual for upgrade instructions.</li>
+<li>Added public user pages.</li>
+<li>Better naming of plural forms.</li>
+<li>Added support for TBX export of glossary.</li>
+<li>Added support for Bitbucket notifications.</li>
+<li>Activity charts are now available for each translation, language or user.</li>
+<li>Extended options of import_project admin command.</li>
+<li>Compatible with Django 1.5.</li>
+<li>Avatars are now shown using libravatar.</li>
+<li>Added possibility to pretty print JSON export.</li>
+<li>Various performance improvements.</li>
+<li>Indicate failing checks or fuzzy strings in progress bars for projects or languages as well.</li>
+<li>Added support for custom pre-commit hooks and committing additional files.</li>
+<li>Rewritten search for better performance and user experience.</li>
+<li>New interface for machine translations.</li>
+<li>Added support for monolingual po files.</li>
+<li>Extend amount of cached metadata to improve speed of various searches.</li>
+<li>Now shows word counts as well.</li>
+</ul>
+</div>
+<div class="section" id="weblate-1-4">
+<h2>weblate 1.4<a class="headerlink" href="#weblate-1-4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on January 23rd 2013.</p>
+<ul class="simple">
+<li>Fixed deleting of checks/comments on unit deletion.</li>
+<li>Added option to disable automatic propagation of translations.</li>
+<li>Added option to subscribe for merge failures.</li>
+<li>Correctly import on projects which needs custom ttkit loader.</li>
+<li>Added sitemaps to allow easier access by crawlers.</li>
+<li>Provide direct links to string in notification emails or feeds.</li>
+<li>Various improvements to admin interface.</li>
+<li>Provide hints for production setup in admin interface.</li>
+<li>Added per language widgets and engage page.</li>
+<li>Improved translation locking handling.</li>
+<li>Show code snippets for widgets in more variants.</li>
+<li>Indicate failing checks or fuzzy strings in progress bars.</li>
+<li>More options for formatting commit message.</li>
+<li>Fixed error handling with machine translation services.</li>
+<li>Improved automatic translation locking behaviour.</li>
+<li>Support for showing changes from previous source string.</li>
+<li>Added support for substring search.</li>
+<li>Various quality checks improvements.</li>
+<li>Support for per project ACL.</li>
+<li>Basic unit tests coverage.</li>
+</ul>
+</div>
+<div class="section" id="weblate-1-3">
+<h2>weblate 1.3<a class="headerlink" href="#weblate-1-3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on November 16th 2012.</p>
+<ul class="simple">
+<li>Compatibility with PostgreSQL database backend.</li>
+<li>Removes languages removed in upstream git repository.</li>
+<li>Improved quality checks processing.</li>
+<li>Added new checks (BB code, XML markup and newlines).</li>
+<li>Support for optional rebasing instead of merge.</li>
+<li>Possibility to relocate Weblate (eg. to run it under /weblate path).</li>
+<li>Support for manually choosing file type in case autodetection fails.</li>
+<li>Better support for Android resources.</li>
+<li>Support for generating SSH key from web interface.</li>
+<li>More visible data exports.</li>
+<li>New buttons to enter some special characters.</li>
+<li>Support for exporting dictionary.</li>
+<li>Support for locking down whole Weblate installation.</li>
+<li>Checks for source strings and support for source strings review.</li>
+<li>Support for user comments for both translations and source strings.</li>
+<li>Better changes log tracking.</li>
+<li>Changes can now be monitored using RSS.</li>
+<li>Improved support for RTL languages.</li>
+</ul>
+</div>
+<div class="section" id="weblate-1-2">
+<h2>weblate 1.2<a class="headerlink" href="#weblate-1-2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on August 14th 2012.</p>
+<ul class="simple">
+<li>Weblate now uses South for database migration, please check upgrade instructions if you are upgrading.</li>
+<li>Fixed minor issues with linked git repos.</li>
+<li>New introduction page for engaging people with translating using Weblate.</li>
+<li>Added widgets which can be used for promoting translation projects.</li>
+<li>Added option to reset repository to origin (for privileged users).</li>
+<li>Project or component can now be locked for translations.</li>
+<li>Possibility to disable some translations.</li>
+<li>Configurable options for adding new translations.</li>
+<li>Configuration of git commits per project.</li>
+<li>Simple antispam protection.</li>
+<li>Better layout of main page.</li>
+<li>Support for automatically pushing changes on every commit.</li>
+<li>Support for email notifications of translators.</li>
+<li>List only used languages in preferences.</li>
+<li>Improved handling of not known languages when importing project.</li>
+<li>Support for locking translation by translator.</li>
+<li>Optionally maintain Language-Team header in po file.</li>
+<li>Include some statistics in about page.</li>
+<li>Supports (and requires) django-registration 0.8.</li>
+<li>Caching of counted units with failing checks.</li>
+<li>Checking of requirements during setup.</li>
+<li>Documentation improvements.</li>
+</ul>
+</div>
+<div class="section" id="weblate-1-1">
+<h2>weblate 1.1<a class="headerlink" href="#weblate-1-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on July 4th 2012.</p>
+<ul class="simple">
+<li>Improved several translations.</li>
+<li>Better validation while creating component.</li>
+<li>Added support for shared git repositories across components.</li>
+<li>Do not necessary commit on every attempt to pull remote repo.</li>
+<li>Added support for offloading indexing.</li>
+</ul>
+</div>
+<div class="section" id="weblate-1-0">
+<h2>weblate 1.0<a class="headerlink" href="#weblate-1-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on May 10th 2012.</p>
+<ul class="simple">
+<li>Improved validation while adding/saving component.</li>
+<li>Experimental support for Android component files (needs patched ttkit).</li>
+<li>Updates from hooks are run in background.</li>
+<li>Improved installation instructions.</li>
+<li>Improved navigation in dictionary.</li>
+</ul>
+</div>
+<div class="section" id="weblate-0-9">
+<h2>weblate 0.9<a class="headerlink" href="#weblate-0-9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on April 18th 2012.</p>
+<ul class="simple">
+<li>Fixed import of unknown languages.</li>
+<li>Improved listing of nearby messages.</li>
+<li>Improved several checks.</li>
+<li>Documentation updates.</li>
+<li>Added definition for several more languages.</li>
+<li>Various code cleanups.</li>
+<li>Documentation improvements.</li>
+<li>Changed file layout.</li>
+<li>Update helper scripts to Django 1.4.</li>
+<li>Improved navigation while translating.</li>
+<li>Better handling of po file renames.</li>
+<li>Better validation while creating component.</li>
+<li>Integrated full setup into syncdb.</li>
+<li>Added list of recent changes to all translation pages.</li>
+<li>Check for not translated strings ignores format string only messages.</li>
+</ul>
+</div>
+<div class="section" id="weblate-0-8">
+<h2>weblate 0.8<a class="headerlink" href="#weblate-0-8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on April 3rd 2012.</p>
+<ul class="simple">
+<li>Replaced own full text search with Whoosh.</li>
+<li>Various fixes and improvements to checks.</li>
+<li>New command updatechecks.</li>
+<li>Lot of translation updates.</li>
+<li>Added dictionary for storing most frequently used terms.</li>
+<li>Added /admin/report/ for overview of repositories status.</li>
+<li>Machine translation services no longer block page loading.</li>
+<li>Management interface now contains also useful actions to update data.</li>
+<li>Records log of changes made by users.</li>
+<li>Ability to postpone commit to Git to generate less commits from single user.</li>
+<li>Possibility to browse failing checks.</li>
+<li>Automatic translation using already translated strings.</li>
+<li>New about page showing used versions.</li>
+<li>Django 1.4 compatibility.</li>
+<li>Ability to push changes to remote repo from web interface.</li>
+<li>Added review of translations done by others.</li>
+</ul>
+</div>
+<div class="section" id="weblate-0-7">
+<h2>weblate 0.7<a class="headerlink" href="#weblate-0-7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on February 16th 2012.</p>
+<ul class="simple">
+<li>Direct support for GitHub notifications.</li>
+<li>Added support for cleaning up orphaned checks and translations.</li>
+<li>Displays nearby strings while translating.</li>
+<li>Displays similar strings while translating.</li>
+<li>Improved searching for string.</li>
+</ul>
+</div>
+<div class="section" id="weblate-0-6">
+<h2>weblate 0.6<a class="headerlink" href="#weblate-0-6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on February 14th 2012.</p>
+<ul class="simple">
+<li>Added various checks for translated messages.</li>
+<li>Tunable access control.</li>
+<li>Improved handling of translations with new lines.</li>
+<li>Added client side sorting of tables.</li>
+<li>Please check upgrading instructions in case you are upgrading.</li>
+</ul>
+</div>
+<div class="section" id="weblate-0-5">
+<h2>weblate 0.5<a class="headerlink" href="#weblate-0-5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on February 12th 2012.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Support for machine translation using following online services:</dt>
+<dd><ul class="first last">
+<li>Apertium</li>
+<li>Microsoft Translator</li>
+<li>MyMemory</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>Several new translations.</li>
+<li>Improved merging of upstream changes.</li>
+<li>Better handle concurrent git pull and translation.</li>
+<li>Propagating works for fuzzy changes as well.</li>
+<li>Propagating works also for file upload.</li>
+<li>Fixed file downloads while using FastCGI (and possibly others).</li>
+</ul>
+</div>
+<div class="section" id="weblate-0-4">
+<h2>weblate 0.4<a class="headerlink" href="#weblate-0-4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on February 8th 2012.</p>
+<ul class="simple">
+<li>Added usage guide to documentation.</li>
+<li>Fixed API hooks not to require CSRF protection.</li>
+</ul>
+</div>
+<div class="section" id="weblate-0-3">
+<h2>weblate 0.3<a class="headerlink" href="#weblate-0-3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on February 8th 2012.</p>
+<ul class="simple">
+<li>Better display of source for plural translations.</li>
+<li>New documentation in Sphinx format.</li>
+<li>Displays secondary languages while translating.</li>
+<li>Improved error page to give list of existing projects.</li>
+<li>New per language stats.</li>
+</ul>
+</div>
+<div class="section" id="weblate-0-2">
+<h2>weblate 0.2<a class="headerlink" href="#weblate-0-2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on February 7th 2012.</p>
+<ul class="simple">
+<li>Improved validation of several forms.</li>
+<li>Warn users on profile upgrade.</li>
+<li>Remember URL for login.</li>
+<li>Naming of text areas while entering plural forms.</li>
+<li>Automatic expanding of translation area.</li>
+</ul>
+</div>
+<div class="section" id="weblate-0-1">
+<h2>weblate 0.1<a class="headerlink" href="#weblate-0-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Released on February 6th 2012.</p>
+<ul class="simple">
+<li>Initial release.</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="python.html" class="btn btn-neutral" title="Weblate&#39;s Python API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

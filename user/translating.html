@@ -1,0 +1,476 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Translating using Weblate &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Downloading and uploading translations" href="files.html" />
+    <link rel="prev" title="Registration and user profile" href="profile.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Translators guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basic.html">Weblate の基本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profile.html">Registration and user profile</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Translating using Weblate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#translation-projects">Translation projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#translation-links">Translation links</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#suggestions">Suggestions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#translating">Translating</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#plurals">Plurals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#keyboard-shortcuts">Keyboard shortcuts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#visual-keyboard">Visual keyboard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#translation-context">Translation context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#translation-history">Translation history</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#glossary">Glossary</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#managing-glossaries">Managing glossaries</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#machine-translation">Machine translation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#automatic-translation">Automatic translation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="files.html">Downloading and uploading translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks and fixups</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Translators guide</a> &raquo;</li>
+        
+      <li>Translating using Weblate</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/user/translating.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="translating-using-weblate">
+<h1>Translating using Weblate<a class="headerlink" href="#translating-using-weblate" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Thank you for interest in translating using Weblate. Weblate can be used to
+translate many projects and every project can have different settings which
+influence whether you can translate or add suggestions only.</p>
+<p>Overall there are the following possibilities for translating:</p>
+<ul class="simple">
+<li>Projects accepts direct translations</li>
+<li>Projects accepts only suggestions and those are accepted once they get a defined number of votes</li>
+</ul>
+<p>There are also some options for translation project visibility:</p>
+<ul class="simple">
+<li>It can be publicly visible and anybody can contribute</li>
+<li>It can be visible only to certain group of translators</li>
+</ul>
+<p>Please see <a class="reference internal" href="../workflows.html#workflows"><span class="std std-ref">Translation workflows</span></a> for more information about translation workflow.</p>
+<div class="section" id="translation-projects">
+<h2>Translation projects<a class="headerlink" href="#translation-projects" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Translation projects are used to organize translations into related groups. It
+can be one software component, book or anything closely related.</p>
+<img alt="../_images/project-overview.png" src="../_images/project-overview.png" />
+</div>
+<div class="section" id="translation-links">
+<span id="strings-to-check"></span><h2>Translation links<a class="headerlink" href="#translation-links" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Once you navigate to a translation, you will be shown set of links which lead
+to translation. These are results of various checks, like untranslated or
+strings needing review. Should no other checks fire, there will be still link
+to all translations. Alternatively you can use the search field to find a translation
+you need to fix.</p>
+<img alt="../_images/strings-to-check.png" src="../_images/strings-to-check.png" />
+</div>
+<div class="section" id="suggestions">
+<h2>Suggestions<a class="headerlink" href="#suggestions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>As an anonymous user, you have no other choice than making a suggestion.
+However, if you are logged in you can still decide to make only a suggestion
+instead of saving translation, for example in case you are unsure about the
+translation and you want somebody else to review it.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Permissions might vary depending on your setup, what is described is
+default Weblate behaviour.</p>
+</div>
+</div>
+<div class="section" id="translating">
+<h2>Translating<a class="headerlink" href="#translating" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>On translate page, you are shown the source string and an edit area for translating.
+Should the translation be plural, multiple source strings and edit areas are
+shown, each described with label for plural form.</p>
+<p>Any special whitespace chars are underlined in red and indicated with grey
+symbols. Also more than one space is underlined in red to allow translator to
+keep formatting.</p>
+<p>There are various bits of extra information which can be shown on this page. Most of
+them are coming from the project source code (like context, comments or where
+the message is being used). When you configure secondary languages in your
+preferences, translation to these languages will be shown (see
+<a class="reference internal" href="profile.html#secondary-languages"><span class="std std-ref">Secondary languages</span></a>).</p>
+<p>Below the translation, suggestions from other users can be shown, which you
+can accept or delete.</p>
+<div class="section" id="plurals">
+<span id="id1"></span><h3>Plurals<a class="headerlink" href="#plurals" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>What are plurals? Generally spoken plurals are words which take into account
+numeric meanings. But as you may imagine each language has its own definition
+of plurals. English, for example, supports one plural. We have a singular
+definition, for example &quot;car&quot;, which means implicitly one car, and we have the
+plural definition, &quot;cars&quot; which could mean more than one car but also zero
+cars. Other languages like Czech or Arabic have more plurals and also the
+rules for plurals are different.</p>
+<p>Weblate does have support for translating these and offers you one field to
+translate every plural separately. The number of fields and how it is used in
+the translated application depends on plural equation which is different for
+every language. Weblate shows the basic information, but you can find more
+detailed description in the <a class="reference external" href="https://unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html">Language Plural Rules</a> from the Unicode
+Consortium.</p>
+<img alt="../_images/plurals.png" src="../_images/plurals.png" />
+</div>
+<div class="section" id="keyboard-shortcuts">
+<h3>Keyboard shortcuts<a class="headerlink" href="#keyboard-shortcuts" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 2.18 で変更: </span>The keyboard shortcuts have been changed in 2.18 to less likely collide
+with browser or system ones.</p>
+</div>
+<p>While translating you can use the following keyboard shortcuts:</p>
+<dl class="docutils">
+<dt><kbd class="kbd docutils literal notranslate">Alt+Home</kbd></dt>
+<dd>Navigates to first translation in current search.</dd>
+<dt><kbd class="kbd docutils literal notranslate">Alt+End</kbd></dt>
+<dd>Navigates to last translation in current search.</dd>
+<dt><kbd class="kbd docutils literal notranslate">Alt+PageUp</kbd></dt>
+<dd>Navigates to previous translation in current search.</dd>
+<dt><kbd class="kbd docutils literal notranslate">Alt+PageDown</kbd></dt>
+<dd>Navigates to next translation in current search.</dd>
+<dt><kbd class="kbd docutils literal notranslate">Ctrl+Enter</kbd> or <kbd class="kbd docutils literal notranslate">⌘+Enter</kbd> or <kbd class="kbd docutils literal notranslate">Ctrl+Enter</kbd> or <kbd class="kbd docutils literal notranslate">⌘+Enter</kbd></dt>
+<dd>Saves current translation.</dd>
+<dt><kbd class="kbd docutils literal notranslate">Ctrl+Shift+Enter</kbd> or <kbd class="kbd docutils literal notranslate">⌘+Shift+Enter</kbd></dt>
+<dd>Unmarks translation as fuzzy and submits it.</dd>
+<dt><kbd class="kbd docutils literal notranslate">Ctrl+E</kbd> or <kbd class="kbd docutils literal notranslate">⌘+E</kbd></dt>
+<dd>Focus translation editor.</dd>
+<dt><kbd class="kbd docutils literal notranslate">Ctrl+U</kbd> or <kbd class="kbd docutils literal notranslate">⌘+U</kbd></dt>
+<dd>Focus comment editor.</dd>
+<dt><kbd class="kbd docutils literal notranslate">Ctrl+M</kbd> or <kbd class="kbd docutils literal notranslate">⌘+M</kbd></dt>
+<dd>Shows machine translation tab.</dd>
+<dt><kbd class="kbd docutils literal notranslate">Ctrl+&lt;NUMBER&gt;</kbd> or <kbd class="kbd docutils literal notranslate">⌘+&lt;NUMBER&gt;</kbd></dt>
+<dd>Copies placeable of given number from source string.</dd>
+<dt><kbd class="kbd docutils literal notranslate">Ctrl+M &lt;NUMBER&gt;</kbd> or <kbd class="kbd docutils literal notranslate">⌘+M &lt;NUMBER&gt;</kbd></dt>
+<dd>Copy machine translation of given number to current translation.</dd>
+<dt><kbd class="kbd docutils literal notranslate">Ctrl+I &lt;NUMBER&gt;</kbd> or <kbd class="kbd docutils literal notranslate">⌘+I &lt;NUMBER&gt;</kbd></dt>
+<dd>Ignore failing check of given number.</dd>
+<dt><kbd class="kbd docutils literal notranslate">Ctrl+J</kbd> or <kbd class="kbd docutils literal notranslate">⌘+J</kbd></dt>
+<dd>Shows nearby strings tab.</dd>
+<dt><kbd class="kbd docutils literal notranslate">Ctrl+S</kbd> or <kbd class="kbd docutils literal notranslate">⌘+S</kbd></dt>
+<dd>Shows search tab.</dd>
+<dt><kbd class="kbd docutils literal notranslate">Ctrl+O</kbd> or <kbd class="kbd docutils literal notranslate">⌘+O</kbd></dt>
+<dd>Copies source string</dd>
+<dt><kbd class="kbd docutils literal notranslate">Ctrl+T</kbd> or <kbd class="kbd docutils literal notranslate">⌘+T</kbd></dt>
+<dd>Toggles edit needed flag.</dd>
+</dl>
+</div>
+<div class="section" id="visual-keyboard">
+<span id="id2"></span><h3>Visual keyboard<a class="headerlink" href="#visual-keyboard" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>There is small visual keyboard shown when translating. This can be useful for
+typing chars which are usually not present on the keyboard.</p>
+<p>The symbols shown can be split into three categories:</p>
+<ul class="simple">
+<li>User configured chars defined in the <a class="reference internal" href="profile.html#user-profile"><span class="std std-ref">User profile</span></a></li>
+<li>Per language chars provided by Weblate (eg. quotes or RTL specific chars)</li>
+<li>Chars configured using <a class="reference internal" href="../admin/config.html#std:setting-SPECIAL_CHARS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">SPECIAL_CHARS</span></code></a></li>
+</ul>
+<img alt="../_images/visual-keyboard.png" src="../_images/visual-keyboard.png" />
+</div>
+<div class="section" id="translation-context">
+<span id="source-context"></span><h3>Translation context<a class="headerlink" href="#translation-context" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Translation context part allows you to see related information about current
+string.</p>
+<dl class="docutils">
+<dt>String attributes</dt>
+<dd>Things like message ID, context (msgctxt) or location in source code.</dd>
+<dt>Screenshots</dt>
+<dd>Screenshots can be uploaded to Weblate to better show translators
+where the string is used, see <a class="reference internal" href="../admin/translating.html#screenshots"><span class="std std-ref">Visual context for strings</span></a>.</dd>
+<dt>Nearby messages</dt>
+<dd>Displays messages which are located nearby in translation file. These
+usually are also used in similar context and you might want to check them
+to keep translation consistent.</dd>
+<dt>Similar messages</dt>
+<dd>Messages which are similar to currently one, which again can help you to
+stay consistent within translation.</dd>
+<dt>All locations</dt>
+<dd>In case message appears in multiple places (eg. multiple components),
+this tab shows all of them and for inconsistent translations (see
+<a class="reference internal" href="checks.html#check-inconsistent"><span class="std std-ref">Inconsistent</span></a>) you can choose which one to use.</dd>
+<dt>Glossary</dt>
+<dd>Displays words from project glossary which are used in current message.</dd>
+<dt>Recent edits</dt>
+<dd>List of people who have changed this message recently using Weblate.</dd>
+<dt>Project</dt>
+<dd>Project information like instructions for translators or information about
+VCS repository.</dd>
+</dl>
+<p>If the translation format supports it, you can also follow links to source code
+which contains translated strings.</p>
+</div>
+<div class="section" id="translation-history">
+<h3>Translation history<a class="headerlink" href="#translation-history" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Every change is by default (unless disabled in component settings) saved in
+the database and can be reverted. Of course you can still also revert anything
+in the underlying version control system.</p>
+</div>
+</div>
+<div class="section" id="glossary">
+<h2>Glossary<a class="headerlink" href="#glossary" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Each project can have an assigned glossary for any language. This could be used
+for storing terminology for a given project, so that translations are consistent.
+You can display terms from the currently translated string in the bottom tabs.</p>
+<div class="section" id="managing-glossaries">
+<h3>Managing glossaries<a class="headerlink" href="#managing-glossaries" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>On project page, on <span class="guilabel">Glossaries</span> tab, you can find a link
+<span class="guilabel">Manage all glossaries</span>, where you can start new glossaries or edit
+existing ones. Once a glossary is existing, it will also show up on this tab.</p>
+<img alt="../_images/project-glossaries.png" src="../_images/project-glossaries.png" />
+<p>On the next page, you can choose which glossary to manage (all languages used in
+current project are shown). Following this language link will lead you to page,
+which can be used to edit, import or export the glossary:</p>
+<img alt="../_images/glossary-edit.png" src="../_images/glossary-edit.png" />
+</div>
+</div>
+<div class="section" id="machine-translation">
+<span id="id3"></span><h2>Machine translation<a class="headerlink" href="#machine-translation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Based on configuration and your language, Weblate provides buttons for the following
+machine translation tools.</p>
+<p>All machine translations are available on single tab on translation page.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../admin/machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="automatic-translation">
+<span id="auto-translation"></span><h2>Automatic translation<a class="headerlink" href="#automatic-translation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>You can use automatic translation to bootstrap translation based on external
+sources. This tool is called <span class="guilabel">Automatic translation</span> and is
+accessible in the <span class="guilabel">Tools</span> menu:</p>
+<img alt="../_images/automatic-translation.png" src="../_images/automatic-translation.png" />
+<p>This can operate in two modes:</p>
+<ul class="simple">
+<li>Using other Weblate components as source for translations.</li>
+<li>Using selected machine translation services with translations about certain
+quality threshold.</li>
+</ul>
+<p>You can also choose which strings will be translated.</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">Be careful that this will overwrite existing translations if you choose
+wide filters such as <span class="guilabel">All strings</span>.</p>
+</div>
+<p>This feature can be useful in several situations like consolidating translation
+between different components (for example website and application) or when
+bootstrapping translation for new component using existing translations
+(translation memory).</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="files.html" class="btn btn-neutral float-right" title="Downloading and uploading translations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="profile.html" class="btn btn-neutral" title="Registration and user profile" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

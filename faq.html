@@ -1,0 +1,700 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>よくある質問 &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="about.html" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="サポートされるフォーマット" href="formats.html" />
+    <link rel="prev" title="Translation workflows" href="workflows.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin/index.html">Administrators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflows.html">Translation workflows</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">よくある質問</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">設定について</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-create-an-automated-workflow">自動化されたワークフローはどのように作りますか？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-access-repositories-over-ssh">SSHを使ってリポジトリにアクセスするにはどうしたらいいですか？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-fix-merge-conflicts-in-translations">翻訳のマージの競合はどのように解決したらよいですか？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-translate-several-branches-at-once">複数のブランチを一度に翻訳するにはどうしたらいいですか？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-export-the-git-repository-that-weblate-uses">Weblate が使用しているリポジトリをエクスポートするにはどうしたらいいですか？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-are-the-options-for-pushing-changes-back-upstream">変更をリモートリポジトリに書き込むにはどのような方法がありますか？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-can-i-limit-weblate-access-to-translations-only-without-exposing-source-code-to-it">How can I limit Weblate access to translations only without exposing source code to it?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-can-i-check-if-my-weblate-is-configured-properly">How can I check if my Weblate is configured properly?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-do-links-contain-example-com-as-the-domain">Why do links contain example.com as the domain?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-are-all-commits-committed-by-weblate-noreply-weblate-org">Why are all commits committed by Weblate &lt;noreply&#64;weblate.org&gt;?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-review-others-translations">How do I review others translations?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-provide-feedback-on-a-source-string">How do I provide feedback on a source string?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-can-i-use-existing-translations-while-translating">How can I use existing translations while translating?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#does-weblate-update-translation-files-besides-translations">Does Weblate update translation files besides translations?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#where-do-language-definitions-come-from-and-how-can-i-add-my-own">Where do language definitions come from and how can I add my own?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-weblate-highlight-changes-in-a-fuzzy-string">Can Weblate highlight changes in a fuzzy string?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-does-weblate-still-show-old-translation-strings-when-i-ve-updated-the-template">Why does Weblate still show old translation strings when I've updated the template?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#requests-sometimes-fail-with-too-many-open-files-error">Requests sometimes fail with too many open files error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fulltext-search-is-too-slow">Fulltext search is too slow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#i-get-lock-error-quite-often-while-translating">I get &quot;Lock Error&quot; quite often while translating</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rebuilding-index-has-failed-with-no-space-left-on-device">Rebuilding index has failed with &quot;No space left on device&quot;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#database-operations-fail-with-too-many-sql-variables">Database operations fail with &quot;too many SQL variables&quot;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#when-accessing-the-site-i-get-bad-request-400-error">When accessing the site I get Bad Request (400) error</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#features">Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#does-weblate-support-other-vcs-than-git-and-mercurial">Does Weblate support other VCS than Git and Mercurial?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-does-weblate-credit-translators">How does Weblate credit translators?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-does-weblate-force-to-show-all-po-files-in-a-single-tree">Why does Weblate force to show all po files in a single tree?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-does-weblate-use-language-codes-such-sr-latn-or-zh-hant">Why does Weblate use language codes such sr_Latn or zh_Hant?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>よくある質問</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/faq.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="frequently-asked-questions">
+<h1>よくある質問<a class="headerlink" href="#frequently-asked-questions" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="configuration">
+<h2>設定について<a class="headerlink" href="#configuration" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="how-to-create-an-automated-workflow">
+<span id="auto-workflow"></span><h3>自動化されたワークフローはどのように作りますか？<a class="headerlink" href="#how-to-create-an-automated-workflow" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate は翻訳に関わるすべてをあなたに代わって半自動的に処理することができます。Weblate にリモートリポジトリへの書き込みを許可すれば、マージの際に競合が生じない限り、人手を介さずに翻訳を反映することができます。</p>
+<ol class="arabic simple">
+<li>変更があったら Weblate に通知が行くように、あなたの git リポジトリを設定してください。そのやり方については :ref:<a href="#id1"><span class="problematic" id="id2">`</span></a>hooks`を参照してください。</li>
+<li>Weblate の <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a> でプッシュ用の URL を設定してください。これにより Weblate は変更をあなたのリポジトリに送信するようになります。</li>
+<li>Weblate の <a class="reference internal" href="admin/projects.html#project"><span class="std std-ref">プロジェクトの設定</span></a> でコミット時のプッシュを有効にしてください。これにより Weblate で変更がコミットされたら、あなたのリポジトリに送信されるようになります。</li>
+<li>:djadmin:<a href="#id1"><span class="problematic" id="id2">`</span></a>commit_pending`のためのクロンジョブを設定することもできます。</li>
+</ol>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="admin/continuous.html#continuous-translation"><span class="std std-ref">継続的トランスレーション</span></a>, <a class="reference internal" href="admin/continuous.html#avoid-merge-conflicts"><span class="std std-ref">マージ時の競合を避ける</span></a></p>
+</div>
+</div>
+<div class="section" id="how-to-access-repositories-over-ssh">
+<h3>SSHを使ってリポジトリにアクセスするにはどうしたらいいですか？<a class="headerlink" href="#how-to-access-repositories-over-ssh" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>SSHキーを使えるようにするには <a class="reference internal" href="vcs.html#vcs-repos"><span class="std std-ref">Accessing repositories</span></a> を参照してください。</p>
+</div>
+<div class="section" id="how-to-fix-merge-conflicts-in-translations">
+<span id="merge"></span><h3>翻訳のマージの競合はどのように解決したらよいですか？<a class="headerlink" href="#how-to-fix-merge-conflicts-in-translations" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate とリモートリポジトリの両方で翻訳ファイルを変更すると、時によりマージの際に競合が起こります。翻訳ファイルを変更する前に（例えば msgmerge を実行する前など）、Weblate での変更をマージしてしまうことにより、通常はこれを避けることができます。単に Weblate で保留中の変更をすべてコミットしてください（これは <span class="guilabel">Tools</span> メニューの <span class="guilabel">Repository maintenance</span> で行うことができます）。そのあとリポジトリをマージしてください（自動プッシュを有効にしていない場合）。</p>
+<p>あいにくマージ時の競合に出くわしてしまったら、これを解決するいちばん簡単な方法は、すべての競合をあなたのローカルマシンで解消してしまうことです。単に Weblate をリモートリポジトリとして追加してから、あなたのリポジトリにこれをマージし、ここですべての競合を解決してください。そのあとこれを Weblate にプッシュすれば、これ以外には特に何もしなくても、このマージ済みのバージョンが Weblate で使用可能になります。</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Commit all pending changes in Weblate, you can do this in the UI as well</span>
+wlc commit
+<span class="c1"># Lock translation in Weblate, again this can be done in the UI as well</span>
+wlc lock
+<span class="c1"># Add weblate as remote</span>
+git remote add weblate https://hosted.weblate.org/git/weblate/website/
+<span class="c1"># You might need to include credentials in some cases:</span>
+git remote add weblate https://username:APIKEY@hosted.weblate.org/git/weblate/website/
+
+<span class="c1"># Update weblate remote</span>
+git remote update weblate
+
+<span class="c1"># Merge Weblate changes</span>
+git merge weblate/master
+
+<span class="c1"># Resolve conflicts</span>
+edit ....
+git add ...
+...
+git commit
+
+<span class="c1"># Push changes to upstream repository, Weblate will fetch merge from there</span>
+git push
+
+<span class="c1"># Open Weblate for translation</span>
+wlc unlock
+</pre></div>
+</div>
+<p>Weblate で複数のブランチを使用している場合は、すべてのブランチで同様に行うことができます。</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add and update remotes</span>
+git remote add weblate-4.7 https://hosted.weblate.org/git/phpmyadmin/4-7/
+git remote add weblate https://hosted.weblate.org/git/phpmyadmin/master/
+git remote update weblate-4.7 weblate
+
+<span class="c1"># Merge QA_4_7 branch</span>
+git checkout QA_4_7
+git merge weblate-4.7/QA_4_7
+... <span class="c1"># Resolve conflicts</span>
+git commit
+
+<span class="c1"># Merge master branch</span>
+git checkout master
+git merge weblate/master
+... <span class="c1"># Resolve conflicts</span>
+git commit
+
+<span class="c1"># Push changes to upstream repository, Weblate will fetch merge from there</span>
+git push
+</pre></div>
+</div>
+<p>翻訳ファイルが Gettext po ファイルの場合は、半自動的な方法でマージ時の競合を解決する方法があります。</p>
+<p>Weblate の git リポジトリをローカルにクローンしておきます。同時に、あなた自身のリポジトリを、これもローカルでクローンしてください（つまりあなたのリポジトリのコピーが、元のままのものと作業用のコピーと、ふたつ必要ということです）。</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add remote</span>
+git remote add weblate /path/to/weblate/snapshot/
+
+<span class="c1"># Update weblate remote</span>
+git remote update weblate
+
+<span class="c1"># Merge Weblate changes</span>
+git merge weblate/master
+
+<span class="c1"># Resolve conflicts in the po files</span>
+<span class="k">for</span> PO in <span class="sb">`</span>find . -name <span class="s1">&#39;*.po&#39;</span><span class="sb">`</span> <span class="p">;</span> <span class="k">do</span>
+    msgcat --use-first /path/to/weblate/snapshot/<span class="nv">$PO</span><span class="se">\</span>
+               /path/to/upstream/snapshot/<span class="nv">$PO</span> -o <span class="nv">$PO</span>.merge
+    msgmerge --previous --lang<span class="o">=</span><span class="si">${</span><span class="nv">PO</span><span class="p">%.po</span><span class="si">}</span> <span class="nv">$PO</span>.merge domain.pot -o <span class="nv">$PO</span>
+    rm <span class="nv">$PO</span>.merge
+    git add <span class="nv">$PO</span>
+<span class="k">done</span>
+git commit
+
+<span class="c1"># Push changes to upstream repository, Weblate will fetch merge from there</span>
+git push
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#git-export"><span class="std std-ref">Weblate が使用しているリポジトリをエクスポートするにはどうしたらいいですか？</span></a></p>
+</div>
+</div>
+<div class="section" id="how-do-i-translate-several-branches-at-once">
+<h3>複数のブランチを一度に翻訳するにはどうしたらいいですか？<a class="headerlink" href="#how-do-i-translate-several-branches-at-once" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate supports pushing translation changes within one <a class="reference internal" href="admin/projects.html#project"><span class="std std-ref">プロジェクトの設定</span></a>. For
+every <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a> which has it enabled (the default behavior), the change
+made is automatically propagated to others. This way the translations are kept
+synchronized even if the branches themselves have already diverged quite a lot
+and it is not possible to simply merge translation changes between them.</p>
+<p>Once you merge changes from Weblate, you might have to merge these branches
+(depending on your development workflow) discarding differences:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git merge -s ours origin/maintenance
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-export-the-git-repository-that-weblate-uses">
+<span id="git-export"></span><h3>Weblate が使用しているリポジトリをエクスポートするにはどうしたらいいですか？<a class="headerlink" href="#how-to-export-the-git-repository-that-weblate-uses" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>There is nothing special about the repository, it lives under the
+<a class="reference internal" href="admin/config.html#std:setting-DATA_DIR"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DATA_DIR</span></code></a> directory and is named <code class="file docutils literal notranslate"><span class="pre">vcs/&lt;project&gt;/&lt;component&gt;/</span></code>. If you
+have SSH access to this machine, you can use the repository directly.</p>
+<p>For anonymous access you might want to run a git server and let it serve the
+repository to the outside world.</p>
+<p>Alternatively you can use <a class="reference internal" href="admin/optionals.html#git-exporter"><span class="std std-ref">Git exporter</span></a> inside Weblate to automate this.</p>
+</div>
+<div class="section" id="what-are-the-options-for-pushing-changes-back-upstream">
+<h3>変更をリモートリポジトリに書き込むにはどのような方法がありますか？<a class="headerlink" href="#what-are-the-options-for-pushing-changes-back-upstream" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This heavily depends on your setup, Weblate is quite flexible in this area.
+Here are examples of workflows used with Weblate:</p>
+<ul class="simple">
+<li>Weblate automatically pushes and merges changes (see <a class="reference internal" href="#auto-workflow"><span class="std std-ref">自動化されたワークフローはどのように作りますか？</span></a>)</li>
+<li>You manually tell Weblate to push (it needs push access to the upstream repository)</li>
+<li>Somebody manually merges changes from the Weblate git repository into the upstream
+repository</li>
+<li>Somebody rewrites history produced by Weblate (eg. by eliminating merge
+commits), merges changes and tells Weblate to reset the content on the upstream
+repository.</li>
+</ul>
+<p>Of course you are free to mix all of these as you wish.</p>
+</div>
+<div class="section" id="how-can-i-limit-weblate-access-to-translations-only-without-exposing-source-code-to-it">
+<h3>How can I limit Weblate access to translations only without exposing source code to it?<a class="headerlink" href="#how-can-i-limit-weblate-access-to-translations-only-without-exposing-source-code-to-it" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>You can use <a class="reference external" href="https://git-scm.com/docs/git-submodule">git submodule</a> for separating translations from source code
+while still having them under version control.</p>
+<ol class="arabic">
+<li><p class="first">Create a repository with your translation files.</p>
+</li>
+<li><p class="first">Add this as a submodule to your code:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git submodule add git@example.com:project-translations.git path/to/translations
+</pre></div>
+</div>
+</li>
+<li><p class="first">Link Weblate to this repository, it no longer needs access to the repository
+with your source code.</p>
+</li>
+<li><p class="first">You can update the main repository with translations from Weblate by:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git submodule update --remote path/to/translations
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Please consult <a class="reference external" href="https://git-scm.com/docs/git-submodule">git submodule</a> documentation for more details.</p>
+</div>
+<div class="section" id="how-can-i-check-if-my-weblate-is-configured-properly">
+<h3>How can I check if my Weblate is configured properly?<a class="headerlink" href="#how-can-i-check-if-my-weblate-is-configured-properly" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate includes a set of configuration checks which you can see in the admin
+interface, just follow the <span class="guilabel">Performance report</span> link in the admin interface or
+open the <code class="docutils literal notranslate"><span class="pre">/admin/performance/</span></code> URL directly.</p>
+</div>
+<div class="section" id="why-do-links-contain-example-com-as-the-domain">
+<span id="faq-site"></span><h3>Why do links contain example.com as the domain?<a class="headerlink" href="#why-do-links-contain-example-com-as-the-domain" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate uses Django's sites framework and it defines the site name inside the
+database. You need to set the domain name to match your installation.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="admin/install.html#production-site"><span class="std std-ref">Set correct site name</span></a></p>
+</div>
+</div>
+<div class="section" id="why-are-all-commits-committed-by-weblate-noreply-weblate-org">
+<h3>Why are all commits committed by Weblate &lt;<a class="reference external" href="mailto:noreply&#37;&#52;&#48;weblate&#46;org">noreply<span>&#64;</span>weblate<span>&#46;</span>org</a>&gt;?<a class="headerlink" href="#why-are-all-commits-committed-by-weblate-noreply-weblate-org" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This is the default committer name, configured when you create a translation component.
+You can also change it in the administration at any time.</p>
+<p>The author of every commit (if the underlying VCS supports it) is still recorded
+correctly as the user who has made the translation.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="how-do-i-review-others-translations">
+<h3>How do I review others translations?<a class="headerlink" href="#how-do-i-review-others-translations" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>You can subscribe to any changes made in <a class="reference internal" href="user/profile.html#subscriptions"><span class="std std-ref">Subscriptions</span></a> and then check
+others contributions in email.</li>
+<li>There is a review tool available at the bottom of the translation view, where you can
+choose to browse translations made by others since a given date.</li>
+</ul>
+</div>
+<div class="section" id="how-do-i-provide-feedback-on-a-source-string">
+<h3>How do I provide feedback on a source string?<a class="headerlink" href="#how-do-i-provide-feedback-on-a-source-string" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>On context tabs below translation, you can use the <span class="guilabel">Source</span> tab to
+provide feedback on a source string or discuss it with other translators.</p>
+</div>
+<div class="section" id="how-can-i-use-existing-translations-while-translating">
+<h3>How can I use existing translations while translating?<a class="headerlink" href="#how-can-i-use-existing-translations-while-translating" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate provides you with several ways to utilize existing translations while
+translating:</p>
+<ul class="simple">
+<li>You can use the import functionality to load compendium as translations,
+suggestions or translations needing review. This is the best approach for a one time
+translation using compendium or similar translation database.</li>
+<li>You can setup <a class="reference internal" href="admin/machine.html#tmserver"><span class="std std-ref">tmserver</span></a> with all databases you have and let Weblate use
+it. This is good for cases when you want to use it for several times during
+translating.</li>
+<li>Another option is to translate all related projects in a single Weblate
+instance, which will make it automatically pick up translations from other
+projects as well.</li>
+</ul>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="admin/machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="does-weblate-update-translation-files-besides-translations">
+<h3>Does Weblate update translation files besides translations?<a class="headerlink" href="#does-weblate-update-translation-files-besides-translations" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate tries to limit changes in translation files to a minimum. For some file
+formats it might unfortunately lead to reformatting the file. If you want to
+keep the file formatted in your way, please use a pre-commit hook for that.</p>
+<p>For monolingual files (see <a class="reference internal" href="formats.html#formats"><span class="std std-ref">サポートされるフォーマット</span></a>) Weblate might add new translation
+units which are present in the <span class="guilabel">template</span> and not in actual
+translations. It does not however perform any automatic cleanup of stale
+strings as that might have unexpected outcomes. If you want to do this, please
+install a pre-commit hook which will handle the cleanup according to your requirements.</p>
+<p>Weblate also will not try to update bilingual files in any way, so if you need
+<code class="file docutils literal notranslate"><span class="pre">po</span></code> files being updated from <code class="file docutils literal notranslate"><span class="pre">pot</span></code>, you need to do it yourself.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="admin/continuous.html#processing"><span class="std std-ref">リポジトリをスクリプトで処理する</span></a></p>
+</div>
+</div>
+<div class="section" id="where-do-language-definitions-come-from-and-how-can-i-add-my-own">
+<h3>Where do language definitions come from and how can I add my own?<a class="headerlink" href="#where-do-language-definitions-come-from-and-how-can-i-add-my-own" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The basic set of language definitions is included within Weblate and
+Translate-toolkit. This covers more than 150 languages and includes information
+about used plural forms or text direction.</p>
+<p>You are free to define own languages in the administrative interface, you just need
+to provide information about it.</p>
+</div>
+<div class="section" id="can-weblate-highlight-changes-in-a-fuzzy-string">
+<h3>Can Weblate highlight changes in a fuzzy string?<a class="headerlink" href="#can-weblate-highlight-changes-in-a-fuzzy-string" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate supports this, however it needs the data to show the difference.</p>
+<p>For Gettext PO files, you have to pass the parameter <code class="docutils literal notranslate"><span class="pre">--previous</span></code> to
+<strong class="command">msgmerge</strong> when updating PO files, for example:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>msgmerge --previous -U po/cs.po po/phpmyadmin.pot
+</pre></div>
+</div>
+<p>For monolingual translations, Weblate can find the previous string by ID, so it
+shows the differences automatically.</p>
+</div>
+<div class="section" id="why-does-weblate-still-show-old-translation-strings-when-i-ve-updated-the-template">
+<span id="translations-update"></span><h3>Why does Weblate still show old translation strings when I've updated the template?<a class="headerlink" href="#why-does-weblate-still-show-old-translation-strings-when-i-ve-updated-the-template" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate does not try to manipulate the translation files in any way other
+than allowing translators to translate. So it also does not update the
+translatable files when the template or source code have been changed. You
+simply have to do this manually and push changes to the repository, Weblate
+will then pick up the changes automatically.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">It is usually a good idea to merge changes done in Weblate before updating
+translation files, as otherwise you will usually end up with some conflicts
+to merge.</p>
+</div>
+<p>For example with Gettext PO files, you can update the translation files using
+the <strong class="command">msgmerge</strong> tool:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>msgmerge -U locale/cs/LC_MESSAGES/django.mo locale/django.pot
+</pre></div>
+</div>
+<p>In case you want to do the update automatically, you can install
+addon <a class="reference internal" href="admin/addons.html#addon-weblate-gettext-msgmerge"><span class="std std-ref">Update PO files to match POT (msgmerge)</span></a>.</p>
+</div>
+</div>
+<div class="section" id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="requests-sometimes-fail-with-too-many-open-files-error">
+<h3>Requests sometimes fail with too many open files error<a class="headerlink" href="#requests-sometimes-fail-with-too-many-open-files-error" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This happens sometimes when your Git repository grows too much and you have
+many of them. Compressing the Git repositories will improve this situation.</p>
+<p>The easiest way to do this is to run:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Go to DATA_DIR directory</span>
+<span class="nb">cd</span> data/vcs
+<span class="c1"># Compress all Git repositories</span>
+<span class="k">for</span> d in */* <span class="p">;</span> <span class="k">do</span>
+    <span class="nb">pushd</span> <span class="nv">$d</span>
+    git gc
+    <span class="nb">popd</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="admin/config.html#std:setting-DATA_DIR"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DATA_DIR</span></code></a></p>
+</div>
+</div>
+<div class="section" id="fulltext-search-is-too-slow">
+<span id="faq-ft-slow"></span><h3>Fulltext search is too slow<a class="headerlink" href="#fulltext-search-is-too-slow" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Depending on various conditions (frequency of updates, server restarts and
+other), the fulltext index might become too fragmented over time. It is recommended to
+optimize it from time to time:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py rebuild_index --optimize
+</pre></div>
+</div>
+<p>In case it does not help (or if you have removed a lot of strings) it might be
+better to rebuild it from scratch:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py rebuild_index --clean
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="admin/management.html#django-admin-rebuild_index"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">rebuild_index</span></code></a></p>
+</div>
+</div>
+<div class="section" id="i-get-lock-error-quite-often-while-translating">
+<span id="faq-ft-lock"></span><h3>I get &quot;Lock Error&quot; quite often while translating<a class="headerlink" href="#i-get-lock-error-quite-often-while-translating" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This is usually caused by concurrent updates to the fulltext index. In case you are
+running a multi-threaded server (e.g. mod_wsgi), this happens quite often. For such
+a setup it is recommended to use Celery to perform updates in the background.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="admin/projects.html#fulltext"><span class="std std-ref">Fulltext search</span></a>, <a class="reference internal" href="admin/install.html#celery"><span class="std std-ref">Background tasks using Celery</span></a></p>
+</div>
+</div>
+<div class="section" id="rebuilding-index-has-failed-with-no-space-left-on-device">
+<span id="faq-ft-space"></span><h3>Rebuilding index has failed with &quot;No space left on device&quot;<a class="headerlink" href="#rebuilding-index-has-failed-with-no-space-left-on-device" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Whoosh uses a temporary directory to build indices. In case you have a small /tmp
+(eg. using ramdisk), this might fail. Change the temporary directory by passing it
+as <code class="docutils literal notranslate"><span class="pre">TEMP</span></code> variable:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">TEMP</span><span class="o">=</span>/path/to/big/temp ./manage.py rebuild_index --clean
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="admin/management.html#django-admin-rebuild_index"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">rebuild_index</span></code></a></p>
+</div>
+</div>
+<div class="section" id="database-operations-fail-with-too-many-sql-variables">
+<h3>Database operations fail with &quot;too many SQL variables&quot;<a class="headerlink" href="#database-operations-fail-with-too-many-sql-variables" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This can happen when using theSQLite database as it is not powerful enough for some
+relations used within Weblate. The only way to fix this is to use some more
+capable database, see <a class="reference internal" href="admin/install.html#production-database"><span class="std std-ref">Use powerful database engine</span></a> for more information.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="admin/install.html#production-database"><span class="std std-ref">Use powerful database engine</span></a>,
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/databases/" title="(in Django v2.1)"><span>Databases</span></a></p>
+</div>
+</div>
+<div class="section" id="when-accessing-the-site-i-get-bad-request-400-error">
+<h3>When accessing the site I get Bad Request (400) error<a class="headerlink" href="#when-accessing-the-site-i-get-bad-request-400-error" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This is most likely caused by an improperly configured <a class="reference internal" href="admin/install.html#std:setting-ALLOWED_HOSTS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">ALLOWED_HOSTS</span></code></a>.
+It needs to contain all hostnames you want to access your Weblate. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;weblate.example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;weblate&#39;</span><span class="p">,</span> <span class="s1">&#39;localhost&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="admin/install.html#production-hosts"><span class="std std-ref">Allowed hosts setup</span></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="does-weblate-support-other-vcs-than-git-and-mercurial">
+<span id="faq-vcs"></span><h3>Does Weblate support other VCS than Git and Mercurial?<a class="headerlink" href="#does-weblate-support-other-vcs-than-git-and-mercurial" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate currently does not have native support for anything other than
+<a class="reference internal" href="vcs.html#vcs-git"><span class="std std-ref">Git</span></a> (with extended support for <a class="reference internal" href="vcs.html#vcs-github"><span class="std std-ref">GitHub</span></a> and
+<a class="reference internal" href="vcs.html#vcs-git-svn"><span class="std std-ref">Subversion</span></a>) and ref:<cite>vcs-mercurial</cite>, but it is possible to write
+backends for other VCSes.</p>
+<p>You can also use <a class="reference internal" href="vcs.html#vcs-git-helpers"><span class="std std-ref">Git remote helpers</span></a> in Git to access other VCSes.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">For native support of other VCS, Weblate requires distributed VCS and could
+be probably adjusted to work with anything other than Git and Mercurial, but
+somebody has to implement this support.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="vcs.html#vcs"><span class="std std-ref">Version control integration</span></a></p>
+</div>
+</div>
+<div class="section" id="how-does-weblate-credit-translators">
+<h3>How does Weblate credit translators?<a class="headerlink" href="#how-does-weblate-credit-translators" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Every change made in Weblate is committed into VCS under the translators name. This
+way every single change has proper authorship and you can track it down using
+standard VCS tools you use for code.</p>
+<p>Additionally, when the translation file format supports it, the file headers are
+updated to include the translator name.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="admin/management.html#django-admin-list_translators"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">list_translators</span></code></a></p>
+</div>
+</div>
+<div class="section" id="why-does-weblate-force-to-show-all-po-files-in-a-single-tree">
+<h3>Why does Weblate force to show all po files in a single tree?<a class="headerlink" href="#why-does-weblate-force-to-show-all-po-files-in-a-single-tree" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate was designed in a way that every po file is represented as a single
+component. This is beneficial for translators, so they know what they are
+actually translating. If you feel your project should be translated as one,
+consider merging these po files. It will make life easier even for translators
+not using Weblate.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">In case there will be big demand for this feature, it might be implemented
+in future versions, but it's definitely not a priority for now.</p>
+</div>
+</div>
+<div class="section" id="why-does-weblate-use-language-codes-such-sr-latn-or-zh-hant">
+<span id="faq-codes"></span><h3>Why does Weblate use language codes such sr_Latn or zh_Hant?<a class="headerlink" href="#why-does-weblate-use-language-codes-such-sr-latn-or-zh-hant" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>These are language codes defined by <span class="target" id="index-0"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc4646.html"><strong>RFC 4646</strong></a> to better indicate that they
+are really different languages instead previously wrongly used modifiers (for
+<code class="docutils literal notranslate"><span class="pre">&#64;latin</span></code> variants) or country codes (for Chinese).</p>
+<p>Weblate will still understand legacy language codes and will map them to
+current one - for example <code class="docutils literal notranslate"><span class="pre">sr&#64;latin</span></code> will be handled as <code class="docutils literal notranslate"><span class="pre">sr_Latn</span></code> or
+<code class="docutils literal notranslate"><span class="pre">zh&#64;CN</span></code> as <code class="docutils literal notranslate"><span class="pre">sr_Hans</span></code>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="formats.html" class="btn btn-neutral float-right" title="サポートされるフォーマット" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="workflows.html" class="btn btn-neutral" title="Translation workflows" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

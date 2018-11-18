@@ -1,0 +1,412 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Contributing &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="about.html" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="内部構造" href="internals.html" />
+    <link rel="prev" title="Changes" href="changes.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin/index.html">Administrators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#code-and-development">Code and development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#coding-standard">Coding standard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#developer-s-certificate-of-origin">Developer's Certificate of Origin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testsuite">Testsuite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reporting-issues">Reporting issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#security-issues">Security issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#starting-with-our-codebase">Starting with our codebase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#earning-money-by-coding">Earning money by coding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#translating">Translating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#funding-weblate-development">Funding Weblate development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#backers-who-have-funded-weblate">Backers who have funded Weblate</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#releasing-weblate">Releasing Weblate</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Contributing</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/contributing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="contributing">
+<span id="id1"></span><h1>Contributing<a class="headerlink" href="#contributing" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>There are dozens of ways to contribute in Weblate. We welcome any help, be it
+coding help, graphics design, documentation or sponsorship.</p>
+<div class="section" id="code-and-development">
+<h2>Code and development<a class="headerlink" href="#code-and-development" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblate is being developed on <a class="reference external" href="https://github.com/WeblateOrg/weblate">GitHub</a>. You
+are welcome to fork the code and open pull requests. Patches in any other form
+are welcome as well.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Check out <a class="reference internal" href="internals.html#internals"><span class="std std-ref">内部構造</span></a> to see how Weblate looks from inside.</p>
+</div>
+</div>
+<div class="section" id="coding-standard">
+<h2>Coding standard<a class="headerlink" href="#coding-standard" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The code should follow PEP-8 coding guidelines.</p>
+<p>It is good idea to check your contributions using <strong class="program">pep8</strong>,
+<strong class="program">pylint</strong> and <strong class="program">pyflages</strong>. You can execute all checks
+by script <code class="file docutils literal notranslate"><span class="pre">ci/run-lint</span></code>.</p>
+</div>
+<div class="section" id="developer-s-certificate-of-origin">
+<h2>Developer's Certificate of Origin<a class="headerlink" href="#developer-s-certificate-of-origin" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>If you would like to make a contribution to the Weblate project, please
+certify to the following:</p>
+<blockquote>
+<div><p>Weblate Developer's Certificate of Origin. Version 1.0</p>
+<p>By making a contribution to this project, I certify that:</p>
+<ol class="loweralpha">
+<li><p class="first">The contribution was created in whole or in part by me and I have the
+right to submit it under the license of &quot;GNU General Public License or
+any later version&quot; (&quot;GPLv3-or-later&quot;); or</p>
+</li>
+<li><p class="first">The contribution is based upon previous work that, to the best of my
+knowledge, is covered under an appropriate open source license and I have
+the right under that license to submit that work with modifications,
+whether created in whole or in part by me, under GPLv3-or-later; or</p>
+</li>
+<li><p class="first">The contribution was provided directly to me by some other person who
+certified (a) or (b) and I have not modified it.</p>
+</li>
+<li><p class="first">I understand and agree that this project and the contribution are public
+and that a record of the contribution (including all metadata and
+personal information I submit with it, including my sign-off) is
+maintained indefinitely and may be redistributed consistent with
+Weblate's policies and the requirements of the GPLv2-or-later where
+they are relevant.</p>
+</li>
+<li><p class="first">I am granting this work to this project under the terms of the
+GPLv3-or-later.</p>
+<p><a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0.html">https://www.gnu.org/licenses/gpl-3.0.html</a></p>
+</li>
+</ol>
+</div></blockquote>
+<p>And please confirm your certification to the above by adding the following
+line to your patch:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Signed-off-by: Jane Developer &lt;jane@example.org&gt;
+</pre></div>
+</div>
+<p>using your real name (sorry, no pseudonyms or anonymous contributions).</p>
+<p>If you are a developer who is authorized to contribute to Weblate on
+behalf of your employer, then please use your corporate email address in the
+Signed-off-by tag.  If not, then please use a personal email address.</p>
+</div>
+<div class="section" id="testsuite">
+<h2>Testsuite<a class="headerlink" href="#testsuite" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>We do write testsuite for our code, so please add testcases for any new
+functionality and verify that it works. You can see current test results on
+<a class="reference external" href="https://travis-ci.org/WeblateOrg/weblate">Travis</a> and coverage on <a class="reference external" href="https://codecov.io/github/WeblateOrg/weblate">Codecov</a>.</p>
+<p>To run testsuite locally, use:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">DJANGO_SETTINGS_MODULE</span><span class="o">=</span>weblate.settings_test ./manage.py <span class="nb">test</span>
+</pre></div>
+</div>
+<p>You can also specify individual tests to run:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">DJANGO_SETTINGS_MODULE</span><span class="o">=</span>weblate.settings_test ./manage.py <span class="nb">test</span> weblate.gitexport
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">See <a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/testing/" title="(in Django v2.1)"><span>Testing in Django</span></a> for more info on running and
+writing tests for Django.</p>
+</div>
+</div>
+<div class="section" id="reporting-issues">
+<h2>Reporting issues<a class="headerlink" href="#reporting-issues" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Our <a class="reference external" href="https://github.com/WeblateOrg/weblate/issues">issue tracker</a> is hosted at GitHub:</p>
+<p>Feel welcome to report any issues with or suggest improvement of Weblate there.
+In case you have found a security issue in Weblate, please consult the &quot;Security
+issues&quot; section below.</p>
+</div>
+<div class="section" id="security-issues">
+<span id="security"></span><h2>Security issues<a class="headerlink" href="#security-issues" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>In order to give the community time to respond and upgrade we strongly urge you
+report all security issues privately. We're currently using HackerOne to handle
+security issues, so you are welcome to report issues directly at <a class="reference external" href="https://hackerone.com/weblate">HackerOne</a>.</p>
+<p>Alternatively you can report them to <a class="reference external" href="mailto:security&#37;&#52;&#48;weblate&#46;org">security<span>&#64;</span>weblate<span>&#46;</span>org</a>, which ends up on
+HackerOne as well.</p>
+<p>If you don't want to use HackerOne, for whatever reason, you can send the report
+by email to <a class="reference external" href="mailto:michal&#37;&#52;&#48;cihar&#46;com">michal<span>&#64;</span>cihar<span>&#46;</span>com</a>. You can choose to encrypt it using his PGP key
+<cite>3CB 1DF1 EF12 CF2A C0EE  5A32 9C27 B313 42B7 511D</cite>.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>We're heavily depending on third party components for many things.  In case
+you find a vulnerability which is affecting those components in general,
+please report it directly to them.</p>
+<p>Some of these are:</p>
+<ul class="last simple">
+<li><a class="reference external" href="https://docs.djangoproject.com/en/stable/internals/security/" title="(in Django v2.1)"><span class="xref std std-doc">Django</span></a></li>
+<li><a class="reference external" href="https://www.django-rest-framework.org/#security">Django REST framework</a></li>
+<li><a class="reference external" href="https://github.com/python-social-auth">Python Social Auth</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="starting-with-our-codebase">
+<h2>Starting with our codebase<a class="headerlink" href="#starting-with-our-codebase" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>If you are looking for some bugs which should be good for starting with our
+codebase, you can find them labelled with <span class="guilabel">good first issue</span> &lt;<a class="reference external" href="https://github.com/WeblateOrg/weblate/labels/good%20first%20issue">https://github.com/WeblateOrg/weblate/labels/good%20first%20issue</a>&gt;`_ tag:</p>
+<p>If you have Docker and docker-compose installed you can spin up the development
+environment simply by running:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./rundev.sh
+</pre></div>
+</div>
+</div>
+<div class="section" id="earning-money-by-coding">
+<h2>Earning money by coding<a class="headerlink" href="#earning-money-by-coding" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>We're using Bountysource to fund our development, you can participate as well by solving issues with bounties on them:</p>
+<p><a class="reference external" href="https://github.com/WeblateOrg/weblate/labels/bounty">https://github.com/WeblateOrg/weblate/labels/bounty</a></p>
+</div>
+<div class="section" id="translating">
+<h2>Translating<a class="headerlink" href="#translating" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblate is being <a class="reference external" href="https://hosted.weblate.org/">translated</a> using Weblate itself, feel
+free to take part in the effort of making Weblate available in as many human languages
+as possible.</p>
+</div>
+<div class="section" id="funding-weblate-development">
+<h2>Funding Weblate development<a class="headerlink" href="#funding-weblate-development" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>You can fund further Weblate development on <a class="reference external" href="https://salt.bountysource.com/teams/weblate">Bountysource</a>. Funds collected
+there are used to fund free hosting for libre software projects and further
+development of Weblate. Please check the <a class="reference external" href="https://salt.bountysource.com/teams/weblate">Bountysource</a> page for details, such
+as funding goals and rewards you can get for funding.</p>
+<div class="section" id="backers-who-have-funded-weblate">
+<h3>Backers who have funded Weblate<a class="headerlink" href="#backers-who-have-funded-weblate" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>List of Weblate supporters from
+<a class="reference external" href="https://salt.bountysource.com/teams/weblate">Bountysource</a>:</p>
+<ul class="simple">
+<li>Yashiro Ccs</li>
+<li>Cheng-Chia Tseng</li>
+<li>Timon Reinhard</li>
+<li><a class="reference external" href="https://cassidyjames.com/">Cassidy James</a></li>
+<li>Loic Dachary</li>
+</ul>
+</div>
+</div>
+<div class="section" id="releasing-weblate">
+<h2>Releasing Weblate<a class="headerlink" href="#releasing-weblate" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Release checklist:</p>
+<ol class="arabic simple">
+<li>Make sure screenshots are up to date <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">-C</span> <span class="pre">docs</span> <span class="pre">update-screenshots</span></code></li>
+<li>Create a release <code class="docutils literal notranslate"><span class="pre">./scripts/create-release</span> <span class="pre">--tag</span></code></li>
+<li>Push tags to GitHub</li>
+<li>Update Docker image</li>
+<li>Close GitHub milestone</li>
+<li>Enable building version docs on Read the Docs</li>
+<li>Once the Docker image is tested, add a tag and push it</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="internals.html" class="btn btn-neutral float-right" title="内部構造" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="changes.html" class="btn btn-neutral" title="Changes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

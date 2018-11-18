@@ -1,0 +1,579 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Checks and fixups &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Machine translation" href="machine.html" />
+    <link rel="prev" title="Translation process" href="translating.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrators guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access.html">Access control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html">翻訳プロジェクト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html">継続的トランスレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Checks and fixups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#custom-automatic-fixups">Custom automatic fixups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#customizing-behavior">Customizing behavior</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-own-checks">Writing own checks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#checking-translation-text-does-not-contain-foo">Checking translation text does not contain &quot;foo&quot;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#checking-czech-translation-text-plurals-differ">Checking Czech translation text plurals differ</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#using-custom-modules-and-classes">Using custom modules and classes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html">Machine translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html">Addons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html">Management commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Administrators guide</a> &raquo;</li>
+        
+      <li>Checks and fixups</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/admin/checks.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="checks-and-fixups">
+<h1>Checks and fixups<a class="headerlink" href="#checks-and-fixups" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="custom-automatic-fixups">
+<span id="custom-autofix"></span><h2>Custom automatic fixups<a class="headerlink" href="#custom-automatic-fixups" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>You can also implement your own automatic fixup in addition to the standard ones and
+include them in <a class="reference internal" href="config.html#std:setting-AUTOFIX_LIST"><code class="xref std std-setting docutils literal notranslate"><span class="pre">AUTOFIX_LIST</span></code></a>.</p>
+<p>The automatic fixes are powerful, but can also cause damage;  be careful when
+writing one.</p>
+<p>For example, the following automatic fixup would replace every occurrence of string
+<code class="docutils literal notranslate"><span class="pre">foo</span></code> in translation with <code class="docutils literal notranslate"><span class="pre">bar</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright © 2012 - 2018 Michal Čihař &lt;michal@cihar.com&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of Weblate &lt;https://weblate.org/&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">#</span>
+
+<span class="kn">from</span> <span class="nn">weblate.trans.autofixes.base</span> <span class="kn">import</span> <span class="n">AutoFix</span>
+<span class="kn">from</span> <span class="nn">django.utils.translation</span> <span class="kn">import</span> <span class="n">ugettext_lazy</span> <span class="k">as</span> <span class="n">_</span>
+
+
+<span class="k">class</span> <span class="nc">ReplaceFooWithBar</span><span class="p">(</span><span class="n">AutoFix</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Replace foo with bar.&quot;&quot;&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Foobar&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">fix_single_target</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">unit</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;foo&#39;</span> <span class="ow">in</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">target</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">),</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="n">target</span><span class="p">,</span> <span class="bp">False</span>
+</pre></div>
+</div>
+<p>To install custom checks, you need to provide a fully-qualified path to the Python class
+in the <a class="reference internal" href="config.html#std:setting-AUTOFIX_LIST"><code class="xref std std-setting docutils literal notranslate"><span class="pre">AUTOFIX_LIST</span></code></a>, see <a class="reference internal" href="#custom-modules"><span class="std std-ref">Using custom modules and classes</span></a>.</p>
+</div>
+<div class="section" id="customizing-behavior">
+<span id="custom-checks"></span><h2>Customizing behavior<a class="headerlink" href="#customizing-behavior" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>You can fine tune Weblate behavior (mostly checks) for each source string (in
+source strings review, see <a class="reference internal" href="translating.html#additional"><span class="std std-ref">Additional information on source strings</span></a>) or in the <a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a>
+(<span class="guilabel">Translation flags</span>); here is a list of flags currently accepted:</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">rst-text</span></code></dt>
+<dd>Treat text as RST document, effects <a class="reference internal" href="../user/checks.html#check-same"><span class="std std-ref">Unchanged translation</span></a>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dos-eol</span></code></dt>
+<dd>Use DOS end of line markers instead of Unix ones (<code class="docutils literal notranslate"><span class="pre">\r\n</span></code> instead of <code class="docutils literal notranslate"><span class="pre">\n</span></code>).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">max-length:N</span></code></dt>
+<dd>Limit maximal length for string to N chars, see <a class="reference internal" href="../user/checks.html#check-max-length"><span class="std std-ref">Maximum Length</span></a></dd>
+<dt><code class="docutils literal notranslate"><span class="pre">xml-text</span></code></dt>
+<dd>Treat text as XML document, affects <a class="reference internal" href="../user/checks.html#check-xml-invalid"><span class="std std-ref">Invalid XML markup</span></a> and <a class="reference internal" href="../user/checks.html#check-xml-tags"><span class="std std-ref">XML tags mismatch</span></a>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">python-format</span></code>, <code class="docutils literal notranslate"><span class="pre">c-format</span></code>, <code class="docutils literal notranslate"><span class="pre">php-format</span></code>, <code class="docutils literal notranslate"><span class="pre">python-brace-format</span></code>, <code class="docutils literal notranslate"><span class="pre">javascript-format</span></code>, <code class="docutils literal notranslate"><span class="pre">c-sharp-format</span></code>, <code class="docutils literal notranslate"><span class="pre">java-format</span></code>, <code class="docutils literal notranslate"><span class="pre">java-messageformat</span></code>, <code class="docutils literal notranslate"><span class="pre">auto-java-messageformat</span></code></dt>
+<dd>Treats all strings like format strings, affects <a class="reference internal" href="../user/checks.html#check-python-format"><span class="std std-ref">Formatted strings</span></a>,
+<a class="reference internal" href="../user/checks.html#check-c-format"><span class="std std-ref">Formatted strings</span></a>, <a class="reference internal" href="../user/checks.html#check-php-format"><span class="std std-ref">Formatted strings</span></a>,
+<a class="reference internal" href="../user/checks.html#check-python-brace-format"><span class="std std-ref">Formatted strings</span></a>, <a class="reference internal" href="../user/checks.html#check-javascript-format"><span class="std std-ref">Formatted strings</span></a>,
+<a class="reference internal" href="../user/checks.html#check-c-sharp-format"><span class="std std-ref">Formatted strings</span></a>, <a class="reference internal" href="../user/checks.html#check-java-format"><span class="std std-ref">Formatted strings</span></a>,
+<a class="reference internal" href="../user/checks.html#check-java-messageformat"><span class="std std-ref">Formatted strings</span></a>, <a class="reference internal" href="../user/checks.html#check-same"><span class="std std-ref">Unchanged translation</span></a>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-end-space</span></code></dt>
+<dd>Skip the &quot;Trailing space&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-inconsistent</span></code></dt>
+<dd>Skip the &quot;Inconsistent&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-translated</span></code></dt>
+<dd>Skip the &quot;Has been translated&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-begin-newline</span></code></dt>
+<dd>Skip the &quot;Starting newline&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-zero-width-space</span></code></dt>
+<dd>Skip the &quot;Zero-width space&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-escaped-newline</span></code></dt>
+<dd>Skip the &quot;Mismatched n&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-same</span></code></dt>
+<dd>Skip the &quot;Unchanged translation&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-end-question</span></code></dt>
+<dd>Skip the &quot;Trailing question&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-end-ellipsis</span></code></dt>
+<dd>Skip the &quot;Trailing ellipsis&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-ellipsis</span></code></dt>
+<dd>Skip the &quot;Ellipsis&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-python-brace-format</span></code></dt>
+<dd>Skip the &quot;Python brace format&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-end-newline</span></code></dt>
+<dd>Skip the &quot;Trailing newline&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-c-format</span></code></dt>
+<dd>Skip the &quot;C format&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-javascript-format</span></code></dt>
+<dd>Skip the &quot;Javascript format&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-optional-plural</span></code></dt>
+<dd>Skip the &quot;Optional plural&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-end-exclamation</span></code></dt>
+<dd>Skip the &quot;Trailing exclamation&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-end-colon</span></code></dt>
+<dd>Skip the &quot;Trailing colon&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-xml-invalid</span></code></dt>
+<dd>Skip the &quot;Invalid XML markup&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-xml-tags</span></code></dt>
+<dd>Skip the &quot;XML tags mismatch&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-python-format</span></code></dt>
+<dd>Skip the &quot;Python format&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-plurals</span></code></dt>
+<dd>Skip the &quot;Missing plurals&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-begin-space</span></code></dt>
+<dd>Skip the &quot;Starting spaces&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-bbcode</span></code></dt>
+<dd>Skip the &quot;Mismatched BBcode&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-multiple-failures</span></code></dt>
+<dd>Skip the &quot;Multiple failing checks&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-php-format</span></code></dt>
+<dd>Skip the &quot;PHP format&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-end-stop</span></code></dt>
+<dd>Skip the &quot;Trailing stop&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-angularjs-format</span></code></dt>
+<dd>Skip the &quot;AngularJS interpolation string&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-c-sharp-format</span></code></dt>
+<dd>Skip the &quot;C# format&quot; quality check.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ignore-java-format</span></code></dt>
+<dd>Skip the &quot;Java format&quot; quality check.</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Generally the rule is named <code class="docutils literal notranslate"><span class="pre">ignore-*</span></code> for any check, using its
+identifier, so you can use this even for your custom checks.</p>
+</div>
+<p>These flags are understood both in <a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a> settings, per source string
+settings and in translation file itself (eg. in GNU Gettext).</p>
+</div>
+<div class="section" id="writing-own-checks">
+<h2>Writing own checks<a class="headerlink" href="#writing-own-checks" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblate comes with wide range of quality checks (see <a class="reference internal" href="../user/checks.html#checks"><span class="std std-ref">Quality checks</span></a>), though
+they might not 100% cover all you want to check. The list of performed checks
+can be adjusted using <a class="reference internal" href="config.html#std:setting-CHECK_LIST"><code class="xref std std-setting docutils literal notranslate"><span class="pre">CHECK_LIST</span></code></a> and you can also add custom checks.
+All you need to do is to subclass <cite>weblate.checks.Check</cite>, set few
+attributes and implement either <code class="docutils literal notranslate"><span class="pre">check</span></code> or <code class="docutils literal notranslate"><span class="pre">check_single</span></code> methods (first
+one if you want to deal with plurals in your code, the latter one does this for
+you). You will find below some examples.</p>
+<p>To install custom checks, you need to provide a fully-qualified path to the Python class
+in the <a class="reference internal" href="config.html#std:setting-CHECK_LIST"><code class="xref std std-setting docutils literal notranslate"><span class="pre">CHECK_LIST</span></code></a>, see <a class="reference internal" href="#custom-modules"><span class="std std-ref">Using custom modules and classes</span></a>.</p>
+<div class="section" id="checking-translation-text-does-not-contain-foo">
+<h3>Checking translation text does not contain &quot;foo&quot;<a class="headerlink" href="#checking-translation-text-does-not-contain-foo" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This is a pretty simple check which just checks whether translation does not
+contain string &quot;foo&quot;.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright © 2012 - 2018 Michal Čihař &lt;michal@cihar.com&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of Weblate &lt;https://weblate.org/&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot;Simple quality check example.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">weblate.checks.base</span> <span class="kn">import</span> <span class="n">TargetCheck</span>
+<span class="kn">from</span> <span class="nn">django.utils.translation</span> <span class="kn">import</span> <span class="n">ugettext_lazy</span> <span class="k">as</span> <span class="n">_</span>
+
+
+<span class="k">class</span> <span class="nc">FooCheck</span><span class="p">(</span><span class="n">TargetCheck</span><span class="p">):</span>
+
+    <span class="c1"># Used as identifier for check, should be unique</span>
+    <span class="c1"># Has to be shorter than 50 chars</span>
+    <span class="n">check_id</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span>
+
+    <span class="c1"># Short name used to display failing check</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Foo check&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Description for failing check</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Your translation is foo&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Real check code</span>
+    <span class="k">def</span> <span class="nf">check_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">unit</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;foo&#39;</span> <span class="ow">in</span> <span class="n">target</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="checking-czech-translation-text-plurals-differ">
+<h3>Checking Czech translation text plurals differ<a class="headerlink" href="#checking-czech-translation-text-plurals-differ" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Check using language information to verify that two plural forms in Czech
+language are not same.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright © 2012 - 2018 Michal Čihař &lt;michal@cihar.com&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of Weblate &lt;https://weblate.org/&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot;Quality check example for Czech plurals.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">weblate.checks.base</span> <span class="kn">import</span> <span class="n">TargetCheck</span>
+<span class="kn">from</span> <span class="nn">django.utils.translation</span> <span class="kn">import</span> <span class="n">ugettext_lazy</span> <span class="k">as</span> <span class="n">_</span>
+
+
+<span class="k">class</span> <span class="nc">PluralCzechCheck</span><span class="p">(</span><span class="n">TargetCheck</span><span class="p">):</span>
+
+    <span class="c1"># Used as identifier for check, should be unique</span>
+    <span class="c1"># Has to be shorter than 50 chars</span>
+    <span class="n">check_id</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span>
+
+    <span class="c1"># Short name used to display failing check</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Foo check&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Description for failing check</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Your translation is foo&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Real check code</span>
+    <span class="k">def</span> <span class="nf">check_target_unit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sources</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">unit</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_language</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;cs&#39;</span><span class="p">,</span> <span class="p">)):</span>
+            <span class="k">return</span> <span class="n">targets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">targets</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">check_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">unit</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;We don&#39;t check target strings here.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="using-custom-modules-and-classes">
+<span id="custom-modules"></span><h2>Using custom modules and classes<a class="headerlink" href="#using-custom-modules-and-classes" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>You have implemented code for <a class="reference internal" href="#custom-autofix"><span class="std std-ref">Custom automatic fixups</span></a> or <a class="reference internal" href="#custom-checks"><span class="std std-ref">Customizing behavior</span></a> and
+now it's time to install it into Weblate. That can be achieved by adding its
+fully-qualified path to Python class to appropriate settings.</p>
+<p>This means that the module with class needs to be placed somewhere where the Python
+interpreter can import it - either in system path (usually something like
+<code class="file docutils literal notranslate"><span class="pre">/usr/lib/python2.7/site-packages/</span></code>) or in Weblate directory, which is
+also added to the interpreter search path.</p>
+<p>Assuming you've created <code class="file docutils literal notranslate"><span class="pre">mahongo.py</span></code> containing your custom quality check,
+you can place it among Weblate checks in <code class="file docutils literal notranslate"><span class="pre">weblate/trans/checks/</span></code> folder
+and then add it as following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CHECK_LIST</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;weblate.checks.mahongo.MahongoCheck&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>As you can see, it's a comma-separated path to your module and class name.</p>
+<p>Alternatively, you can create a proper Python package out of your customization:</p>
+<ol class="arabic">
+<li><p class="first">Place your Python module with check into folder which will match your
+package name. We're using <cite>weblate_custom_checks</cite> in following examples.</p>
+</li>
+<li><p class="first">Add empty <code class="file docutils literal notranslate"><span class="pre">__init__.py</span></code> file to the same directory. This ensures Python
+can import this whole package.</p>
+</li>
+<li><p class="first">Write <code class="file docutils literal notranslate"><span class="pre">setup.py</span></code> in parent directory to describe your package:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;weblate_custom_checks&quot;</span><span class="p">,</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="s2">&quot;Michal Cihar&quot;</span><span class="p">,</span>
+    <span class="n">author_email</span> <span class="o">=</span> <span class="s2">&quot;michal@cihar.com&quot;</span><span class="p">,</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Sample Custom check for Weblate.&quot;</span><span class="p">,</span>
+    <span class="n">license</span> <span class="o">=</span> <span class="s2">&quot;BSD&quot;</span><span class="p">,</span>
+    <span class="n">keywords</span> <span class="o">=</span> <span class="s2">&quot;weblate check example&quot;</span><span class="p">,</span>
+    <span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;weblate_custom_checks&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Now you can install it using <strong class="command">python setup.py install</strong></p>
+</li>
+<li><p class="first">Once installed into system Python path, you can use it from there:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CHECK_LIST</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;weblate_custom_checks.mahongo.MahongoCheck&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<p>Overall your module structure should look like:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>weblate_custom_checks
+├── setup.py
+└── weblate_custom_checks
+    ├── __init__.py
+    └── mahongo.py
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="machine.html" class="btn btn-neutral float-right" title="Machine translation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="translating.html" class="btn btn-neutral" title="Translation process" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

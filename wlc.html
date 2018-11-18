@@ -1,0 +1,571 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Weblate Client &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="about.html" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="Weblate&#39;s Python API" href="python.html" />
+    <link rel="prev" title="Weblate&#39;s Web API" href="api.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin/index.html">Administrators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Weblate's Web API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Weblate Client</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#global-options">Global options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#subcommands">Subcommands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#files">Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Weblate Client</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/wlc.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="weblate-client">
+<span id="wlc"></span><span id="index-0"></span><h1>Weblate Client<a class="headerlink" href="#weblate-client" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.7 で追加: </span>The wlc utility is fully supported since Weblate 2.7. If you are using an older version
+some incompatibilities with the API might occur.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The Weblate Client is shipped separately and includes the Python module.
+You need to install <a class="reference internal" href="python.html#module-wlc" title="wlc: Weblate API"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wlc</span></code></a>:, wlc to use these.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip3 install wlc
+</pre></div>
+</div>
+</div>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>wlc [parameter] &lt;command&gt; [options]
+</pre></div>
+</div>
+<p>Commands actually indicate which operation should be performed.</p>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblate Client is Python library and command line utility to manage Weblate remotely
+using <a class="reference internal" href="api.html#api"><span class="std std-ref">Weblate's Web API</span></a>. The command line utility can be invoked as <strong class="command">wlc</strong> and is
+built on <a class="reference internal" href="python.html#module-wlc" title="wlc: Weblate API"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wlc</span></code></a>.</p>
+<div class="section" id="global-options">
+<h3>Global options<a class="headerlink" href="#global-options" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The program accepts the following global options, which must be entered before subcommand.</p>
+<dl class="option">
+<dt id="cmdoption-wlc-format">
+<code class="descname">--format</code><code class="descclassname"> {csv,json,text,html}</code><a class="headerlink" href="#cmdoption-wlc-format" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Specify output format.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-url">
+<code class="descname">--url</code><code class="descclassname"> URL</code><a class="headerlink" href="#cmdoption-wlc-url" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Specify API URL. Overrides value from configuration file, see <a class="reference internal" href="#files"><span class="std std-ref">Files</span></a>.
+The URL should end with <code class="docutils literal notranslate"><span class="pre">/api/</span></code>, for example <code class="docutils literal notranslate"><span class="pre">https://hosted.weblate.org/api/</span></code>.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-key">
+<code class="descname">--key</code><code class="descclassname"> KEY</code><a class="headerlink" href="#cmdoption-wlc-key" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Specify API user key to use. Overrides value from configuration file, see <a class="reference internal" href="#files"><span class="std std-ref">Files</span></a>.
+You can figure out your key in your profile in Weblate.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-config">
+<code class="descname">--config</code><code class="descclassname"> PATH</code><a class="headerlink" href="#cmdoption-wlc-config" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Override path to configuration file, see <a class="reference internal" href="#files"><span class="std std-ref">Files</span></a>.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-config-section">
+<code class="descname">--config-section</code><code class="descclassname"> SECTION</code><a class="headerlink" href="#cmdoption-wlc-config-section" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Override section to use in configuration file, see <a class="reference internal" href="#files"><span class="std std-ref">Files</span></a>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="subcommands">
+<h3>Subcommands<a class="headerlink" href="#subcommands" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Currently the following subcommands are available:</p>
+<dl class="option">
+<dt id="cmdoption-wlc-arg-version">
+<code class="descname">version</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-version" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Prints current version.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-list-languages">
+<code class="descname">list-languages</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-list-languages" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>List used languages in Weblate.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-list-projects">
+<code class="descname">list-projects</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-list-projects" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>List projects in Weblate.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-list-components">
+<code class="descname">list-components</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-list-components" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>List components in Weblate.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-list-translations">
+<code class="descname">list-translations</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-list-translations" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>List translations in Weblate.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-show">
+<code class="descname">show</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-show" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Shows Weblate object (translation, component or project).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-ls">
+<code class="descname">ls</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-ls" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Lists Weblate object (translation, component or project).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-commit">
+<code class="descname">commit</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-commit" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Commits changes in Weblate object (translation, component or project).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-pull">
+<code class="descname">pull</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-pull" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Pulls remote repository changes into Weblate object (translation, component or project).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-push">
+<code class="descname">push</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-push" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Pushes changes in Weblate object into remote repository (translation, component or project).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-reset">
+<code class="descname">reset</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-reset" title="この定義へのパーマリンク">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified">バージョン 0.7 で追加: </span>Supported since wlc 0.7.</p>
+</div>
+<p>Resets changes in Weblate object to match remote repository (translation, component or project).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-cleanup">
+<code class="descname">cleanup</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-cleanup" title="この定義へのパーマリンク">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified">バージョン 0.9 で追加: </span>Supported since wlc 0.9.</p>
+</div>
+<p>Removes any untracked changes in Weblate object to match remote repository (translation, component or project).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-repo">
+<code class="descname">repo</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-repo" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Displays repository status for given Weblate object (translation, component or project).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-statistics">
+<code class="descname">statistics</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-statistics" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Displays detailed statistics for given Weblate object (translation, component or project).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-lock-status">
+<code class="descname">lock-status</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-lock-status" title="この定義へのパーマリンク">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified">バージョン 0.5 で追加: </span>Supported since wlc 0.5.</p>
+</div>
+<p>Displays lock status.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-lock">
+<code class="descname">lock</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-lock" title="この定義へのパーマリンク">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified">バージョン 0.5 で追加: </span>Supported since wlc 0.5.</p>
+</div>
+<p>Locks component from translating in Weblate.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-unlock">
+<code class="descname">unlock</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-unlock" title="この定義へのパーマリンク">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified">バージョン 0.5 で追加: </span>Supported since wlc 0.5.</p>
+</div>
+<p>Unlocks component from translating in Weblate.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-changes">
+<code class="descname">changes</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-changes" title="この定義へのパーマリンク">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified">バージョン 0.7 で追加: </span>Supported since wlc 0.7 and Weblate 2.10.</p>
+</div>
+<p>Displays changes for given object.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-download">
+<code class="descname">download</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-download" title="この定義へのパーマリンク">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified">バージョン 0.7 で追加: </span>Supported since wlc 0.7.</p>
+</div>
+<p>Downloads translation file.</p>
+<dl class="option">
+<dt id="cmdoption-wlc-convert">
+<code class="descname">--convert</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-convert" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Convert file format, if not specified not conversion happens on server
+and file is downloaded as is in the repository.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-output">
+<code class="descname">--output</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-output" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>File where to store output, if not specified file is printed to stdout.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-arg-upload">
+<code class="descname">upload</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-arg-upload" title="この定義へのパーマリンク">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified">バージョン 0.9 で追加: </span>Supported since wlc 0.9.</p>
+</div>
+<p>Uploads translation file.</p>
+<dl class="option">
+<dt id="cmdoption-wlc-overwrite">
+<code class="descname">--overwrite</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-overwrite" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Overwrite existing translations on upload.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-wlc-input">
+<code class="descname">--input</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-wlc-input" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>File where to read content, if not specified file is read from stdin.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="files">
+<span id="id1"></span><h2>Files<a class="headerlink" href="#files" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="docutils">
+<dt><code class="file docutils literal notranslate"><span class="pre">.weblate</span></code></dt>
+<dd>Per project configuration file</dd>
+<dt><code class="file docutils literal notranslate"><span class="pre">~/.config/weblate</span></code></dt>
+<dd>User configuration file</dd>
+<dt><code class="file docutils literal notranslate"><span class="pre">/etc/xdg/weblate</span></code></dt>
+<dd>Global configuration file</dd>
+</dl>
+<p>The program follows XDG specification, so you can adjust placement of config files
+by environment variables <code class="docutils literal notranslate"><span class="pre">XDG_CONFIG_HOME</span></code> or <code class="docutils literal notranslate"><span class="pre">XDG_CONFIG_DIRS</span></code>.</p>
+<p>Following settings can be configured in the <code class="docutils literal notranslate"><span class="pre">[weblate]</span></code> section (you can
+customize this by <a class="reference internal" href="#cmdoption-wlc-config-section"><code class="xref std std-option docutils literal notranslate"><span class="pre">--config-section</span></code></a>):</p>
+<dl class="describe">
+<dt>
+<code class="descname">key</code></dt>
+<dd><p>API KEY to access Weblate.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<code class="descname">url</code></dt>
+<dd><p>API server URL, defaults to <code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8000/api/</span></code>.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<code class="descname">translation</code></dt>
+<dd><p>Path of default translation, component or project.</p>
+</dd></dl>
+
+<p>The configuration file is INI file, for example:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[weblate]</span>
+<span class="na">url</span> <span class="o">=</span> <span class="s">https://hosted.weblate.org/api/</span>
+<span class="na">key</span> <span class="o">=</span> <span class="s">APIKEY</span>
+<span class="na">translation</span> <span class="o">=</span> <span class="s">weblate/master</span>
+</pre></div>
+</div>
+<p>Additionally API keys can be stored in the <code class="docutils literal notranslate"><span class="pre">[keys]</span></code> section:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[keys]</span>
+<span class="na">https://hosted.weblate.org/api/</span> <span class="o">=</span> <span class="s">APIKEY</span>
+</pre></div>
+</div>
+<p>This allows you to store keys in your personal settings, while having
+<code class="file docutils literal notranslate"><span class="pre">.weblate</span></code> configuration in the VCS repository so that wlc knows to which
+server it should talk.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Print current program version:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ wlc version
+version: <span class="m">0</span>.1
+</pre></div>
+</div>
+<p>List all projects:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ wlc list-projects
+name: Hello
+slug: hello
+source_language: en
+url: http://example.com/api/projects/hello/
+web: https://weblate.org/
+web_url: http://example.com/projects/hello/
+</pre></div>
+</div>
+<p>You can also let wlc know current project and it will then operate on it:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ cat .weblate
+<span class="o">[</span>weblate<span class="o">]</span>
+<span class="nv">url</span> <span class="o">=</span> https://hosted.weblate.org/api/
+<span class="nv">translation</span> <span class="o">=</span> weblate/master
+
+$ wlc show
+branch: master
+file_format: po
+filemask: weblate/locale/*/LC_MESSAGES/django.po
+git_export: https://hosted.weblate.org/git/weblate/master/
+license: GPL-3.0+
+license_url: https://spdx.org/licenses/GPL-3.0+
+name: master
+new_base: weblate/locale/django.pot
+project: weblate
+repo: git://github.com/WeblateOrg/weblate.git
+slug: master
+template:
+url: https://hosted.weblate.org/api/components/weblate/master/
+vcs: git
+web_url: https://hosted.weblate.org/projects/weblate/master/
+</pre></div>
+</div>
+<p>With such setup it is easy to commit pending changes in current project:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ wlc commit
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="python.html" class="btn btn-neutral float-right" title="Weblate&#39;s Python API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api.html" class="btn btn-neutral" title="Weblate&#39;s Web API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

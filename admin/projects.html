@@ -1,0 +1,597 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>翻訳プロジェクト &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Language definitions" href="languages.html" />
+    <link rel="prev" title="Access control" href="access.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrators guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access.html">Access control</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">翻訳プロジェクト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#translation-organization">翻訳の編成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-translation-projects-and-components">翻訳プロジェクトとコンポーネントを追加する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#project-configuration">プロジェクトの設定</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#adjusting-interaction">インタラクションの調整</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#component-configuration">コンポーネント設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#template-markup">Template markup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#importing-speed">Importing speed</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#optimize-configuration">Optimize configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-resource-limits">Check resource limits</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#disable-not-needed-checks">Disable not needed checks</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#automatic-creation-of-components">Automatic creation of components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fulltext-search">Fulltext search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html">継続的トランスレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks and fixups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html">Machine translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html">Addons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html">Management commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Administrators guide</a> &raquo;</li>
+        
+      <li>翻訳プロジェクト</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/admin/projects.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="translation-projects">
+<h1>翻訳プロジェクト<a class="headerlink" href="#translation-projects" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="translation-organization">
+<h2>翻訳の編成<a class="headerlink" href="#translation-organization" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblate organizes translatable content into tree like structure. The top level
+object is <a class="reference internal" href="#project"><span class="std std-ref">プロジェクトの設定</span></a>, which should hold all translations which belong
+together (for example translation of an application in several versions
+and/or documentation). On the next level, there is <a class="reference internal" href="#component"><span class="std std-ref">コンポーネント設定</span></a>, which is
+actually the component to translate. Here you define the VCS repository to use and
+mask of files to translate. Below <a class="reference internal" href="#component"><span class="std std-ref">コンポーネント設定</span></a> there are individual
+translations, which are handled automatically by Weblate as the translation
+files (matching mask defined in <a class="reference internal" href="#component"><span class="std std-ref">コンポーネント設定</span></a>) appear in VCS repository.</p>
+<p>All translation components need to be available as VCS repositories and are
+organized as project/component structure.</p>
+<p>Weblate supports wide range of translation formats (both bilingual and
+monolingual) supported by translate toolkit, see <a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートされるフォーマット</span></a> for more
+information.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">You can share cloned VCS repositories using <a class="reference internal" href="../vcs.html#internal-urls"><span class="std std-ref">Weblate internal URLs</span></a>. Using
+shared repositories feature is highly recommended when you have many
+components that use the same VCS. It will improve performance and use less
+disk space.</p>
+</div>
+</div>
+<div class="section" id="adding-translation-projects-and-components">
+<span id="adding-projects"></span><h2>翻訳プロジェクトとコンポーネントを追加する<a class="headerlink" href="#adding-translation-projects-and-components" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 3.2 で変更: </span>Since the 3.2 release the interface for adding projects and components is
+included in Weblate and no longer requires you to use
+<a class="reference internal" href="admin.html#admin-interface"><span class="std std-ref">Django admin interface</span></a>.</p>
+</div>
+<p>Based on your permissions, you can be able to create new translation projects
+and components in Weblate. It is always allowed for superusers and if your
+instance uses billing (eg. like <a class="reference external" href="https://hosted.weblate.org/">https://hosted.weblate.org/</a>, see
+<a class="reference internal" href="optionals.html#billing"><span class="std std-ref">Billing</span></a>), you can also create those based on your plans allowance.</p>
+<p>You can view your current billing plan on separate page:</p>
+<img alt="../_images/user-billing.png" src="../_images/user-billing.png" />
+<p>The project creation can be initiated from there or using menu in navigation
+bar. All you need to do then is to fill in basic information about the
+translation project:</p>
+<img alt="../_images/user-add-project.png" src="../_images/user-add-project.png" />
+<p>プロジェクトを作成することにより、プロジェクトのページに移動します。</p>
+<img alt="../_images/user-add-project-done.png" src="../_images/user-add-project-done.png" />
+<p>新しい翻訳コンポーネントの作成は、そこでワンクリックで開始することができます。今度は翻訳コンポーネントの情報を入力してください。</p>
+<img alt="../_images/user-add-component.png" src="../_images/user-add-component.png" />
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="admin.html#admin-interface"><span class="std std-ref">Django admin interface</span></a>,
+<a class="reference internal" href="#project"><span class="std std-ref">プロジェクトの設定</span></a>,
+<a class="reference internal" href="#component"><span class="std std-ref">コンポーネント設定</span></a></p>
+</div>
+</div>
+<div class="section" id="project-configuration">
+<span id="project"></span><h2>プロジェクトの設定<a class="headerlink" href="#project-configuration" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>翻訳する新しいコンポーネントを追加するには、まず翻訳プロジェクトを作成する必要があります。プロジェクトは棚のようなもので、実際の翻訳がそこに収納されます。同一のプロジェクト内のすべてのコンポーネントは、提案と辞書を共有します。同時に翻訳も、コンポーネントの設定で無効にしない限り、同一プロジェクト内のすべてのコンポーネントで自動的に共有されます。</p>
+<p>プロジェクトについて翻訳者に与えられる情報はごくわずかです。</p>
+<dl class="docutils">
+<dt>プロジェクトのウェブサイト</dt>
+<dd>翻訳者がプロジェクトについてより進んだ情報を得ることのできるURLです。</dd>
+<dt>メーリングリスト</dt>
+<dd>翻訳者が翻訳について討議したり意見を述べたりすることのできるメーリングリストです。</dd>
+<dt>翻訳の手順</dt>
+<dd>翻訳者が翻訳の手順などについてより詳細な指示を得ることのできるURLです。</dd>
+<dt>翻訳チームのヘッダーの設定</dt>
+<dd>翻訳チームのヘッダーをWeblateで扱うかどうかを設定します（この機能は今のところ <a class="reference internal" href="../formats.html#gettext"><span class="std std-ref">GNU Gettext</span></a> でのみ有効です）。</dd>
+<dt>共有翻訳メモリの使用</dt>
+<dd>共有翻訳メモリを使用するかどうかを設定します。詳しくは <a class="reference internal" href="memory.html#shared-tm"><span class="std std-ref">Shared translation memory</span></a> を参照してください。</dd>
+<dt>Access control</dt>
+<dd>プロジェクトごとのアクセスコントロールを設定します。詳しくは <a class="reference internal" href="access.html#acl"><span class="std std-ref">Per project access control</span></a> を参照してください。</dd>
+<dt>レビューの有効化</dt>
+<dd>レビューワークフローを有効にします。<a class="reference internal" href="../workflows.html#reviews"><span class="std std-ref">Dedicated reviewers</span></a> を参照してください。</dd>
+<dt>フックの有効化</dt>
+<dd>このリポジトリに対して、認証されていない <a class="reference internal" href="../api.html#hooks"><span class="std std-ref">Notification hooks</span></a> を有効にするかどうかを設定します。</dd>
+<dt>原文の言語</dt>
+<dd>すべてのコンポーネントの原文で使用されている言語です。英語以外の言語から翻訳するときはここを変更してください。</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">ほとんどの記入フィールドは、プロジェクトの所有者もしくは管理者によって、Weblateのインターフェイスから編集することができます。</p>
+</div>
+<div class="section" id="adjusting-interaction">
+<h3>インタラクションの調整<a class="headerlink" href="#adjusting-interaction" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>この他にも、変更の自動プッシュ（<a class="reference internal" href="continuous.html#push-changes"><span class="std std-ref">変更をプッシュする</span></a> も参照してください）や翻訳チームのヘッダーのメンテなど、制御が可能な追加機能がいくつかあります。</p>
+</div>
+</div>
+<div class="section" id="component-configuration">
+<span id="component"></span><h2>コンポーネント設定<a class="headerlink" href="#component-configuration" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>実際に翻訳する構成要素がコンポーネントです。VCSレポジトリの場所と、どのファイルを翻訳すべきかのファイルマスクを入力すると、Weblateは自動的にVCSから取得し、マッチするすべての翻訳ファイルを見つけます。</p>
+<p>典型的な設定例を <a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートされるフォーマット</span></a> のセクションで見ることができます。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>コンポーネントは適当なサイズに保つことをお勧めします。それぞれの事例に応じて、個々のアプリケーションやアドオン、本の各章や個々のウェブサイトなど、意味のある基準で翻訳を分割してください。</p>
+<p class="last">Weblateは10000単位の翻訳を苦もなく処理できますが、そのような大規模な翻訳では、作業を分割し翻訳者間で調整することはより困難になります。また、一人の翻訳者があるコンポーネントの翻訳に取り組んでいる間、このコンポーネントの翻訳は他の翻訳者からは不可能になります。<a class="reference internal" href="translating.html#locking"><span class="std std-ref">Translation locking</span></a> を参照してください。</p>
+</div>
+<p>Should the language definition for translation be missing, an empty definition is
+created and named as &quot;cs_CZ (generated)&quot;. You should adjust the definition and
+report this back to Weblate authors so that the missing language can be included in
+next release.</p>
+<p>コンポーネントには、VCSを使用してそこから翻訳を取得するための、すべての重要なパラメータが含まれています。</p>
+<dl class="docutils">
+<dt>バージョンコントロールシステム</dt>
+<dd>使用するVCSです。詳しくは <a class="reference internal" href="../vcs.html#vcs"><span class="std std-ref">Version control integration</span></a> を参照してください。</dd>
+<dt>ソースコードリポジトリ</dt>
+<dd><p class="first">変更を取得するために使用するVCSリポジトリです。より詳しくは <a class="reference internal" href="../vcs.html#vcs-repos"><span class="std std-ref">Accessing repositories</span></a> を参照してください。</p>
+<p class="last">これは実際のVCSのURLであることもできますし、そのリポジトリが他のコンポーネントと共有されるべきであることを示す、<code class="docutils literal notranslate"><span class="pre">weblate://project/component</span></code> であることもできます。より詳しくは <a class="reference internal" href="../vcs.html#internal-urls"><span class="std std-ref">Weblate internal URLs</span></a> を参照してください。</p>
+</dd>
+<dt>リポジトリのプッシュURL</dt>
+<dd>プッシュの際に使われるリポジトリのURLです。これは完全にオプションです。ここを空欄にしておけば、プッシュのサポートは無効化されます。リポジトリのURLをどのように特定するかについてのより詳しい説明は、<a class="reference internal" href="../vcs.html#vcs-repos"><span class="std std-ref">Accessing repositories</span></a> を参照してください。</dd>
+<dt>リポジトリの閲覧</dt>
+<dd><p class="first">ソースファイルを閲覧するためのリポジトリのURLです。メッセージが使われる場所になります。空欄であればそのようなリンクは生成されません。</p>
+<p>以下の書式が使用可能です。</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">%(branchs)s</span></code> - 現在のブランチ</li>
+<li><code class="docutils literal notranslate"><span class="pre">%(line)s</span></code> - ファイル中の行</li>
+<li><code class="docutils literal notranslate"><span class="pre">%(file)s</span></code> - ファイル名</li>
+<li><code class="docutils literal notranslate"><span class="pre">%(../file)s</span></code> - 親ディレクトリのファイル名</li>
+<li><code class="docutils literal notranslate"><span class="pre">%(../../file)s</span></code> - 親の親ディレクトリのファイル名</li>
+</ul>
+<p class="last">例えばGitHubなら、<code class="docutils literal notranslate"><span class="pre">https://github.com/WeblateOrg/hello/blob/%(branch)s/%(file)s#L%(line)s</span></code> のように使うことができます。</p>
+</dd>
+<dt>出力リポジトリのURL</dt>
+<dd>Weblateで行われた変更が出力されるリポジトリのURLです。これは <a class="reference internal" href="continuous.html#continuous-translation"><span class="std std-ref">継続的トランスレーション</span></a> が使われないか、マニュアルで変更をマージしなけれなならない場合に重要です。これをGitリポジトリに対して自動化するためには、<a class="reference internal" href="optionals.html#git-exporter"><span class="std std-ref">Git exporter</span></a> を使うことができます。</dd>
+<dt>リポジトリのブランチ</dt>
+<dd>VCSからチェックアウトして翻訳を探すべきブランチです。</dd>
+<dt>ファイルマスク</dt>
+<dd><p class="first">翻訳すべきファイルのパスを示すマスクです。これは言語コードに置き換えられるべき、ひとつの * を含んでいなければなりません（これがどのように処理されるかについての情報は <a class="reference internal" href="languages.html#languages"><span class="std std-ref">Language definitions</span></a> を参照してください）。リポジトリにひとつ以上の翻訳ファイルがある場合（例えばひとつ以上のGettextドメインがある場合）は、それぞれについて独立したコンポーネントを作成しなければなりません。</p>
+<p>例えば <code class="docutils literal notranslate"><span class="pre">po/*.po</span></code> や <code class="docutils literal notranslate"><span class="pre">locale/*/LC_MESSAGES/django.po</span></code> などといったようになります。</p>
+<p class="last">ファイル名に <cite>[`</cite> や <code class="docutils literal notranslate"><span class="pre">]</span></code> などの特別な文字を含む場合は、これらは <code class="docutils literal notranslate"><span class="pre">[[]</span></code> や <code class="docutils literal notranslate"><span class="pre">[]]</span></code> のようにエスケープされねばなりません。</p>
+</dd>
+<dt>Monolingualベース言語ファイル</dt>
+<dd><a class="reference internal" href="admin.html#monolingual"><span class="std std-ref">Monolingual components</span></a> のための言語定義を含んだベースファイルです。</dd>
+<dt>ベースファイルの編集</dt>
+<dd><a class="reference internal" href="admin.html#monolingual"><span class="std std-ref">Monolingual components</span></a> のためのベースファイルを編集することを許可するかどうかを設定します。</dd>
+<dt>新規翻訳のためのベースファイル</dt>
+<dd>新規に翻訳ファイルを生成するためのベースとなるファイルです。例えばGettextにおいては <code class="docutils literal notranslate"><span class="pre">.pot</span></code> ファイルがそれにあたります。より詳しい情報は <a class="reference internal" href="../formats.html#new-translations"><span class="std std-ref">Adding new translations</span></a> を参照してください。</dd>
+<dt>ファイルフォーマット</dt>
+<dd>翻訳ファイルのフォーマットです。<a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートされるフォーマット</span></a> も参照してください。</dd>
+<dt>原文のバグレポートのためのアドレス</dt>
+<dd>原文のバグを報告するために使われるメールアドレスです。このメールアドレスは、Weblateにおいて原文に対して行われた、あらゆるコメントの通知を受け取るアドレスにもなります。</dd>
+<dt>翻訳のロック</dt>
+<dd>ユーザによるアップデートが行われないよう、翻訳をロックすることができます。</dd>
+<dt>翻訳の伝播の許可</dt>
+<dd><p class="first">同一プロジェクト内の他のコンポーネントの翻訳が、このコンポーネントに伝播し共有されることを、無効にすることができます。これは翻訳の内容に強く依存するもので、同じ言葉を用いることが望ましい場合もあります。</p>
+<p class="last">monolingual翻訳においては、プロジェクトの全体で同じメッセージIDを使っていない限りは、通常これを無効にするのが望ましいです。</p>
+</dd>
+<dt>翻訳履歴の保存</dt>
+<dd>データベースに翻訳の変更履歴を保存するかどうかを設定します。</dd>
+<dt>提案の有効化</dt>
+<dd>このコンポーネントで翻訳の提案を受け入れるかどうかを設定します。</dd>
+<dt>提案の投票</dt>
+<dd>提案に対する投票を有効化します。<a class="reference internal" href="translating.html#voting"><span class="std std-ref">提案の投票</span></a> を参照してください。</dd>
+<dt>提案の自動受け入れ</dt>
+<dd>投票された提案を自動で受け入れます。<a class="reference internal" href="translating.html#voting"><span class="std std-ref">提案の投票</span></a> を参照してください。</dd>
+<dt>翻訳フラグ</dt>
+<dd>品質チェックやその他のWeblateの挙動をカスタマイズします。<a class="reference internal" href="checks.html#custom-checks"><span class="std std-ref">Customizing behavior</span></a> を参照してください。</dd>
+<dt>翻訳のライセンス</dt>
+<dd>この翻訳のライセンスです。</dd>
+<dt>ライセンスのURL</dt>
+<dd>ユーザがライセンスの全文を読むことのできるURLです。</dd>
+<dt>新規言語</dt>
+<dd>新規言語の作成のリクエストをどのように扱うかを設定します。ここでの選択肢はファイルフォーマットに依存することに注意してください。<a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートされるフォーマット</span></a> を参照してください。</dd>
+<dt>マージのスタイル</dt>
+<dd>上流リポジトリにおける変更をどのように扱うかを設定することができます。使用するVCSによってはこの設定はサポートされないかもしれません。より詳しくは <a class="reference internal" href="continuous.html#merge-rebase"><span class="std std-ref">マージあるいはリベース</span></a> を参照してください。</dd>
+<dt>コミットメッセージ</dt>
+<dd>翻訳をコミットする際に使われるメッセージです。<a class="reference internal" href="#markup"><span class="std std-ref">Template markup</span></a> を参照してください。</dd>
+<dt>コミッタの名前</dt>
+<dd>Weblateからコミットする際に使われるコミッタの名前です。常に実際の翻訳者の名前が使われます。使用するVCSによってはこの設定はサポートされないかもしれません。初期設定値は <a class="reference internal" href="config.html#std:setting-DEFAULT_COMMITER_NAME"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DEFAULT_COMMITER_NAME</span></code></a> で変更することができます。</dd>
+<dt>コミッタのメールアドレス</dt>
+<dd>Weblateからコミットする際に使われるコミッタのメールアドレスです。常に実際の翻訳者のメールアドレスが使われます。使用するVCSによってはこの設定はサポートされないかもしれません。初期設定値は <a class="reference internal" href="config.html#std:setting-DEFAULT_COMMITER_EMAIL"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DEFAULT_COMMITER_EMAIL</span></code></a> で変更することができます。</dd>
+<dt>コミット時のプッシュ</dt>
+<dd>コミットされたすべての変更を自動的に上流リポジトリにプッシュするかどうかを設定します。</dd>
+<dt>コミットすべき変更の経過時間</dt>
+<dd><a class="reference internal" href="management.html#django-admin-commit_pending"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">commit_pending</span></code></a> 管理コマンド（通常はcronにより実行されます）において、どの程度の時間までさかのぼって変更をコミットするかを設定します。初期設定値は <a class="reference internal" href="config.html#std:setting-COMMIT_PENDING_HOURS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">COMMIT_PENDING_HOURS</span></code></a> で変更することができます。</dd>
+<dt>言語フィルタ</dt>
+<dd>ファイルマスクによりスキャンが行われる際に、翻訳を言語によってフィルタするための正規表現です。Weblateによって管理される言語のリストを限定するために使うことができます。例えば <code class="docutils literal notranslate"><span class="pre">^(cs|de|es)$</span></code> とすると、ここに列挙された言語のみを含むようになります。ファイル名中で実際に使われている言語コードをリストアップする必要があることに注意してください。</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">ほとんどの記入フィールドは、プロジェクトの所有者もしくは管理者によって、Weblateのインターフェイスから編集することができます。</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../faq.html#faq-vcs"><span class="std std-ref">Does Weblate support other VCS than Git and Mercurial?</span></a>, <a class="reference internal" href="../devel/alerts.html#alerts"><span class="std std-ref">Translation component alerts</span></a></p>
+</div>
+</div>
+<div class="section" id="template-markup">
+<span id="markup"></span><h2>Template markup<a class="headerlink" href="#template-markup" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblate uses simple markup language on several places where text rendering is
+needed. It is based on <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/templates/language/" title="(in Django v2.1)"><span>The Django template language</span></a> so it can be quite
+powerful.</p>
+<p>Currently it is used in:</p>
+<ul class="simple">
+<li>Commit message formatting, see <a class="reference internal" href="#component"><span class="std std-ref">コンポーネント設定</span></a></li>
+<li><dl class="first docutils">
+<dt>Several addons</dt>
+<dd><ul class="first last">
+<li><a class="reference internal" href="addons.html#addon-weblate-discovery-discovery"><span class="std std-ref">Component discovery</span></a></li>
+<li><a class="reference internal" href="addons.html#addon-weblate-generate-generate"><span class="std std-ref">Statistics generator</span></a></li>
+<li><a class="reference internal" href="addons.html#addon-script"><span class="std std-ref">Executing scripts from addon</span></a></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>There are following variables available in the templates:</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">language_code</span> <span class="pre">}}</span></code></dt>
+<dd>Language code</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">language_name</span> <span class="pre">}}</span></code></dt>
+<dd>Language name</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">component_name</span> <span class="pre">}}</span></code></dt>
+<dd>Component name</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">component_slug</span> <span class="pre">}}</span></code></dt>
+<dd>Component slug</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">project_name</span> <span class="pre">}}</span></code></dt>
+<dd>Project name</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">project_slug</span> <span class="pre">}}</span></code></dt>
+<dd>Project slug</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">url</span> <span class="pre">}}</span></code></dt>
+<dd>Translation URL</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">stats</span> <span class="pre">}}</span></code></dt>
+<dd>Translation stats, this has further attributes, see below for examples.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">stats.all</span> <span class="pre">}}</span></code></dt>
+<dd>Total strings count</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">stats.fuzzy</span> <span class="pre">}}</span></code></dt>
+<dd>Count of strings needing review</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">stats.fuzzy_percent</span> <span class="pre">}}</span></code></dt>
+<dd>Percent of strings needing review</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">stats.translated</span> <span class="pre">}}</span></code></dt>
+<dd>Translated strings count</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">stats.translated_percent</span> <span class="pre">}}</span></code></dt>
+<dd>Translated strings percent</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">stats.allchecks</span> <span class="pre">}}</span></code></dt>
+<dd>Number of strings with failing check</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">stats.allchecks_percent</span> <span class="pre">}}</span></code></dt>
+<dd>Percent of strings with failing check</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">author</span> <span class="pre">}}</span></code></dt>
+<dd>Author of current commit, available only in the commit scope.</dd>
+</dl>
+<p>You can combine them with filters:</p>
+<div class="highlight-django notranslate"><div class="highlight"><pre><span></span><span class="cp">{{</span> <span class="nv">component</span><span class="o">|</span><span class="nf">title</span> <span class="cp">}}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>You can use conditions:</p>
+<div class="highlight-django notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">stats.translated_percent</span> <span class="o">&gt;</span> <span class="m">80</span> <span class="cp">%}</span><span class="x">Well translated!</span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>There is additional tag available to replace chars:</p>
+<div class="highlight-django notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">replace</span> <span class="nv">component</span> <span class="s2">&quot;-&quot;</span> <span class="s2">&quot; &quot;</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>You can combine it with filters:</p>
+<div class="highlight-django notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">replace</span> <span class="nv">component</span><span class="o">|</span><span class="nf">capfirst</span> <span class="s2">&quot;-&quot;</span> <span class="s2">&quot; &quot;</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>...and other Django template features.</p>
+</div>
+<div class="section" id="importing-speed">
+<span id="import-speed"></span><h2>Importing speed<a class="headerlink" href="#importing-speed" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Fetching VCS repository and importing translations to Weblate can be a lengthy
+process depending on size of your translations. Here are some tips to improve
+this situation:</p>
+<div class="section" id="optimize-configuration">
+<h3>Optimize configuration<a class="headerlink" href="#optimize-configuration" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The default configuration is useful for testing and debugging Weblate, while
+for production setup, you should do some adjustments. Many of them have quite
+a big impact on performance. Please check <a class="reference internal" href="install.html#production"><span class="std std-ref">Production setup</span></a> for more details,
+especially:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.weblate.org/en/weblate-3.0.1/admin/install.html#production-indexing" title="(in Weblate v3.0.1)"><span>Enable indexing offloading</span></a></li>
+<li><a class="reference internal" href="install.html#production-cache"><span class="std std-ref">Enable caching</span></a></li>
+<li><a class="reference internal" href="install.html#production-database"><span class="std std-ref">Use powerful database engine</span></a></li>
+<li><a class="reference internal" href="install.html#production-debug"><span class="std std-ref">Disable debug mode</span></a></li>
+</ul>
+</div>
+<div class="section" id="check-resource-limits">
+<h3>Check resource limits<a class="headerlink" href="#check-resource-limits" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If you are importing huge translations or repositories, you might be hit by
+resource limits of your server.</p>
+<ul class="simple">
+<li>check amount of free memory, having translation files by system will greatly improve performance</li>
+<li>disk operations might be bottleneck if there is lot of strings to process - the disk is pushed by both Weblate and database</li>
+<li>additional CPU cores might help to improve performance of background tasks (see <a class="reference internal" href="install.html#celery"><span class="std std-ref">Background tasks using Celery</span></a>)</li>
+</ul>
+</div>
+<div class="section" id="disable-not-needed-checks">
+<h3>Disable not needed checks<a class="headerlink" href="#disable-not-needed-checks" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Some quality checks can be quite expensive and if you don't need them, they
+can save you some time during import. See <a class="reference internal" href="config.html#std:setting-CHECK_LIST"><code class="xref std std-setting docutils literal notranslate"><span class="pre">CHECK_LIST</span></code></a> for more
+information how to configure this.</p>
+</div>
+</div>
+<div class="section" id="automatic-creation-of-components">
+<span id="autocreate"></span><h2>Automatic creation of components<a class="headerlink" href="#automatic-creation-of-components" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>In case you have project with dozen of translation files (eg. for different
+Gettext domains or parts of Android apps), you might want to import them
+automatically. This can be either achieved from command line using
+<a class="reference internal" href="management.html#django-admin-import_project"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">import_project</span></code></a> or <a class="reference internal" href="management.html#django-admin-import_json"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">import_json</span></code></a> or by installing
+<a class="reference internal" href="addons.html#addon-weblate-discovery-discovery"><span class="std std-ref">Component discovery</span></a> addon.</p>
+<p>For using the addon, you need to first create component for one translation
+file (choose the one that is least likely to be renamed or removed in future)
+and install the addon on this component.</p>
+<p>For the management commands, you need to create a project which will contain all
+components and then it's just a matter of running <a class="reference internal" href="management.html#django-admin-import_project"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">import_project</span></code></a> or
+<a class="reference internal" href="management.html#django-admin-import_json"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">import_json</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="management.html#manage"><span class="std std-ref">Management commands</span></a>,
+<a class="reference internal" href="addons.html#addon-weblate-discovery-discovery"><span class="std std-ref">Component discovery</span></a></p>
+</div>
+</div>
+<div class="section" id="fulltext-search">
+<span id="fulltext"></span><h2>Fulltext search<a class="headerlink" href="#fulltext-search" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Fulltext search is based on Whoosh. It is processed in background if Celery is
+configured.  This leads to a faster response of the site and less fragmented
+index with the cost that it might be slightly outdated.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../faq.html#faq-ft-slow"><span class="std std-ref">Fulltext search is too slow</span></a>, <a class="reference internal" href="../faq.html#faq-ft-lock"><span class="std std-ref">I get &quot;Lock Error&quot; quite often while translating</span></a>, <a class="reference internal" href="../faq.html#faq-ft-space"><span class="std std-ref">Rebuilding index has failed with &quot;No space left on device&quot;</span></a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="languages.html" class="btn btn-neutral float-right" title="Language definitions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="access.html" class="btn btn-neutral" title="Access control" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

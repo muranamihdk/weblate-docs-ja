@@ -1,0 +1,464 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>継続的トランスレーション &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Licensing translations" href="licensing.html" />
+    <link rel="prev" title="Language definitions" href="languages.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrators guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access.html">Access control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html">翻訳プロジェクト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">継続的トランスレーション</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#updating-repositories">リポジトリを更新する</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#avoiding-merge-conflicts">マージ時の競合を避ける</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#automatically-receiving-changes-from-github">GitHub から自動的に変更を受け取る</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#automatically-receiving-changes-from-bitbucket">Automatically receiving changes from Bitbucket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#automatically-receiving-changes-from-gitlab">Automatically receiving changes from GitLab</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#automatically-receiving-changes-from-pagure">Automatically receiving changes from Pagure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pushing-changes">変更をプッシュする</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pushing-changes-from-hosted-weblate">Pushing changes from Hosted Weblate</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#merge-or-rebase">マージあるいはリベース</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interacting-with-others">他のサービスとのやりとり</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lazy-commits">省力コミット</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#processing-repository-with-scripts">リポジトリをスクリプトで処理する</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks and fixups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html">Machine translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html">Addons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html">Management commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Administrators guide</a> &raquo;</li>
+        
+      <li>継続的トランスレーション</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/admin/continuous.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="continuous-translation">
+<span id="id1"></span><h1>継続的トランスレーション<a class="headerlink" href="#continuous-translation" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Weblate はあなたの開発に密に追従する翻訳のための最高の基盤を提供します。これにより翻訳者は常に翻訳に取り組むことができ、リリース前に新たに大量のテキストの翻訳を強いられることがありません。</p>
+<p>完全なプロセスは次のようなステップで説明することができます。</p>
+<ol class="arabic simple">
+<li>開発者は変更を行い VCS リポジトリに push します。</li>
+<li>ファイル形式によっては翻訳ファイルが更新されます（これはファイル形式に依存します。<a class="reference internal" href="../faq.html#translations-update"><span class="std std-ref">Why does Weblate still show old translation strings when I've updated the template?</span></a> を参照してください）。</li>
+<li>Weblate は変更を VCS リポジトリから取得します。<a class="reference internal" href="#update-vcs"><span class="std std-ref">リポジトリを更新する</span></a> を参照してください。</li>
+<li>Weblate が翻訳に変更を検知すると、翻訳者に購読設定に応じて通知が行われます。</li>
+<li>翻訳者は Weblate のウェブインターフェイスを使用して翻訳を行います。</li>
+<li>翻訳が行われると、Weblate は変更をローカルリポジトリにコミットします（<a class="reference internal" href="#lazy-commit"><span class="std std-ref">省力コミット</span></a> を参照してください）。同時に、許可が与えられている場合は、リモートリポジトリに変更を送信します（<a class="reference internal" href="#push-changes"><span class="std std-ref">変更をプッシュする</span></a> を参照してください）。</li>
+</ol>
+digraph translations {
+    &quot;Developers&quot; [shape=box, fillcolor=lightgreen, style=filled];
+    &quot;Translators&quot; [shape=box, fillcolor=lightgreen, style=filled];
+
+    &quot;Developers&quot; -&gt; &quot;VCS repository&quot; [label=&quot; 1. Push &quot;];
+
+    &quot;VCS repository&quot; -&gt; &quot;VCS repository&quot; [label=&quot; 2. Updating translations &quot;, style=dotted];
+
+    &quot;VCS repository&quot; -&gt; &quot;Weblate&quot; [label=&quot; 3. Pull &quot;];
+
+    &quot;Weblate&quot; -&gt; &quot;Translators&quot; [label=&quot; 4. Notification &quot;];
+
+    &quot;Translators&quot; -&gt; &quot;Weblate&quot; [label=&quot; 5. Translate &quot;];
+
+    &quot;Weblate&quot; -&gt; &quot;VCS repository&quot; [label=&quot; 6. Push &quot;];
+}<div class="section" id="updating-repositories">
+<span id="update-vcs"></span><h2>リポジトリを更新する<a class="headerlink" href="#updating-repositories" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>バックエンドリポジトリをソースに基づいて更新するために、何らかの方法を設定しておく必要があります。フックを使うこともできますし（<a class="reference internal" href="../api.html#hooks"><span class="std std-ref">Notification hooks</span></a> を参照してください）、単に定期的に <a class="reference internal" href="management.html#django-admin-updategit"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">updategit</span></code></a> を（プロジェクトを選択して、あるいは <cite>--all</cite> ですべてのプロジェクトに対し）実行することもできます。</p>
+<p>リポジトリが更新されるとその都度、<span class="guilabel">Post-update script</span> フックが実行されます。</p>
+<p>Gettext po ファイルにおいては、しばしば PO ヘッダの競合に遭遇することになります。これを避けるために、付属のマージドライバ（<code class="file docutils literal notranslate"><span class="pre">examples/git-merge-gettext-po</span></code>）を使うことができます。<code class="file docutils literal notranslate"><span class="pre">.gitconfig</span></code> ファイルに以下の設定を行うだけで、これを使うことができます。</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[merge &quot;merge-gettext-po&quot;]</span>
+  <span class="na">name</span> <span class="o">=</span> <span class="s">merge driver for gettext po files</span>
+<span class="s">  driver = /path/to/weblate/examples/git-merge-gettext-po %O %A %B</span>
+</pre></div>
+</div>
+<p>そして所定のリポジトリで適当な属性を定義することにより、使用を有効にしてください（例えば <code class="file docutils literal notranslate"><span class="pre">.git/info/attributes</span></code> ファイルなど）。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*.</span><span class="n">po</span> <span class="n">merge</span><span class="o">=</span><span class="n">merge</span><span class="o">-</span><span class="n">gettext</span><span class="o">-</span><span class="n">po</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">このマージドライバは、POT ファイルの変更は常に、マージしようとしているブランチで行われていると仮定しています。</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 2.9 で変更: </span>このマージドライバは現在は Weblate のすべての内部リポジトリで自動的にインストールされます。</p>
+</div>
+<div class="section" id="avoiding-merge-conflicts">
+<span id="avoid-merge-conflicts"></span><h3>マージ時の競合を避ける<a class="headerlink" href="#avoiding-merge-conflicts" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>マージ時の競合を避けるためには、リモートリポジトリでの翻訳ファイルの更新タイミングをコントロールし、Weblate が同じファイルを変更するのを避けなければいけません。</p>
+<p><a class="reference internal" href="../api.html#api"><span class="std std-ref">Weblate's Web API</span></a> を使って、Weblate で保留中の変更をすべてリモートリポジトリに反映させることと、ローカルで変更を行っている間は Weblate での翻訳にロックをかけておくことによって、これを行うことができます。</p>
+<p>更新を行うスクリプトは次のようになります。</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lock Weblate translation</span>
+wlc lock
+<span class="c1"># Push changes from Weblate to upstream repository</span>
+wlc push
+<span class="c1"># Pull changes from upstream repository to your local copy</span>
+git pull
+<span class="c1"># Update translation files, this example is for Django</span>
+./manage.py makemessages --keep-pot -a
+git commit -m <span class="s1">&#39;Locale updates&#39;</span> -- locale
+<span class="c1"># Push changes to upstream repository</span>
+git push
+<span class="c1"># Tell Weblate to pull changes (not needed if Weblate follows your repo</span>
+<span class="c1"># automatically)</span>
+wlc pull
+<span class="c1"># Unlock translations</span>
+wlc unlock
+</pre></div>
+</div>
+<p>同一のリポジトリを共有する複数のコンポーネントがある場合は、個々のコンポーネントごとに、それぞれロックをかける必要があります。</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>wlc lock foo/bar
+wlc lock foo/baz
+wlc lock foo/baj
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">これらのスクリプト例では <a class="reference internal" href="../wlc.html#wlc"><span class="std std-ref">Weblate Client</span></a> を使っていますが、これには Weblate をリモートコントロールするための設定（API キー）が必要です。 wlc ではなく、例えば curl などの HTTP クライアントを使っても同じことを実現できます。<a class="reference internal" href="../api.html#api"><span class="std std-ref">Weblate's Web API</span></a> を参照してください。</p>
+</div>
+</div>
+<div class="section" id="automatically-receiving-changes-from-github">
+<span id="github-setup"></span><h3>GitHub から自動的に変更を受け取る<a class="headerlink" href="#automatically-receiving-changes-from-github" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate は最初から GitHub をサポートするように作られています。</p>
+<p>Weblate ホスティングサービスを利用されている場合は、<a class="reference external" href="https://github.com/apps/hosted-weblate">Hosted Weblate app</a> をインストールするのがおすすめです。これによって最小限の設定で正しいセットアップをすることが可能です。将来は同じように Weblate から GitHub への変更の送信にも対応する予定ですが（これが書き込み権限も要求される理由です）、現在のところはまだ実装されていません。</p>
+<p>GitHub リポジトリへのすべてのプッシュの通知を受け取るためには、次の画像で示すように、リポジトリ設定の <span class="guilabel">Webhooks</span> で Weblate Webhook を追加するだけでよいです。</p>
+<img alt="../_images/github-settings.png" src="../_images/github-settings.png" />
+<p>payload URL として、<code class="docutils literal notranslate"><span class="pre">/hooks/github/</span></code> をあなたの Weblate URL に追加してください。例えば Weblate ホスティングサービスであればこれは <code class="docutils literal notranslate"><span class="pre">https://hosted.weblate.org/hooks/github/</span></code> になります。</p>
+<p>それ以外の設定値は最初のままで構いません（Weblate は単に <cite>push</cite> イベントで content types と consumes の両方を取り扱うことができます）。</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../api.html#post--hooks-github-" title="POST /hooks/github/"><code class="xref http http-post docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/hooks/github/</span></code></a>, <a class="reference internal" href="#hosted-push"><span class="std std-ref">Pushing changes from Hosted Weblate</span></a></p>
+</div>
+</div>
+<div class="section" id="automatically-receiving-changes-from-bitbucket">
+<span id="bitbucket-setup"></span><h3>Automatically receiving changes from Bitbucket<a class="headerlink" href="#automatically-receiving-changes-from-bitbucket" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate has support for Bitbucket webhooks, all you need to do is add a webhook
+which triggers on repository push with destination to <code class="docutils literal notranslate"><span class="pre">/hooks/bitbucket/</span></code> URL
+on your Weblate installation (for example
+<code class="docutils literal notranslate"><span class="pre">https://hosted.weblate.org/hooks/bitbucket/</span></code>).</p>
+<img alt="../_images/bitbucket-settings.png" src="../_images/bitbucket-settings.png" />
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../api.html#post--hooks-bitbucket-" title="POST /hooks/bitbucket/"><code class="xref http http-post docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/hooks/bitbucket/</span></code></a>, <a class="reference internal" href="#hosted-push"><span class="std std-ref">Pushing changes from Hosted Weblate</span></a></p>
+</div>
+</div>
+<div class="section" id="automatically-receiving-changes-from-gitlab">
+<span id="gitlab-setup"></span><h3>Automatically receiving changes from GitLab<a class="headerlink" href="#automatically-receiving-changes-from-gitlab" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate has support for GitLab hooks, all you need to do is add project web hook
+with destination to <code class="docutils literal notranslate"><span class="pre">/hooks/gitlab/</span></code> URL on your Weblate installation
+(for example <code class="docutils literal notranslate"><span class="pre">https://hosted.weblate.org/hooks/gitlab/</span></code>).</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../api.html#post--hooks-gitlab-" title="POST /hooks/gitlab/"><code class="xref http http-post docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/hooks/gitlab/</span></code></a>, <a class="reference internal" href="#hosted-push"><span class="std std-ref">Pushing changes from Hosted Weblate</span></a></p>
+</div>
+</div>
+<div class="section" id="automatically-receiving-changes-from-pagure">
+<span id="pagure-setup"></span><h3>Automatically receiving changes from Pagure<a class="headerlink" href="#automatically-receiving-changes-from-pagure" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.3 で追加.</span></p>
+</div>
+<p>Weblate has support for Pagure hooks, all you need to do is add project web hook
+with destination to <code class="docutils literal notranslate"><span class="pre">/hooks/pagure/</span></code> URL on your Weblate installation (for
+example <code class="docutils literal notranslate"><span class="pre">https://hosted.weblate.org/hooks/pagure/</span></code>). This can be done in
+<span class="guilabel">Activate Web-hooks</span> under <span class="guilabel">Project options</span>:</p>
+<img alt="../_images/pagure-webhook.png" src="../_images/pagure-webhook.png" />
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../api.html#post--hooks-pagure-" title="POST /hooks/pagure/"><code class="xref http http-post docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/hooks/pagure/</span></code></a>, <a class="reference internal" href="#hosted-push"><span class="std std-ref">Pushing changes from Hosted Weblate</span></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="pushing-changes">
+<span id="push-changes"></span><h2>変更をプッシュする<a class="headerlink" href="#pushing-changes" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>プロジェクトごとにプッシュ URL を設定することができます。設定すると Weblate のウェブインターフェイスにプッシュボタンが現れ、リモートリポジトリに変更をプッシュすることができるようになります。またすべてのコミットごとに自動的に変更のプッシュが行われるように Weblate を設定することもできます。</p>
+<p>SSH をプッシュに使用している場合は、パスフレーズを設定していないキー（もしくは Django 用の ssh-agent）が必要になります。そしてまず管理インターフェイスでリモートサーバを認証する必要があります。これをしないとプッシュしても失敗します。</p>
+<p>プッシュのオプションは使用している <a class="reference internal" href="../vcs.html#vcs"><span class="std std-ref">Version control integration</span></a> によって違いますので、詳しくはそちらの章を参照してください。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">コミットした時に自動的に変更がプッシュされるようにすることもできます。これは <a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a> で可能です。</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">SSH キーのセットアップについては <a class="reference internal" href="../vcs.html#vcs-repos"><span class="std std-ref">Accessing repositories</span></a> を参照してください。Weblate がいつ変更をコミットするかについては <a class="reference internal" href="#lazy-commit"><span class="std std-ref">省力コミット</span></a> を参照してください。</p>
+</div>
+<div class="section" id="pushing-changes-from-hosted-weblate">
+<span id="hosted-push"></span><h3>Pushing changes from Hosted Weblate<a class="headerlink" href="#pushing-changes-from-hosted-weblate" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>For Hosted Weblate there is a dedicated push user registered on GitHub, Bitbucket
+and GitLab (with username <span class="guilabel">weblate</span> and named
+<span class="guilabel">Weblate push user</span>). You need to add this user as a collaborator and
+give him permissions to push to your repository. Let us know when you've done
+so and we will enable pushing changes from Hosted Weblate for you.</p>
+</div>
+</div>
+<div class="section" id="merge-or-rebase">
+<span id="merge-rebase"></span><h2>マージあるいはリベース<a class="headerlink" href="#merge-or-rebase" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>初期設定では、Weblate はリモートリポジトリを Weblate リポジトリにマージします。Weblate リポジトリにアクセスする他の方法もある場合には、これがいちばん安全な方法です。これが必要ない場合は、変更をリモートリポジトリにリベースすることもできます。これにより履歴でマージコミットを減らすことができます。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">複雑なマージにおいては、リベースはトラブルを引き起こすこともあります。このため、リベースを有効にするかどうかは、慎重に考慮してください。</p>
+</div>
+</div>
+<div class="section" id="interacting-with-others">
+<h2>他のサービスとのやりとり<a class="headerlink" href="#interacting-with-others" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblate は API を使うことにより、他のサービスとのやりとりを簡単にすることができます。</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../api.html#api"><span class="std std-ref">Weblate's Web API</span></a></p>
+</div>
+</div>
+<div class="section" id="lazy-commits">
+<span id="lazy-commit"></span><h2>省力コミット<a class="headerlink" href="#lazy-commits" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Welate は同一の翻訳者によるコミットは、可能なかぎりひとつのコミットにまとめてコミットします。これにより大幅にコミット数は減りますが、例えばマージをする際など、VCS リポジトリと同期させたい場合には、コミットをするよう明示的に Weblate に命じなければなりません（これは管理者グループユーザには最初から許可されています。<a class="reference internal" href="access.html#privileges"><span class="std std-ref">Access control</span></a> を参照してください）。</p>
+<p>このモードにおける複数の変更は、以下の条件のいずれかが満たされた時に、まとめて一度にコミットされます。</p>
+<ul class="simple">
+<li>他の誰かが、すでに変更されている文字列に変更を加えたとき</li>
+<li>リモートリポジトリからマージ動作が行われたとき</li>
+<li>翻訳ファイルのインポートが行われたとき</li>
+<li>大量の状態の変更が行われたとき</li>
+<li>検索置換が行われたとき</li>
+<li>明示的にコミットが要求されたとき</li>
+</ul>
+<p>以上に加えて、保留された変更を少し遅れてコミットさせるための、クロンジョブを設定することもできます。<a class="reference internal" href="management.html#django-admin-commit_pending"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">commit_pending</span></code></a> と <a class="reference internal" href="install.html#production-cron"><span class="std std-ref">Running maintenance tasks</span></a> を参照してください。</p>
+</div>
+<div class="section" id="processing-repository-with-scripts">
+<span id="processing"></span><h2>リポジトリをスクリプトで処理する<a class="headerlink" href="#processing-repository-with-scripts" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblate のリポジトリとのやりとりをカスタマイズするための方法が、<a class="reference internal" href="addons.html#addons"><span class="std std-ref">Addons</span></a> です。addon を通して外部スクリプトを実行する方法については、<a class="reference internal" href="addons.html#addon-script"><span class="std std-ref">Executing scripts from addon</span></a> を参照ください。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="licensing.html" class="btn btn-neutral float-right" title="Licensing translations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="languages.html" class="btn btn-neutral" title="Language definitions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

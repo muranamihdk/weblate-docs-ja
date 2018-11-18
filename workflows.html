@@ -1,0 +1,443 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Translation workflows &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="about.html" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="よくある質問" href="faq.html" />
+    <link rel="prev" title="Django admin interface" href="admin/admin.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin/index.html">Administrators guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Translation workflows</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#translation-access">Translation access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#translation-states">Translation states</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#direct-translation">Direct translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#peer-review">Peer review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dedicated-reviewers">Dedicated reviewers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enabling-reviews">Enabling reviews</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Translation workflows</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/workflows.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="translation-workflows">
+<span id="workflows"></span><h1>Translation workflows<a class="headerlink" href="#translation-workflows" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Weblate can be configured to support several translation workflows. This
+document is not a complete listing of ways to configure Weblate, there are
+certainly more options. You can base another workflows on the most usual
+examples listed here.</p>
+<div class="section" id="translation-access">
+<h2>Translation access<a class="headerlink" href="#translation-access" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The <a class="reference internal" href="admin/access.html#privileges"><span class="std std-ref">Access control</span></a> is not much discussed in the workflows as each of
+access control options can be applied to any workflows. Please consult that
+documentation for information how to manage access to translations.</p>
+<p>In following chapters, <em>any user</em> means any user who has access to the
+translation. It can be any authenticated user if project is public or user
+having <span class="guilabel">Translate</span> permission on the project.</p>
+</div>
+<div class="section" id="translation-states">
+<h2>Translation states<a class="headerlink" href="#translation-states" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Each translated string can be in following states:</p>
+<dl class="docutils">
+<dt>Untranslated</dt>
+<dd>Translation is empty, it might or not be stored in the file, depending
+on the file format.</dd>
+<dt>Needs edit</dt>
+<dd>Translation needs editing, this is usually result of source string change.
+The translation is stored in the file, depending on the file format it might
+be marked as needing edit (eg. fuzzy flag).</dd>
+<dt>Waiting for review</dt>
+<dd>Translation is done, but not reviewed. It is stored in the file as a valid
+translation.</dd>
+<dt>Approved</dt>
+<dd>Translation has been approved in the review. It can no longer be changed by
+translators, but only by reviewers. Translators can only add suggestions to
+it.</dd>
+<dt>Suggestions</dt>
+<dd>Suggestions are stored in Weblate only and not in the translation file.</dd>
+</dl>
+</div>
+<div class="section" id="direct-translation">
+<h2>Direct translation<a class="headerlink" href="#direct-translation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>This is most usual setup for smaller teams - anybody can directly translate.
+This is also default setup in Weblate.</p>
+<ul class="simple">
+<li><em>Any user</em> can edit translations.</li>
+<li>Suggestions are optional way to suggest changes, when translators are not
+sure about the change.</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="16%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Setting</th>
+<th class="head">Value</th>
+<th class="head">Note</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Enable reviews</td>
+<td>disabled</td>
+<td>configured at project level</td>
+</tr>
+<tr class="row-odd"><td>Enable suggestions</td>
+<td>enabled</td>
+<td>it is useful for users to be able
+suggest when they are not sure</td>
+</tr>
+<tr class="row-even"><td>Suggestion voting</td>
+<td>disabled</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Autoaccept suggestions</td>
+<td>0</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Translators group</td>
+<td>Users</td>
+<td>or Translate with access control</td>
+</tr>
+<tr class="row-odd"><td>Reviewers group</td>
+<td>N/A</td>
+<td>not used</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="peer-review">
+<h2>Peer review<a class="headerlink" href="#peer-review" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>With this workflow, anybody can add suggestions, however they need approval
+from additional member before it is accepted as a translation.</p>
+<ul class="simple">
+<li><em>Any user</em> can add suggestions</li>
+<li><em>Any user</em> can vote for suggestions</li>
+<li>Suggestions become translations when they get given number of votes</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="16%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Setting</th>
+<th class="head">Value</th>
+<th class="head">Note</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Enable reviews</td>
+<td>disabled</td>
+<td>configured at project level</td>
+</tr>
+<tr class="row-odd"><td>Enable suggestions</td>
+<td>enabled</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Suggestion voting</td>
+<td>enabled</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Autoaccept suggestions</td>
+<td>1</td>
+<td>you can set higher value to require
+more peer reviews</td>
+</tr>
+<tr class="row-even"><td>Translators group</td>
+<td>Users</td>
+<td>or Translate with access control</td>
+</tr>
+<tr class="row-odd"><td>Reviewers group</td>
+<td>N/A</td>
+<td>not used, all translators review</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="dedicated-reviewers">
+<span id="reviews"></span><h2>Dedicated reviewers<a class="headerlink" href="#dedicated-reviewers" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.18 で追加: </span>The proper review workflow is supported since Weblate 2.18.</p>
+</div>
+<p>With dedicated reviewers you have two groups of users - one which can submit
+translations and one which reviews them. Review is there to ensure the
+translations are consistent and in a good quality.</p>
+<ul class="simple">
+<li><em>Any user</em> can edit non approved translations.</li>
+<li><em>Reviewer</em> can approve / unapproved strings.</li>
+<li><em>Reviewer</em> can edit all translations (including approved ones).</li>
+<li>Suggestions are now also way to suggest changes for approved strings.</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="16%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Setting</th>
+<th class="head">Value</th>
+<th class="head">Note</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Enable reviews</td>
+<td>enabled</td>
+<td>configured at project level</td>
+</tr>
+<tr class="row-odd"><td>Enable suggestions</td>
+<td>enabled</td>
+<td>it is useful for users to be able
+suggest when they are not sure</td>
+</tr>
+<tr class="row-even"><td>Suggestion voting</td>
+<td>disabled</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Autoaccept suggestions</td>
+<td>0</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Translators group</td>
+<td>Users</td>
+<td>or Translate with access control</td>
+</tr>
+<tr class="row-odd"><td>Reviewers group</td>
+<td>Reviewers</td>
+<td>or Review with access control</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="enabling-reviews">
+<h2>Enabling reviews<a class="headerlink" href="#enabling-reviews" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The reviews can be enabled on project configuration, you can find the setting
+on bottom of <span class="guilabel">Manage users</span> page (to be found in the
+<span class="guilabel">Manage/Users</span> menu):</p>
+<img alt="_images/project-access.png" src="_images/project-access.png" />
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Depending on Weblate configuration, the setting might not be available to
+you. For example on Hosted Weblate this is not available for projects hosted
+for free.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="faq.html" class="btn btn-neutral float-right" title="よくある質問" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="admin/admin.html" class="btn btn-neutral" title="Django admin interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

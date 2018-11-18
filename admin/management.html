@@ -1,0 +1,1207 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Management commands &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Whiteboard messages" href="whiteboard.html" />
+    <link rel="prev" title="Sample configuration" href="sample.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrators guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access.html">Access control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html">翻訳プロジェクト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html">継続的トランスレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks and fixups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html">Machine translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html">Addons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Management commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#invoking-management-commands">Invoking management commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-suggestions">add_suggestions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auto-translate">auto_translate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#changesite">changesite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#checkgit">checkgit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#commitgit">commitgit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#commit-pending">commit_pending</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cleanup-avatar-cache">cleanup_avatar_cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cleanuptrans">cleanuptrans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#createadmin">createadmin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delete-memory">delete_memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dump-memory">dump_memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dumpuserdata">dumpuserdata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#import-json">import_json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#import-memory">import_memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#import-project">import_project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#importuserdata">importuserdata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#importusers">importusers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-addon">install_addon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-ignored-checks">list_ignored_checks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-languages">list_languages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-memory">list_memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-translators">list_translators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-versions">list_versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loadpo">loadpo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lock-translation">lock_translation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optimize-memory">optimize_memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pushgit">pushgit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rebuild-index">rebuild_index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unlock-translation">unlock_translation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setupgroups">setupgroups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setuplang">setuplang</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#updatechecks">updatechecks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#updategit">updategit</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Administrators guide</a> &raquo;</li>
+        
+      <li>Management commands</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/admin/management.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="management-commands">
+<span id="manage"></span><h1>Management commands<a class="headerlink" href="#management-commands" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Running management commands under a different user than is running your
+webserver can cause wrong permissions on some files, please check
+<a class="reference internal" href="install.html#file-permissions"><span class="std std-ref">Filesystem permissions</span></a> for more details.</p>
+</div>
+<p>Django comes with a management script (available as <code class="file docutils literal notranslate"><span class="pre">./manage.py</span></code> in
+sources or installed as <strong class="command">weblate</strong> when Weblate is installed). It
+provides various management commands and Weblate extends it with several
+additional commands.</p>
+<div class="section" id="invoking-management-commands">
+<span id="invoke-manage"></span><h2>Invoking management commands<a class="headerlink" href="#invoking-management-commands" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>As mentioned before, invocation depends on how you have installed Weblate.</p>
+<p>If you are using source code directly (either tarball or Git checkout), the
+management script is <code class="file docutils literal notranslate"><span class="pre">./manage.py</span></code> in Weblate sources. Execution can be
+done as:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python ./manage.py list_versions
+</pre></div>
+</div>
+<p>If you've installed Weblate using PIP installer or by <code class="file docutils literal notranslate"><span class="pre">./setup.py</span></code> script,
+the <strong class="command">weblate</strong> is installed to your path and you can use it to control
+Weblate:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>weblate list_versions
+</pre></div>
+</div>
+<p>For Docker image, the script is installed same as above, you can execute it
+using <strong class="command">docker exec</strong>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker <span class="nb">exec</span> &lt;container&gt; weblate list_versions
+</pre></div>
+</div>
+<p>With <strong class="program">docker-compose</strong> this is quite similar, you just have to use
+<strong class="command">docker-compose exec</strong>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker-compose <span class="nb">exec</span> weblate weblate list_versions
+</pre></div>
+</div>
+<p>In case you need to pass some file, you can temporary add a volume:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker-compose <span class="nb">exec</span> /tmp:/tmp weblate weblate importusers /tmp/users.json
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="deployments.html#docker"><span class="std std-ref">Running Weblate in the Docker</span></a>,
+<a class="reference internal" href="install.html#install-pip"><span class="std std-ref">Installing Weblate by pip</span></a></p>
+</div>
+</div>
+<div class="section" id="add-suggestions">
+<h2>add_suggestions<a class="headerlink" href="#add-suggestions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-add_suggestions">
+<code class="descname">manage.py add_suggestions &lt;project&gt; &lt;component&gt; &lt;language&gt; &lt;file&gt;</code><a class="headerlink" href="#django-admin-add_suggestions" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.5 で追加.</span></p>
+</div>
+<p>Imports translation from the file as a suggestion to given translation. It
+skips translations which are the same as existing ones, only different ones are
+added.</p>
+<dl class="django-admin-option">
+<dt id="cmdoption-add-suggestions-author">
+<code class="descname">--author</code><code class="descclassname"> USER&#64;EXAMPLE.COM</code><a class="headerlink" href="#cmdoption-add-suggestions-author" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Email of author for the suggestions. This user has to exist prior importing
+(you can create one in the admin interface if needed).</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py --author michal@cihar.com add_suggestions weblate master cs /tmp/suggestions-cs.po
+</pre></div>
+</div>
+</div>
+<div class="section" id="auto-translate">
+<h2>auto_translate<a class="headerlink" href="#auto-translate" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-auto_translate">
+<code class="descname">manage.py auto_translate &lt;project&gt; &lt;component&gt; &lt;language&gt;</code><a class="headerlink" href="#django-admin-auto_translate" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.5 で追加.</span></p>
+</div>
+<p>Performs automatic translation based on other component translations.</p>
+<dl class="django-admin-option">
+<dt id="cmdoption-auto-translate-source">
+<code class="descname">--source</code><code class="descclassname"> PROJECT/COMPONENT</code><a class="headerlink" href="#cmdoption-auto-translate-source" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Specifies component to use as source for translation. If not specified
+all components in the project are used.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-auto-translate-user">
+<code class="descname">--user</code><code class="descclassname"> USERNAME</code><a class="headerlink" href="#cmdoption-auto-translate-user" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Specify username who will be author of the translations. Anonymous user
+is used if not specified.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-auto-translate-overwrite">
+<code class="descname">--overwrite</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-auto-translate-overwrite" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Whether to overwrite existing translations.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-auto-translate-inconsistent">
+<code class="descname">--inconsistent</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-auto-translate-inconsistent" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Whether to overwrite existing translations which are inconsistent (see
+<a class="reference internal" href="../user/checks.html#check-inconsistent"><span class="std std-ref">Inconsistent</span></a>).</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-auto-translate-add">
+<code class="descname">--add</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-auto-translate-add" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Automatically add language if given translation does not exist.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-auto-translate-mt">
+<code class="descname">--mt</code><code class="descclassname"> MT</code><a class="headerlink" href="#cmdoption-auto-translate-mt" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Use machine translation instead of other components.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-auto-translate-threshold">
+<code class="descname">--threshold</code><code class="descclassname"> THRESHOLD</code><a class="headerlink" href="#cmdoption-auto-translate-threshold" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Similarity threshold for machine translation, defaults to 80.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py --user nijel --inconsistent --source phpmyadmin/master phpmyadmin <span class="m">4</span>-5 cs
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../user/translating.html#auto-translation"><span class="std std-ref">Automatic translation</span></a></p>
+</div>
+</div>
+<div class="section" id="changesite">
+<h2>changesite<a class="headerlink" href="#changesite" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-changesite">
+<code class="descname">manage.py changesite</code><a class="headerlink" href="#django-admin-changesite" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.4 で追加.</span></p>
+</div>
+<p>You can use this to change or display site name from command line without using
+admin interface.</p>
+<dl class="django-admin-option">
+<dt id="cmdoption-changesite-set-name">
+<code class="descname">--set-name</code><code class="descclassname"> NAME</code><a class="headerlink" href="#cmdoption-changesite-set-name" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Sets name for the site.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-changesite-get-name">
+<code class="descname">--get-name</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-changesite-get-name" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Prints currently configured site name.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="install.html#production-site"><span class="std std-ref">Set correct site name</span></a></p>
+</div>
+</div>
+<div class="section" id="checkgit">
+<h2>checkgit<a class="headerlink" href="#checkgit" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-checkgit">
+<code class="descname">manage.py checkgit &lt;project|project/component&gt;</code><a class="headerlink" href="#django-admin-checkgit" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Prints current state of the backend git repository.</p>
+<p>You can either define which project or component to update (eg.
+<code class="docutils literal notranslate"><span class="pre">weblate/master</span></code>) or use <code class="docutils literal notranslate"><span class="pre">--all</span></code> to update all existing components.</p>
+</div>
+<div class="section" id="commitgit">
+<h2>commitgit<a class="headerlink" href="#commitgit" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-commitgit">
+<code class="descname">manage.py commitgit &lt;project|project/component&gt;</code><a class="headerlink" href="#django-admin-commitgit" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Commits any possible pending changes to backend git repository.</p>
+<p>You can either define which project or component to update (eg.
+<code class="docutils literal notranslate"><span class="pre">weblate/master</span></code>) or use <code class="docutils literal notranslate"><span class="pre">--all</span></code> to update all existing components.</p>
+</div>
+<div class="section" id="commit-pending">
+<h2>commit_pending<a class="headerlink" href="#commit-pending" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-commit_pending">
+<code class="descname">manage.py commit_pending &lt;project|project/component&gt;</code><a class="headerlink" href="#django-admin-commit_pending" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Commits pending changes older than given age.</p>
+<p>You can either define which project or component to update (eg.
+<code class="docutils literal notranslate"><span class="pre">weblate/master</span></code>) or use <code class="docutils literal notranslate"><span class="pre">--all</span></code> to update all existing components.</p>
+<dl class="django-admin-option">
+<dt id="cmdoption-commit-pending-age">
+<code class="descname">--age</code><code class="descclassname"> HOURS</code><a class="headerlink" href="#cmdoption-commit-pending-age" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Age in hours for committing. If not specified value configured in
+<a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a> is used.</p>
+</dd></dl>
+
+<p>This is most useful if executed periodically from cron or similar tool:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py commit_pending --all
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="install.html#production-cron"><span class="std std-ref">Running maintenance tasks</span></a>,
+<a class="reference internal" href="config.html#std:setting-COMMIT_PENDING_HOURS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">COMMIT_PENDING_HOURS</span></code></a></p>
+</div>
+</div>
+<div class="section" id="cleanup-avatar-cache">
+<h2>cleanup_avatar_cache<a class="headerlink" href="#cleanup-avatar-cache" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.1 で追加.</span></p>
+</div>
+<dl class="django-admin">
+<dt id="django-admin-cleanup_avatar_cache">
+<code class="descname">manage.py cleanup_avatar_cache</code><a class="headerlink" href="#django-admin-cleanup_avatar_cache" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Removes invalid items in avatar cache. This can be useful when switching
+between Python 2 and 3 as the cache files might be not compatible.</p>
+</div>
+<div class="section" id="cleanuptrans">
+<h2>cleanuptrans<a class="headerlink" href="#cleanuptrans" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-cleanuptrans">
+<code class="descname">manage.py cleanuptrans</code><a class="headerlink" href="#django-admin-cleanuptrans" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Cleanups orphaned checks and translation suggestions. This is normally not
+needed to execute manually, the cleanups happen automatically in the
+background.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="install.html#production-cron"><span class="std std-ref">Running maintenance tasks</span></a></p>
+</div>
+</div>
+<div class="section" id="createadmin">
+<h2>createadmin<a class="headerlink" href="#createadmin" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-createadmin">
+<code class="descname">manage.py createadmin</code><a class="headerlink" href="#django-admin-createadmin" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Creates <code class="docutils literal notranslate"><span class="pre">admin</span></code> account with random password unless it is specified.</p>
+<dl class="django-admin-option">
+<dt id="cmdoption-createadmin-password">
+<code class="descname">--password</code><code class="descclassname"> PASSWORD</code><a class="headerlink" href="#cmdoption-createadmin-password" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Provide password on the command line and skip generating random one.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-createadmin-no-password">
+<code class="descname">--no-password</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-createadmin-no-password" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Do not set password, this can be useful with --update.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-createadmin-username">
+<code class="descname">--username</code><code class="descclassname"> USERNAME</code><a class="headerlink" href="#cmdoption-createadmin-username" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Use given name instead of <code class="docutils literal notranslate"><span class="pre">admin</span></code>.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-createadmin-email">
+<code class="descname">--email</code><code class="descclassname"> USER&#64;EXAMPLE.COM</code><a class="headerlink" href="#cmdoption-createadmin-email" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Specify admin email.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-createadmin-name">
+<code class="descname">--name</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-createadmin-name" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Specify admin name (visible).</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-createadmin-update">
+<code class="descname">--update</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-createadmin-update" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Update existing user (you can use this to change password).</p>
+</dd></dl>
+
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 2.9 で変更: </span>Added parameters <code class="docutils literal notranslate"><span class="pre">--username</span></code>, <code class="docutils literal notranslate"><span class="pre">--email</span></code>, <code class="docutils literal notranslate"><span class="pre">--name</span></code> and <code class="docutils literal notranslate"><span class="pre">--update</span></code>.</p>
+</div>
+</div>
+<div class="section" id="delete-memory">
+<h2>delete_memory<a class="headerlink" href="#delete-memory" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-delete_memory">
+<code class="descname">manage.py delete_memory</code><a class="headerlink" href="#django-admin-delete_memory" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.20 で追加.</span></p>
+</div>
+<p>Deletes entries in the Weblate Translation Memory.</p>
+<dl class="django-admin-option">
+<dt id="cmdoption-delete-memory-origin">
+<code class="descname">--origin</code><code class="descclassname"> ORIGIN</code><a class="headerlink" href="#cmdoption-delete-memory-origin" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Origin to delete, for imported files the origin is filename without path.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-delete-memory-all">
+<code class="descname">--all</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-delete-memory-all" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Delete complete memory content and recreate the database.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="memory.html#translation-memory"><span class="std std-ref">Translation Memory</span></a></p>
+</div>
+</div>
+<div class="section" id="dump-memory">
+<h2>dump_memory<a class="headerlink" href="#dump-memory" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-dump_memory">
+<code class="descname">manage.py dump_memory</code><a class="headerlink" href="#django-admin-dump_memory" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.20 で追加.</span></p>
+</div>
+<p>Export a JSON file with the Weblate Translation Memory content.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="memory.html#translation-memory"><span class="std std-ref">Translation Memory</span></a></p>
+</div>
+</div>
+<div class="section" id="dumpuserdata">
+<h2>dumpuserdata<a class="headerlink" href="#dumpuserdata" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-dumpuserdata">
+<code class="descname">manage.py dumpuserdata &lt;file.json&gt;</code><a class="headerlink" href="#django-admin-dumpuserdata" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Dumps userdata to file for later use by <a class="reference internal" href="#django-admin-importuserdata"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">importuserdata</span></code></a></p>
+<p>This is useful when migrating or merging Weblate instances.</p>
+</div>
+<div class="section" id="import-json">
+<h2>import_json<a class="headerlink" href="#import-json" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-import_json">
+<code class="descname">manage.py import_json &lt;json-file&gt;</code><a class="headerlink" href="#django-admin-import_json" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.7 で追加.</span></p>
+</div>
+<p>Batch import of components based on JSON data.</p>
+<p>The imported JSON file structure pretty much corresponds to the component
+object (see <a class="reference internal" href="../api.html#get--api-components-(string-project)-(string-component)-" title="GET /api/components/(string:project)/(string:component)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/components/(string:project)/(string:component)/</span></code></a>).
+You always have to include fields <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">filemask</span></code>.</p>
+<dl class="django-admin-option">
+<dt id="cmdoption-import-json-project">
+<code class="descname">--project</code><code class="descclassname"> PROJECT</code><a class="headerlink" href="#cmdoption-import-json-project" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Specifies where the components will be imported.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-import-json-main-component">
+<code class="descname">--main-component</code><code class="descclassname"> COMPONENT</code><a class="headerlink" href="#cmdoption-import-json-main-component" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Use VCS repository from this component for all.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-import-json-ignore">
+<code class="descname">--ignore</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-import-json-ignore" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Skip already imported components.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-import-json-update">
+<code class="descname">--update</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-import-json-update" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Update already imported components.</p>
+</dd></dl>
+
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 2.9 で変更: </span>Added parameters <code class="docutils literal notranslate"><span class="pre">--ignore</span></code> and <code class="docutils literal notranslate"><span class="pre">--update</span></code> to deal with already
+imported components.</p>
+</div>
+<p>Example of JSON file:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;slug&quot;</span><span class="p">:</span> <span class="s2">&quot;po&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Gettext PO&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;file_format&quot;</span><span class="p">:</span> <span class="s2">&quot;po&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;filemask&quot;</span><span class="p">:</span> <span class="s2">&quot;po/*.po&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Android&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;filemask&quot;</span><span class="p">:</span> <span class="s2">&quot;android/values-*/strings.xml&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;android/values/strings.xml&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;repo&quot;</span><span class="p">:</span> <span class="s2">&quot;weblate://test/test&quot;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#django-admin-import_project"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">import_project</span></code></a></p>
+</div>
+</div>
+<div class="section" id="import-memory">
+<h2>import_memory<a class="headerlink" href="#import-memory" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-import_memory">
+<code class="descname">manage.py import_memory &lt;file&gt;</code><a class="headerlink" href="#django-admin-import_memory" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.20 で追加.</span></p>
+</div>
+<p>Imports a TMX or JSON file into the Weblate Translation Memory.</p>
+<dl class="django-admin-option">
+<dt id="cmdoption-import-memory-language-map">
+<code class="descname">--language-map</code><code class="descclassname"> LANGMAP</code><a class="headerlink" href="#cmdoption-import-memory-language-map" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Allows to map languages in the TMX to Weblate one. The language codes are
+mapped after normalization usually done by Weblate.</p>
+<p>For example <code class="docutils literal notranslate"><span class="pre">--language-map</span> <span class="pre">en_US:en</span></code> will import all <code class="docutils literal notranslate"><span class="pre">en_US</span></code> strings
+as <code class="docutils literal notranslate"><span class="pre">en</span></code> ones.</p>
+<p>This can be useful in case your TMX file locales does not match what you
+use in Weblate.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="memory.html#translation-memory"><span class="std std-ref">Translation Memory</span></a></p>
+</div>
+</div>
+<div class="section" id="import-project">
+<h2>import_project<a class="headerlink" href="#import-project" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-import_project">
+<code class="descname">manage.py import_project &lt;project&gt; &lt;gitrepo&gt; &lt;branch&gt; &lt;filemask&gt;</code><a class="headerlink" href="#django-admin-import_project" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 3.0 で変更: </span>The import_project command is now based on the
+<a class="reference internal" href="addons.html#addon-weblate-discovery-discovery"><span class="std std-ref">Component discovery</span></a> addon and that has lead to some
+changes in behavior and accepted parameters.</p>
+</div>
+<p>Batch imports components into project based on file mask.</p>
+<p><cite>&lt;project&gt;</cite> names an existing project, into which the components should
+be imported.</p>
+<p>The <cite>&lt;gitrepo&gt;</cite> defines URL of Git repository to use, and <cite>&lt;branch&gt;</cite> the
+git branch.
+To import additional translation components, from an existing Weblate component,
+use a <cite>weblate://&lt;project&gt;/&lt;component&gt;</cite> URL for the <cite>&lt;gitrepo&gt;</cite>.</p>
+<p>The <cite>&lt;filemask&gt;</cite> defines files discovery in the repository. It can be either
+simple using wildcards or it can use full power of regular expressions.</p>
+<p>The simple matching uses <code class="docutils literal notranslate"><span class="pre">**</span></code> for component name and <code class="docutils literal notranslate"><span class="pre">*</span></code> for language, for
+example: <code class="docutils literal notranslate"><span class="pre">**/*.po</span></code></p>
+<p>The regular expression has to contain named groups <cite>component</cite> and <cite>language</cite>.
+For example: <code class="docutils literal notranslate"><span class="pre">(?P&lt;language&gt;[^/]*)/(?P&lt;component&gt;[^-/]*)\.po</span></code></p>
+<p>The import matches existing components based on files and adds the ones which
+do not exist. It does no changes to the already existing ones.</p>
+<dl class="django-admin-option">
+<dt id="cmdoption-import-project-name-template">
+<code class="descname">--name-template</code><code class="descclassname"> TEMPLATE</code><a class="headerlink" href="#cmdoption-import-project-name-template" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Customize the component's name, using Django template syntax.</p>
+<p>For example: <code class="docutils literal notranslate"><span class="pre">Documentation:</span> <span class="pre">{{</span> <span class="pre">component</span> <span class="pre">}}</span></code></p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-import-project-base-file-template">
+<code class="descname">--base-file-template</code><code class="descclassname"> TEMPLATE</code><a class="headerlink" href="#cmdoption-import-project-base-file-template" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Customize base file for monolingual translations.</p>
+<p>For example: <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">component</span> <span class="pre">}}/res/values/string.xml</span></code></p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-import-project-file-format">
+<code class="descname">--file-format</code><code class="descclassname"> FORMAT</code><a class="headerlink" href="#cmdoption-import-project-file-format" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>You can also specify file format to use (see <a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートされるフォーマット</span></a>), the default
+is autodetection.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-import-project-language-regex">
+<code class="descname">--language-regex</code><code class="descclassname"> REGEX</code><a class="headerlink" href="#cmdoption-import-project-language-regex" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>You can specify language filtering (see <a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a>) by this
+parameter. It has to be valid regular expression.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-import-project-main-component">
+<code class="descname">--main-component</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-import-project-main-component" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>You can specify which component will be chosen as main - the one actually
+containing VCS repository.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-import-project-license">
+<code class="descname">--license</code><code class="descclassname"> NAME</code><a class="headerlink" href="#cmdoption-import-project-license" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Specify translation license.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-import-project-license-url">
+<code class="descname">--license-url</code><code class="descclassname"> URL</code><a class="headerlink" href="#cmdoption-import-project-license-url" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Specify translation license URL.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-import-project-vcs">
+<code class="descname">--vcs</code><code class="descclassname"> NAME</code><a class="headerlink" href="#cmdoption-import-project-vcs" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>In case you need to specify version control system to use, you can do it
+here. The default version control is Git.</p>
+</dd></dl>
+
+<p>To give you some examples, let's try importing two projects.</p>
+<p>As first we import The Debian Handbook translations, where each language has
+separate folder with translations of each chapter:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py import_project <span class="se">\</span>
+    debian-handbook <span class="se">\</span>
+    git://anonscm.debian.org/debian-handbook/debian-handbook.git <span class="se">\</span>
+    squeeze/master <span class="se">\</span>
+    <span class="s1">&#39;*/**.po&#39;</span>
+</pre></div>
+</div>
+<p>Another example can be Tanaguru tool, where we need to specify file format,
+base file template and has all components and translations located in single
+folder:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py import_project <span class="se">\</span>
+    --file-format<span class="o">=</span>properties <span class="se">\</span>
+    --base-file-template<span class="o">=</span>web-app/tgol-web-app/src/main/resources/i18n/%s-I18N.properties <span class="se">\</span>
+    tanaguru <span class="se">\</span>
+    https://github.com/Tanaguru/Tanaguru <span class="se">\</span>
+    master <span class="se">\</span>
+    web-app/tgol-web-app/src/main/resources/i18n/**-I18N_*.properties
+</pre></div>
+</div>
+<p>Example of more complex parsing of filenames to get correct component and
+language out of file name like
+<code class="docutils literal notranslate"><span class="pre">src/security/Numerous_security_holes_in_0.10.1.de.po</span></code>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py import_project <span class="se">\</span>
+    tails <span class="se">\</span>
+    git://git.tails.boum.org/tails master <span class="se">\</span>
+    <span class="s1">&#39;wiki/src/security/(?P&lt;component&gt;.*)\.(?P&lt;language&gt;[^.]*)\.po$&#39;</span>
+</pre></div>
+</div>
+<p>Filtering only translations in chosen language:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage import_project <span class="se">\</span>
+    --language-regex <span class="s1">&#39;^(cs|sk)$&#39;</span> <span class="se">\</span>
+    weblate <span class="se">\</span>
+    https://github.com/WeblateOrg/weblate.git <span class="se">\</span>
+    <span class="s1">&#39;weblate/locale/*/LC_MESSAGES/**.po&#39;</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">More detailed examples can be found in the <a class="reference internal" href="../devel/starting.html#starting"><span class="std std-ref">Starting with internationalization</span></a> chapter,
+alternatively you might want to use <a class="reference internal" href="#django-admin-import_json"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">import_json</span></code></a>.</p>
+</div>
+</div>
+<div class="section" id="importuserdata">
+<h2>importuserdata<a class="headerlink" href="#importuserdata" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-importuserdata">
+<code class="descname">manage.py importuserdata &lt;file.json&gt;</code><a class="headerlink" href="#django-admin-importuserdata" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Imports userdata from file created by <a class="reference internal" href="#django-admin-dumpuserdata"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">dumpuserdata</span></code></a></p>
+</div>
+<div class="section" id="importusers">
+<h2>importusers<a class="headerlink" href="#importusers" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-importusers">
+<code class="descname">manage.py importusers --check &lt;file.json&gt;</code><a class="headerlink" href="#django-admin-importusers" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Imports users from JSON dump of Django auth_users database.</p>
+<dl class="django-admin-option">
+<dt id="cmdoption-importusers-check">
+<code class="descname">--check</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-importusers-check" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>With this option it will just check whether given file can be imported and
+report possible conflicts on usernames or emails.</p>
+</dd></dl>
+
+<p>You can dump users from existing Django installation using:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py dumpdata auth.User &gt; users.json
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-addon">
+<h2>install_addon<a class="headerlink" href="#install-addon" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.2 で追加.</span></p>
+</div>
+<dl class="django-admin">
+<dt id="django-admin-install_addon">
+<code class="descname">manage.py install_addon --addon ADDON &lt;project|project/component&gt;</code><a class="headerlink" href="#django-admin-install_addon" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Installs addon to set of components.</p>
+<dl class="django-admin-option">
+<dt id="cmdoption-install-addon-addon">
+<code class="descname">--addon</code><code class="descclassname"> ADDON</code><a class="headerlink" href="#cmdoption-install-addon-addon" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Name of addon to install. For example <code class="docutils literal notranslate"><span class="pre">weblate.gettext.customize</span></code>.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-install-addon-configuration">
+<code class="descname">--configuration</code><code class="descclassname"> CONFIG</code><a class="headerlink" href="#cmdoption-install-addon-configuration" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>JSON encoded configuration of an addon.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-install-addon-update">
+<code class="descname">--update</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-install-addon-update" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Update existing addon configuration.</p>
+</dd></dl>
+
+<p>You can either define on which project or component to install addon (eg.
+<code class="docutils literal notranslate"><span class="pre">weblate/master</span></code>) or use <code class="docutils literal notranslate"><span class="pre">--all</span></code> to include all existing components.</p>
+<p>For example installing <a class="reference internal" href="addons.html#addon-weblate-gettext-customize"><span class="std std-ref">Customize gettext output</span></a> to all components:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./manage.py install_addon --addon weblate.gettext.customize --config <span class="s1">&#39;{&quot;width&quot;: -1}&#39;</span> --update --all
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="addons.html#addons"><span class="std std-ref">Addons</span></a></p>
+</div>
+</div>
+<div class="section" id="list-ignored-checks">
+<h2>list_ignored_checks<a class="headerlink" href="#list-ignored-checks" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-list_ignored_checks">
+<code class="descname">manage.py list_ignored_checks</code><a class="headerlink" href="#django-admin-list_ignored_checks" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Lists most frequently ignored checks. This can be useful for tuning your setup,
+if users have to ignore too many of consistency checks.</p>
+</div>
+<div class="section" id="list-languages">
+<h2>list_languages<a class="headerlink" href="#list-languages" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-list_languages">
+<code class="descname">manage.py list_languages &lt;locale&gt;</code><a class="headerlink" href="#django-admin-list_languages" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Lists supported language in MediaWiki markup - language codes, English names
+and localized names.</p>
+<p>This is used to generate &lt;<a class="reference external" href="https://wiki.l10n.cz/Jazyky">https://wiki.l10n.cz/Jazyky</a>&gt;.</p>
+</div>
+<div class="section" id="list-memory">
+<h2>list_memory<a class="headerlink" href="#list-memory" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-list_memory">
+<code class="descname">manage.py list_memory</code><a class="headerlink" href="#django-admin-list_memory" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.20 で追加.</span></p>
+</div>
+<p>Lists contents of the Weblate Translation Memory.</p>
+<dl class="django-admin-option">
+<dt id="cmdoption-list-memory-type">
+<code class="descname">--type</code><code class="descclassname"> {origin}</code><a class="headerlink" href="#cmdoption-list-memory-type" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Type of information to list, defaults to listing used origins.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="memory.html#translation-memory"><span class="std std-ref">Translation Memory</span></a></p>
+</div>
+</div>
+<div class="section" id="list-translators">
+<h2>list_translators<a class="headerlink" href="#list-translators" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-list_translators">
+<code class="descname">manage.py list_translators &lt;project|project/component&gt;</code><a class="headerlink" href="#django-admin-list_translators" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Renders the list of translators by language for the given project:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">French</span><span class="p">]</span>
+<span class="n">Jean</span> <span class="n">Dupont</span> <span class="o">&lt;</span><span class="n">jean</span><span class="o">.</span><span class="n">dupont</span><span class="nd">@example</span><span class="o">.</span><span class="n">com</span><span class="o">&gt;</span>
+<span class="p">[</span><span class="n">English</span><span class="p">]</span>
+<span class="n">John</span> <span class="n">Doe</span> <span class="o">&lt;</span><span class="n">jd</span><span class="nd">@exemple</span><span class="o">.</span><span class="n">com</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<dl class="django-admin-option">
+<dt id="cmdoption-list-translators-language-code">
+<code class="descname">--language-code</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-list-translators-language-code" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Use language code instead of language name in output.</p>
+</dd></dl>
+
+<p>You can either define which project or component to use (eg.
+<code class="docutils literal notranslate"><span class="pre">weblate/master</span></code>) or use <code class="docutils literal notranslate"><span class="pre">--all</span></code> to list translators from all existing
+components.</p>
+</div>
+<div class="section" id="list-versions">
+<h2>list_versions<a class="headerlink" href="#list-versions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-list_versions">
+<code class="descname">manage.py list_versions</code><a class="headerlink" href="#django-admin-list_versions" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Lists versions of Weblate dependencies.</p>
+</div>
+<div class="section" id="loadpo">
+<h2>loadpo<a class="headerlink" href="#loadpo" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-loadpo">
+<code class="descname">manage.py loadpo &lt;project|project/component&gt;</code><a class="headerlink" href="#django-admin-loadpo" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Reloads translations from disk (eg. in case you did some updates in VCS
+repository).</p>
+<dl class="django-admin-option">
+<dt id="cmdoption-loadpo-force">
+<code class="descname">--force</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-loadpo-force" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Force update even if the files should be up to date.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-loadpo-lang">
+<code class="descname">--lang</code><code class="descclassname"> LANGUAGE</code><a class="headerlink" href="#cmdoption-loadpo-lang" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Limit processing to single language.</p>
+</dd></dl>
+
+<p>You can either define which project or component to update (eg.
+<code class="docutils literal notranslate"><span class="pre">weblate/master</span></code>) or use <code class="docutils literal notranslate"><span class="pre">--all</span></code> to update all existing components.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">You seldom need to invoke this, Weblate will automatically load changed
+files on VCS update. This is needed in case you manually change underlying
+Weblate VCS repository or in some special cases after upgrade.</p>
+</div>
+</div>
+<div class="section" id="lock-translation">
+<h2>lock_translation<a class="headerlink" href="#lock-translation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-lock_translation">
+<code class="descname">manage.py lock_translation &lt;project|project/component&gt;</code><a class="headerlink" href="#django-admin-lock_translation" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Locks given component for translating. This is useful in case you want to do
+some maintenance on underlying repository.</p>
+<p>You can either define which project or component to update (eg.
+<code class="docutils literal notranslate"><span class="pre">weblate/master</span></code>) or use <code class="docutils literal notranslate"><span class="pre">--all</span></code> to update all existing components.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#django-admin-unlock_translation"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">unlock_translation</span></code></a></p>
+</div>
+</div>
+<div class="section" id="optimize-memory">
+<h2>optimize_memory<a class="headerlink" href="#optimize-memory" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-optimize_memory">
+<code class="descname">manage.py optimize_memory</code><a class="headerlink" href="#django-admin-optimize_memory" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.2 で追加.</span></p>
+</div>
+<p>Optimizes translation memory storage.</p>
+<dl class="django-admin-option">
+<dt id="cmdoption-optimize-memory-rebuild">
+<code class="descname">--rebuild</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-optimize-memory-rebuild" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>The index will be completely rebuilt by dumping all content and creating it again.
+It is recommended to backup it prior to this operation.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="memory.html#translation-memory"><span class="std std-ref">Translation Memory</span></a>,
+<a class="reference internal" href="backup.html"><span class="doc">Backing up and moving Weblate</span></a>,
+<a class="reference internal" href="#django-admin-dump_memory"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">dump_memory</span></code></a></p>
+</div>
+</div>
+<div class="section" id="pushgit">
+<h2>pushgit<a class="headerlink" href="#pushgit" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-pushgit">
+<code class="descname">manage.py pushgit &lt;project|project/component&gt;</code><a class="headerlink" href="#django-admin-pushgit" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Pushes committed changes to upstream VCS repository.</p>
+<dl class="django-admin-option">
+<dt id="cmdoption-pushgit-force-commit">
+<code class="descname">--force-commit</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-pushgit-force-commit" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Force committing any pending changes prior to push.</p>
+</dd></dl>
+
+<p>You can either define which project or component to update (eg.
+<code class="docutils literal notranslate"><span class="pre">weblate/master</span></code>) or use <code class="docutils literal notranslate"><span class="pre">--all</span></code> to update all existing components.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Weblate does push changes automatically if <span class="guilabel">Push on commit</span> in
+<a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a> is enabled, what is default.</p>
+</div>
+</div>
+<div class="section" id="rebuild-index">
+<h2>rebuild_index<a class="headerlink" href="#rebuild-index" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-rebuild_index">
+<code class="descname">manage.py rebuild_index &lt;project|project/component&gt;</code><a class="headerlink" href="#django-admin-rebuild_index" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Rebuilds index for fulltext search. This might be lengthy operation if you
+have a huge set of translation units.</p>
+<dl class="django-admin-option">
+<dt id="cmdoption-rebuild-index-clean">
+<code class="descname">--clean</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-rebuild-index-clean" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Removes all words from database prior updating, this is implicit when
+called with <code class="docutils literal notranslate"><span class="pre">--all</span></code>.</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-rebuild-index-optimize">
+<code class="descname">--optimize</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-rebuild-index-optimize" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>The index will not be processed again, only its content will be optimized
+(removing stale entries and merging possibly split index files).</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="projects.html#fulltext"><span class="std std-ref">Fulltext search</span></a></p>
+</div>
+</div>
+<div class="section" id="unlock-translation">
+<h2>unlock_translation<a class="headerlink" href="#unlock-translation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-unlock_translation">
+<code class="descname">manage.py unlock_translation &lt;project|project/component&gt;</code><a class="headerlink" href="#django-admin-unlock_translation" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Unlocks a given component for translating. This is useful in case you want to do
+some maintenance on the underlying repository.</p>
+<p>You can either define which project or component to update (eg.
+<code class="docutils literal notranslate"><span class="pre">weblate/master</span></code>) or use <code class="docutils literal notranslate"><span class="pre">--all</span></code> to update all existing components.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#django-admin-lock_translation"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">lock_translation</span></code></a></p>
+</div>
+</div>
+<div class="section" id="setupgroups">
+<h2>setupgroups<a class="headerlink" href="#setupgroups" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-setupgroups">
+<code class="descname">manage.py setupgroups</code><a class="headerlink" href="#django-admin-setupgroups" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Configures default groups and optionally assigns all users to default group.</p>
+<dl class="django-admin-option">
+<dt id="cmdoption-setupgroups-no-privs-update">
+<code class="descname">--no-privs-update</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-setupgroups-no-privs-update" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Disables update of existing groups (only adds new ones).</p>
+</dd></dl>
+
+<dl class="django-admin-option">
+<dt id="cmdoption-setupgroups-no-projects-update">
+<code class="descname">--no-projects-update</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-setupgroups-no-projects-update" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Prevents updates of groups for existing projects. This allows to add newly
+added groups to existing projects, see <a class="reference internal" href="access.html#acl"><span class="std std-ref">Per project access control</span></a>.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="access.html#privileges"><span class="std std-ref">Access control</span></a></p>
+</div>
+</div>
+<div class="section" id="setuplang">
+<h2>setuplang<a class="headerlink" href="#setuplang" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-setuplang">
+<code class="descname">manage.py setuplang</code><a class="headerlink" href="#django-admin-setuplang" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Setups list of languages (it has own list and all defined in
+translate-toolkit).</p>
+<dl class="django-admin-option">
+<dt id="cmdoption-setuplang-no-update">
+<code class="descname">--no-update</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-setuplang-no-update" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Disables update of existing languages (only adds new ones).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="updatechecks">
+<h2>updatechecks<a class="headerlink" href="#updatechecks" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-updatechecks">
+<code class="descname">manage.py updatechecks &lt;project|project/component&gt;</code><a class="headerlink" href="#django-admin-updatechecks" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Updates all check for all units. This could be useful only on upgrades
+which do major changes to checks.</p>
+<p>You can either define which project or component to update (eg.
+<code class="docutils literal notranslate"><span class="pre">weblate/master</span></code>) or use <code class="docutils literal notranslate"><span class="pre">--all</span></code> to update all existing components.</p>
+</div>
+<div class="section" id="updategit">
+<h2>updategit<a class="headerlink" href="#updategit" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="django-admin">
+<dt id="django-admin-updategit">
+<code class="descname">manage.py updategit &lt;project|project/component&gt;</code><a class="headerlink" href="#django-admin-updategit" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<p>Fetches remote VCS repositories and updates internal cache.</p>
+<p>You can either define which project or component to update (eg.
+<code class="docutils literal notranslate"><span class="pre">weblate/master</span></code>) or use <code class="docutils literal notranslate"><span class="pre">--all</span></code> to update all existing components.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Usually it is better to configure hooks in the repository to trigger
+<a class="reference internal" href="../api.html#hooks"><span class="std std-ref">Notification hooks</span></a> instead of regular polling by <a class="reference internal" href="#django-admin-updategit"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">updategit</span></code></a>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="whiteboard.html" class="btn btn-neutral float-right" title="Whiteboard messages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sample.html" class="btn btn-neutral" title="Sample configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

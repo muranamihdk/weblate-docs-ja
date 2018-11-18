@@ -1,0 +1,1963 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Weblate&#39;s Web API &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="about.html" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="Weblate Client" href="wlc.html" />
+    <link rel="prev" title="Version control integration" href="vcs.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin/index.html">Administrators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vcs.html">Version control integration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Weblate's Web API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#rest-api">REST API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#authentication-and-generic-parameters">Authentication and generic parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#authentication-examples">Authentication examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#passing-parameters-examples">Passing Parameters Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rate-limiting">Rate limiting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#api-entry-point">API Entry Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#languages">Languages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#projects">Projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#components">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#translations">Translations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#units">Units</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#changes">Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sources">Sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#screenshots">Screenshots</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#notification-hooks">Notification hooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exports">Exports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rss-feeds">RSS feeds</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Weblate's Web API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="weblate-s-web-api">
+<span id="api"></span><h1>Weblate's Web API<a class="headerlink" href="#weblate-s-web-api" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="rest-api">
+<span id="index-0"></span><h2>REST API<a class="headerlink" href="#rest-api" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.6 で追加: </span>The API is available since Weblate 2.6.</p>
+</div>
+<p>The API is accessible on the <code class="docutils literal notranslate"><span class="pre">/api/</span></code> URL and it is based on
+<a class="reference external" href="https://www.django-rest-framework.org/">Django REST framework</a>.
+You can use it directly or by <a class="reference internal" href="wlc.html#wlc"><span class="std std-ref">Weblate Client</span></a>.</p>
+<div class="section" id="authentication-and-generic-parameters">
+<span id="api-generic"></span><h3>Authentication and generic parameters<a class="headerlink" href="#authentication-and-generic-parameters" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The public project API is available without authentication, though
+unauthenticated requests are heavily throttled (by default to 100 requests per
+day), so it is recommended to use authentication. The authentication uses a
+token, which you can get in your profile. Use it in the <code class="docutils literal notranslate"><span class="pre">Authorization</span></code> header:</p>
+<dl class="any">
+<dt id="any--">
+<code class="descname">ANY </code><code class="descname">/</code><a class="headerlink" href="#any--" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Generic request behaviour for the API, the headers, status codes and
+parameters here apply to all endpoints as well.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>format</strong> -- Response format (overrides <a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-5.3.2">Accept</a>).
+Possible values depends on REST framework setup,
+by default <code class="docutils literal notranslate"><span class="pre">json</span></code> and <code class="docutils literal notranslate"><span class="pre">api</span></code> are supported. The
+latter provides web browser interface for API.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-5.3.2">Accept</a> -- the response content type depends on
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-5.3.2">Accept</a> header</li>
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7235#section-4.2">Authorization</a> -- optional token to authenticate</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> -- this depends on <a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-5.3.2">Accept</a>
+header of request</li>
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.4.1">Allow</a> -- list of allowed HTTP methods on object</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>detail</strong> (<em>string</em>) -- verbose description of failure (for HTTP status codes other than <a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a>)</li>
+<li><strong>count</strong> (<em>int</em>) -- total item count for object lists</li>
+<li><strong>next</strong> (<em>string</em>) -- next page URL for object lists</li>
+<li><strong>previous</strong> (<em>string</em>) -- previous page URL for object lists</li>
+<li><strong>results</strong> (<em>array</em>) -- results for object lists</li>
+<li><strong>url</strong> (<em>string</em>) -- URL to access this resource using API</li>
+<li><strong>web_url</strong> (<em>string</em>) -- URL to access this resource using web browser</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> -- when request was correctly handled</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> -- when form parameters are missing</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> -- when access is denied</li>
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc6585#section-4">429 Too Many Requests</a> -- when throttling is in place</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="section" id="authentication-examples">
+<h4>Authentication examples<a class="headerlink" href="#authentication-examples" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><strong>Example request:</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">example.com</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json, text/javascript</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Token YOUR-TOKEN</span>
+</pre></div>
+</div>
+<p><strong>Example response:</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.0</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Date</span><span class="o">:</span> <span class="l">Fri, 25 Mar 2016 09:46:12 GMT</span>
+<span class="na">Server</span><span class="o">:</span> <span class="l">WSGIServer/0.1 Python/2.7.11+</span>
+<span class="na">Vary</span><span class="o">:</span> <span class="l">Accept, Accept-Language, Cookie</span>
+<span class="na">X-Frame-Options</span><span class="o">:</span> <span class="l">SAMEORIGIN</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Language</span><span class="o">:</span> <span class="l">en</span>
+<span class="na">Allow</span><span class="o">:</span> <span class="l">GET, HEAD, OPTIONS</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;projects&quot;</span><span class="p">:</span><span class="s2">&quot;http://example.com/api/projects/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;components&quot;</span><span class="p">:</span><span class="s2">&quot;http://example.com/api/components/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;translations&quot;</span><span class="p">:</span><span class="s2">&quot;http://example.com/api/translations/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;languages&quot;</span><span class="p">:</span><span class="s2">&quot;http://example.com/api/languages/&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>CURL example:</strong></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl <span class="se">\</span>
+    -H <span class="s2">&quot;Authorization: Token TOKEN&quot;</span> <span class="se">\</span>
+    https://example.com/api/
+</pre></div>
+</div>
+</div>
+<div class="section" id="passing-parameters-examples">
+<h4>Passing Parameters Examples<a class="headerlink" href="#passing-parameters-examples" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>For the <a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-4.3.3">POST</a> method the parameters can be specified either as
+form submission (<em class="mimetype">application/x-www-form-urlencoded</em>) or as JSON
+(<em class="mimetype">application/json</em>).</p>
+<p><strong>Form request example:</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/api/projects/hello/repository/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">example.com</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Token TOKEN</span>
+
+operation=pull
+</pre></div>
+</div>
+<p><strong>JSON request example:</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/api/projects/hello/repository/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">example.com</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Token TOKEN</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">20</span>
+
+<span class="p">{</span><span class="nt">&quot;operation&quot;</span><span class="p">:</span><span class="s2">&quot;pull&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>CURL example:</strong></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl <span class="se">\</span>
+    -d <span class="nv">operation</span><span class="o">=</span>pull <span class="se">\</span>
+    -H <span class="s2">&quot;Authorization: Token TOKEN&quot;</span> <span class="se">\</span>
+    http://example.com/api/components/hello/weblate/repository/
+</pre></div>
+</div>
+<p><strong>CURL JSON example:</strong></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl <span class="se">\</span>
+    --data-binary <span class="s1">&#39;{&quot;operation&quot;:&quot;pull&quot;}&#39;</span> <span class="se">\</span>
+    -H <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    -H <span class="s2">&quot;Authorization: Token TOKEN&quot;</span> <span class="se">\</span>
+    http://example.com/api/components/hello/weblate/repository/
+</pre></div>
+</div>
+</div>
+<div class="section" id="rate-limiting">
+<h4>Rate limiting<a class="headerlink" href="#rate-limiting" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>The API requests are rate limited; the default configuration limits it to 100
+requests per day for anonymous users and 1000 requests per day for authenticated
+users.</p>
+<p>Rate limiting can be adjusted in the <code class="file docutils literal notranslate"><span class="pre">settings.py</span></code>; see
+<a class="reference external" href="https://www.django-rest-framework.org/api-guide/throttling/">Throttling in Django REST framework documentation</a>
+for more details how to configure it.</p>
+</div>
+</div>
+<div class="section" id="api-entry-point">
+<h3>API Entry Point<a class="headerlink" href="#api-entry-point" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<dl class="get">
+<dt id="get--api-">
+<code class="descname">GET </code><code class="descname">/api/</code><a class="headerlink" href="#get--api-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>The API root entry point.</p>
+<p><strong>Example request:</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">example.com</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json, text/javascript</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Token YOUR-TOKEN</span>
+</pre></div>
+</div>
+<p><strong>Example response:</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.0</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Date</span><span class="o">:</span> <span class="l">Fri, 25 Mar 2016 09:46:12 GMT</span>
+<span class="na">Server</span><span class="o">:</span> <span class="l">WSGIServer/0.1 Python/2.7.11+</span>
+<span class="na">Vary</span><span class="o">:</span> <span class="l">Accept, Accept-Language, Cookie</span>
+<span class="na">X-Frame-Options</span><span class="o">:</span> <span class="l">SAMEORIGIN</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Language</span><span class="o">:</span> <span class="l">en</span>
+<span class="na">Allow</span><span class="o">:</span> <span class="l">GET, HEAD, OPTIONS</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;projects&quot;</span><span class="p">:</span><span class="s2">&quot;http://example.com/api/projects/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;components&quot;</span><span class="p">:</span><span class="s2">&quot;http://example.com/api/components/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;translations&quot;</span><span class="p">:</span><span class="s2">&quot;http://example.com/api/translations/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;languages&quot;</span><span class="p">:</span><span class="s2">&quot;http://example.com/api/languages/&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="languages">
+<h3>Languages<a class="headerlink" href="#languages" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<dl class="get">
+<dt id="get--api-languages-">
+<code class="descname">GET </code><code class="descname">/api/languages/</code><a class="headerlink" href="#get--api-languages-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns a list of all languages.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Language object attributes are documented at <a class="reference internal" href="#get--api-languages-(string-language)-" title="GET /api/languages/(string:language)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/languages/(string:language)/</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-languages-(string-language)-">
+<code class="descname">GET </code><code class="descname">/api/languages/</code><span class="sig-paren">(</span><em class="property">string: </em><em>language</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--api-languages-(string-language)-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns information about a language.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>language</strong> (<em>string</em>) -- Language code</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>code</strong> (<em>string</em>) -- Language code</li>
+<li><strong>direction</strong> (<em>string</em>) -- Text direction</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+<p><strong>Example JSON data:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;en&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;direction&quot;</span><span class="p">:</span> <span class="s2">&quot;ltr&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;English&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/api/languages/en/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;web_url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/languages/en/&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="projects">
+<h3>Projects<a class="headerlink" href="#projects" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<dl class="get">
+<dt id="get--api-projects-">
+<code class="descname">GET </code><code class="descname">/api/projects/</code><a class="headerlink" href="#get--api-projects-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns a list of all projects.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Project object attributes are documented at <a class="reference internal" href="#get--api-projects-(string-project)-" title="GET /api/projects/(string:project)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/projects/(string:project)/</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-projects-(string-project)-">
+<code class="descname">GET </code><code class="descname">/api/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--api-projects-(string-project)-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns information about a project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>string</em>) -- project name</li>
+<li><strong>slug</strong> (<em>string</em>) -- project slug</li>
+<li><strong>source_language</strong> (<em>object</em>) -- source language object; see <a class="reference internal" href="#get--api-languages-(string-language)-" title="GET /api/languages/(string:language)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/languages/(string:language)/</span></code></a></li>
+<li><strong>web</strong> (<em>string</em>) -- project website</li>
+<li><strong>components_list_url</strong> (<em>string</em>) -- URL to components list; see <a class="reference internal" href="#get--api-projects-(string-project)-components-" title="GET /api/projects/(string:project)/components/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/projects/(string:project)/components/</span></code></a></li>
+<li><strong>repository_url</strong> (<em>string</em>) -- URL to repository status; see <a class="reference internal" href="#get--api-projects-(string-project)-repository-" title="GET /api/projects/(string:project)/repository/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/projects/(string:project)/repository/</span></code></a></li>
+<li><strong>changes_list_url</strong> (<em>string</em>) -- URL to changes list; see <a class="reference internal" href="#get--api-projects-(string-project)-changes-" title="GET /api/projects/(string:project)/changes/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/projects/(string:project)/changes/</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+<p><strong>Example JSON data:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;slug&quot;</span><span class="p">:</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;source_language&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;en&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;direction&quot;</span><span class="p">:</span> <span class="s2">&quot;ltr&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;English&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/api/languages/en/&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;web_url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/languages/en/&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/api/projects/hello/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;web&quot;</span><span class="p">:</span> <span class="s2">&quot;https://weblate.org/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;web_url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/projects/hello/&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-projects-(string-project)-changes-">
+<code class="descname">GET </code><code class="descname">/api/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/changes/</code><a class="headerlink" href="#get--api-projects-(string-project)-changes-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns a list of project changes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>results</strong> (<em>array</em>) -- array of component objects; see <a class="reference internal" href="#get--api-changes-(int-pk)-" title="GET /api/changes/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/changes/(int:pk)/</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-projects-(string-project)-repository-">
+<code class="descname">GET </code><code class="descname">/api/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/repository/</code><a class="headerlink" href="#get--api-projects-(string-project)-repository-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns information about VCS repository status. This endpoint contains
+only an overall summary for all repositories for the project. To get more detailed
+status use <a class="reference internal" href="#get--api-components-(string-project)-(string-component)-repository-" title="GET /api/components/(string:project)/(string:component)/repository/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/components/(string:project)/(string:component)/repository/</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>needs_commit</strong> (<em>boolean</em>) -- whether there are any pending changes to commit</li>
+<li><strong>needs_merge</strong> (<em>boolean</em>) -- whether there are any upstream changes to merge</li>
+<li><strong>needs_push</strong> (<em>boolean</em>) -- whether there are any local changes to push</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+<p><strong>Example JSON data:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;needs_commit&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;needs_merge&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;needs_push&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--api-projects-(string-project)-repository-">
+<code class="descname">POST </code><code class="descname">/api/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/repository/</code><a class="headerlink" href="#post--api-projects-(string-project)-repository-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Performs given operation on the VCS repository.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Request JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>operation</strong> (<em>string</em>) -- Operation to perform: one of <code class="docutils literal notranslate"><span class="pre">push</span></code>, <code class="docutils literal notranslate"><span class="pre">pull</span></code>, <code class="docutils literal notranslate"><span class="pre">commit</span></code>, <code class="docutils literal notranslate"><span class="pre">reset</span></code>, <code class="docutils literal notranslate"><span class="pre">cleanup</span></code></li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>result</strong> (<em>boolean</em>) -- result of the operation</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+<p><strong>CURL example:</strong></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl <span class="se">\</span>
+    -d <span class="nv">operation</span><span class="o">=</span>pull <span class="se">\</span>
+    -H <span class="s2">&quot;Authorization: Token TOKEN&quot;</span> <span class="se">\</span>
+    http://example.com/api/components/hello/weblate/repository/
+</pre></div>
+</div>
+<p><strong>JSON request example:</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/api/projects/hello/repository/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">example.com</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Token TOKEN</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">20</span>
+
+<span class="p">{</span><span class="nt">&quot;operation&quot;</span><span class="p">:</span><span class="s2">&quot;pull&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>JSON response example:</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.0</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Date</span><span class="o">:</span> <span class="l">Tue, 12 Apr 2016 09:32:50 GMT</span>
+<span class="na">Server</span><span class="o">:</span> <span class="l">WSGIServer/0.1 Python/2.7.11+</span>
+<span class="na">Vary</span><span class="o">:</span> <span class="l">Accept, Accept-Language, Cookie</span>
+<span class="na">X-Frame-Options</span><span class="o">:</span> <span class="l">SAMEORIGIN</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Language</span><span class="o">:</span> <span class="l">en</span>
+<span class="na">Allow</span><span class="o">:</span> <span class="l">GET, POST, HEAD, OPTIONS</span>
+
+<span class="p">{</span><span class="nt">&quot;result&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-projects-(string-project)-components-">
+<code class="descname">GET </code><code class="descname">/api/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/components/</code><a class="headerlink" href="#get--api-projects-(string-project)-components-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns a list of translation components in the given project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>results</strong> (<em>array</em>) -- array of component objects; see <a class="reference internal" href="#get--api-components-(string-project)-(string-component)-" title="GET /api/components/(string:project)/(string:component)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/components/(string:project)/(string:component)/</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-components-(string-project)-statistics-">
+<code class="descname">GET </code><code class="descname">/api/components/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/statistics/</code><a class="headerlink" href="#get--api-components-(string-project)-statistics-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns paginated statistics for all languages within a project.</p>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.10 で追加.</span></p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>results</strong> (<em>array</em>) -- array of translation statistics objects</li>
+<li><strong>language</strong> (<em>string</em>) -- language name</li>
+<li><strong>code</strong> (<em>string</em>) -- language code</li>
+<li><strong>total</strong> (<em>int</em>) -- total number of strings</li>
+<li><strong>translated</strong> (<em>int</em>) -- number of translated strings</li>
+<li><strong>translated_percent</strong> (<em>float</em>) -- percentage of translated strings</li>
+<li><strong>total_words</strong> (<em>int</em>) -- total number of words</li>
+<li><strong>translated_words</strong> (<em>int</em>) -- number of translated words</li>
+<li><strong>words_percent</strong> (<em>float</em>) -- percentage of translated words</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="components">
+<h3>Components<a class="headerlink" href="#components" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<dl class="get">
+<dt id="get--api-components-">
+<code class="descname">GET </code><code class="descname">/api/components/</code><a class="headerlink" href="#get--api-components-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns a list of translation components.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Component object attributes are documented at <a class="reference internal" href="#get--api-components-(string-project)-(string-component)-" title="GET /api/components/(string:project)/(string:component)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/components/(string:project)/(string:component)/</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-components-(string-project)-(string-component)-">
+<code class="descname">GET </code><code class="descname">/api/components/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--api-components-(string-project)-(string-component)-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns information about translation component.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+<li><strong>component</strong> (<em>string</em>) -- Component URL slug</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>branch</strong> (<em>string</em>) -- VCS repository branch</li>
+<li><strong>file_format</strong> (<em>string</em>) -- file format of translations</li>
+<li><strong>filemask</strong> (<em>string</em>) -- mask of translation files in the repository</li>
+<li><strong>git_export</strong> (<em>string</em>) -- URL of the exported VCS repository with translations</li>
+<li><strong>license</strong> (<em>string</em>) -- license for translations</li>
+<li><strong>license_url</strong> (<em>string</em>) -- URL of license for translations</li>
+<li><strong>name</strong> (<em>string</em>) -- name of component</li>
+<li><strong>slug</strong> (<em>string</em>) -- slug of component</li>
+<li><strong>project</strong> (<em>object</em>) -- the translation project; see <a class="reference internal" href="#get--api-projects-(string-project)-" title="GET /api/projects/(string:project)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/projects/(string:project)/</span></code></a></li>
+<li><strong>repo</strong> (<em>string</em>) -- VCS repository URL</li>
+<li><strong>template</strong> (<em>string</em>) -- base file for monolingual translations</li>
+<li><strong>new_base</strong> (<em>string</em>) -- base file for adding new translations</li>
+<li><strong>vcs</strong> (<em>string</em>) -- version control system</li>
+<li><strong>repository_url</strong> (<em>string</em>) -- URL to repository status; see <a class="reference internal" href="#get--api-components-(string-project)-(string-component)-repository-" title="GET /api/components/(string:project)/(string:component)/repository/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/components/(string:project)/(string:component)/repository/</span></code></a></li>
+<li><strong>translations_url</strong> (<em>string</em>) -- URL to translations list; see <a class="reference internal" href="#get--api-components-(string-project)-(string-component)-translations-" title="GET /api/components/(string:project)/(string:component)/translations/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/components/(string:project)/(string:component)/translations/</span></code></a></li>
+<li><strong>lock_url</strong> (<em>string</em>) -- URL to lock status; see <a class="reference internal" href="#get--api-components-(string-project)-(string-component)-lock-" title="GET /api/components/(string:project)/(string:component)/lock/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/components/(string:project)/(string:component)/lock/</span></code></a></li>
+<li><strong>changes_list_url</strong> (<em>string</em>) -- URL to changes list; see <a class="reference internal" href="#get--api-components-(string-project)-(string-component)-changes-" title="GET /api/components/(string:project)/(string:component)/changes/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/components/(string:project)/(string:component)/changes/</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+<p><strong>Example JSON data:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;branch&quot;</span><span class="p">:</span> <span class="s2">&quot;master&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;file_format&quot;</span><span class="p">:</span> <span class="s2">&quot;po&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;filemask&quot;</span><span class="p">:</span> <span class="s2">&quot;po/*.po&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;git_export&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;license&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;license_url&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Weblate&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;slug&quot;</span><span class="p">:</span> <span class="s2">&quot;weblate&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;project&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;slug&quot;</span><span class="p">:</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;source_language&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;en&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;direction&quot;</span><span class="p">:</span> <span class="s2">&quot;ltr&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;English&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/api/languages/en/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;web_url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/languages/en/&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/api/projects/hello/&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;web&quot;</span><span class="p">:</span> <span class="s2">&quot;https://weblate.org/&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;web_url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/projects/hello/&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;repo&quot;</span><span class="p">:</span> <span class="s2">&quot;file:///home/nijel/work/weblate-hello&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;new_base&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/api/components/hello/weblate/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;vcs&quot;</span><span class="p">:</span> <span class="s2">&quot;git&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;web_url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/projects/hello/weblate/&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-components-(string-project)-(string-component)-changes-">
+<code class="descname">GET </code><code class="descname">/api/components/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/changes/</code><a class="headerlink" href="#get--api-components-(string-project)-(string-component)-changes-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns a list of component changes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+<li><strong>component</strong> (<em>string</em>) -- Component URL slug</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>results</strong> (<em>array</em>) -- array of component objects; see <a class="reference internal" href="#get--api-changes-(int-pk)-" title="GET /api/changes/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/changes/(int:pk)/</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-components-(string-project)-(string-component)-lock-">
+<code class="descname">GET </code><code class="descname">/api/components/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/lock/</code><a class="headerlink" href="#get--api-components-(string-project)-(string-component)-lock-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns component lock status.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+<li><strong>component</strong> (<em>string</em>) -- Component URL slug</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>locked</strong> (<em>boolean</em>) -- whether component is locked for updates</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+<p><strong>Example JSON data:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;locked&quot;</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--api-components-(string-project)-(string-component)-lock-">
+<code class="descname">POST </code><code class="descname">/api/components/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/lock/</code><a class="headerlink" href="#post--api-components-(string-project)-(string-component)-lock-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Sets component lock status.</p>
+<p>Response is same as <a class="reference internal" href="#get--api-components-(string-project)-(string-component)-lock-" title="GET /api/components/(string:project)/(string:component)/lock/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/components/(string:project)/(string:component)/lock/</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+<li><strong>component</strong> (<em>string</em>) -- Component URL slug</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Request JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>lock</strong> -- Boolean whether to lock or not.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-components-(string-project)-(string-component)-repository-">
+<code class="descname">GET </code><code class="descname">/api/components/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/repository/</code><a class="headerlink" href="#get--api-components-(string-project)-(string-component)-repository-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns information about VCS repository status.</p>
+<p>The response is same as for <a class="reference internal" href="#get--api-projects-(string-project)-repository-" title="GET /api/projects/(string:project)/repository/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/projects/(string:project)/repository/</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+<li><strong>component</strong> (<em>string</em>) -- Component URL slug</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>needs_commit</strong> (<em>boolean</em>) -- whether there are any pending changes to commit</li>
+<li><strong>needs_merge</strong> (<em>boolean</em>) -- whether there are any upstream changes to merge</li>
+<li><strong>needs_push</strong> (<em>boolean</em>) -- whether there are any local changes to push</li>
+<li><strong>remote_commit</strong> (<em>string</em>) -- Remote commit information</li>
+<li><strong>status</strong> (<em>string</em>) -- VCS repository status as reported by VCS</li>
+<li><strong>merge_failure</strong> -- Text describing merge failure or null if there is none</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--api-components-(string-project)-(string-component)-repository-">
+<code class="descname">POST </code><code class="descname">/api/components/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/repository/</code><a class="headerlink" href="#post--api-components-(string-project)-(string-component)-repository-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Performs the given operation on a VCS repository.</p>
+<p>See <a class="reference internal" href="#post--api-projects-(string-project)-repository-" title="POST /api/projects/(string:project)/repository/"><code class="xref http http-post docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/projects/(string:project)/repository/</span></code></a> for documentation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+<li><strong>component</strong> (<em>string</em>) -- Component URL slug</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Request JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>operation</strong> (<em>string</em>) -- Operation to perform: one of <code class="docutils literal notranslate"><span class="pre">push</span></code>, <code class="docutils literal notranslate"><span class="pre">pull</span></code>, <code class="docutils literal notranslate"><span class="pre">commit</span></code>, <code class="docutils literal notranslate"><span class="pre">reset</span></code>, <code class="docutils literal notranslate"><span class="pre">cleanup</span></code></li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>result</strong> (<em>boolean</em>) -- result of the operation</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-components-(string-project)-(string-component)-monolingual_base-">
+<code class="descname">GET </code><code class="descname">/api/components/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/monolingual_base/</code><a class="headerlink" href="#get--api-components-(string-project)-(string-component)-monolingual_base-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Downloads base file for monolingual translations.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+<li><strong>component</strong> (<em>string</em>) -- Component URL slug</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-components-(string-project)-(string-component)-new_template-">
+<code class="descname">GET </code><code class="descname">/api/components/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/new_template/</code><a class="headerlink" href="#get--api-components-(string-project)-(string-component)-new_template-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Downloads template file for new translations.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+<li><strong>component</strong> (<em>string</em>) -- Component URL slug</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-components-(string-project)-(string-component)-translations-">
+<code class="descname">GET </code><code class="descname">/api/components/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/translations/</code><a class="headerlink" href="#get--api-components-(string-project)-(string-component)-translations-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns a list of translation objects in the given component.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+<li><strong>component</strong> (<em>string</em>) -- Component URL slug</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>results</strong> (<em>array</em>) -- array of translation objects; see <a class="reference internal" href="#get--api-translations-(string-project)-(string-component)-(string-language)-" title="GET /api/translations/(string:project)/(string:component)/(string:language)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/translations/(string:project)/(string:component)/(string:language)/</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-components-(string-project)-(string-component)-statistics-">
+<code class="descname">GET </code><code class="descname">/api/components/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/statistics/</code><a class="headerlink" href="#get--api-components-(string-project)-(string-component)-statistics-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns paginated statistics for all translations within component.</p>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.7 で追加.</span></p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+<li><strong>component</strong> (<em>string</em>) -- Component URL slug</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>results</strong> (<em>array</em>) -- array of translation statistics objects; see <a class="reference internal" href="#get--api-translations-(string-project)-(string-component)-(string-language)-statistics-" title="GET /api/translations/(string:project)/(string:component)/(string:language)/statistics/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/translations/(string:project)/(string:component)/(string:language)/statistics/</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="translations">
+<h3>Translations<a class="headerlink" href="#translations" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<dl class="get">
+<dt id="get--api-translations-">
+<code class="descname">GET </code><code class="descname">/api/translations/</code><a class="headerlink" href="#get--api-translations-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns a list of translations.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Translation object attributes are documented at <a class="reference internal" href="#get--api-translations-(string-project)-(string-component)-(string-language)-" title="GET /api/translations/(string:project)/(string:component)/(string:language)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/translations/(string:project)/(string:component)/(string:language)/</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-translations-(string-project)-(string-component)-(string-language)-">
+<code class="descname">GET </code><code class="descname">/api/translations/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>language</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--api-translations-(string-project)-(string-component)-(string-language)-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns information about a translation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+<li><strong>component</strong> (<em>string</em>) -- Component URL slug</li>
+<li><strong>language</strong> (<em>string</em>) -- Translation language code</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>component</strong> (<em>object</em>) -- component object; see <a class="reference internal" href="#get--api-components-(string-project)-(string-component)-" title="GET /api/components/(string:project)/(string:component)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/components/(string:project)/(string:component)/</span></code></a></li>
+<li><strong>failing_checks</strong> (<em>int</em>) -- number of units failing check</li>
+<li><strong>failing_checks_percent</strong> (<em>float</em>) -- percentage of units failing check</li>
+<li><strong>failing_checks_words</strong> (<em>int</em>) -- number of words with failing check</li>
+<li><strong>filename</strong> (<em>string</em>) -- translation filename</li>
+<li><strong>fuzzy</strong> (<em>int</em>) -- number of units marked for review</li>
+<li><strong>fuzzy_percent</strong> (<em>float</em>) -- percentage of units marked for review</li>
+<li><strong>fuzzy_words</strong> (<em>int</em>) -- number of words marked for review</li>
+<li><strong>have_comment</strong> (<em>int</em>) -- number of units with comment</li>
+<li><strong>have_suggestion</strong> (<em>int</em>) -- number of units with suggestion</li>
+<li><strong>is_template</strong> (<em>boolean</em>) -- whether translation is monolingual base</li>
+<li><strong>language</strong> (<em>object</em>) -- source language object; see <a class="reference internal" href="#get--api-languages-(string-language)-" title="GET /api/languages/(string:language)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/languages/(string:language)/</span></code></a></li>
+<li><strong>language_code</strong> (<em>string</em>) -- language code used in the repository; this can be different from language code in the language object</li>
+<li><strong>last_author</strong> (<em>string</em>) -- name of last author</li>
+<li><strong>last_change</strong> (<em>timestamp</em>) -- last change timestamp</li>
+<li><strong>revision</strong> (<em>string</em>) -- hash revision of the file</li>
+<li><strong>share_url</strong> (<em>string</em>) -- URL for sharing leading to engage page</li>
+<li><strong>total</strong> (<em>int</em>) -- total number of units</li>
+<li><strong>total_words</strong> (<em>int</em>) -- total number of words</li>
+<li><strong>translate_url</strong> (<em>string</em>) -- URL for translating</li>
+<li><strong>translated</strong> (<em>int</em>) -- number of translated units</li>
+<li><strong>translated_percent</strong> (<em>float</em>) -- percentage of translated units</li>
+<li><strong>translated_words</strong> (<em>int</em>) -- number of translated words</li>
+<li><strong>repository_url</strong> (<em>string</em>) -- URL to repository status; see <a class="reference internal" href="#get--api-translations-(string-project)-(string-component)-(string-language)-repository-" title="GET /api/translations/(string:project)/(string:component)/(string:language)/repository/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/translations/(string:project)/(string:component)/(string:language)/repository/</span></code></a></li>
+<li><strong>file_url</strong> (<em>string</em>) -- URL to file object; see <a class="reference internal" href="#get--api-translations-(string-project)-(string-component)-(string-language)-file-" title="GET /api/translations/(string:project)/(string:component)/(string:language)/file/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/translations/(string:project)/(string:component)/(string:language)/file/</span></code></a></li>
+<li><strong>changes_list_url</strong> (<em>string</em>) -- URL to changes list; see <a class="reference internal" href="#get--api-translations-(string-project)-(string-component)-(string-language)-changes-" title="GET /api/translations/(string:project)/(string:component)/(string:language)/changes/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/translations/(string:project)/(string:component)/(string:language)/changes/</span></code></a></li>
+<li><strong>units_list_url</strong> (<em>string</em>) -- URL to units list; see <a class="reference internal" href="#get--api-translations-(string-project)-(string-component)-(string-language)-units-" title="GET /api/translations/(string:project)/(string:component)/(string:language)/units/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/translations/(string:project)/(string:component)/(string:language)/units/</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+<p><strong>Example JSON data:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;component&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;branch&quot;</span><span class="p">:</span> <span class="s2">&quot;master&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;file_format&quot;</span><span class="p">:</span> <span class="s2">&quot;po&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;filemask&quot;</span><span class="p">:</span> <span class="s2">&quot;po/*.po&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;git_export&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;license&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;license_url&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Weblate&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;new_base&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;project&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;slug&quot;</span><span class="p">:</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;source_language&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;en&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;direction&quot;</span><span class="p">:</span> <span class="s2">&quot;ltr&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;English&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/api/languages/en/&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;web_url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/languages/en/&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/api/projects/hello/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;web&quot;</span><span class="p">:</span> <span class="s2">&quot;https://weblate.org/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;web_url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/projects/hello/&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;repo&quot;</span><span class="p">:</span> <span class="s2">&quot;file:///home/nijel/work/weblate-hello&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;slug&quot;</span><span class="p">:</span> <span class="s2">&quot;weblate&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/api/components/hello/weblate/&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;vcs&quot;</span><span class="p">:</span> <span class="s2">&quot;git&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;web_url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/projects/hello/weblate/&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;failing_checks&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="nt">&quot;failing_checks_percent&quot;</span><span class="p">:</span> <span class="mf">75.0</span><span class="p">,</span>
+    <span class="nt">&quot;failing_checks_words&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>
+    <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;po/cs.po&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;fuzzy&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;fuzzy_percent&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="nt">&quot;fuzzy_words&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;have_comment&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;have_suggestion&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;is_template&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;language&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;cs&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;direction&quot;</span><span class="p">:</span> <span class="s2">&quot;ltr&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Czech&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/api/languages/cs/&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;web_url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/languages/cs/&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;language_code&quot;</span><span class="p">:</span> <span class="s2">&quot;cs&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;last_author&quot;</span><span class="p">:</span> <span class="s2">&quot;Weblate Admin&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;last_change&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-03-07T10:20:05.499&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;revision&quot;</span><span class="p">:</span> <span class="s2">&quot;7ddfafe6daaf57fc8654cc852ea6be212b015792&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;share_url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/engage/hello/cs/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="nt">&quot;total_words&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+    <span class="nt">&quot;translate_url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/translate/hello/weblate/cs/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;translated&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="nt">&quot;translated_percent&quot;</span><span class="p">:</span> <span class="mf">100.0</span><span class="p">,</span>
+    <span class="nt">&quot;translated_words&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+    <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/api/translations/hello/weblate/cs/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;web_url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com/projects/hello/weblate/cs/&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-translations-(string-project)-(string-component)-(string-language)-changes-">
+<code class="descname">GET </code><code class="descname">/api/translations/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>language</em><span class="sig-paren">)</span><code class="descname">/changes/</code><a class="headerlink" href="#get--api-translations-(string-project)-(string-component)-(string-language)-changes-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns a list of translation changes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+<li><strong>component</strong> (<em>string</em>) -- Component URL slug</li>
+<li><strong>language</strong> (<em>string</em>) -- Translation language code</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>results</strong> (<em>array</em>) -- array of component objects; see <a class="reference internal" href="#get--api-changes-(int-pk)-" title="GET /api/changes/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/changes/(int:pk)/</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-translations-(string-project)-(string-component)-(string-language)-units-">
+<code class="descname">GET </code><code class="descname">/api/translations/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>language</em><span class="sig-paren">)</span><code class="descname">/units/</code><a class="headerlink" href="#get--api-translations-(string-project)-(string-component)-(string-language)-units-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns a list of translation units.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+<li><strong>component</strong> (<em>string</em>) -- Component URL slug</li>
+<li><strong>language</strong> (<em>string</em>) -- Translation language code</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>results</strong> (<em>array</em>) -- array of component objects; see <a class="reference internal" href="#get--api-units-(int-pk)-" title="GET /api/units/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/units/(int:pk)/</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-translations-(string-project)-(string-component)-(string-language)-file-">
+<code class="descname">GET </code><code class="descname">/api/translations/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>language</em><span class="sig-paren">)</span><code class="descname">/file/</code><a class="headerlink" href="#get--api-translations-(string-project)-(string-component)-(string-language)-file-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Download current translation file as stored in VCS (without <code class="docutils literal notranslate"><span class="pre">format</span></code>
+parameter) or as converted to a standard format (currently supported:
+Gettext PO, MO, XLIFF and TBX).</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">This API endpoint uses different logic for output than rest of API as
+it operates on whole file rather than on data. Set of accepted <code class="docutils literal notranslate"><span class="pre">format</span></code>
+parameter differs and without such parameter you get translation file
+as stored in VCS.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>format</strong> -- File format to use; if not specified no format conversion happens; supported file formats: <code class="docutils literal notranslate"><span class="pre">po</span></code>, <code class="docutils literal notranslate"><span class="pre">mo</span></code>, <code class="docutils literal notranslate"><span class="pre">xliff</span></code>, <code class="docutils literal notranslate"><span class="pre">xliff11</span></code>, <code class="docutils literal notranslate"><span class="pre">tbx</span></code></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+<li><strong>component</strong> (<em>string</em>) -- Component URL slug</li>
+<li><strong>language</strong> (<em>string</em>) -- Translation language code</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--api-translations-(string-project)-(string-component)-(string-language)-file-">
+<code class="descname">POST </code><code class="descname">/api/translations/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>language</em><span class="sig-paren">)</span><code class="descname">/file/</code><a class="headerlink" href="#post--api-translations-(string-project)-(string-component)-(string-language)-file-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Upload new file with translations.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+<li><strong>component</strong> (<em>string</em>) -- Component URL slug</li>
+<li><strong>language</strong> (<em>string</em>) -- Translation language code</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Form Parameters:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>boolean overwrite</strong> -- Whether to overwrite existing translations (defaults to no)</li>
+<li><strong>file file</strong> -- Uploaded file</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+<p><strong>CURL example:</strong></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl -X POST <span class="se">\</span>
+    -F <span class="nv">file</span><span class="o">=</span>@strings.xml <span class="se">\</span>
+    -H <span class="s2">&quot;Authorization: Token TOKEN&quot;</span> <span class="se">\</span>
+    http://example.com/api/translations/hello/android/cs/file/
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-translations-(string-project)-(string-component)-(string-language)-repository-">
+<code class="descname">GET </code><code class="descname">/api/translations/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>language</em><span class="sig-paren">)</span><code class="descname">/repository/</code><a class="headerlink" href="#get--api-translations-(string-project)-(string-component)-(string-language)-repository-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns information about VCS repository status.</p>
+<p>The response is same as for <a class="reference internal" href="#get--api-components-(string-project)-(string-component)-repository-" title="GET /api/components/(string:project)/(string:component)/repository/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/components/(string:project)/(string:component)/repository/</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+<li><strong>component</strong> (<em>string</em>) -- Component URL slug</li>
+<li><strong>language</strong> (<em>string</em>) -- Translation language code</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--api-translations-(string-project)-(string-component)-(string-language)-repository-">
+<code class="descname">POST </code><code class="descname">/api/translations/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>language</em><span class="sig-paren">)</span><code class="descname">/repository/</code><a class="headerlink" href="#post--api-translations-(string-project)-(string-component)-(string-language)-repository-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Performs given operation on the VCS repository.</p>
+<p>See <a class="reference internal" href="#post--api-projects-(string-project)-repository-" title="POST /api/projects/(string:project)/repository/"><code class="xref http http-post docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/projects/(string:project)/repository/</span></code></a> for documentation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+<li><strong>component</strong> (<em>string</em>) -- Component URL slug</li>
+<li><strong>language</strong> (<em>string</em>) -- Translation language code</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Request JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>operation</strong> (<em>string</em>) -- Operation to perform: one of <code class="docutils literal notranslate"><span class="pre">push</span></code>, <code class="docutils literal notranslate"><span class="pre">pull</span></code>, <code class="docutils literal notranslate"><span class="pre">commit</span></code>, <code class="docutils literal notranslate"><span class="pre">reset</span></code>, <code class="docutils literal notranslate"><span class="pre">cleanup</span></code></li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>result</strong> (<em>boolean</em>) -- result of the operation</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-translations-(string-project)-(string-component)-(string-language)-statistics-">
+<code class="descname">GET </code><code class="descname">/api/translations/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>language</em><span class="sig-paren">)</span><code class="descname">/statistics/</code><a class="headerlink" href="#get--api-translations-(string-project)-(string-component)-(string-language)-statistics-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns detailed translation statistics.</p>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.7 で追加.</span></p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> (<em>string</em>) -- Project URL slug</li>
+<li><strong>component</strong> (<em>string</em>) -- Component URL slug</li>
+<li><strong>language</strong> (<em>string</em>) -- Translation language code</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>code</strong> (<em>string</em>) -- language code</li>
+<li><strong>failing</strong> (<em>int</em>) -- number of failing checks</li>
+<li><strong>failing_percent</strong> (<em>float</em>) -- percentage of failing checks</li>
+<li><strong>fuzzy</strong> (<em>int</em>) -- number of strings needing review</li>
+<li><strong>fuzzy_percent</strong> (<em>float</em>) -- percentage of strings needing review</li>
+<li><strong>total_words</strong> (<em>int</em>) -- total number of words</li>
+<li><strong>translated_words</strong> (<em>int</em>) -- number of translated words</li>
+<li><strong>last_author</strong> (<em>string</em>) -- name of last author</li>
+<li><strong>last_change</strong> (<em>timestamp</em>) -- date of last change</li>
+<li><strong>name</strong> (<em>string</em>) -- language name</li>
+<li><strong>total</strong> (<em>int</em>) -- total number of strings</li>
+<li><strong>translated</strong> (<em>int</em>) -- number of translated strings</li>
+<li><strong>translated_percent</strong> (<em>float</em>) -- percentage of translated strings</li>
+<li><strong>url</strong> (<em>string</em>) -- URL to access the translation (engagement URL)</li>
+<li><strong>url_translate</strong> (<em>string</em>) -- URL to access the translation (real translation URL)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="units">
+<h3>Units<a class="headerlink" href="#units" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.10 で追加.</span></p>
+</div>
+<dl class="get">
+<dt id="get--api-units-">
+<code class="descname">GET </code><code class="descname">/api/units/</code><a class="headerlink" href="#get--api-units-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns list of translation units.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Unit object attributes are documented at <a class="reference internal" href="#get--api-units-(int-pk)-" title="GET /api/units/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/units/(int:pk)/</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-units-(int-pk)-">
+<code class="descname">GET </code><code class="descname">/api/units/</code><span class="sig-paren">(</span><em class="property">int: </em><em>pk</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--api-units-(int-pk)-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns information about translation unit.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>pk</strong> (<em>int</em>) -- Unit ID</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>translation</strong> (<em>string</em>) -- URL of a related translation object</li>
+<li><strong>source</strong> (<em>string</em>) -- source string</li>
+<li><strong>previous_source</strong> (<em>string</em>) -- previous source string used for fuzzy matching</li>
+<li><strong>target</strong> (<em>string</em>) -- target string</li>
+<li><strong>id_hash</strong> (<em>string</em>) -- unique identifier of the unit</li>
+<li><strong>content_hash</strong> (<em>string</em>) -- unique identifier of the source string</li>
+<li><strong>location</strong> (<em>string</em>) -- location of the unit in source code</li>
+<li><strong>context</strong> (<em>string</em>) -- translation unit context</li>
+<li><strong>comment</strong> (<em>string</em>) -- translation unit comment</li>
+<li><strong>flags</strong> (<em>string</em>) -- translation unit flags</li>
+<li><strong>fuzzy</strong> (<em>boolean</em>) -- whether unit is fuzzy or marked for review</li>
+<li><strong>translated</strong> (<em>boolean</em>) -- whether unit is translated</li>
+<li><strong>position</strong> (<em>int</em>) -- unit position in translation file</li>
+<li><strong>has_suggestion</strong> (<em>boolean</em>) -- whether unit has suggestions</li>
+<li><strong>has_comment</strong> (<em>boolean</em>) -- whether unit has comments</li>
+<li><strong>has_failing_check</strong> (<em>boolean</em>) -- whether unit has failing checks</li>
+<li><strong>num_words</strong> (<em>int</em>) -- number of source words</li>
+<li><strong>priority</strong> (<em>int</em>) -- translation priority; 100 is default</li>
+<li><strong>id</strong> (<em>int</em>) -- unit identifier</li>
+<li><strong>web_url</strong> (<em>string</em>) -- URL where unit can be edited</li>
+<li><strong>souce_info</strong> (<em>string</em>) -- Source string information link; see <a class="reference internal" href="#get--api-sources-(int-pk)-" title="GET /api/sources/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/sources/(int:pk)/</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="changes">
+<h3>Changes<a class="headerlink" href="#changes" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.10 で追加.</span></p>
+</div>
+<dl class="get">
+<dt id="get--api-changes-">
+<code class="descname">GET </code><code class="descname">/api/changes/</code><a class="headerlink" href="#get--api-changes-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns a list of translation changes.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Change object attributes are documented at <a class="reference internal" href="#get--api-changes-(int-pk)-" title="GET /api/changes/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/changes/(int:pk)/</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-changes-(int-pk)-">
+<code class="descname">GET </code><code class="descname">/api/changes/</code><span class="sig-paren">(</span><em class="property">int: </em><em>pk</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--api-changes-(int-pk)-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns information about translation change.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>pk</strong> (<em>int</em>) -- Change ID</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>unit</strong> (<em>string</em>) -- URL of a related unit object</li>
+<li><strong>translation</strong> (<em>string</em>) -- URL of a related translation object</li>
+<li><strong>component</strong> (<em>string</em>) -- URL of a related component object</li>
+<li><strong>dictionary</strong> (<em>string</em>) -- URL of a related dictionary object</li>
+<li><strong>user</strong> (<em>string</em>) -- URL of a related user object</li>
+<li><strong>author</strong> (<em>string</em>) -- URL of a related author object</li>
+<li><strong>timestamp</strong> (<em>timestamp</em>) -- event timestamp</li>
+<li><strong>action</strong> (<em>int</em>) -- numeric identification of action</li>
+<li><strong>action_name</strong> (<em>string</em>) -- text description of action</li>
+<li><strong>target</strong> (<em>string</em>) -- event changed text or detail</li>
+<li><strong>id</strong> (<em>int</em>) -- change identifier</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="sources">
+<h3>Sources<a class="headerlink" href="#sources" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.14 で追加.</span></p>
+</div>
+<dl class="get">
+<dt id="get--api-sources-">
+<code class="descname">GET </code><code class="descname">/api/sources/</code><a class="headerlink" href="#get--api-sources-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns a list of source string information.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Sources object attributes are documented at <a class="reference internal" href="#get--api-sources-(int-pk)-" title="GET /api/sources/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/sources/(int:pk)/</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-sources-(int-pk)-">
+<code class="descname">GET </code><code class="descname">/api/sources/</code><span class="sig-paren">(</span><em class="property">int: </em><em>pk</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--api-sources-(int-pk)-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns information about source information.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>pk</strong> (<em>int</em>) -- Source information ID</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>id_hash</strong> (<em>string</em>) -- unique identifier of the unit</li>
+<li><strong>component</strong> (<em>string</em>) -- URL of a related component object</li>
+<li><strong>timestamp</strong> (<em>timestamp</em>) -- timestamp when source string was first seen by Weblate</li>
+<li><strong>priority</strong> (<em>int</em>) -- source string priority, 100 is default</li>
+<li><strong>check_flags</strong> (<em>string</em>) -- source string flags</li>
+<li><strong>units</strong> (<em>array</em>) -- links to units; see <a class="reference internal" href="#get--api-units-(int-pk)-" title="GET /api/units/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/units/(int:pk)/</span></code></a></li>
+<li><strong>screenshots</strong> (<em>array</em>) -- links to assigned screenshots; see <a class="reference internal" href="#get--api-screenshots-(int-pk)-" title="GET /api/screenshots/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/screenshots/(int:pk)/</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="screenshots">
+<h3>Screenshots<a class="headerlink" href="#screenshots" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.14 で追加.</span></p>
+</div>
+<dl class="get">
+<dt id="get--api-screenshots-">
+<code class="descname">GET </code><code class="descname">/api/screenshots/</code><a class="headerlink" href="#get--api-screenshots-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns a list of screenshot string information.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Sources object attributes are documented at <a class="reference internal" href="#get--api-screenshots-(int-pk)-" title="GET /api/screenshots/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/screenshots/(int:pk)/</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-screenshots-(int-pk)-">
+<code class="descname">GET </code><code class="descname">/api/screenshots/</code><span class="sig-paren">(</span><em class="property">int: </em><em>pk</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--api-screenshots-(int-pk)-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns information about screenshot information.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>pk</strong> (<em>int</em>) -- Screenshot ID</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>string</em>) -- name of a screenshot</li>
+<li><strong>component</strong> (<em>string</em>) -- URL of a related component object</li>
+<li><strong>file_url</strong> (<em>string</em>) -- URL to download a file; see <a class="reference internal" href="#get--api-screenshots-(int-pk)-file-" title="GET /api/screenshots/(int:pk)/file/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/screenshots/(int:pk)/file/</span></code></a></li>
+<li><strong>sources</strong> (<em>array</em>) -- link to associated source string information; see <a class="reference internal" href="#get--api-sources-(int-pk)-" title="GET /api/sources/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/sources/(int:pk)/</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--api-screenshots-(int-pk)-file-">
+<code class="descname">GET </code><code class="descname">/api/screenshots/</code><span class="sig-paren">(</span><em class="property">int: </em><em>pk</em><span class="sig-paren">)</span><code class="descname">/file/</code><a class="headerlink" href="#get--api-screenshots-(int-pk)-file-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Download the screenshot image.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pk</strong> (<em>int</em>) -- Screenshot ID</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--api-screenshots-(int-pk)-file-">
+<code class="descname">POST </code><code class="descname">/api/screenshots/</code><span class="sig-paren">(</span><em class="property">int: </em><em>pk</em><span class="sig-paren">)</span><code class="descname">/file/</code><a class="headerlink" href="#post--api-screenshots-(int-pk)-file-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Replace screenshot image.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>pk</strong> (<em>int</em>) -- Screenshot ID</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Form Parameters:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>file image</strong> -- Uploaded file</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+</div>
+<p><strong>CURL example:</strong></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl -X POST <span class="se">\</span>
+    -F <span class="nv">image</span><span class="o">=</span>@image.png <span class="se">\</span>
+    -H <span class="s2">&quot;Authorization: Token TOKEN&quot;</span> <span class="se">\</span>
+    http://example.com/api/screenshots/1/file/
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="notification-hooks">
+<span id="hooks"></span><h2>Notification hooks<a class="headerlink" href="#notification-hooks" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Notification hooks allow external applications to notify Weblate that the VCS
+repository has been updated.</p>
+<p>You can use repository endpoints for projects, components and translations to
+update individual repositories; see
+<a class="reference internal" href="#post--api-projects-(string-project)-repository-" title="POST /api/projects/(string:project)/repository/"><code class="xref http http-post docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/projects/(string:project)/repository/</span></code></a> for documentation.</p>
+<dl class="get">
+<dt id="get--hooks-update-(string-project)-(string-component)-">
+<code class="descname">GET </code><code class="descname">/hooks/update/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--hooks-update-(string-project)-(string-component)-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified">バージョン 2.6 で非推奨: </span>Please use <a class="reference internal" href="#post--api-components-(string-project)-(string-component)-repository-" title="POST /api/components/(string:project)/(string:component)/repository/"><code class="xref http http-post docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/components/(string:project)/(string:component)/repository/</span></code></a>
+instead which works properly with authentication for ACL limited projects.</p>
+</div>
+<p>Triggers update of a component (pulling from VCS and scanning for
+translation changes).</p>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--hooks-update-(string-project)-">
+<code class="descname">GET </code><code class="descname">/hooks/update/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--hooks-update-(string-project)-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified">バージョン 2.6 で非推奨: </span>Please use <a class="reference internal" href="#post--api-projects-(string-project)-repository-" title="POST /api/projects/(string:project)/repository/"><code class="xref http http-post docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/projects/(string:project)/repository/</span></code></a>
+instead which works properly with authentication for ACL limited projects.</p>
+</div>
+<p>Triggers update of all components in a project (pulling from VCS and
+scanning for translation changes).</p>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--hooks-github-">
+<code class="descname">POST </code><code class="descname">/hooks/github/</code><a class="headerlink" href="#post--hooks-github-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Special hook for handling GitHub notifications and automatically updating
+matching components.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">GitHub includes direct support for notifying Weblate: enable
+Weblate service hook in repository settings and set the URL to the URL of your
+Weblate installation.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="admin/continuous.html#github-setup"><span class="std std-ref">GitHub から自動的に変更を受け取る</span></a></dt>
+<dd>For instruction on setting up GitHub integration</dd>
+<dt><a class="reference external" href="https://help.github.com/articles/creating-webhooks">https://help.github.com/articles/creating-webhooks</a></dt>
+<dd>Generic information about GitHub Webhooks</dd>
+<dt><a class="reference internal" href="admin/config.html#std:setting-ENABLE_HOOKS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">ENABLE_HOOKS</span></code></a></dt>
+<dd>For enabling hooks for whole Weblate</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--hooks-gitlab-">
+<code class="descname">POST </code><code class="descname">/hooks/gitlab/</code><a class="headerlink" href="#post--hooks-gitlab-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Special hook for handling GitLab notifications and automatically updating
+matching components.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="admin/continuous.html#gitlab-setup"><span class="std std-ref">Automatically receiving changes from GitLab</span></a></dt>
+<dd>For instruction on setting up GitLab integration</dd>
+<dt><a class="reference external" href="https://docs.gitlab.com/ce/user/project/integrations/webhooks.html">https://docs.gitlab.com/ce/user/project/integrations/webhooks.html</a></dt>
+<dd>Generic information about GitLab Webhooks</dd>
+<dt><a class="reference internal" href="admin/config.html#std:setting-ENABLE_HOOKS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">ENABLE_HOOKS</span></code></a></dt>
+<dd>For enabling hooks for whole Weblate</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--hooks-bitbucket-">
+<code class="descname">POST </code><code class="descname">/hooks/bitbucket/</code><a class="headerlink" href="#post--hooks-bitbucket-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Special hook for handling Bitbucket notifications and automatically
+updating matching components.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="admin/continuous.html#bitbucket-setup"><span class="std std-ref">Automatically receiving changes from Bitbucket</span></a></dt>
+<dd>For instruction on setting up Bitbucket integration</dd>
+<dt><a class="reference external" href="https://confluence.atlassian.com/bitbucket/manage-webhooks-735643732.html">https://confluence.atlassian.com/bitbucket/manage-webhooks-735643732.html</a></dt>
+<dd>Generic information about Bitbucket Webhooks</dd>
+<dt><a class="reference internal" href="admin/config.html#std:setting-ENABLE_HOOKS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">ENABLE_HOOKS</span></code></a></dt>
+<dd>For enabling hooks for whole Weblate</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--hooks-pagure-">
+<code class="descname">POST </code><code class="descname">/hooks/pagure/</code><a class="headerlink" href="#post--hooks-pagure-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Special hook for handling Pagure notifications and automatically
+updating matching components.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="admin/continuous.html#pagure-setup"><span class="std std-ref">Automatically receiving changes from Pagure</span></a></dt>
+<dd>For instruction on setting up Bitbucket integration</dd>
+<dt><a class="reference external" href="https://docs.pagure.org/pagure/usage/using_webhooks.html">https://docs.pagure.org/pagure/usage/using_webhooks.html</a></dt>
+<dd>Generic information about Bitbucket Webhooks</dd>
+<dt><a class="reference internal" href="admin/config.html#std:setting-ENABLE_HOOKS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">ENABLE_HOOKS</span></code></a></dt>
+<dd>For enabling hooks for whole Weblate</dd>
+</dl>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="exports">
+<span id="id1"></span><h2>Exports<a class="headerlink" href="#exports" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblate provides various exports to allow you to further process the data.</p>
+<dl class="get">
+<dt id="get--exports-stats-(string-project)-(string-component)-">
+<code class="descname">GET </code><code class="descname">/exports/stats/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--exports-stats-(string-project)-(string-component)-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>format</strong> (<em>string</em>) -- Output format: either <code class="docutils literal notranslate"><span class="pre">json</span></code> or <code class="docutils literal notranslate"><span class="pre">csv</span></code></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="deprecated">
+<p><span class="versionmodified">バージョン 2.6 で非推奨: </span>Please use <a class="reference internal" href="#get--api-components-(string-project)-(string-component)-statistics-" title="GET /api/components/(string:project)/(string:component)/statistics/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/components/(string:project)/(string:component)/statistics/</span></code></a>
+and <a class="reference internal" href="#get--api-translations-(string-project)-(string-component)-(string-language)-statistics-" title="GET /api/translations/(string:project)/(string:component)/(string:language)/statistics/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/translations/(string:project)/(string:component)/(string:language)/statistics/</span></code></a>
+instead; it allows access to ACL controlled projects as well.</p>
+</div>
+<p>Retrieves statistics for given component in given format.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/exports/stats/weblate/master/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">example.com</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json, text/javascript</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Vary</span><span class="o">:</span> <span class="l">Accept</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;cs&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;failing&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&quot;failing_percent&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="nt">&quot;fuzzy&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&quot;fuzzy_percent&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="nt">&quot;last_author&quot;</span><span class="p">:</span> <span class="s2">&quot;Michal \u010ciha\u0159&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;last_change&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-03-28T15:07:38+00:00&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Czech&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">436</span><span class="p">,</span>
+        <span class="nt">&quot;total_words&quot;</span><span class="p">:</span> <span class="mi">15271</span><span class="p">,</span>
+        <span class="nt">&quot;translated&quot;</span><span class="p">:</span> <span class="mi">436</span><span class="p">,</span>
+        <span class="nt">&quot;translated_percent&quot;</span><span class="p">:</span> <span class="mf">100.0</span><span class="p">,</span>
+        <span class="nt">&quot;translated_words&quot;</span><span class="p">:</span> <span class="mi">3201</span><span class="p">,</span>
+        <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://hosted.weblate.org/engage/weblate/cs/&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;url_translate&quot;</span><span class="p">:</span> <span class="s2">&quot;http://hosted.weblate.org/projects/weblate/master/cs/&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;nl&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;failing&quot;</span><span class="p">:</span> <span class="mi">21</span><span class="p">,</span>
+        <span class="nt">&quot;failing_percent&quot;</span><span class="p">:</span> <span class="mf">4.8</span><span class="p">,</span>
+        <span class="nt">&quot;fuzzy&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>
+        <span class="nt">&quot;fuzzy_percent&quot;</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span>
+        <span class="nt">&quot;last_author&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;last_change&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Dutch&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">436</span><span class="p">,</span>
+        <span class="nt">&quot;total_words&quot;</span><span class="p">:</span> <span class="mi">15271</span><span class="p">,</span>
+        <span class="nt">&quot;translated&quot;</span><span class="p">:</span> <span class="mi">319</span><span class="p">,</span>
+        <span class="nt">&quot;translated_percent&quot;</span><span class="p">:</span> <span class="mf">73.2</span><span class="p">,</span>
+        <span class="nt">&quot;translated_words&quot;</span><span class="p">:</span> <span class="mi">3201</span><span class="p">,</span>
+        <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://hosted.weblate.org/engage/weblate/nl/&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;url_translate&quot;</span><span class="p">:</span> <span class="s2">&quot;http://hosted.weblate.org/projects/weblate/master/nl/&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;el&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;failing&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>
+        <span class="nt">&quot;failing_percent&quot;</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span>
+        <span class="nt">&quot;fuzzy&quot;</span><span class="p">:</span> <span class="mi">21</span><span class="p">,</span>
+        <span class="nt">&quot;fuzzy_percent&quot;</span><span class="p">:</span> <span class="mf">4.8</span><span class="p">,</span>
+        <span class="nt">&quot;last_author&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;last_change&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Greek&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">436</span><span class="p">,</span>
+        <span class="nt">&quot;total_words&quot;</span><span class="p">:</span> <span class="mi">15271</span><span class="p">,</span>
+        <span class="nt">&quot;translated&quot;</span><span class="p">:</span> <span class="mi">312</span><span class="p">,</span>
+        <span class="nt">&quot;translated_percent&quot;</span><span class="p">:</span> <span class="mf">71.6</span><span class="p">,</span>
+        <span class="nt">&quot;translated_words&quot;</span><span class="p">:</span> <span class="mi">3201</span><span class="p">,</span>
+        <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://hosted.weblate.org/engage/weblate/el/&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;url_translate&quot;</span><span class="p">:</span> <span class="s2">&quot;http://hosted.weblate.org/projects/weblate/master/el/&quot;</span>
+    <span class="p">},</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="rss-feeds">
+<span id="rss"></span><h2>RSS feeds<a class="headerlink" href="#rss-feeds" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Changes in translations are exported in RSS feeds.</p>
+<dl class="get">
+<dt id="get--exports-rss-(string-project)-(string-component)-(string-language)-">
+<code class="descname">GET </code><code class="descname">/exports/rss/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>language</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--exports-rss-(string-project)-(string-component)-(string-language)-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Retrieves RSS feed with recent changes for a translation.</p>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--exports-rss-(string-project)-(string-component)-">
+<code class="descname">GET </code><code class="descname">/exports/rss/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--exports-rss-(string-project)-(string-component)-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Retrieves RSS feed with recent changes for a component.</p>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--exports-rss-(string-project)-">
+<code class="descname">GET </code><code class="descname">/exports/rss/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--exports-rss-(string-project)-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Retrieves RSS feed with recent changes for a project.</p>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--exports-rss-language-(string-language)-">
+<code class="descname">GET </code><code class="descname">/exports/rss/language/</code><span class="sig-paren">(</span><em class="property">string: </em><em>language</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--exports-rss-language-(string-language)-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Retrieves RSS feed with recent changes for a language.</p>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--exports-rss-">
+<code class="descname">GET </code><code class="descname">/exports/rss/</code><a class="headerlink" href="#get--exports-rss-" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Retrieves RSS feed with recent changes for Weblate instance.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://en.wikipedia.org/wiki/RSS">RSS on wikipedia</a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="wlc.html" class="btn btn-neutral float-right" title="Weblate Client" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="vcs.html" class="btn btn-neutral" title="Version control integration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

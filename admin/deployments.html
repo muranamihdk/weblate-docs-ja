@@ -1,0 +1,1138 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Weblate deployments &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Upgrading Weblate" href="upgrade.html" />
+    <link rel="prev" title="Installation instructions" href="install.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrators guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Weblate deployments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#running-weblate-in-the-docker">Running Weblate in the Docker</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#deployment">Deployment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#docker-container-with-https-support">Docker container with https support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#upgrading-docker-container">Upgrading Docker container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#docker-environment-variables">Docker environment variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#further-configuration-customization">Further configuration customization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hub-setup">Hub setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#select-your-machine-local-or-cloud-providers">Select your machine - local or cloud providers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-weblate-on-openshift-2">Running Weblate on OpenShift 2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#default-configuration">Default Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#updating">Updating</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bitnami-weblate-stack">Bitnami Weblate stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#weblate-in-yunohost">Weblate in YunoHost</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access.html">Access control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html">翻訳プロジェクト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html">継続的トランスレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks and fixups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html">Machine translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html">Addons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html">Management commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Administrators guide</a> &raquo;</li>
+        
+      <li>Weblate deployments</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/admin/deployments.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="weblate-deployments">
+<span id="deployments"></span><h1>Weblate deployments<a class="headerlink" href="#weblate-deployments" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Weblate comes with support for deployment using several technologies. This
+section is overview of them.</p>
+<div class="section" id="running-weblate-in-the-docker">
+<span id="docker"></span><h2>Running Weblate in the Docker<a class="headerlink" href="#running-weblate-in-the-docker" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>With dockerized weblate deployment you can get your personal weblate instance
+up an running in seconds. All of Weblate's dependencies are already included.
+PostgreSQL is configured as the default database.</p>
+<div class="section" id="deployment">
+<span id="docker-deploy"></span><h3>Deployment<a class="headerlink" href="#deployment" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The following examples assume you have a working Docker environment, with
+docker-compose installed. Please check Docker documentation for instructions on
+this.</p>
+<ol class="arabic">
+<li><p class="first">Clone weblate-docker repo:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/WeblateOrg/docker-compose.git weblate-docker
+<span class="nb">cd</span> weblate-docker
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create a <code class="file docutils literal notranslate"><span class="pre">docker-compose.override.yml</span></code> file with your settings.
+See <a class="reference internal" href="#docker-environment"><span class="std std-ref">Docker environment variables</span></a> full list of environment vars</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&#39;3&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">weblate</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_EMAIL_HOST=smtp.example.com</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_EMAIL_HOST_USER=user</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_EMAIL_HOST_PASSWORD=pass</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_SERVER_EMAIL=weblate@example.com</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_DEFAULT_FROM_EMAIL=weblate@example.com</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_ALLOWED_HOSTS=weblate.example.com</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_ADMIN_PASSWORD=password for admin user</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">If <span class="target" id="index-0"></span><a class="reference internal" href="#envvar-WEBLATE_ADMIN_PASSWORD"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">WEBLATE_ADMIN_PASSWORD</span></code></a> is not set, admin user is created with
+random password printed out on first startup.</p>
+</div>
+</li>
+<li><p class="first">Start Weblate containers:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker-compose up
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Enjoy your Weblate deployment, it's accessible on port 80 of the <code class="docutils literal notranslate"><span class="pre">weblate</span></code> container.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 2.15-2 で変更: </span>The setup has changed recently, prior there was separate web server
+container, since 2.15-2 the web server is embedded in weblate container.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="management.html#invoke-manage"><span class="std std-ref">Invoking management commands</span></a></p>
+</div>
+</div>
+<div class="section" id="docker-container-with-https-support">
+<span id="docker-ssl"></span><h3>Docker container with https support<a class="headerlink" href="#docker-container-with-https-support" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Please see <a class="reference internal" href="#docker-deploy"><span class="std std-ref">Deployment</span></a> for generic deployment instructions. To add
+HTTPS reverse proxy additional Docker container is required, we will use
+<a class="reference external" href="https://hub.docker.com/r/steveltn/https-portal/">https-portal</a>. This is
+used in the <code class="file docutils literal notranslate"><span class="pre">docker-compose-https.yml</span></code> file. Then you just need to create
+a <code class="file docutils literal notranslate"><span class="pre">docker-compose-https.override.yml</span></code> file with your settings:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&#39;3&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">weblate</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_EMAIL_HOST=smtp.example.com</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_EMAIL_HOST_USER=user</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_EMAIL_HOST_PASSWORD=pass</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_ALLOWED_HOSTS=weblate.example.com</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_ADMIN_PASSWORD=password for admin user</span>
+  <span class="l l-Scalar l-Scalar-Plain">https-portal</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">DOMAINS</span><span class="p p-Indicator">:</span> <span class="s">&#39;weblate.example.com</span><span class="nv"> </span><span class="s">-&gt;</span><span class="nv"> </span><span class="s">http://weblate&#39;</span>
+</pre></div>
+</div>
+<p>Whenever invoking <strong class="program">docker-compose</strong> you need to pass both files to it
+then:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker-compose -f docker-compose-https.yml -f docker-compose-https.override.yml build</span>
+<span class="go">docker-compose -f docker-compose-https.yml -f docker-compose-https.override.yml up</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="upgrading-docker-container">
+<h3>Upgrading Docker container<a class="headerlink" href="#upgrading-docker-container" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Usually it is good idea to update the weblate container only and keep the PostgreSQL
+container at version you have as upgrading PostgreSQL is quite painful and in most
+cases it does not bring many benefits.</p>
+<p>You can do this by sticking with existing docker-compose and just pulling
+latest images and restarting:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker-compose stop
+docker-compose pull
+docker-compose up
+</pre></div>
+</div>
+<p>The Weblate database should be automatically migrated on first start and there
+should be no need for additional manual actions.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Upgrades across 3.0 are not supported by Weblate. If you are on 2.x series
+and want to upgrade to 3.x, first upgrade to latest 3.0.1-x (at time of
+writing this it is <code class="docutils literal notranslate"><span class="pre">3.0.1-7</span></code>) image which will do the migration and then
+continue in upgrading to newer versions.</p>
+</div>
+</div>
+<div class="section" id="docker-environment-variables">
+<span id="docker-environment"></span><h3>Docker environment variables<a class="headerlink" href="#docker-environment-variables" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Many of Weblate <a class="reference internal" href="config.html#config"><span class="std std-ref">設定について</span></a> can be set in Docker container using environment variables:</p>
+<div class="section" id="generic-settings">
+<h4>Generic settings<a class="headerlink" href="#generic-settings" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<dl class="envvar">
+<dt id="envvar-WEBLATE_DEBUG">
+<code class="descname">WEBLATE_DEBUG</code><a class="headerlink" href="#envvar-WEBLATE_DEBUG" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Configures Django debug mode using <a class="reference internal" href="install.html#std:setting-DEBUG"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DEBUG</span></code></a>.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_DEBUG=1</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="install.html#production-debug"><span class="std std-ref">Disable debug mode</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_LOGLEVEL">
+<code class="descname">WEBLATE_LOGLEVEL</code><a class="headerlink" href="#envvar-WEBLATE_LOGLEVEL" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Configures verbosity of logging.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_SITE_TITLE">
+<code class="descname">WEBLATE_SITE_TITLE</code><a class="headerlink" href="#envvar-WEBLATE_SITE_TITLE" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Configures site title shown on headings of all pages.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_ADMIN_NAME">
+<code class="descname">WEBLATE_ADMIN_NAME</code><a class="headerlink" href="#envvar-WEBLATE_ADMIN_NAME" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_ADMIN_EMAIL">
+<code class="descname">WEBLATE_ADMIN_EMAIL</code><a class="headerlink" href="#envvar-WEBLATE_ADMIN_EMAIL" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Configures site admins name and email.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_ADMIN_NAME=Weblate Admin</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_ADMIN_EMAIL=noreply@example.com</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="install.html#production-admins"><span class="std std-ref">Properly configure admins</span></a></p>
+</div>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_ADMIN_PASSWORD">
+<code class="descname">WEBLATE_ADMIN_PASSWORD</code><a class="headerlink" href="#envvar-WEBLATE_ADMIN_PASSWORD" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Sets password for admin user. If not set, admin user is created with random
+password printed out on first startup.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 2.9 で変更: </span>Since version 2.9, the admin user is adjusted on every container
+startup to match <span class="target" id="index-1"></span><a class="reference internal" href="#envvar-WEBLATE_ADMIN_PASSWORD"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">WEBLATE_ADMIN_PASSWORD</span></code></a>, <span class="target" id="index-2"></span><a class="reference internal" href="#envvar-WEBLATE_ADMIN_NAME"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">WEBLATE_ADMIN_NAME</span></code></a>
+and <span class="target" id="index-3"></span><a class="reference internal" href="#envvar-WEBLATE_ADMIN_EMAIL"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">WEBLATE_ADMIN_EMAIL</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_SERVER_EMAIL">
+<code class="descname">WEBLATE_SERVER_EMAIL</code><a class="headerlink" href="#envvar-WEBLATE_SERVER_EMAIL" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_DEFAULT_FROM_EMAIL">
+<code class="descname">WEBLATE_DEFAULT_FROM_EMAIL</code><a class="headerlink" href="#envvar-WEBLATE_DEFAULT_FROM_EMAIL" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Configures address for outgoing mails.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="install.html#production-email"><span class="std std-ref">Configure email addresses</span></a></p>
+</div>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_ALLOWED_HOSTS">
+<code class="descname">WEBLATE_ALLOWED_HOSTS</code><a class="headerlink" href="#envvar-WEBLATE_ALLOWED_HOSTS" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Configures allowed HTTP hostnames using <a class="reference internal" href="install.html#std:setting-ALLOWED_HOSTS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">ALLOWED_HOSTS</span></code></a> and sets
+site name to first one.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_ALLOWED_HOSTS=weblate.example.com,example.com</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="install.html#production-hosts"><span class="std std-ref">Allowed hosts setup</span></a>,
+<a class="reference internal" href="install.html#production-site"><span class="std std-ref">Set correct site name</span></a></p>
+</div>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_SECRET_KEY">
+<code class="descname">WEBLATE_SECRET_KEY</code><a class="headerlink" href="#envvar-WEBLATE_SECRET_KEY" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Configures secret used for Django for cookies signing.</p>
+<div class="deprecated">
+<p><span class="versionmodified">バージョン 2.9 で非推奨: </span>The secret is now generated automatically on first startup, there is no
+need to set it manually.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="install.html#production-secret"><span class="std std-ref">Django secret key</span></a></p>
+</div>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_REGISTRATION_OPEN">
+<code class="descname">WEBLATE_REGISTRATION_OPEN</code><a class="headerlink" href="#envvar-WEBLATE_REGISTRATION_OPEN" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Configures whether registrations are open by toggling <a class="reference internal" href="config.html#std:setting-REGISTRATION_OPEN"><code class="xref std std-setting docutils literal notranslate"><span class="pre">REGISTRATION_OPEN</span></code></a>.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_REGISTRATION_OPEN=0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_TIME_ZONE">
+<code class="descname">WEBLATE_TIME_ZONE</code><a class="headerlink" href="#envvar-WEBLATE_TIME_ZONE" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Configures time zone used.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_ENABLE_HTTPS">
+<code class="descname">WEBLATE_ENABLE_HTTPS</code><a class="headerlink" href="#envvar-WEBLATE_ENABLE_HTTPS" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Makes Weblate assume it is operated behind HTTPS reverse proxy, it makes
+Weblate use https in email and API links or set secure flags on cookies.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">This does not make the Weblate container accept https connections, you
+need to use a standalone HTTPS reverse proxy, see <a class="reference internal" href="#docker-ssl"><span class="std std-ref">Docker container with https support</span></a> for
+example.</p>
+</div>
+<p><strong>Example:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_ENABLE_HTTPS=1</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="install.html#production-site"><span class="std std-ref">Set correct site name</span></a></p>
+</div>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_IP_PROXY_HEADER">
+<code class="descname">WEBLATE_IP_PROXY_HEADER</code><a class="headerlink" href="#envvar-WEBLATE_IP_PROXY_HEADER" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Enables Weblate fetching IP address from given HTTP header. Use this when using
+reverse proxy in front of Weblate container.</p>
+<p>Enables <a class="reference internal" href="config.html#std:setting-IP_BEHIND_REVERSE_PROXY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">IP_BEHIND_REVERSE_PROXY</span></code></a> and sets <a class="reference internal" href="config.html#std:setting-IP_PROXY_HEADER"><code class="xref std std-setting docutils literal notranslate"><span class="pre">IP_PROXY_HEADER</span></code></a>.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_IP_PROXY_HEADER=HTTP_X_FORWARDED_FOR</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_REQUIRE_LOGIN">
+<code class="descname">WEBLATE_REQUIRE_LOGIN</code><a class="headerlink" href="#envvar-WEBLATE_REQUIRE_LOGIN" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Configures login required for whole Weblate using <a class="reference internal" href="config.html#std:setting-LOGIN_REQUIRED_URLS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">LOGIN_REQUIRED_URLS</span></code></a>.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_REQUIRE_LOGIN=1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_LOGIN_REQUIRED_URLS_EXCEPTIONS">
+<code class="descname">WEBLATE_LOGIN_REQUIRED_URLS_EXCEPTIONS</code><a class="headerlink" href="#envvar-WEBLATE_LOGIN_REQUIRED_URLS_EXCEPTIONS" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Adds URL exceptions for login required for whole Weblate using <a class="reference internal" href="config.html#std:setting-LOGIN_REQUIRED_URLS_EXCEPTIONS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">LOGIN_REQUIRED_URLS_EXCEPTIONS</span></code></a>.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_GOOGLE_ANALYTICS_ID">
+<code class="descname">WEBLATE_GOOGLE_ANALYTICS_ID</code><a class="headerlink" href="#envvar-WEBLATE_GOOGLE_ANALYTICS_ID" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Configures ID for Google Analytics by changing <a class="reference internal" href="config.html#std:setting-GOOGLE_ANALYTICS_ID"><code class="xref std std-setting docutils literal notranslate"><span class="pre">GOOGLE_ANALYTICS_ID</span></code></a>.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_GITHUB_USERNAME">
+<code class="descname">WEBLATE_GITHUB_USERNAME</code><a class="headerlink" href="#envvar-WEBLATE_GITHUB_USERNAME" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Configures github username for GitHub pull requests by changing
+<a class="reference internal" href="config.html#std:setting-GITHUB_USERNAME"><code class="xref std std-setting docutils literal notranslate"><span class="pre">GITHUB_USERNAME</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../vcs.html#github-push"><span class="std std-ref">Pushing changes to GitHub as pull request</span></a>,
+<a class="reference internal" href="../vcs.html#hub-setup"><span class="std std-ref">Setting up hub</span></a></p>
+</div>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_SIMPLIFY_LANGUAGES">
+<code class="descname">WEBLATE_SIMPLIFY_LANGUAGES</code><a class="headerlink" href="#envvar-WEBLATE_SIMPLIFY_LANGUAGES" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Configures language simplification policy, see <a class="reference internal" href="config.html#std:setting-SIMPLIFY_LANGUAGES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">SIMPLIFY_LANGUAGES</span></code></a>.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_AKISMET_API_KEY">
+<code class="descname">WEBLATE_AKISMET_API_KEY</code><a class="headerlink" href="#envvar-WEBLATE_AKISMET_API_KEY" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Configures Akismet API key, see <a class="reference internal" href="config.html#std:setting-AKISMET_API_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">AKISMET_API_KEY</span></code></a>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="machine-translation-settings">
+<h4>Machine translation settings<a class="headerlink" href="#machine-translation-settings" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<dl class="envvar">
+<dt id="envvar-WEBLATE_MT_DEEPL_KEY">
+<code class="descname">WEBLATE_MT_DEEPL_KEY</code><a class="headerlink" href="#envvar-WEBLATE_MT_DEEPL_KEY" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Enables <a class="reference internal" href="machine.html#deepl"><span class="std std-ref">DeepL</span></a> machine translation and sets <a class="reference internal" href="config.html#std:setting-MT_DEEPL_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_DEEPL_KEY</span></code></a></p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_MT_GOOGLE_KEY">
+<code class="descname">WEBLATE_MT_GOOGLE_KEY</code><a class="headerlink" href="#envvar-WEBLATE_MT_GOOGLE_KEY" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Enables <a class="reference internal" href="machine.html#google-translate"><span class="std std-ref">Google Translate</span></a> and sets <a class="reference internal" href="config.html#std:setting-MT_GOOGLE_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_GOOGLE_KEY</span></code></a></p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_MT_MICROSOFT_COGNITIVE_KEY">
+<code class="descname">WEBLATE_MT_MICROSOFT_COGNITIVE_KEY</code><a class="headerlink" href="#envvar-WEBLATE_MT_MICROSOFT_COGNITIVE_KEY" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Enables <a class="reference internal" href="machine.html#ms-cognitive-translate"><span class="std std-ref">Microsoft Cognitive Services Translator</span></a> and sets <a class="reference internal" href="config.html#std:setting-MT_MICROSOFT_COGNITIVE_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_MICROSOFT_COGNITIVE_KEY</span></code></a></p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_MT_MYMEMORY_ENABLED">
+<code class="descname">WEBLATE_MT_MYMEMORY_ENABLED</code><a class="headerlink" href="#envvar-WEBLATE_MT_MYMEMORY_ENABLED" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Enables <a class="reference internal" href="machine.html#mymemory"><span class="std std-ref">MyMemory</span></a> machine translation and sets
+<a class="reference internal" href="config.html#std:setting-MT_MYMEMORY_EMAIL"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_MYMEMORY_EMAIL</span></code></a> to <span class="target" id="index-4"></span><a class="reference internal" href="#envvar-WEBLATE_ADMIN_EMAIL"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">WEBLATE_ADMIN_EMAIL</span></code></a>.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_MT_GLOSBE_ENABLED">
+<code class="descname">WEBLATE_MT_GLOSBE_ENABLED</code><a class="headerlink" href="#envvar-WEBLATE_MT_GLOSBE_ENABLED" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Enables <a class="reference internal" href="machine.html#glosbe"><span class="std std-ref">Glosbe</span></a> machine translation.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="authentication-settings">
+<h4>Authentication settings<a class="headerlink" href="#authentication-settings" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<dl class="envvar">
+<dt id="envvar-WEBLATE_AUTH_LDAP_SERVER_URI">
+<code class="descname">WEBLATE_AUTH_LDAP_SERVER_URI</code><a class="headerlink" href="#envvar-WEBLATE_AUTH_LDAP_SERVER_URI" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_AUTH_LDAP_USER_DN_TEMPLATE">
+<code class="descname">WEBLATE_AUTH_LDAP_USER_DN_TEMPLATE</code><a class="headerlink" href="#envvar-WEBLATE_AUTH_LDAP_USER_DN_TEMPLATE" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_AUTH_LDAP_USER_ATTR_MAP">
+<code class="descname">WEBLATE_AUTH_LDAP_USER_ATTR_MAP</code><a class="headerlink" href="#envvar-WEBLATE_AUTH_LDAP_USER_ATTR_MAP" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>LDAP authentication configuration.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_AUTH_LDAP_SERVER_URI=ldap://ldap.example.org</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_AUTH_LDAP_USER_DN_TEMPLATE=uid=%(user)s,ou=People,dc=example,dc=net</span>
+  <span class="c1"># map weblate &#39;full_name&#39; to ldap &#39;name&#39; and weblate &#39;email&#39; attribute to &#39;mail&#39; ldap attribute.</span>
+  <span class="c1"># another example that can be used with OpenLDAP: &#39;full_name:cn,email:mail&#39;</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">WEBLATE_AUTH_LDAP_USER_ATTR_MAP=full_name:name,email:mail</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="auth.html#ldap-auth"><span class="std std-ref">LDAP authentication</span></a></p>
+</div>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_SOCIAL_AUTH_GITHUB_KEY">
+<code class="descname">WEBLATE_SOCIAL_AUTH_GITHUB_KEY</code><a class="headerlink" href="#envvar-WEBLATE_SOCIAL_AUTH_GITHUB_KEY" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_SOCIAL_AUTH_GITHUB_SECRET">
+<code class="descname">WEBLATE_SOCIAL_AUTH_GITHUB_SECRET</code><a class="headerlink" href="#envvar-WEBLATE_SOCIAL_AUTH_GITHUB_SECRET" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Enables <a class="reference internal" href="auth.html#github-auth"><span class="std std-ref">GitHub authentication</span></a>.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_SOCIAL_AUTH_BITBUCKET_KEY">
+<code class="descname">WEBLATE_SOCIAL_AUTH_BITBUCKET_KEY</code><a class="headerlink" href="#envvar-WEBLATE_SOCIAL_AUTH_BITBUCKET_KEY" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_SOCIAL_AUTH_BITBUCKET_SECRET">
+<code class="descname">WEBLATE_SOCIAL_AUTH_BITBUCKET_SECRET</code><a class="headerlink" href="#envvar-WEBLATE_SOCIAL_AUTH_BITBUCKET_SECRET" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Enables <a class="reference internal" href="auth.html#bitbucket-auth"><span class="std std-ref">Bitbucket authentication</span></a>.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_SOCIAL_AUTH_FACEBOOK_KEY">
+<code class="descname">WEBLATE_SOCIAL_AUTH_FACEBOOK_KEY</code><a class="headerlink" href="#envvar-WEBLATE_SOCIAL_AUTH_FACEBOOK_KEY" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_SOCIAL_AUTH_FACEBOOK_SECRET">
+<code class="descname">WEBLATE_SOCIAL_AUTH_FACEBOOK_SECRET</code><a class="headerlink" href="#envvar-WEBLATE_SOCIAL_AUTH_FACEBOOK_SECRET" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Enables <a class="reference internal" href="auth.html#facebook-auth"><span class="std std-ref">Facebook OAuth2</span></a>.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY">
+<code class="descname">WEBLATE_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY</code><a class="headerlink" href="#envvar-WEBLATE_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET">
+<code class="descname">WEBLATE_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET</code><a class="headerlink" href="#envvar-WEBLATE_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Enables <a class="reference internal" href="auth.html#google-auth"><span class="std std-ref">Google OAuth2</span></a>.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_SOCIAL_AUTH_GITLAB_KEY">
+<code class="descname">WEBLATE_SOCIAL_AUTH_GITLAB_KEY</code><a class="headerlink" href="#envvar-WEBLATE_SOCIAL_AUTH_GITLAB_KEY" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_SOCIAL_AUTH_GITLAB_SECRET">
+<code class="descname">WEBLATE_SOCIAL_AUTH_GITLAB_SECRET</code><a class="headerlink" href="#envvar-WEBLATE_SOCIAL_AUTH_GITLAB_SECRET" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_SOCIAL_AUTH_GITLAB_API_URL">
+<code class="descname">WEBLATE_SOCIAL_AUTH_GITLAB_API_URL</code><a class="headerlink" href="#envvar-WEBLATE_SOCIAL_AUTH_GITLAB_API_URL" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Enables <a class="reference internal" href="auth.html#gitlab-auth"><span class="std std-ref">GitLab OAuth2</span></a>.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_NO_EMAIL_AUTH">
+<code class="descname">WEBLATE_NO_EMAIL_AUTH</code><a class="headerlink" href="#envvar-WEBLATE_NO_EMAIL_AUTH" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Disabled email authentication when set to any value.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="postgresql-database-setup">
+<h4>PostgreSQL database setup<a class="headerlink" href="#postgresql-database-setup" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>The database is created by <code class="file docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>, so this settings affects
+both Weblate and PostgreSQL containers.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="install.html#database-setup"><span class="std std-ref">Database setup for Weblate</span></a></p>
+</div>
+<dl class="envvar">
+<dt id="envvar-POSTGRES_PASSWORD">
+<code class="descname">POSTGRES_PASSWORD</code><a class="headerlink" href="#envvar-POSTGRES_PASSWORD" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>PostgreSQL password.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-POSTGRES_USER">
+<code class="descname">POSTGRES_USER</code><a class="headerlink" href="#envvar-POSTGRES_USER" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>PostgreSQL username.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-POSTGRES_DATABASE">
+<code class="descname">POSTGRES_DATABASE</code><a class="headerlink" href="#envvar-POSTGRES_DATABASE" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>PostgreSQL database name.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-POSTGRES_HOST">
+<code class="descname">POSTGRES_HOST</code><a class="headerlink" href="#envvar-POSTGRES_HOST" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>PostgreSQL server hostname or IP address. Defaults to <code class="docutils literal notranslate"><span class="pre">database</span></code>.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-POSTGRES_PORT">
+<code class="descname">POSTGRES_PORT</code><a class="headerlink" href="#envvar-POSTGRES_PORT" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>PostgreSQL server port. Default to empty (use default value).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="caching-server-setup">
+<h4>Caching server setup<a class="headerlink" href="#caching-server-setup" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Using redis is strongly recommended by Weblate and you have to provide redis
+instance when running Weblate in Docker. Additionally memcached is supported
+for compatibility with older deployments.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="install.html#production-cache"><span class="std std-ref">Enable caching</span></a></p>
+</div>
+<dl class="envvar">
+<dt id="envvar-REDIS_HOST">
+<code class="descname">REDIS_HOST</code><a class="headerlink" href="#envvar-REDIS_HOST" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>The memcached server hostname or IP address. Defaults to <code class="docutils literal notranslate"><span class="pre">cache</span></code>.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-REDIS_PORT">
+<code class="descname">REDIS_PORT</code><a class="headerlink" href="#envvar-REDIS_PORT" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>The memcached server port. Defaults to <code class="docutils literal notranslate"><span class="pre">6379</span></code>.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-MEMCACHED_HOST">
+<code class="descname">MEMCACHED_HOST</code><a class="headerlink" href="#envvar-MEMCACHED_HOST" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>The memcached server hostname or IP address. Defaults to <code class="docutils literal notranslate"><span class="pre">cache</span></code>.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-MEMCACHED_PORT">
+<code class="descname">MEMCACHED_PORT</code><a class="headerlink" href="#envvar-MEMCACHED_PORT" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>The memcached server port. Defaults to <code class="docutils literal notranslate"><span class="pre">11211</span></code>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="email-server-setup">
+<h4>Email server setup<a class="headerlink" href="#email-server-setup" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>To make outgoing email work, you need to provide mail server.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="install.html#out-mail"><span class="std std-ref">Configuring outgoing mail</span></a></p>
+</div>
+<dl class="envvar">
+<dt id="envvar-WEBLATE_EMAIL_HOST">
+<code class="descname">WEBLATE_EMAIL_HOST</code><a class="headerlink" href="#envvar-WEBLATE_EMAIL_HOST" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Mail server, the server has to listen on port 587 and understand TLS.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-EMAIL_HOST" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">EMAIL_HOST</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_EMAIL_PORT">
+<code class="descname">WEBLATE_EMAIL_PORT</code><a class="headerlink" href="#envvar-WEBLATE_EMAIL_PORT" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Mail server port, use if your cloud provider or ISP blocks outgoing
+connections on port 587.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-EMAIL_PORT" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">EMAIL_PORT</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_EMAIL_HOST_USER">
+<code class="descname">WEBLATE_EMAIL_HOST_USER</code><a class="headerlink" href="#envvar-WEBLATE_EMAIL_HOST_USER" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Email authentication user, do NOT use quotes here.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-EMAIL_HOST_USER" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">EMAIL_HOST_USER</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_EMAIL_HOST_PASSWORD">
+<code class="descname">WEBLATE_EMAIL_HOST_PASSWORD</code><a class="headerlink" href="#envvar-WEBLATE_EMAIL_HOST_PASSWORD" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Email authentication password, do NOT use quotes here.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-EMAIL_HOST_PASSWORD" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">EMAIL_HOST_PASSWORD</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_EMAIL_USE_SSL">
+<code class="descname">WEBLATE_EMAIL_USE_SSL</code><a class="headerlink" href="#envvar-WEBLATE_EMAIL_USE_SSL" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Whether to use an implicit TLS (secure) connection when talking to the SMTP
+server. In most email documentation this type of TLS connection is referred
+to as SSL. It is generally used on port 465. If you are experiencing
+problems, see the explicit TLS setting <span class="target" id="index-5"></span><a class="reference internal" href="#envvar-WEBLATE_EMAIL_USE_TLS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">WEBLATE_EMAIL_USE_TLS</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-EMAIL_USE_SSL" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">EMAIL_USE_SSL</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WEBLATE_EMAIL_USE_TLS">
+<code class="descname">WEBLATE_EMAIL_USE_TLS</code><a class="headerlink" href="#envvar-WEBLATE_EMAIL_USE_TLS" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Whether to use a TLS (secure) connection when talking to the SMTP server.
+This is used for explicit TLS connections, generally on port 587. If you
+are experiencing hanging connections, see the implicit TLS setting
+<span class="target" id="index-6"></span><a class="reference internal" href="#envvar-WEBLATE_EMAIL_USE_SSL"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">WEBLATE_EMAIL_USE_SSL</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-EMAIL_USE_TLS" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">EMAIL_USE_TLS</span></code></a></p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="error-reporting">
+<h4>Error reporting<a class="headerlink" href="#error-reporting" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>It is recommended to collect errors from the installation in systematic way,
+see <a class="reference internal" href="install.html#collecting-errors"><span class="std std-ref">Collecting error reports</span></a>.</p>
+<p>To enable support for Rollbar, set following:</p>
+<dl class="envvar">
+<dt id="envvar-ROLLBAR_KEY">
+<code class="descname">ROLLBAR_KEY</code><a class="headerlink" href="#envvar-ROLLBAR_KEY" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Your Rollbar post server access token.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-ROLLBAR_ENVIRONMENT">
+<code class="descname">ROLLBAR_ENVIRONMENT</code><a class="headerlink" href="#envvar-ROLLBAR_ENVIRONMENT" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Your Rollbar environment, defaults to <code class="docutils literal notranslate"><span class="pre">production</span></code>.</p>
+</dd></dl>
+
+<p>To enable support for Sentry, set following:</p>
+<dl class="envvar">
+<dt id="envvar-SENTRY_DSN">
+<code class="descname">SENTRY_DSN</code><a class="headerlink" href="#envvar-SENTRY_DSN" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Your Sentry DSN.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-SENTRY_PUBLIC_DSN">
+<code class="descname">SENTRY_PUBLIC_DSN</code><a class="headerlink" href="#envvar-SENTRY_PUBLIC_DSN" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Your Sentry public DSN.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-SENTRY_ENVIRONMENT">
+<code class="descname">SENTRY_ENVIRONMENT</code><a class="headerlink" href="#envvar-SENTRY_ENVIRONMENT" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Your Sentry environment, defaults to <code class="docutils literal notranslate"><span class="pre">production</span></code>.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="further-configuration-customization">
+<h3>Further configuration customization<a class="headerlink" href="#further-configuration-customization" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>You can additionally override the configuration by
+<code class="file docutils literal notranslate"><span class="pre">/app/data/settings-override.py</span></code>. This is executed after all environment
+settings are loaded, so it gets complete setup and can be used to customize
+anything.</p>
+</div>
+<div class="section" id="hub-setup">
+<h3>Hub setup<a class="headerlink" href="#hub-setup" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>In order to use the Github pull requests feature, you must initialize hub configuration by entering the weblate container and executing an arbitrary hub command. For example:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker-compose <span class="nb">exec</span> weblate bash
+<span class="nb">cd</span>
+<span class="nv">HOME</span><span class="o">=</span>/app/data/home hub clone octocat/Spoon-Knife
+</pre></div>
+</div>
+<p>The username passed for credentials must be the same as <a class="reference internal" href="config.html#std:setting-GITHUB_USERNAME"><code class="xref std std-setting docutils literal notranslate"><span class="pre">GITHUB_USERNAME</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../vcs.html#github-push"><span class="std std-ref">Pushing changes to GitHub as pull request</span></a>,
+<a class="reference internal" href="../vcs.html#hub-setup"><span class="std std-ref">Setting up hub</span></a></p>
+</div>
+</div>
+<div class="section" id="select-your-machine-local-or-cloud-providers">
+<h3>Select your machine - local or cloud providers<a class="headerlink" href="#select-your-machine-local-or-cloud-providers" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>With docker-machine you can create your Weblate deployment either on your local
+machine or on any large number of cloud-based deployments on e.g. Amazon AWS,
+Digitalocean and many more providers.</p>
+</div>
+</div>
+<div class="section" id="running-weblate-on-openshift-2">
+<span id="openshift"></span><h2>Running Weblate on OpenShift 2<a class="headerlink" href="#running-weblate-on-openshift-2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>This repository contains a configuration for the OpenShift platform as a
+service product, which facilitates easy installation of Weblate on OpenShift
+variants (see <a class="reference external" href="https://www.openshift.com/">https://www.openshift.com/</a> and <a class="reference external" href="https://www.okd.io/">https://www.okd.io/</a>).</p>
+<div class="section" id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">OpenShift Account</p>
+<p>You need an account for OpenShift Online (<a class="reference external" href="https://www.openshift.com/">https://www.openshift.com/</a>) or
+another OpenShift installation you have access to.</p>
+<p>You can register a free account on OpenShift Online, which allows you to
+host up to 3 applications free of charge.</p>
+</li>
+<li><p class="first">OpenShift Client Tools</p>
+<p>In order to follow the examples given in this documentation you need to have
+the OpenShift Client Tools (RHC) installed:
+<a class="reference external" href="https://docs.openshift.com/online/cli_reference/get_started_cli.html">https://docs.openshift.com/online/cli_reference/get_started_cli.html</a></p>
+<p>While there are other possibilities to create and configure OpenShift
+applications, this documentation is based on the OpenShift Client Tools
+(RHC) because they provide a consistent interface for all described
+operations.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>You can install Weblate on OpenShift directly from Weblate's Github repository
+with the following command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install Git HEAD</span>
+rhc -aweblate app create -t python-2.7 --from-code https://github.com/WeblateOrg/weblate.git --no-git
+
+<span class="c1"># Install Weblate 2.10</span>
+rhc -aweblate app create -t python-2.7 --from-code https://github.com/WeblateOrg/weblate.git#weblate-2.10 --no-git
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">-a</span></code> option defines the name of your weblate installation, <code class="docutils literal notranslate"><span class="pre">weblate</span></code> in
+this instance. You are free to specify a different name.</p>
+<p>The above example installs latest development version, you can optionally
+specify tag identifier right of the <code class="docutils literal notranslate"><span class="pre">#</span></code> sign to identify the version of
+Weblate to install. For a list of available versions see here:
+<a class="reference external" href="https://github.com/WeblateOrg/weblate/tags">https://github.com/WeblateOrg/weblate/tags</a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">--no-git</span></code> option skips the creation of a
+local git repository.</p>
+<p>You can also specify which database you want to use:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># For MySQL</span>
+rhc -aweblate app create -t python-2.7 -t mysql-5.5 --from-code https://github.com/WeblateOrg/weblate.git --no-git
+
+<span class="c1"># For PostgreSQL</span>
+rhc -aweblate app create -t python-2.7 -t postgresql-9.2 --from-code https://github.com/WeblateOrg/weblate.git --no-git
+</pre></div>
+</div>
+</div>
+<div class="section" id="default-configuration">
+<h3>Default Configuration<a class="headerlink" href="#default-configuration" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>After installation on OpenShift Weblate is ready to use and preconfigured as follows:</p>
+<ul class="simple">
+<li>SQLite embedded database (<a class="reference internal" href="install.html#std:setting-DATABASES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DATABASES</span></code></a>)</li>
+<li>Random admin password</li>
+<li>Random Django secret key (<a class="reference internal" href="install.html#std:setting-SECRET_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">SECRET_KEY</span></code></a>)</li>
+<li>Committing of pending changes if the cron cartridge is installed (<a class="reference internal" href="management.html#django-admin-commit_pending"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">commit_pending</span></code></a>)</li>
+<li>Weblate machine translations for suggestions bases on previous translations (<a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a>)</li>
+<li>Weblate directories (STATIC_ROOT, <a class="reference internal" href="config.html#std:setting-DATA_DIR"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DATA_DIR</span></code></a>, <a class="reference internal" href="config.html#std:setting-TTF_PATH"><code class="xref std std-setting docutils literal notranslate"><span class="pre">TTF_PATH</span></code></a>, Avatar cache) set according to OpenShift requirements/conventions</li>
+<li>Django site name and ALLOWED_HOSTS set to DNS name of your OpenShift application</li>
+<li>Email sender addresses set to no-reply&#64;&lt;OPENSHIFT_CLOUD_DOMAIN&gt;, where &lt;OPENSHIFT_CLOUD_DOMAIN&gt; is the domain OpenShift runs under. In case of OpenShift Online it's rhcloud.com.</li>
+</ul>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#customize-config"><span class="std std-ref">Customize Weblate Configuration</span></a></p>
+</div>
+<div class="section" id="retrieve-admin-password">
+<h4>Retrieve Admin Password<a class="headerlink" href="#retrieve-admin-password" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>You can retrieve the generated admin password with the following command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rhc -aweblate ssh credentials
+</pre></div>
+</div>
+</div>
+<div class="section" id="indexing-offloading">
+<h4>Indexing Offloading<a class="headerlink" href="#indexing-offloading" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>To enable the preconfigured indexing offloading you need to add the cron cartridge to your application and restart it:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rhc -aweblate add-cartridge cron
+rhc -aweblate app stop
+rhc -aweblate app start
+</pre></div>
+</div>
+<p>The fulltext search index will then be updated every 5 minutes.
+Restarting with <code class="docutils literal notranslate"><span class="pre">rhc</span> <span class="pre">restart</span></code> instead will not enable indexing offloading in Weblate.
+You can verify that indexing offloading is indeed enabled by visiting the URL <code class="docutils literal notranslate"><span class="pre">/admin/performance/</span></code> of your application.</p>
+</div>
+<div class="section" id="pending-changes">
+<h4>Pending Changes<a class="headerlink" href="#pending-changes" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Weblate's OpenShift configuration contains a cron job which periodically commits pending changes older than a certain age (24h by default).
+To enable the cron job you need to add the cron cartridge and restart Weblate as described in the previous section. You can change the age
+parameter by setting the environment variable WEBLATE_PENDING_AGE to the desired number of hours, e.g.:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rhc -aweblate env <span class="nb">set</span> <span class="nv">WEBLATE_PENDING_AGE</span><span class="o">=</span><span class="m">48</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="customize-weblate-configuration">
+<span id="customize-config"></span><h4>Customize Weblate Configuration<a class="headerlink" href="#customize-weblate-configuration" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>You can customize the configuration of your Weblate installation on OpenShift
+through environment variables.  Override any of Weblate's setting documented
+under <a class="reference internal" href="config.html#config"><span class="std std-ref">設定について</span></a> using <code class="docutils literal notranslate"><span class="pre">rhc</span> <span class="pre">env</span> <span class="pre">set</span></code> by prepending the settings name with
+<code class="docutils literal notranslate"><span class="pre">WEBLATE_</span></code>. The variable content is put verbatim to the configuration file,
+so it is parsed as Python string, after replacing environment variables in it
+(eg. <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>). To put literal <code class="docutils literal notranslate"><span class="pre">$</span></code> you need to escape it as <code class="docutils literal notranslate"><span class="pre">$$</span></code>.</p>
+<p>For example override the <a class="reference internal" href="install.html#std:setting-ADMINS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">ADMINS</span></code></a> setting like this:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rhc -aweblate env <span class="nb">set</span> <span class="nv">WEBLATE_ADMINS</span><span class="o">=</span><span class="s1">&#39;((&quot;John Doe&quot;, &quot;jdoe@example.org&quot;),)&#39;</span>
+</pre></div>
+</div>
+<p>To change site title, do not forget to include additional quotes:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rhc -aweblate env <span class="nb">set</span> <span class="nv">WEBLATE_SITE_TITLE</span><span class="o">=</span><span class="s1">&#39;&quot;Custom Title&quot;&#39;</span>
+</pre></div>
+</div>
+<p>New settings will only take effect after restarting Weblate:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rhc -aweblate app stop
+rhc -aweblate app start
+</pre></div>
+</div>
+<p>Restarting using <code class="docutils literal notranslate"><span class="pre">rhc</span> <span class="pre">-aweblate</span> <span class="pre">app</span> <span class="pre">restart</span></code> does not work. For security reasons only constant expressions are allowed as values.
+With the exception of environment variables which can be referenced using <code class="docutils literal notranslate"><span class="pre">${ENV_VAR}</span></code>. For example:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rhc -aweblate env <span class="nb">set</span> <span class="nv">WEBLATE_SCRIPTS</span><span class="o">=</span><span class="s1">&#39;(&quot;${OPENSHIFT_DATA_DIR}/examples/hook-unwrap-po&quot;,)&#39;</span>
+</pre></div>
+</div>
+<p>You can check the effective settings Weblate is using by running:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rhc -aweblate ssh settings
+</pre></div>
+</div>
+<p>This will also print syntax errors in your expressions.
+To reset a setting to its preconfigured value just delete the corresponding environment variable:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rhc -aweblate env <span class="nb">unset</span> WEBLATE_ADMINS
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="config.html#config"><span class="std std-ref">設定について</span></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="updating">
+<h3>Updating<a class="headerlink" href="#updating" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>It is recommended that you try updates on a clone of your Weblate installation before running the actual update.
+To create such a clone run:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rhc -aweblate2 app create --from-app weblate
+</pre></div>
+</div>
+<p>Visit the newly given URL with a browser and wait for the install/update page to disappear.</p>
+<p>You can update your Weblate installation on OpenShift directly from Weblate's github repository by executing:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rhc -aweblate2 ssh update https://github.com/WeblateOrg/weblate.git
+</pre></div>
+</div>
+<p>The identifier right of the <code class="docutils literal notranslate"><span class="pre">#</span></code> sign identifies the version of Weblate to install.
+For a list of available versions see here: <a class="reference external" href="https://github.com/WeblateOrg/weblate/tags">https://github.com/WeblateOrg/weblate/tags</a>.
+Please note that the update process will not work if you modified the git repository of you weblate installation.
+You can force an update by specifying the <code class="docutils literal notranslate"><span class="pre">--force</span></code> option to the update script. However any changes you made to the
+git repository of your installation will be discarded:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rhc -aweblate2 ssh update --force https://github.com/WeblateOrg/weblate.git
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--force</span></code> option is also needed when downgrading to an older version.
+Please note that only version 2.0 and newer can be installed on OpenShift,
+as older versions don't include the necessary configuration files.</p>
+<p>The update script takes care of the following update steps as described under <a class="reference internal" href="upgrade.html#generic-upgrade-instructions"><span class="std std-ref">Generic upgrade instructions</span></a>.</p>
+<ul class="simple">
+<li>Install any new requirements</li>
+<li>manage.py migrate</li>
+<li>manage.py setupgroups --move</li>
+<li>manage.py setuplang</li>
+<li>manage.py rebuild_index --all</li>
+<li>manage.py collectstatic --noinput</li>
+</ul>
+</div>
+</div>
+<div class="section" id="bitnami-weblate-stack">
+<h2>Bitnami Weblate stack<a class="headerlink" href="#bitnami-weblate-stack" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Bitnami provides Weblate stack for many platforms at
+&lt;<a class="reference external" href="https://bitnami.com/stack/weblate">https://bitnami.com/stack/weblate</a>&gt;. The setup will be adjusted during
+installation, see &lt;<a class="reference external" href="https://bitnami.com/stack/weblate/README.txt">https://bitnami.com/stack/weblate/README.txt</a>&gt; for more
+documentation.</p>
+</div>
+<div class="section" id="weblate-in-yunohost">
+<h2>Weblate in YunoHost<a class="headerlink" href="#weblate-in-yunohost" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The self-hosting project <a class="reference external" href="https://yunohost.org/">YunoHost</a> provides a package
+for Weblate. Once you have your YunoHost installation, you may install Weblate
+as any other application. It will provide you a fully working stack with backup
+and restoration, but you may still have to edit your settings file for specific
+usages.</p>
+<p>You may use your administration interface or this button (it will bring you to your server):</p>
+<a class="reference external image-reference" href="https://install-app.yunohost.org/?app=weblate"><img alt="Install Weblate with YunoHost" src="../_images/install-with-yunohost.png" /></a>
+<p>It also is possible to use the command line interface:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>yunohost app install https://github.com/YunoHost-Apps/weblate_ynh
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="upgrade.html" class="btn btn-neutral float-right" title="Upgrading Weblate" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="install.html" class="btn btn-neutral" title="Installation instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

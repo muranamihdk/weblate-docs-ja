@@ -1,0 +1,503 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Optional Weblate modules &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Django admin interface" href="admin.html" />
+    <link rel="prev" title="Component Lists" href="componentlists.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrators guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access.html">Access control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html">翻訳プロジェクト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html">継続的トランスレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks and fixups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html">Machine translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html">Addons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html">Management commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Optional Weblate modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#git-exporter">Git exporter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#billing">Billing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#legal">Legal</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#avatars">Avatars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spam-protection">Spam protection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#signing-git-commits-by-gnupg">Signing Git commits by GnuPG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rate-limiting">Rate limiting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ip-address-for-rate-limiting">IP address for rate limiting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Administrators guide</a> &raquo;</li>
+        
+      <li>Optional Weblate modules</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/admin/optionals.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="optional-weblate-modules">
+<h1>Optional Weblate modules<a class="headerlink" href="#optional-weblate-modules" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Weblate comes with several optional modules which might be useful for your
+setup.</p>
+<div class="section" id="git-exporter">
+<span id="id1"></span><h2>Git exporter<a class="headerlink" href="#git-exporter" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.10 で追加.</span></p>
+</div>
+<p>The Git exporter provides you read only access to the underlying Git repository
+using HTTP.</p>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>To install, simply add <code class="docutils literal notranslate"><span class="pre">weblate.gitexport</span></code> to installed applications in
+<code class="file docutils literal notranslate"><span class="pre">settings.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">+=</span> <span class="p">(</span>
+    <span class="s1">&#39;weblate.gitexport&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>After installing, you need to migrate your database so that existing
+repositories are properly exported:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py migrate
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The module automatically hooks into Weblate and sets exported repository URL in
+the <a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a>.
+The repositories are accessible under <code class="docutils literal notranslate"><span class="pre">/git/</span></code> path of the Weblate, for example
+<code class="docutils literal notranslate"><span class="pre">https://example.org/git/weblate/master/</span></code>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone <span class="s1">&#39;https://example.org/git/weblate/master/&#39;</span>
+</pre></div>
+</div>
+<p>Repositories are available anonymously unless <a class="reference internal" href="access.html#acl"><span class="std std-ref">Per project access control</span></a> is enabled. In that
+case you need to authenticate using your API token (you can obtain it in your
+<a class="reference internal" href="../user/profile.html#user-profile"><span class="std std-ref">User profile</span></a>):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone <span class="s1">&#39;https://user:KEY@example.org/git/weblate/master/&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="billing">
+<span id="id2"></span><h2>Billing<a class="headerlink" href="#billing" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.4 で追加.</span></p>
+</div>
+<p>Billing module is used on <a class="reference external" href="https://weblate.org/hosting/">Hosted Weblate</a>
+and is used to define billing plans, track invoices and usage limits.</p>
+<div class="section" id="id3">
+<h3>Installation<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>To install, simply add <code class="docutils literal notranslate"><span class="pre">weblate.billing</span></code> to installed applications in
+<code class="file docutils literal notranslate"><span class="pre">settings.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">+=</span> <span class="p">(</span>
+    <span class="s1">&#39;weblate.billing&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This module includes additional database structures, to have them installed you
+should run the database migration:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py migrate
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>Usage<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>After installation you can control billing in the admin interface. Users with
+billing enabled will get new <span class="guilabel">Billing</span> tab in their
+<a class="reference internal" href="../user/profile.html#user-profile"><span class="std std-ref">User profile</span></a>.</p>
+<p>The billing module additionally allows project admins to create new projects
+and components without being superusers (see <a class="reference internal" href="projects.html#adding-projects"><span class="std std-ref">翻訳プロジェクトとコンポーネントを追加する</span></a>). This is
+possible when following conditions are met:</p>
+<ul class="simple">
+<li>The billing is in it's configured limits (any overusage results in blocking
+of project/component creation) and paid (if it's price is non zero)</li>
+<li>The user is admin of existing project with billing or user is owner of
+billing (the latter is necessary when creating new billing for users to be
+able to import new projects).</li>
+</ul>
+<p>Upon project creation user is able to choose which billing should be charged
+for the project in case he has access to more of them.</p>
+</div>
+</div>
+<div class="section" id="legal">
+<span id="id5"></span><h2>Legal<a class="headerlink" href="#legal" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.15 で追加.</span></p>
+</div>
+<p>Legal module is used on <a class="reference external" href="https://weblate.org/hosting/">Hosted Weblate</a>
+and is used to provide required legal documents. It comes with blank documents
+and you are expected to provide following templates with the documents:</p>
+<dl class="docutils">
+<dt><code class="file docutils literal notranslate"><span class="pre">legal/documents/tos.html</span></code></dt>
+<dd>Terms of service document</dd>
+<dt><code class="file docutils literal notranslate"><span class="pre">legal/documents/privacy.html</span></code></dt>
+<dd>Privacy policy document</dd>
+<dt><code class="file docutils literal notranslate"><span class="pre">legal/documents/summary.html</span></code></dt>
+<dd>Short overview of terms of service and privacy policy</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>You can find legal documents for the Hosted Weblate service in separate Git repository
+&lt;<a class="reference external" href="https://github.com/WeblateOrg/hosted/tree/master/wlhosted/templates/legal/documents">https://github.com/WeblateOrg/hosted/tree/master/wlhosted/templates/legal/documents</a>&gt;.</p>
+<p class="last">Most likely these will not be directly usable for you, but you might want
+to use them as a starting point and adjust them to match your use case.</p>
+</div>
+<div class="section" id="id7">
+<h3>Installation<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>To install, simply add <code class="docutils literal notranslate"><span class="pre">weblate.legal</span></code> to installed applications in
+<code class="file docutils literal notranslate"><span class="pre">settings.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">+=</span> <span class="p">(</span>
+    <span class="s1">&#39;weblate.legal&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Optionals:</span>
+
+<span class="c1"># Social auth pipeline to confirm TOS on registration/login</span>
+<span class="n">SOCIAL_AUTH_PIPELINE</span> <span class="o">+=</span> <span class="p">(</span>
+    <span class="s1">&#39;weblate.legal.pipeline.tos_confirm&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Middleware to enforce TOS confirmation of logged in users</span>
+<span class="n">MIDDLEWARE</span> <span class="o">+=</span> <span class="p">[</span>
+    <span class="s1">&#39;weblate.legal.middleware.RequireTOSMiddleware&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>This module includes additional database structures, to have them installed you
+should run the database migration:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py migrate
+</pre></div>
+</div>
+<p>Now you should edit the legal documents to match your service. You can
+find them in the <code class="file docutils literal notranslate"><span class="pre">weblate/legal/templates/legal/</span></code> folder.</p>
+</div>
+<div class="section" id="id8">
+<h3>Usage<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>After installation the legal documents are shown in Weblate UI.</p>
+</div>
+</div>
+<div class="section" id="avatars">
+<span id="id9"></span><h2>Avatars<a class="headerlink" href="#avatars" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblate comes with built in support for showing user avatars based on emails.
+This can be disabled using <a class="reference internal" href="config.html#std:setting-ENABLE_AVATARS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">ENABLE_AVATARS</span></code></a>. The avatars are
+downloaded and cached server side to reduce information leaks to the sites
+serving them.</p>
+<p>Weblate currently supports single backend:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://gravatar.com/">Gravatar</a></li>
+</ul>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="install.html#production-cache-avatar"><span class="std std-ref">Avatar caching</span></a>,
+<a class="reference internal" href="config.html#std:setting-AVATAR_URL_PREFIX"><code class="xref std std-setting docutils literal notranslate"><span class="pre">AVATAR_URL_PREFIX</span></code></a>,
+<a class="reference internal" href="config.html#std:setting-ENABLE_AVATARS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">ENABLE_AVATARS</span></code></a></p>
+</div>
+</div>
+<div class="section" id="spam-protection">
+<h2>Spam protection<a class="headerlink" href="#spam-protection" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Optionally Weblate can be protected against suggestion spamming by
+unauthenticated users through <a class="reference external" href="https://akismet.com/">akismet.com</a>
+service.</p>
+<p>To enable this, you need to install <cite>akismet</cite> Python module and configure
+Akismet API key.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="config.html#std:setting-AKISMET_API_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">AKISMET_API_KEY</span></code></a></p>
+</div>
+</div>
+<div class="section" id="signing-git-commits-by-gnupg">
+<span id="gpg-sign"></span><h2>Signing Git commits by GnuPG<a class="headerlink" href="#signing-git-commits-by-gnupg" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.1 で追加.</span></p>
+</div>
+<p>Weblate allows you to sign all commits by it's GnuPG key. To configure this,
+you need to enable <a class="reference internal" href="config.html#std:setting-WEBLATE_GPG_IDENTITY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">WEBLATE_GPG_IDENTITY</span></code></a>. Weblate will generate GnuPG
+key when needed and will use it to sign all translation commits.</p>
+<p>This feature needs GnuPG 2.1 or newer installed.</p>
+<p>You can find the key in the <a class="reference internal" href="config.html#std:setting-DATA_DIR"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DATA_DIR</span></code></a> and the public key is shown on
+the about page:</p>
+<img alt="../_images/about-gpg.png" src="../_images/about-gpg.png" />
+<p>Alternatively you can also import existing keys into Weblate, just set
+<code class="docutils literal notranslate"><span class="pre">HOME=$DATA_DIR/home</span></code> when invoking gpg.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="config.html#std:setting-WEBLATE_GPG_IDENTITY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">WEBLATE_GPG_IDENTITY</span></code></a></p>
+</div>
+</div>
+<div class="section" id="rate-limiting">
+<span id="rate-limit"></span><h2>Rate limiting<a class="headerlink" href="#rate-limiting" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 3.2 で変更: </span>The rate limiting now accepts more fine grained configuration.</p>
+</div>
+<p>Several operations in Weblate are rate limited. At most
+<a class="reference internal" href="config.html#std:setting-RATELIMIT_ATTEMPTS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">RATELIMIT_ATTEMPTS</span></code></a> attempts are allowed within
+<a class="reference internal" href="config.html#std:setting-RATELIMIT_WINDOW"><code class="xref std std-setting docutils literal notranslate"><span class="pre">RATELIMIT_WINDOW</span></code></a> seconds. The user is then blocked
+for <a class="reference internal" href="config.html#std:setting-RATELIMIT_LOCKOUT"><code class="xref std std-setting docutils literal notranslate"><span class="pre">RATELIMIT_LOCKOUT</span></code></a>. There are also per scope variants of those
+settings, eg. <cite>RATELIMIT_CONTACT_ATTEMPTS</cite>, see scopes below.</p>
+<p>Following operations are subject to rate limiting:</p>
+<ul class="simple">
+<li>Registration (<cite>REGISTRATION</cite> scope)</li>
+<li>Sending message to admins (<cite>MESSAGE</cite> scope)</li>
+<li>Password authentication on login (<cite>LOGIN</cite> scope)</li>
+<li>Sitewide search (<cite>SEARCH</cite> scope)</li>
+</ul>
+<p>Additionally if there are more than <a class="reference internal" href="config.html#std:setting-AUTH_LOCK_ATTEMPTS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">AUTH_LOCK_ATTEMPTS</span></code></a> failed
+authentication attempts on one account, this account password authentication is
+disabled and it's not possible to login until user asks for password reset.</p>
+<div class="section" id="ip-address-for-rate-limiting">
+<span id="rate-ip"></span><h3>IP address for rate limiting<a class="headerlink" href="#ip-address-for-rate-limiting" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The rate limiting is based on client IP address. This is obtained from HTTP
+headers and you will have to change configuration in the event Weblate is running
+behind reverse proxy to work it properly.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="config.html#std:setting-IP_BEHIND_REVERSE_PROXY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">IP_BEHIND_REVERSE_PROXY</span></code></a>,
+<a class="reference internal" href="config.html#std:setting-IP_PROXY_HEADER"><code class="xref std std-setting docutils literal notranslate"><span class="pre">IP_PROXY_HEADER</span></code></a>,
+<a class="reference internal" href="config.html#std:setting-IP_PROXY_OFFSET"><code class="xref std std-setting docutils literal notranslate"><span class="pre">IP_PROXY_OFFSET</span></code></a></p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="admin.html" class="btn btn-neutral float-right" title="Django admin interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="componentlists.html" class="btn btn-neutral" title="Component Lists" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

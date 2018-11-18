@@ -1,0 +1,1281 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>設定について &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Sample configuration" href="sample.html" />
+    <link rel="prev" title="Translation Memory" href="memory.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrators guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access.html">Access control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html">翻訳プロジェクト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html">継続的トランスレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks and fixups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html">Machine translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html">Addons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">設定について</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#akismet-api-key">AKISMET_API_KEY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#anonymous-user-name">ANONYMOUS_USER_NAME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auth-lock-attempts">AUTH_LOCK_ATTEMPTS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auto-update">AUTO_UPDATE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#avatar-url-prefix">AVATAR_URL_PREFIX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ratelimit-attempts">RATELIMIT_ATTEMPTS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ratelimit-window">RATELIMIT_WINDOW</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ratelimit-lockout">RATELIMIT_LOCKOUT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auth-token-valid">AUTH_TOKEN_VALID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auth-password-days">AUTH_PASSWORD_DAYS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auto-lock">AUTO_LOCK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auto-lock-time">AUTO_LOCK_TIME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#autofix-list">AUTOFIX_LIST</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#base-dir">BASE_DIR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-list">CHECK_LIST</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#commit-pending-hours">COMMIT_PENDING_HOURS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-dir">DATA_DIR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-access-control">DEFAULT_ACCESS_CONTROL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-commiter-email">DEFAULT_COMMITER_EMAIL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-commiter-name">DEFAULT_COMMITER_NAME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-translation-propagation">DEFAULT_TRANSLATION_PROPAGATION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-pull-message">DEFAULT_PULL_MESSAGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enable-avatars">ENABLE_AVATARS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enable-hooks">ENABLE_HOOKS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enable-https">ENABLE_HTTPS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enable-sharing">ENABLE_SHARING</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#git-root">GIT_ROOT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#github-username">GITHUB_USERNAME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#google-analytics-id">GOOGLE_ANALYTICS_ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hide-repo-credentials">HIDE_REPO_CREDENTIALS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip-behind-reverse-proxy">IP_BEHIND_REVERSE_PROXY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip-proxy-header">IP_PROXY_HEADER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip-proxy-offset">IP_PROXY_OFFSET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lazy-commits">LAZY_COMMITS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lock-time">LOCK_TIME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#login-required-urls">LOGIN_REQUIRED_URLS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#login-required-urls-exceptions">LOGIN_REQUIRED_URLS_EXCEPTIONS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-services">MT_SERVICES</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-apertium-apy">MT_APERTIUM_APY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-aws-access-key-id">MT_AWS_ACCESS_KEY_ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-aws-secret-access-key">MT_AWS_SECRET_ACCESS_KEY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-aws-region">MT_AWS_REGION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-baidu-id">MT_BAIDU_ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-baidu-secret">MT_BAIDU_SECRET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-deepl-key">MT_DEEPL_KEY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-google-key">MT_GOOGLE_KEY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-microsoft-cognitive-key">MT_MICROSOFT_COGNITIVE_KEY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-mymemory-email">MT_MYMEMORY_EMAIL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-mymemory-key">MT_MYMEMORY_KEY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-mymemory-user">MT_MYMEMORY_USER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-netease-key">MT_NETEASE_KEY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-netease-secret">MT_NETEASE_SECRET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-tmserver">MT_TMSERVER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-yandex-key">MT_YANDEX_KEY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-youdao-id">MT_YOUDAO_ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-youdao-secret">MT_YOUDAO_SECRET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-sap-base-url">MT_SAP_BASE_URL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-sap-sandbox-apikey">MT_SAP_SANDBOX_APIKEY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-sap-username">MT_SAP_USERNAME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-sap-password">MT_SAP_PASSWORD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mt-sap-use-mt">MT_SAP_USE_MT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nearby-messages">NEARBY_MESSAGES</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#piwik-site-id">PIWIK_SITE_ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#piwik-url">PIWIK_URL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#registration-captcha">REGISTRATION_CAPTCHA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#registration-email-match">REGISTRATION_EMAIL_MATCH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#registration-open">REGISTRATION_OPEN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simplify-languages">SIMPLIFY_LANGUAGES</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#site-title">SITE_TITLE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#special-chars">SPECIAL_CHARS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#status-url">STATUS_URL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#suggestion-cleanup-days">SUGGESTION_CLEANUP_DAYS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ttf-path">TTF_PATH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#url-prefix">URL_PREFIX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#weblate-addons">WEBLATE_ADDONS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#weblate-formats">WEBLATE_FORMATS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#weblate-gpg-identity">WEBLATE_GPG_IDENTITY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#whoosh-index">WHOOSH_INDEX</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html">Management commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Administrators guide</a> &raquo;</li>
+        
+      <li>設定について</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/admin/config.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configuration">
+<span id="config"></span><h1>設定について<a class="headerlink" href="#configuration" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>All settings are stored in <code class="file docutils literal notranslate"><span class="pre">settings.py</span></code> (as usual for Django).</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">After changing any of these settings, you need to restart Weblate. In case
+it is run as mod_wsgi, you need to restart Apache to reload the
+configuration.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">Please also check <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/" title="(in Django v2.1)"><span class="xref std std-doc">Django's documentation</span></a> for
+parameters which configure Django itself.</p>
+</div>
+<div class="section" id="akismet-api-key">
+<span id="std:setting-AKISMET_API_KEY"></span><h2>AKISMET_API_KEY<a class="headerlink" href="#akismet-api-key" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblate can use Akismet to check incoming anonymous suggestions for spam.
+Visit <a class="reference external" href="https://akismet.com/">akismet.com</a> to purchase an API key
+and associate it with a site.</p>
+</div>
+<div class="section" id="anonymous-user-name">
+<span id="std:setting-ANONYMOUS_USER_NAME"></span><h2>ANONYMOUS_USER_NAME<a class="headerlink" href="#anonymous-user-name" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>User name of user for defining privileges of not logged in user.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="access.html#privileges"><span class="std std-ref">Access control</span></a></p>
+</div>
+</div>
+<div class="section" id="auth-lock-attempts">
+<span id="std:setting-AUTH_LOCK_ATTEMPTS"></span><h2>AUTH_LOCK_ATTEMPTS<a class="headerlink" href="#auth-lock-attempts" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.14 で追加.</span></p>
+</div>
+<p>Maximum number of failed authentication attempts before rate limiting is applied.</p>
+<p>This is currently applied in the following locations:</p>
+<ul class="simple">
+<li>On login, the account password is reset. User will not be able to log in
+after that using password until he asks for password reset.</li>
+<li>On password reset, the reset mails are no longer sent. This avoids spamming
+user with too many password reset attempts.</li>
+</ul>
+<p>Defaults to 10.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">Rate limiting</span></a>,</p>
+</div>
+</div>
+<div class="section" id="auto-update">
+<span id="std:setting-AUTO_UPDATE"></span><h2>AUTO_UPDATE<a class="headerlink" href="#auto-update" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.2 で追加.</span></p>
+</div>
+<p>Automatically update all repositories on daily basis. This can be useful if you
+do not use <a class="reference internal" href="../api.html#hooks"><span class="std std-ref">Notification hooks</span></a> to update Weblate repositories automatically.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">This requires <a class="reference internal" href="install.html#celery"><span class="std std-ref">Background tasks using Celery</span></a> working and you will have to restart celery for
+this setting to take effect.</p>
+</div>
+</div>
+<div class="section" id="avatar-url-prefix">
+<span id="std:setting-AVATAR_URL_PREFIX"></span><h2>AVATAR_URL_PREFIX<a class="headerlink" href="#avatar-url-prefix" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Prefix for constructing avatar URLs. The URL will be constructed like:
+<code class="docutils literal notranslate"><span class="pre">${AVATAR_URL_PREFIX}/avatar/${MAIL_HASH}?${PARAMS}</span></code>. Following services are
+known to work:</p>
+<dl class="docutils">
+<dt>Gravatar (default), see <a class="reference external" href="https://gravatar.com/">https://gravatar.com/</a></dt>
+<dd><code class="docutils literal notranslate"><span class="pre">AVATAR_URL_PREFIX</span> <span class="pre">=</span> <span class="pre">'https://www.gravatar.com/'</span></code></dd>
+<dt>Libravatar, see <a class="reference external" href="https://www.libravatar.org/">https://www.libravatar.org/</a></dt>
+<dd><code class="docutils literal notranslate"><span class="pre">AVATAR_URL_PREFIX</span> <span class="pre">=</span> <span class="pre">'https://seccdn.libravatar.org/'</span></code></dd>
+</dl>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="install.html#production-cache-avatar"><span class="std std-ref">Avatar caching</span></a>,
+<a class="reference internal" href="#std:setting-ENABLE_AVATARS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">ENABLE_AVATARS</span></code></a>,
+<a class="reference internal" href="optionals.html#avatars"><span class="std std-ref">Avatars</span></a></p>
+</div>
+</div>
+<div class="section" id="ratelimit-attempts">
+<span id="std:setting-RATELIMIT_ATTEMPTS"></span><h2>RATELIMIT_ATTEMPTS<a class="headerlink" href="#ratelimit-attempts" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.2 で追加.</span></p>
+</div>
+<p>Maximum number of authentication attempts before rate limiting applies.</p>
+<p>Defaults to 5.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">Rate limiting</span></a>,
+<a class="reference internal" href="#std:setting-RATELIMIT_WINDOW"><code class="xref std std-setting docutils literal notranslate"><span class="pre">RATELIMIT_WINDOW</span></code></a>,
+<a class="reference internal" href="#std:setting-RATELIMIT_LOCKOUT"><code class="xref std std-setting docutils literal notranslate"><span class="pre">RATELIMIT_LOCKOUT</span></code></a></p>
+</div>
+</div>
+<div class="section" id="ratelimit-window">
+<span id="std:setting-RATELIMIT_WINDOW"></span><h2>RATELIMIT_WINDOW<a class="headerlink" href="#ratelimit-window" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.2 で追加.</span></p>
+</div>
+<p>Length of authentication window for rate limiting in seconds.</p>
+<p>Defaults to 300 (5 minutes).</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">Rate limiting</span></a>,
+<a class="reference internal" href="#std:setting-RATELIMIT_ATTEMPTS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">RATELIMIT_ATTEMPTS</span></code></a>,
+<a class="reference internal" href="#std:setting-RATELIMIT_LOCKOUT"><code class="xref std std-setting docutils literal notranslate"><span class="pre">RATELIMIT_LOCKOUT</span></code></a></p>
+</div>
+</div>
+<div class="section" id="ratelimit-lockout">
+<span id="std:setting-RATELIMIT_LOCKOUT"></span><h2>RATELIMIT_LOCKOUT<a class="headerlink" href="#ratelimit-lockout" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.2 で追加.</span></p>
+</div>
+<p>Length of authentication lockout window after rate limit is applied.</p>
+<p>Defaults to 600 (10 minutes).</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">Rate limiting</span></a>,
+<a class="reference internal" href="#std:setting-RATELIMIT_ATTEMPTS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">RATELIMIT_ATTEMPTS</span></code></a>,
+<a class="reference internal" href="#std:setting-RATELIMIT_WINDOW"><code class="xref std std-setting docutils literal notranslate"><span class="pre">RATELIMIT_WINDOW</span></code></a></p>
+</div>
+</div>
+<div class="section" id="auth-token-valid">
+<span id="std:setting-AUTH_TOKEN_VALID"></span><h2>AUTH_TOKEN_VALID<a class="headerlink" href="#auth-token-valid" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.14 で追加.</span></p>
+</div>
+<p>Validity of token in activation and password reset mails in seconds.</p>
+<p>Defaults to 3600 (1 hour).</p>
+</div>
+<div class="section" id="auth-password-days">
+<h2>AUTH_PASSWORD_DAYS<a class="headerlink" href="#auth-password-days" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.15 で追加.</span></p>
+</div>
+<p>Define (in days) how long in past Weblate should reject reusing same password.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Password changes done prior to Weblate 2.15 will not be accounted for this
+policy, it is valid only</p>
+</div>
+<p>Defaults to 180 days.</p>
+</div>
+<div class="section" id="auto-lock">
+<span id="std:setting-AUTO_LOCK"></span><h2>AUTO_LOCK<a class="headerlink" href="#auto-lock" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="deprecated">
+<p><span class="versionmodified">バージョン 2.18 で非推奨.</span></p>
+</div>
+<p>Enables automatic locking of translation when somebody is working on it.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="translating.html#locking"><span class="std std-ref">Translation locking</span></a></p>
+</div>
+</div>
+<div class="section" id="auto-lock-time">
+<span id="std:setting-AUTO_LOCK_TIME"></span><h2>AUTO_LOCK_TIME<a class="headerlink" href="#auto-lock-time" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="deprecated">
+<p><span class="versionmodified">バージョン 2.18 で非推奨.</span></p>
+</div>
+<p>Time in seconds for how long the automatic lock for translation will be active.
+Defaults to 60 seconds.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="translating.html#locking"><span class="std std-ref">Translation locking</span></a></p>
+</div>
+</div>
+<div class="section" id="autofix-list">
+<span id="std:setting-AUTOFIX_LIST"></span><h2>AUTOFIX_LIST<a class="headerlink" href="#autofix-list" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>List of automatic fixups to apply when saving the message.</p>
+<p>You need to provide a fully-qualified path to the Python class implementing the
+autofixer interface.</p>
+<p>Available fixes:</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">weblate.trans.autofixes.whitespace.SameBookendingWhitespace</span></code></dt>
+<dd>Fixes up whitespace in beginning and end of the string to match source.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">weblate.trans.autofixes.chars.ReplaceTrailingDotsWithEllipsis</span></code></dt>
+<dd>Replaces trailing dots with ellipsis if source string has it.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">weblate.trans.autofixes.chars.RemoveZeroSpace</span></code></dt>
+<dd>Removes zero width space char if source does not contain it.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">weblate.trans.autofixes.chars.RemoveControlCharS</span></code></dt>
+<dd>Removes control characters if source does not contain it.</dd>
+</dl>
+<p>For example you can enable only few of them:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUTOFIX_LIST</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;weblate.trans.autofixes.whitespace.SameBookendingWhitespace&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.trans.autofixes.chars.ReplaceTrailingDotsWithEllipsis&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../user/checks.html#autofix"><span class="std std-ref">Automatic fixups</span></a>, <a class="reference internal" href="checks.html#custom-autofix"><span class="std std-ref">Custom automatic fixups</span></a></p>
+</div>
+</div>
+<div class="section" id="base-dir">
+<span id="std:setting-BASE_DIR"></span><h2>BASE_DIR<a class="headerlink" href="#base-dir" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Base directory where Weblate sources are located. This is used to derive
+several other paths by default:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#std:setting-DATA_DIR"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DATA_DIR</span></code></a></li>
+<li><a class="reference internal" href="#std:setting-TTF_PATH"><code class="xref std std-setting docutils literal notranslate"><span class="pre">TTF_PATH</span></code></a></li>
+</ul>
+<p>Default value: Top level directory of Weblate sources.</p>
+</div>
+<div class="section" id="check-list">
+<span id="std:setting-CHECK_LIST"></span><h2>CHECK_LIST<a class="headerlink" href="#check-list" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>List of quality checks to perform on translation.</p>
+<p>You need to provide a fully-qualified path to the Python class implementing the check
+interface.</p>
+<p>Some of the checks are not useful for all projects, so you are welcome to
+adjust the list list of checks to be performed on your installation.</p>
+<p>For example you can enable only few of them:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CHECK_LIST</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;weblate.checks.same.SameCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.chars.BeginNewlineCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.chars.EndNewlineCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.chars.BeginSpaceCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.chars.EndSpaceCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.chars.EndStopCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.chars.EndColonCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.chars.EndQuestionCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.chars.EndExclamationCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.chars.EndEllipsisCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.chars.EndSemicolonCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.chars.MaxLengthCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.format.PythonFormatCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.format.PythonBraceFormatCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.format.PHPFormatCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.format.CFormatCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.format.PerlFormatCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.format.JavascriptFormatCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.format.CSharpFormatCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.format.JavaFormatCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.consistency.SamePluralsCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.consistency.PluralsCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.consistency.ConsistencyCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.consistency.TranslatedCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.chars.NewlineCountingCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.markup.BBCodeCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.chars.ZeroWidthSpaceCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.markup.XMLTagsCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.source.OptionalPluralCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.source.EllipsisCheck&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks.source.MultipleFailingCheck&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Once you change this setting the existing checks will still be stored in
+the database, only newly changed translations will be affected by the
+change. To apply the change to the stored translations, you need to run
+<a class="reference internal" href="management.html#django-admin-updatechecks"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">updatechecks</span></code></a>.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../user/checks.html#checks"><span class="std std-ref">Quality checks</span></a>, <a class="reference internal" href="checks.html#custom-checks"><span class="std std-ref">Customizing behavior</span></a></p>
+</div>
+</div>
+<div class="section" id="commit-pending-hours">
+<span id="std:setting-COMMIT_PENDING_HOURS"></span><h2>COMMIT_PENDING_HOURS<a class="headerlink" href="#commit-pending-hours" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.10 で追加.</span></p>
+</div>
+<p>Default interval for committing pending changes using <a class="reference internal" href="management.html#django-admin-commit_pending"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">commit_pending</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="install.html#production-cron"><span class="std std-ref">Running maintenance tasks</span></a>,
+<a class="reference internal" href="management.html#django-admin-commit_pending"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">commit_pending</span></code></a></p>
+</div>
+</div>
+<div class="section" id="data-dir">
+<span id="std:setting-DATA_DIR"></span><h2>DATA_DIR<a class="headerlink" href="#data-dir" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.1 で追加: </span>In previous versions the directories were configured separately as
+<a class="reference internal" href="#std:setting-GIT_ROOT"><code class="xref std std-setting docutils literal notranslate"><span class="pre">GIT_ROOT</span></code></a> and <a class="reference internal" href="#std:setting-WHOOSH_INDEX"><code class="xref std std-setting docutils literal notranslate"><span class="pre">WHOOSH_INDEX</span></code></a>.</p>
+</div>
+<p>Directory where Weblate stores all data. This consists of VCS repositories,
+fulltext index and various configuration files for external tools.</p>
+<p>The following subdirectories usually exist:</p>
+<dl class="docutils">
+<dt><code class="file docutils literal notranslate"><span class="pre">home</span></code></dt>
+<dd>Home directory used for invoking scripts.</dd>
+<dt><code class="file docutils literal notranslate"><span class="pre">ssh</span></code></dt>
+<dd>SSH keys and configuration.</dd>
+<dt><code class="file docutils literal notranslate"><span class="pre">static</span></code></dt>
+<dd>Default location for Django static files, specified by <code class="docutils literal notranslate"><span class="pre">STATIC_ROOT</span></code>.</dd>
+<dt><code class="file docutils literal notranslate"><span class="pre">media</span></code></dt>
+<dd>Default location for Django media files, specified by <code class="docutils literal notranslate"><span class="pre">MEDIA_ROOT</span></code>.</dd>
+<dt><code class="file docutils literal notranslate"><span class="pre">memory</span></code></dt>
+<dd>Translation memory data using Whoosh engine (see <a class="reference internal" href="memory.html#translation-memory"><span class="std std-ref">Translation Memory</span></a>).</dd>
+<dt><code class="file docutils literal notranslate"><span class="pre">vcs</span></code></dt>
+<dd>Version control repositories.</dd>
+<dt><code class="file docutils literal notranslate"><span class="pre">whoosh</span></code></dt>
+<dd>Fulltext search index using Whoosh engine.</dd>
+<dt><code class="file docutils literal notranslate"><span class="pre">backups</span></code></dt>
+<dd>Dump of data in daily backups, see <a class="reference internal" href="backup.html#backup-dumps"><span class="std std-ref">Dumped data for backups</span></a>.</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>This directory has to be writable by Weblate. If you are running Weblate as
+uwsgi this means that it should be writable by the <code class="docutils literal notranslate"><span class="pre">www-data</span></code> user.</p>
+<p>The easiest way to achieve is to make the user own the directory:</p>
+<div class="last highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo chown www-data:www-data -R <span class="nv">$DATA_DIR</span>
+</pre></div>
+</div>
+</div>
+<p>Defaults to <code class="docutils literal notranslate"><span class="pre">$BASE_DIR/data</span></code>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#std:setting-BASE_DIR"><code class="xref std std-setting docutils literal notranslate"><span class="pre">BASE_DIR</span></code></a>,
+<a class="reference internal" href="backup.html"><span class="doc">Backing up and moving Weblate</span></a></p>
+</div>
+</div>
+<div class="section" id="default-access-control">
+<span id="std:setting-DEFAULT_ACCESS_CONTROL"></span><h2>DEFAULT_ACCESS_CONTROL<a class="headerlink" href="#default-access-control" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.3 で追加.</span></p>
+</div>
+<p>Choose default access control when creating new project, possible values are currently:</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">0</span></code></dt>
+<dd><span class="guilabel">Public</span></dd>
+<dt><code class="docutils literal notranslate"><span class="pre">1</span></code></dt>
+<dd><span class="guilabel">Protected</span></dd>
+<dt><code class="docutils literal notranslate"><span class="pre">100</span></code></dt>
+<dd><span class="guilabel">Private</span></dd>
+<dt><code class="docutils literal notranslate"><span class="pre">200</span></code></dt>
+<dd><span class="guilabel">Custom</span></dd>
+</dl>
+<p>Use <span class="guilabel">Custom</span> if you are going to manage ACL manually and do not want
+to rely on Weblate internal management.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="access.html#acl"><span class="std std-ref">Per project access control</span></a>,
+<a class="reference internal" href="access.html#privileges"><span class="std std-ref">Access control</span></a></p>
+</div>
+</div>
+<div class="section" id="default-commiter-email">
+<span id="std:setting-DEFAULT_COMMITER_EMAIL"></span><h2>DEFAULT_COMMITER_EMAIL<a class="headerlink" href="#default-commiter-email" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.4 で追加.</span></p>
+</div>
+<p>Default committer email when creating translation component (see
+<a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a>), defaults to <code class="docutils literal notranslate"><span class="pre">noreply&#64;weblate.org</span></code>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#std:setting-DEFAULT_COMMITER_NAME"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DEFAULT_COMMITER_NAME</span></code></a>, <a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></p>
+</div>
+</div>
+<div class="section" id="default-commiter-name">
+<span id="std:setting-DEFAULT_COMMITER_NAME"></span><h2>DEFAULT_COMMITER_NAME<a class="headerlink" href="#default-commiter-name" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.4 で追加.</span></p>
+</div>
+<p>Default committer name when creating translation component (see
+<a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a>), defaults to <code class="docutils literal notranslate"><span class="pre">Weblate</span></code>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#std:setting-DEFAULT_COMMITER_EMAIL"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DEFAULT_COMMITER_EMAIL</span></code></a>, <a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></p>
+</div>
+</div>
+<div class="section" id="default-translation-propagation">
+<span id="std:setting-DEFAULT_TRANSLATION_PROPAGATION"></span><h2>DEFAULT_TRANSLATION_PROPAGATION<a class="headerlink" href="#default-translation-propagation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.5 で追加.</span></p>
+</div>
+<p>Default setting for translation propagation (see <a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a>),
+defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></p>
+</div>
+</div>
+<div class="section" id="default-pull-message">
+<span id="std:setting-DEFAULT_PULL_MESSAGE"></span><h2>DEFAULT_PULL_MESSAGE<a class="headerlink" href="#default-pull-message" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Default pull request title,
+defaults to <code class="docutils literal notranslate"><span class="pre">'Update</span> <span class="pre">from</span> <span class="pre">Weblate'</span></code>.</p>
+</div>
+<div class="section" id="enable-avatars">
+<span id="std:setting-ENABLE_AVATARS"></span><h2>ENABLE_AVATARS<a class="headerlink" href="#enable-avatars" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Whether to enable Gravatar based avatars for users. By default this is enabled.</p>
+<p>The avatars are fetched and cached on the server, so there is no risk in
+leaking private information or slowing down the user experiences with enabling
+this.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="install.html#production-cache-avatar"><span class="std std-ref">Avatar caching</span></a>,
+<a class="reference internal" href="#std:setting-AVATAR_URL_PREFIX"><code class="xref std std-setting docutils literal notranslate"><span class="pre">AVATAR_URL_PREFIX</span></code></a>,
+<a class="reference internal" href="optionals.html#avatars"><span class="std std-ref">Avatars</span></a></p>
+</div>
+</div>
+<div class="section" id="enable-hooks">
+<span id="std:setting-ENABLE_HOOKS"></span><h2>ENABLE_HOOKS<a class="headerlink" href="#enable-hooks" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Whether to enable anonymous remote hooks.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../api.html#hooks"><span class="std std-ref">Notification hooks</span></a></p>
+</div>
+</div>
+<div class="section" id="enable-https">
+<span id="std:setting-ENABLE_HTTPS"></span><h2>ENABLE_HTTPS<a class="headerlink" href="#enable-https" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Whether to send links to Weblate as https or http. This setting
+affects sent mails and generated absolute URLs.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="install.html#production-site"><span class="std std-ref">Set correct site name</span></a></p>
+</div>
+</div>
+<div class="section" id="enable-sharing">
+<span id="std:setting-ENABLE_SHARING"></span><h2>ENABLE_SHARING<a class="headerlink" href="#enable-sharing" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Whether to show links to share translation progress on social networks.</p>
+</div>
+<div class="section" id="git-root">
+<span id="std:setting-GIT_ROOT"></span><h2>GIT_ROOT<a class="headerlink" href="#git-root" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="deprecated">
+<p><span class="versionmodified">バージョン 2.1 で非推奨: </span>This setting is no longer used, use <a class="reference internal" href="#std:setting-DATA_DIR"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DATA_DIR</span></code></a> instead.</p>
+</div>
+<p>Path where Weblate will store the cloned VCS repositories. Defaults to
+<code class="file docutils literal notranslate"><span class="pre">repos</span></code> subdirectory.</p>
+</div>
+<div class="section" id="github-username">
+<span id="std:setting-GITHUB_USERNAME"></span><h2>GITHUB_USERNAME<a class="headerlink" href="#github-username" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>GitHub username that will be used to send pull requests for translation
+updates.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../vcs.html#github-push"><span class="std std-ref">Pushing changes to GitHub as pull request</span></a>,
+<a class="reference internal" href="../vcs.html#hub-setup"><span class="std std-ref">Setting up hub</span></a></p>
+</div>
+</div>
+<div class="section" id="google-analytics-id">
+<span id="std:setting-GOOGLE_ANALYTICS_ID"></span><h2>GOOGLE_ANALYTICS_ID<a class="headerlink" href="#google-analytics-id" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Google Analytics ID to enable monitoring of Weblate using Google Analytics.</p>
+</div>
+<div class="section" id="hide-repo-credentials">
+<span id="std:setting-HIDE_REPO_CREDENTIALS"></span><h2>HIDE_REPO_CREDENTIALS<a class="headerlink" href="#hide-repo-credentials" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Hide repository credentials in the web interface. In case you have repository
+URL with user and password, Weblate will hide it when showing it to the users.</p>
+<p>For example instead of <code class="docutils literal notranslate"><span class="pre">https://user:password&#64;git.example.com/repo.git</span></code> it
+will show just <code class="docutils literal notranslate"><span class="pre">https://git.example.com/repo.git</span></code>.</p>
+</div>
+<div class="section" id="ip-behind-reverse-proxy">
+<span id="std:setting-IP_BEHIND_REVERSE_PROXY"></span><h2>IP_BEHIND_REVERSE_PROXY<a class="headerlink" href="#ip-behind-reverse-proxy" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.14 で追加.</span></p>
+</div>
+<p>Indicates whether Weblate is running behind a reverse proxy.</p>
+<p>If set to True, Weblate gets IP address from header defined by
+<a class="reference internal" href="#std:setting-IP_BEHIND_REVERSE_PROXY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">IP_BEHIND_REVERSE_PROXY</span></code></a>. Ensure that you are actually using reverse
+proxy and that it sets this header, otherwise users will be able to fake the IP
+address.</p>
+<p>Defaults to False.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">Rate limiting</span></a>,
+<a class="reference internal" href="optionals.html#rate-ip"><span class="std std-ref">IP address for rate limiting</span></a></p>
+</div>
+</div>
+<div class="section" id="ip-proxy-header">
+<span id="std:setting-IP_PROXY_HEADER"></span><h2>IP_PROXY_HEADER<a class="headerlink" href="#ip-proxy-header" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.14 で追加.</span></p>
+</div>
+<p>Indicates from which header Weblate should obtain the IP address when
+<a class="reference internal" href="#std:setting-IP_BEHIND_REVERSE_PROXY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">IP_BEHIND_REVERSE_PROXY</span></code></a> is enabled.</p>
+<p>Defaults to <code class="docutils literal notranslate"><span class="pre">HTTP_X_FORWARDED_FOR</span></code>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">Rate limiting</span></a>,
+<a class="reference internal" href="optionals.html#rate-ip"><span class="std std-ref">IP address for rate limiting</span></a></p>
+</div>
+</div>
+<div class="section" id="ip-proxy-offset">
+<span id="std:setting-IP_PROXY_OFFSET"></span><h2>IP_PROXY_OFFSET<a class="headerlink" href="#ip-proxy-offset" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.14 で追加.</span></p>
+</div>
+<p>Indicates which part of <a class="reference internal" href="#std:setting-IP_BEHIND_REVERSE_PROXY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">IP_BEHIND_REVERSE_PROXY</span></code></a> is used as client IP
+address.</p>
+<p>Depending on your setup, this header might consist of several IP addresses,
+(for example <code class="docutils literal notranslate"><span class="pre">X-Forwarded-For:</span> <span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">client-ip</span></code>) and you can configure here
+which address from the header is client IP address.</p>
+<p>Defaults to 0.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">Rate limiting</span></a>,
+<a class="reference internal" href="optionals.html#rate-ip"><span class="std std-ref">IP address for rate limiting</span></a></p>
+</div>
+</div>
+<div class="section" id="lazy-commits">
+<span id="std:setting-LAZY_COMMITS"></span><h2>LAZY_COMMITS<a class="headerlink" href="#lazy-commits" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="deprecated">
+<p><span class="versionmodified">バージョン 2.20 で非推奨: </span>This setting can no longer be configured and is enabled permanently.</p>
+</div>
+<p>Delay creating VCS commits until necessary. This heavily reduces
+number of commits generated by Weblate at expense of temporarily not being
+able to merge some changes as they are not yet committed.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="continuous.html#lazy-commit"><span class="std std-ref">省力コミット</span></a></p>
+</div>
+</div>
+<div class="section" id="lock-time">
+<span id="std:setting-LOCK_TIME"></span><h2>LOCK_TIME<a class="headerlink" href="#lock-time" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="deprecated">
+<p><span class="versionmodified">バージョン 2.18 で非推奨.</span></p>
+</div>
+<p>Time in seconds for how long the translation will be locked for single
+translator when locked manually.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="translating.html#locking"><span class="std std-ref">Translation locking</span></a></p>
+</div>
+</div>
+<div class="section" id="login-required-urls">
+<span id="std:setting-LOGIN_REQUIRED_URLS"></span><h2>LOGIN_REQUIRED_URLS<a class="headerlink" href="#login-required-urls" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>List of URLs which require login (besides standard rules built into Weblate).
+This allows you to password protect whole installation using:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LOGIN_REQUIRED_URLS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="sa">r</span><span class="s1">&#39;/(.*)$&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="login-required-urls-exceptions">
+<span id="std:setting-LOGIN_REQUIRED_URLS_EXCEPTIONS"></span><h2>LOGIN_REQUIRED_URLS_EXCEPTIONS<a class="headerlink" href="#login-required-urls-exceptions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>List of exceptions for <a class="reference internal" href="#std:setting-LOGIN_REQUIRED_URLS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">LOGIN_REQUIRED_URLS</span></code></a>. If you don't
+specify this list, the default value will be used, which allows users to access
+the login page.</p>
+<p>Some of exceptions you might want to include:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LOGIN_REQUIRED_URLS_EXCEPTIONS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="sa">r</span><span class="s1">&#39;/accounts/(.*)$&#39;</span><span class="p">,</span> <span class="c1"># Required for login</span>
+    <span class="sa">r</span><span class="s1">&#39;/static/(.*)$&#39;</span><span class="p">,</span>   <span class="c1"># Required for development mode</span>
+    <span class="sa">r</span><span class="s1">&#39;/widgets/(.*)$&#39;</span><span class="p">,</span>  <span class="c1"># Allowing public access to widgets</span>
+    <span class="sa">r</span><span class="s1">&#39;/data/(.*)$&#39;</span><span class="p">,</span>     <span class="c1"># Allowing public access to data exports</span>
+    <span class="sa">r</span><span class="s1">&#39;/hooks/(.*)$&#39;</span><span class="p">,</span>    <span class="c1"># Allowing public access to notification hooks</span>
+    <span class="sa">r</span><span class="s1">&#39;/api/(.*)$&#39;</span><span class="p">,</span>      <span class="c1"># Allowing access to API</span>
+    <span class="sa">r</span><span class="s1">&#39;/js/i18n/$&#39;</span><span class="p">,</span>      <span class="c1"># Javascript localization</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<span class="target" id="std:setting-MT_SERVICES"></span></div>
+<div class="section" id="mt-services">
+<span id="std:setting-MACHINE_TRANSLATION_SERVICES"></span><h2>MT_SERVICES<a class="headerlink" href="#mt-services" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 3.0 で変更: </span>The setting was renamed from <code class="docutils literal notranslate"><span class="pre">MACHINE_TRANSLATION_SERVICES</span></code> to
+<code class="docutils literal notranslate"><span class="pre">MT_SERVICES</span></code> to be consistent with other machine translation settings.</p>
+</div>
+<p>List of enabled machine translation services to use.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Many of services need additional configuration like API keys, please check
+their documentation for more details.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MT_SERVICES</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;weblate.machinery.apertium.ApertiumAPYTranslation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.machinery.deepl.DeepLTranslation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.machinery.glosbe.GlosbeTranslation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.machinery.google.GoogleTranslation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.machinery.microsoft.MicrosoftCognitiveTranslation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.machinery.microsoftterminology.MicrosoftTerminologyService&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.machinery.mymemory.MyMemoryTranslation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.machinery.tmserver.AmagamaTranslation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.machinery.tmserver.TMServerTranslation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.machinery.yandex.YandexTranslation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.machinery.weblatetm.WeblateTranslation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.machinery.saptranslationhub.SAPTranslationHub&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.memory.machine.WeblateMemory&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-apertium-apy">
+<span id="std:setting-MT_APERTIUM_APY"></span><h2>MT_APERTIUM_APY<a class="headerlink" href="#mt-apertium-apy" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>URL of the Apertium APy server, see <a class="reference external" href="http://wiki.apertium.org/wiki/Apertium-apy">http://wiki.apertium.org/wiki/Apertium-apy</a></p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#apertium"><span class="std std-ref">Apertium</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-aws-access-key-id">
+<span id="std:setting-MT_AWS_ACCESS_KEY_ID"></span><h2>MT_AWS_ACCESS_KEY_ID<a class="headerlink" href="#mt-aws-access-key-id" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Access key ID for Amazon Translate.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#aws"><span class="std std-ref">AWS</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-aws-secret-access-key">
+<span id="std:setting-MT_AWS_SECRET_ACCESS_KEY"></span><h2>MT_AWS_SECRET_ACCESS_KEY<a class="headerlink" href="#mt-aws-secret-access-key" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>API secret key for Amazon Translate.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#aws"><span class="std std-ref">AWS</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-aws-region">
+<span id="std:setting-MT_AWS_REGION"></span><h2>MT_AWS_REGION<a class="headerlink" href="#mt-aws-region" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Region name to use for Amazon Translate.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#aws"><span class="std std-ref">AWS</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-baidu-id">
+<span id="std:setting-MT_BAIDU_ID"></span><h2>MT_BAIDU_ID<a class="headerlink" href="#mt-baidu-id" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Client ID for Baidu Zhiyun API, you can register at <a class="reference external" href="https://api.fanyi.baidu.com/api/trans/product/index">https://api.fanyi.baidu.com/api/trans/product/index</a></p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#baidu-translate"><span class="std std-ref">Baidu API machine translation</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-baidu-secret">
+<span id="std:setting-MT_BAIDU_SECRET"></span><h2>MT_BAIDU_SECRET<a class="headerlink" href="#mt-baidu-secret" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Client secret for Baidu Zhiyun API, you can register at <a class="reference external" href="https://api.fanyi.baidu.com/api/trans/product/index">https://api.fanyi.baidu.com/api/trans/product/index</a></p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#baidu-translate"><span class="std std-ref">Baidu API machine translation</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-deepl-key">
+<span id="std:setting-MT_DEEPL_KEY"></span><h2>MT_DEEPL_KEY<a class="headerlink" href="#mt-deepl-key" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>API key for DeepL API, you can register at <a class="reference external" href="https://www.deepl.com/pro.html">https://www.deepl.com/pro.html</a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#deepl"><span class="std std-ref">DeepL</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-google-key">
+<span id="std:setting-MT_GOOGLE_KEY"></span><h2>MT_GOOGLE_KEY<a class="headerlink" href="#mt-google-key" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>API key for Google Translate API, you can register at <a class="reference external" href="https://cloud.google.com/translate/docs">https://cloud.google.com/translate/docs</a></p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#google-translate"><span class="std std-ref">Google Translate</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-microsoft-cognitive-key">
+<span id="std:setting-MT_MICROSOFT_COGNITIVE_KEY"></span><h2>MT_MICROSOFT_COGNITIVE_KEY<a class="headerlink" href="#mt-microsoft-cognitive-key" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Client key for Microsoft Cognitive Services Translator API.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#ms-cognitive-translate"><span class="std std-ref">Microsoft Cognitive Services Translator</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a>,
+<a class="reference external" href="https://azure.microsoft.com/services/cognitive-services/translator-text-api/">Cognitive Services - Text Translation API</a>,
+<a class="reference external" href="https://portal.azure.com/">Microsoft Azure Portal</a></p>
+</div>
+</div>
+<div class="section" id="mt-mymemory-email">
+<span id="std:setting-MT_MYMEMORY_EMAIL"></span><h2>MT_MYMEMORY_EMAIL<a class="headerlink" href="#mt-mymemory-email" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>MyMemory identification email, you can get 1000 requests per day with this.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#mymemory"><span class="std std-ref">MyMemory</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a>,
+<a class="reference external" href="https://mymemory.translated.net/doc/spec.php">MyMemory: API technical specifications</a></p>
+</div>
+</div>
+<div class="section" id="mt-mymemory-key">
+<span id="std:setting-MT_MYMEMORY_KEY"></span><h2>MT_MYMEMORY_KEY<a class="headerlink" href="#mt-mymemory-key" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>MyMemory access key for private translation memory, use together with <a class="reference internal" href="#std:setting-MT_MYMEMORY_USER"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_MYMEMORY_USER</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#mymemory"><span class="std std-ref">MyMemory</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a>,
+<a class="reference external" href="https://mymemory.translated.net/doc/keygen.php">MyMemory: API key generator</a></p>
+</div>
+</div>
+<div class="section" id="mt-mymemory-user">
+<span id="std:setting-MT_MYMEMORY_USER"></span><h2>MT_MYMEMORY_USER<a class="headerlink" href="#mt-mymemory-user" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>MyMemory user id for private translation memory, use together with <a class="reference internal" href="#std:setting-MT_MYMEMORY_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_MYMEMORY_KEY</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#mymemory"><span class="std std-ref">MyMemory</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a>,
+<a class="reference external" href="https://mymemory.translated.net/doc/keygen.php">MyMemory: API key generator</a></p>
+</div>
+</div>
+<div class="section" id="mt-netease-key">
+<span id="std:setting-MT_NETEASE_KEY"></span><h2>MT_NETEASE_KEY<a class="headerlink" href="#mt-netease-key" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>App key for Netease Sight API, you can register at <a class="reference external" href="https://sight.netease.com/">https://sight.netease.com/</a></p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#netease-translate"><span class="std std-ref">Netease Sight API machine translation</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-netease-secret">
+<span id="std:setting-MT_NETEASE_SECRET"></span><h2>MT_NETEASE_SECRET<a class="headerlink" href="#mt-netease-secret" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>App secret for Netease Sight API, you can register at <a class="reference external" href="https://sight.netease.com/">https://sight.netease.com/</a></p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#netease-translate"><span class="std std-ref">Netease Sight API machine translation</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-tmserver">
+<span id="std:setting-MT_TMSERVER"></span><h2>MT_TMSERVER<a class="headerlink" href="#mt-tmserver" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>URL where tmserver is running.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#tmserver"><span class="std std-ref">tmserver</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a>,
+<a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/commands/tmserver.html" title="(in Translate Toolkit v2.3.1)"><span>tmserver</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-yandex-key">
+<span id="std:setting-MT_YANDEX_KEY"></span><h2>MT_YANDEX_KEY<a class="headerlink" href="#mt-yandex-key" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>API key for Yandex Translate API, you can register at <a class="reference external" href="https://tech.yandex.com/translate/">https://tech.yandex.com/translate/</a></p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#yandex-translate"><span class="std std-ref">Yandex Translate</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-youdao-id">
+<span id="std:setting-MT_YOUDAO_ID"></span><h2>MT_YOUDAO_ID<a class="headerlink" href="#mt-youdao-id" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Client ID for Youdao Zhiyun API, you can register at <a class="reference external" href="https://ai.youdao.com/product-fanyi.s">https://ai.youdao.com/product-fanyi.s</a></p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#youdao-translate"><span class="std std-ref">Youdao Zhiyun API machine translation</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-youdao-secret">
+<span id="std:setting-MT_YOUDAO_SECRET"></span><h2>MT_YOUDAO_SECRET<a class="headerlink" href="#mt-youdao-secret" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Client secret for Youdao Zhiyun API, you can register at <a class="reference external" href="https://ai.youdao.com/product-fanyi.s">https://ai.youdao.com/product-fanyi.s</a></p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#youdao-translate"><span class="std std-ref">Youdao Zhiyun API machine translation</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-sap-base-url">
+<span id="std:setting-MT_SAP_BASE_URL"></span><h2>MT_SAP_BASE_URL<a class="headerlink" href="#mt-sap-base-url" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>API URL to the SAP Translation Hub service.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#saptranslationhub"><span class="std std-ref">SAP Translation Hub</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-sap-sandbox-apikey">
+<span id="std:setting-MT_SAP_SANDBOX_APIKEY"></span><h2>MT_SAP_SANDBOX_APIKEY<a class="headerlink" href="#mt-sap-sandbox-apikey" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>API key for sandbox API usage</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#saptranslationhub"><span class="std std-ref">SAP Translation Hub</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-sap-username">
+<span id="std:setting-MT_SAP_USERNAME"></span><h2>MT_SAP_USERNAME<a class="headerlink" href="#mt-sap-username" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Your SAP username</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#saptranslationhub"><span class="std std-ref">SAP Translation Hub</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-sap-password">
+<span id="std:setting-MT_SAP_PASSWORD"></span><h2>MT_SAP_PASSWORD<a class="headerlink" href="#mt-sap-password" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Your SAP password</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#saptranslationhub"><span class="std std-ref">SAP Translation Hub</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="mt-sap-use-mt">
+<span id="std:setting-MT_SAP_USE_MT"></span><h2>MT_SAP_USE_MT<a class="headerlink" href="#mt-sap-use-mt" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Should the machine translation service also be used? (in addition to the term database).
+Possible values: True / False</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="machine.html#saptranslationhub"><span class="std std-ref">SAP Translation Hub</span></a>, <a class="reference internal" href="machine.html#machine-translation-setup"><span class="std std-ref">Machine translation</span></a>, <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">Machine translation</span></a></p>
+</div>
+</div>
+<div class="section" id="nearby-messages">
+<span id="std:setting-NEARBY_MESSAGES"></span><h2>NEARBY_MESSAGES<a class="headerlink" href="#nearby-messages" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>How many messages around current one to show during translating.</p>
+</div>
+<div class="section" id="piwik-site-id">
+<span id="std:setting-PIWIK_SITE_ID"></span><h2>PIWIK_SITE_ID<a class="headerlink" href="#piwik-site-id" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ID of a site in Matomo you want to track.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#std:setting-PIWIK_URL"><code class="xref std std-setting docutils literal notranslate"><span class="pre">PIWIK_URL</span></code></a></p>
+</div>
+</div>
+<div class="section" id="piwik-url">
+<span id="std:setting-PIWIK_URL"></span><h2>PIWIK_URL<a class="headerlink" href="#piwik-url" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>URL of a Matomo installation you want to use to track Weblate users. For more
+information about Matomo see &lt;<a class="reference external" href="https://matomo.org/">https://matomo.org/</a>&gt;.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#std:setting-PIWIK_SITE_ID"><code class="xref std std-setting docutils literal notranslate"><span class="pre">PIWIK_SITE_ID</span></code></a></p>
+</div>
+</div>
+<div class="section" id="registration-captcha">
+<span id="std:setting-REGISTRATION_CAPTCHA"></span><h2>REGISTRATION_CAPTCHA<a class="headerlink" href="#registration-captcha" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>A boolean (either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>) indicating whether registration of new
+accounts is protected by captcha. This setting is optional, and a default of
+True will be assumed if it is not supplied.</p>
+<p>If enabled the captcha is added to all pages where users enter email address:</p>
+<ul class="simple">
+<li>New account registration.</li>
+<li>Password recovery.</li>
+<li>Adding email to an account.</li>
+<li>Contact form for users who are not logged in.</li>
+</ul>
+</div>
+<div class="section" id="registration-email-match">
+<span id="std:setting-REGISTRATION_EMAIL_MATCH"></span><h2>REGISTRATION_EMAIL_MATCH<a class="headerlink" href="#registration-email-match" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.17 で追加.</span></p>
+</div>
+<p>Allows you to filter email addresses which can register.</p>
+<p>Defaults to <code class="docutils literal notranslate"><span class="pre">.*</span></code> which allows any address to register.</p>
+<p>You can use it to restrict registration to a single email domain:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">REGISTRATION_EMAIL_MATCH</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;^.*@weblate\.org$&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="registration-open">
+<span id="std:setting-REGISTRATION_OPEN"></span><h2>REGISTRATION_OPEN<a class="headerlink" href="#registration-open" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>A boolean (either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>) indicating whether registration of new
+accounts is currently permitted. This setting is optional, and a default of
+True will be assumed if it is not supplied.</p>
+</div>
+<div class="section" id="simplify-languages">
+<span id="std:setting-SIMPLIFY_LANGUAGES"></span><h2>SIMPLIFY_LANGUAGES<a class="headerlink" href="#simplify-languages" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Use simple language codes for default language/country combinations. For
+example <code class="docutils literal notranslate"><span class="pre">fr_FR</span></code> translation will use <code class="docutils literal notranslate"><span class="pre">fr</span></code> language code. This is usually
+desired behavior as it simplifies listing of the languages for these default
+combinations.</p>
+<p>Disable this if you are having different translations for both variants.</p>
+</div>
+<div class="section" id="site-title">
+<span id="std:setting-SITE_TITLE"></span><h2>SITE_TITLE<a class="headerlink" href="#site-title" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Site title to be used in website and emails as well.</p>
+</div>
+<div class="section" id="special-chars">
+<span id="std:setting-SPECIAL_CHARS"></span><h2>SPECIAL_CHARS<a class="headerlink" href="#special-chars" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Additional chars to show in the visual keyboard, see <a class="reference internal" href="../user/translating.html#visual-keyboard"><span class="std std-ref">Visual keyboard</span></a>.</p>
+<p>The default value is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SPECIAL_CHARS</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;…&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="status-url">
+<span id="std:setting-STATUS_URL"></span><h2>STATUS_URL<a class="headerlink" href="#status-url" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>URL where your Weblate instance reports it's status.</p>
+</div>
+<div class="section" id="suggestion-cleanup-days">
+<span id="std:setting-SUGGESTION_CLEANUP_DAYS"></span><h2>SUGGESTION_CLEANUP_DAYS<a class="headerlink" href="#suggestion-cleanup-days" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.2.1 で追加.</span></p>
+</div>
+<p>Automatically delete suggestions after given number of days. Defaults to
+<code class="docutils literal notranslate"><span class="pre">None</span></code> what means no deletion at all.</p>
+</div>
+<div class="section" id="ttf-path">
+<span id="std:setting-TTF_PATH"></span><h2>TTF_PATH<a class="headerlink" href="#ttf-path" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Path to Droid fonts used for widgets and charts.</p>
+<p>Defaults to <code class="docutils literal notranslate"><span class="pre">$BASE_DIR/weblate/ttf</span></code>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#std:setting-BASE_DIR"><code class="xref std std-setting docutils literal notranslate"><span class="pre">BASE_DIR</span></code></a></p>
+</div>
+</div>
+<div class="section" id="url-prefix">
+<span id="std:setting-URL_PREFIX"></span><h2>URL_PREFIX<a class="headerlink" href="#url-prefix" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>This settings allows you to run Weblate under some path (otherwise it relies on
+being executed from webserver root). To use this setting, you also need to
+configure your server to strip this prefix. For example with WSGI, this can be
+achieved by setting <code class="docutils literal notranslate"><span class="pre">WSGIScriptAlias</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">This setting does not work with Django's builtin server, you would have to
+adjust <code class="file docutils literal notranslate"><span class="pre">urls.py</span></code> to contain this prefix.</p>
+</div>
+</div>
+<div class="section" id="weblate-addons">
+<span id="std:setting-WEBLATE_ADDONS"></span><h2>WEBLATE_ADDONS<a class="headerlink" href="#weblate-addons" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>List of addons available for use. To use them, they have to be enabled for
+given translation component. By default this includes all built in addons, when
+extending the list you will probably want to keep existing ones enabled, for
+example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">WEBLATE_ADDONS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="c1"># Built in addons</span>
+    <span class="s1">&#39;weblate.addons.gettext.GenerateMoAddon&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.addons.gettext.UpdateLinguasAddon&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.addons.gettext.UpdateConfigureAddon&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.addons.gettext.MsgmergeAddon&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.addons.gettext.GettextCustomizeAddon&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.addons.gettext.GettextAuthorComments&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.addons.cleanup.CleanupAddon&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.addons.consistency.LangaugeConsistencyAddon&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.addons.discovery.DiscoveryAddon&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.addons.flags.SourceEditAddon&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.addons.flags.TargetEditAddon&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.addons.flags.SameEditAddon&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.addons.generate.GenerateFileAddon&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.addons.json.JSONCustomizeAddon&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.addons.properties.PropertiesSortAddon&#39;</span><span class="p">,</span>
+
+    <span class="c1"># Addon you want to include</span>
+    <span class="s1">&#39;weblate.addons.example.ExampleAddon&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="addons.html#addons"><span class="std std-ref">Addons</span></a></p>
+</div>
+</div>
+<div class="section" id="weblate-formats">
+<span id="std:setting-WEBLATE_FORMATS"></span><h2>WEBLATE_FORMATS<a class="headerlink" href="#weblate-formats" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.0 で追加.</span></p>
+</div>
+<p>List of file formats available for use, you can usually keep this on default value.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートされるフォーマット</span></a></p>
+</div>
+</div>
+<div class="section" id="weblate-gpg-identity">
+<span id="std:setting-WEBLATE_GPG_IDENTITY"></span><h2>WEBLATE_GPG_IDENTITY<a class="headerlink" href="#weblate-gpg-identity" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.1 で追加.</span></p>
+</div>
+<p>Identity which should be used by Weblate to sign Git commits, for example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">WEBLATE_GPG_IDENTITY</span> <span class="o">=</span> <span class="s1">&#39;Weblate &lt;weblate@example.com&gt;&#39;</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">If you are going to change value of setting, it is advisable to clean the
+cache as the key information is cached for seven days. This is not
+necessary for initial setup as nothing is cached if this feature is not
+configured.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="optionals.html#gpg-sign"><span class="std std-ref">Signing Git commits by GnuPG</span></a></p>
+</div>
+</div>
+<div class="section" id="whoosh-index">
+<span id="std:setting-WHOOSH_INDEX"></span><h2>WHOOSH_INDEX<a class="headerlink" href="#whoosh-index" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="deprecated">
+<p><span class="versionmodified">バージョン 2.1 で非推奨: </span>This setting is no longer used, use <a class="reference internal" href="#std:setting-DATA_DIR"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DATA_DIR</span></code></a> instead.</p>
+</div>
+<p>Directory where Whoosh fulltext indices will be stored. Defaults to <code class="file docutils literal notranslate"><span class="pre">whoosh-index</span></code> subdirectory.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sample.html" class="btn btn-neutral float-right" title="Sample configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="memory.html" class="btn btn-neutral" title="Translation Memory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

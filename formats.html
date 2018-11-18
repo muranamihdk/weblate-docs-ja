@@ -1,0 +1,1303 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>サポートされるフォーマット &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="about.html" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="Version control integration" href="vcs.html" />
+    <link rel="prev" title="よくある質問" href="faq.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin/index.html">Administrators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">よくある質問</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">サポートされるフォーマット</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#bilingual-and-monolingual-formats">Bilingual and monolingual formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#automatic-detection">自動検出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#translation-types-capabilities">Translation types capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gnu-gettext">GNU Gettext</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#monolingual-gettext">Monolingual Gettext</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#xliff">XLIFF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#translations-states">Translations states</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#whitespace-and-newlines-in-xliff">Whitespace and newlines in XLIFF</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#java-properties">Java properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#joomla-translations">Joomla translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qt-linguist-ts">Qt Linguist .ts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#android-string-resources">Android string resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#apple-os-x-strings">Apple OS X strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#php-strings">PHP strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#json-files">JSON files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#webextension-json">WebExtension JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#net-resource-files">.Net Resource files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#csv-files">CSV files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#yaml-files">YAML files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dtd-files">DTD files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows-rc-files">Windows RC files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#excel-open-xml">Excel Open XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#others">Others</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-new-translations">Adding new translations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>サポートされるフォーマット</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/formats.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="supported-formats">
+<span id="formats"></span><h1>サポートされるフォーマット<a class="headerlink" href="#supported-formats" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Wblateはtranslate-toolkitで扱うことのできる翻訳フォーマットのほどんどをサポートしています。しかし個々のフォーマットは少しずつ異なっているため、テストが十分でないフォーマットでは、何らかの問題があるかもしれません。</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/formats/index.html" title="(in Translate Toolkit v2.3.1)"><span>Translation Related File Formats</span></a></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">アプリケーションのファイルフォーマットを選ぶ際には、使用するツールキットやプラットフォームで十分に実績のあるフォーマットにしたほうがよいでしょう。これにより翻訳者は使いたいどんなツールでも使うことができますので、よりプロジェクトへの貢献が期待できます。</p>
+</div>
+<div class="section" id="bilingual-and-monolingual-formats">
+<span id="bimono"></span><h2>Bilingual and monolingual formats<a class="headerlink" href="#bilingual-and-monolingual-formats" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblateは <span class="target" id="index-20"></span>monolingual と <span class="target" id="index-21"></span>bilingual の双方のフォーマットをサポートしています。bilingualフォーマットはひとつのファイルに、原文と翻訳という、ふたつの言語を収めます。典型的な例としては <a class="reference internal" href="#gettext"><span class="std std-ref">GNU Gettext</span></a> や <a class="reference internal" href="#xliff"><span class="std std-ref">XLIFF</span></a> や <a class="reference internal" href="#apple"><span class="std std-ref">Apple OS X strings</span></a> などがこれに当たります。一方のmonolingualフォーマットは、原文の文字列をIDで識別し、それぞれの言語ファイルにはIDとそれに対応するその言語の文字列を収めます。 典型的には <a class="reference internal" href="#aresource"><span class="std std-ref">Android string resources</span></a> がこれに当たります。ファイルフォーマットによってはこの双方で使われることもあります。詳しくは以下の記述を参照してください。</p>
+<p>monolingualファイルを正しく扱うためにWeblateは、翻訳すべき文字列とそのソースの完全なリストを含むファイルに、アクセスできる必要があります。このファイルをWeblateでは <span class="guilabel">Monolingual base language file</span> と呼んでいますが、アプリケーションによって呼び方は違うかもしれません。</p>
+</div>
+<div class="section" id="automatic-detection">
+<h2>自動検出<a class="headerlink" href="#automatic-detection" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>広く普及している幾つかのファイルフォーマットに関しては、Weblateは自動で検出することができます。しかしこの検出はパフォーマンスを低下させ、そのファイルフォーマット固有の機能を制限する可能性があります（例えば新規翻訳の自動追加など）。</p>
+</div>
+<div class="section" id="translation-types-capabilities">
+<span id="fmt-capabs"></span><h2>Translation types capabilities<a class="headerlink" href="#translation-types-capabilities" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Below are listed capabilities of all supported formats.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="19%" />
+<col width="16%" />
+<col width="15%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Format</th>
+<th class="head">Linguality</th>
+<th class="head">Comments</th>
+<th class="head">Context</th>
+<th class="head">Location</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="#gettext"><span class="std std-ref">GNU Gettext</span></a></td>
+<td>bilingual</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#mono-gettext"><span class="std std-ref">Monolingual Gettext</span></a></td>
+<td>mono</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#xliff"><span class="std std-ref">XLIFF</span></a></td>
+<td>both</td>
+<td>yes</td>
+<td>yes</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#javaprop"><span class="std std-ref">Java properties</span></a></td>
+<td>mono</td>
+<td>yes</td>
+<td>no</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#joomla"><span class="std std-ref">Joomla translations</span></a></td>
+<td>mono</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#qtling"><span class="std std-ref">Qt Linguist .ts</span></a></td>
+<td>both</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#aresource"><span class="std std-ref">Android string resources</span></a></td>
+<td>mono</td>
+<td>yes</td>
+<td>no</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#apple"><span class="std std-ref">Apple OS X strings</span></a></td>
+<td>bilingual</td>
+<td>yes</td>
+<td>no</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#php"><span class="std std-ref">PHP strings</span></a></td>
+<td>mono</td>
+<td>yes</td>
+<td>no</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#json"><span class="std std-ref">JSON files</span></a></td>
+<td>mono</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#webex"><span class="std std-ref">WebExtension JSON</span></a></td>
+<td>mono</td>
+<td>yes</td>
+<td>no</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dotnet"><span class="std std-ref">.Net Resource files</span></a></td>
+<td>mono</td>
+<td>yes</td>
+<td>no</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#csv"><span class="std std-ref">CSV files</span></a></td>
+<td>bilingual</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#yaml"><span class="std std-ref">YAML files</span></a></td>
+<td>mono</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dtd"><span class="std std-ref">DTD files</span></a></td>
+<td>mono</td>
+<td>no</td>
+<td>no</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#winrc"><span class="std std-ref">Windows RC files</span></a></td>
+<td>mono</td>
+<td>&#160;</td>
+<td>no</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#xlsx"><span class="std std-ref">Excel Open XML</span></a></td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>no</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="gnu-gettext">
+<span id="gettext"></span><h2>GNU Gettext<a class="headerlink" href="#gnu-gettext" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p id="index-2">Most widely used format in translating free software. This was first format
+supported by Weblate and still has the best support.</p>
+<p>Weblate supports contextual information stored in the file, adjusting its
+headers or linking to corresponding source files.</p>
+<p>The bilingual gettext PO file typically looks like:</p>
+<div class="highlight-po notranslate"><div class="highlight"><pre><span></span><span class="kd">#: weblate/media/js/bootstrap-datepicker.js:1421</span>
+<span class="nv">msgid</span> <span class="s">&quot;Monday&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;Pondělí&quot;</span>
+
+<span class="kd">#: weblate/media/js/bootstrap-datepicker.js:1421</span>
+<span class="nv">msgid</span> <span class="s">&quot;Tuesday&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;Úterý&quot;</span>
+
+<span class="kd">#: weblate/accounts/avatar.py:163</span>
+<span class="nv">msgctxt</span> <span class="s">&quot;No known user&quot;</span>
+<span class="nv">msgid</span> <span class="s">&quot;None&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;Žádný&quot;</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Typical Weblate <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">po/*.po</span></code></td>
+</tr>
+<tr class="row-odd"><td>Monolingual base language file</td>
+<td><cite>Empty</cite></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><code class="docutils literal notranslate"><span class="pre">po/messages.pot</span></code></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td><cite>Gettext PO file</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://en.wikipedia.org/wiki/Gettext">Gettext on Wikipedia</a>,
+<a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/formats/po.html" title="(in Translate Toolkit v2.3.1)"><span>PO Files</span></a>,
+<a class="reference internal" href="admin/addons.html#addon-weblate-gettext-configure"><span class="std std-ref">Update ALL_LINGUAS variable in the configure file</span></a>,
+<a class="reference internal" href="admin/addons.html#addon-weblate-gettext-customize"><span class="std std-ref">Customize gettext output</span></a>,
+<a class="reference internal" href="admin/addons.html#addon-weblate-gettext-linguas"><span class="std std-ref">Update LINGUAS file</span></a>,
+<a class="reference internal" href="admin/addons.html#addon-weblate-gettext-mo"><span class="std std-ref">Generate MO files</span></a>,
+<a class="reference internal" href="admin/addons.html#addon-weblate-gettext-msgmerge"><span class="std std-ref">Update PO files to match POT (msgmerge)</span></a>,</p>
+</div>
+<div class="section" id="monolingual-gettext">
+<span id="mono-gettext"></span><h3>Monolingual Gettext<a class="headerlink" href="#monolingual-gettext" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Some projects decide to use Gettext as monolingual formats - they code just IDs
+in their source code and the string needs to be translated to all languages,
+including English. Weblate does support this, though you have to choose explicitly
+this file format when importing components into Weblate.</p>
+<p>The monolingual gettext PO file typically looks like:</p>
+<div class="highlight-po notranslate"><div class="highlight"><pre><span></span><span class="kd">#: weblate/media/js/bootstrap-datepicker.js:1421</span>
+<span class="nv">msgid</span> <span class="s">&quot;day-monday&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;Pondělí&quot;</span>
+
+<span class="kd">#: weblate/media/js/bootstrap-datepicker.js:1421</span>
+<span class="nv">msgid</span> <span class="s">&quot;day-tuesday&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;Úterý&quot;</span>
+
+<span class="kd">#: weblate/accounts/avatar.py:163</span>
+<span class="nv">msgid</span> <span class="s">&quot;none-user&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;Žádný&quot;</span>
+</pre></div>
+</div>
+<p>While the base language file will be:</p>
+<div class="highlight-po notranslate"><div class="highlight"><pre><span></span><span class="kd">#: weblate/media/js/bootstrap-datepicker.js:1421</span>
+<span class="nv">msgid</span> <span class="s">&quot;day-monday&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;Monday&quot;</span>
+
+<span class="kd">#: weblate/media/js/bootstrap-datepicker.js:1421</span>
+<span class="nv">msgid</span> <span class="s">&quot;day-tuesday&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;Tuesday&quot;</span>
+
+<span class="kd">#: weblate/accounts/avatar.py:163</span>
+<span class="nv">msgid</span> <span class="s">&quot;none-user&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;None&quot;</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Typical Weblate <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">po/*.po</span></code></td>
+</tr>
+<tr class="row-odd"><td>Monolingual base language file</td>
+<td><code class="docutils literal notranslate"><span class="pre">po/en.po</span></code></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><code class="docutils literal notranslate"><span class="pre">po/messages.pot</span></code></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td><cite>Gettext PO file (monolingual)</cite></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="xliff">
+<span id="id1"></span><h2>XLIFF<a class="headerlink" href="#xliff" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p id="index-3">XML-based format created to standardize translation files, but in the end it
+is one of many standards in this area.</p>
+<p>XLIFF is usually used as bilingual, but Weblate supports it as monolingual as well.</p>
+<div class="section" id="translations-states">
+<h3>Translations states<a class="headerlink" href="#translations-states" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">state</span></code> attribute in the file is completely ignored. It cannot be read and it
+cannot be written by Weblate. That means that a unit is considered translated as
+soon as a <code class="docutils literal notranslate"><span class="pre">&lt;target&gt;</span></code> element exists.</p>
+<p>Also if the translation unit has <code class="docutils literal notranslate"><span class="pre">approved=&quot;yes&quot;</span></code> it will be imported into Weblate
+as approved, anything else will be imported as waiting for review (which matches XLIFF
+specification).</p>
+<p>That means that when using XLIFF format, it is strongly recommended to enable Weblate
+review process, in order to see and change the approved state of units.
+See <a class="reference internal" href="workflows.html#reviews"><span class="std std-ref">Dedicated reviewers</span></a>.</p>
+<p>Similarly on importing such files, you should choose
+<span class="guilabel">Import as translated</span> under
+<span class="guilabel">Processing of strings needing review</span>.</p>
+</div>
+<div class="section" id="whitespace-and-newlines-in-xliff">
+<h3>Whitespace and newlines in XLIFF<a class="headerlink" href="#whitespace-and-newlines-in-xliff" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Generally the XML formats do not differentiate between types or amounts of whitespace.
+If you want to keep it, you have to add the <code class="docutils literal notranslate"><span class="pre">xml:space=&quot;preserve&quot;</span></code> flag to
+the unit.</p>
+<p>For example:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>    <span class="nt">&lt;trans-unit</span> <span class="na">id=</span><span class="s">&quot;10&quot;</span> <span class="na">approved=</span><span class="s">&quot;yes&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;source</span> <span class="na">xml:space=</span><span class="s">&quot;preserve&quot;</span><span class="nt">&gt;</span>hello<span class="nt">&lt;/source&gt;</span>
+        <span class="nt">&lt;target</span> <span class="na">xml:space=</span><span class="s">&quot;preserve&quot;</span><span class="nt">&gt;</span>Hello, world!
+<span class="nt">&lt;/target&gt;</span>
+    <span class="nt">&lt;/trans-unit&gt;</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Typical Weblate <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a> for bilingual XLIFF</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">localizations/*.xliff</span></code></td>
+</tr>
+<tr class="row-odd"><td>Monolingual base language file</td>
+<td><cite>Empty</cite></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><code class="docutils literal notranslate"><span class="pre">localizations/en-US.xliff</span></code></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td><cite>XLIFF Translation File</cite></td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Typical Weblate <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a> for monolingual XLIFF</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">localizations/*.xliff</span></code></td>
+</tr>
+<tr class="row-odd"><td>Monolingual base language file</td>
+<td><code class="docutils literal notranslate"><span class="pre">localizations/en-US.xliff</span></code></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><code class="docutils literal notranslate"><span class="pre">localizations/en-US.xliff</span></code></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td><cite>XLIFF Translation File</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://en.wikipedia.org/wiki/XLIFF">XLIFF on Wikipedia</a>,
+<a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/formats/xliff.html" title="(in Translate Toolkit v2.3.1)"><span>XLIFF</span></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="java-properties">
+<span id="javaprop"></span><h2>Java properties<a class="headerlink" href="#java-properties" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p id="index-4">Native Java format for translations.</p>
+<p>Java properties are usually used as monolingual.</p>
+<p>Weblate supports ISO-8859-1, UTF-8 and UTF-16 variants of this format. All of
+them supports storing all Unicode characters, it's just differently encoded. In
+the ISO-8859-1 the Unicode escape sequences are used (eg. <code class="docutils literal notranslate"><span class="pre">zkou\u0161ka</span></code>),
+all others encode characters directly either in UTF-8 or UTF-16.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Loading of escape sequences will work in UTF-8 mode as well, so please be
+careful choosing correct charset matching your application needs.</p>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Typical Weblate <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">src/app/Bundle_*.properties</span></code></td>
+</tr>
+<tr class="row-odd"><td>Monolingual base language file</td>
+<td><code class="docutils literal notranslate"><span class="pre">src/app/Bundle.properties</span></code></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><cite>Empty</cite></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td><cite>Java Properties (ISO-8859-1)</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://en.wikipedia.org/wiki/.properties">Java properties on Wikipedia</a>,
+<a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/formats/properties.html" title="(in Translate Toolkit v2.3.1)"><span>Mozilla and Java properties files</span></a>,
+<a class="reference internal" href="admin/addons.html#addon-weblate-properties-sort"><span class="std std-ref">Formats the Java properties file</span></a>,
+<a class="reference internal" href="admin/addons.html#addon-weblate-cleanup-generic"><span class="std std-ref">Cleanup translation files</span></a>,</p>
+</div>
+</div>
+<div class="section" id="joomla-translations">
+<span id="joomla"></span><h2>Joomla translations<a class="headerlink" href="#joomla-translations" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded" id="index-5">
+<p><span class="versionmodified">バージョン 2.12 で追加.</span></p>
+</div>
+<p>Native Joomla format for translations.</p>
+<p>Joomla translations are usually used as monolingual.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Typical Weblate <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">language/*/com_foobar.ini</span></code></td>
+</tr>
+<tr class="row-odd"><td>Monolingual base language file</td>
+<td><code class="docutils literal notranslate"><span class="pre">language/en-GB/com_foobar.ini</span></code></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><cite>Empty</cite></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td><cite>Joomla Language File</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.joomla.org/Specification_of_language_files">Specification of Joomla language files</a>,
+<a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/formats/properties.html" title="(in Translate Toolkit v2.3.1)"><span>Mozilla and Java properties files</span></a></p>
+</div>
+</div>
+<div class="section" id="qt-linguist-ts">
+<span id="qtling"></span><h2>Qt Linguist .ts<a class="headerlink" href="#qt-linguist-ts" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p id="index-6">Translation format used in Qt based applications.</p>
+<p>Qt Linguist files are used as both bilingual and monolingual.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Typical Weblate <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a> when using as bilingual</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">i18n/app.*.ts</span></code></td>
+</tr>
+<tr class="row-odd"><td>Monolingual base language file</td>
+<td><cite>Empty</cite></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><code class="docutils literal notranslate"><span class="pre">i18n/app.de.ts</span></code></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td><cite>Qt Linguist Translation File</cite></td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Typical Weblate <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a> when using as monolingual</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">i18n/app.*.ts</span></code></td>
+</tr>
+<tr class="row-odd"><td>Monolingual base language file</td>
+<td><code class="docutils literal notranslate"><span class="pre">i18n/app.en.ts</span></code></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><code class="docutils literal notranslate"><span class="pre">i18n/app.en.ts</span></code></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td><cite>Qt Linguist Translation File</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://doc.qt.io/qt-5/qtlinguist-index.html">Qt Linguist manual</a>,
+<a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/formats/ts.html" title="(in Translate Toolkit v2.3.1)"><span>Qt .ts</span></a>,
+<a class="reference internal" href="#bimono"><span class="std std-ref">Bilingual and monolingual formats</span></a></p>
+</div>
+</div>
+<div class="section" id="android-string-resources">
+<span id="aresource"></span><h2>Android string resources<a class="headerlink" href="#android-string-resources" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p id="index-7">Android specific file format for translating applications.</p>
+<p>Android string resources are monolingual, the
+<span class="guilabel">Monolingual base language file</span> file is stored in a different
+location from the others <code class="file docutils literal notranslate"><span class="pre">res/values/strings.xml</span></code>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Typical Weblate <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">res/values-*/strings.xml</span></code></td>
+</tr>
+<tr class="row-odd"><td>Monolingual base language file</td>
+<td><code class="docutils literal notranslate"><span class="pre">res/values/strings.xml</span></code></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><cite>Empty</cite></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td><cite>Android String Resource</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://developer.android.com/guide/topics/resources/string-resource">Android string resources documentation</a>,
+<a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/formats/android.html" title="(in Translate Toolkit v2.3.1)"><span>Android string resources</span></a></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>Android <cite>string-array</cite> structures are not currently supported. To work around this,
+you can break you string arrays apart:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;string-array</span> <span class="na">name=</span><span class="s">&quot;several_strings&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;item&gt;</span>First string<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item&gt;</span>Second string<span class="nt">&lt;/item&gt;</span>
+<span class="nt">&lt;/string-array&gt;</span>
+</pre></div>
+</div>
+<p>become:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;string-array</span> <span class="na">name=</span><span class="s">&quot;several_strings&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;item&gt;</span>@string/several_strings_0<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item&gt;</span>@string/several_strings_1<span class="nt">&lt;/item&gt;</span>
+<span class="nt">&lt;/string-array&gt;</span>
+<span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;several_strings_0&quot;</span><span class="nt">&gt;</span>First string<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;several_strings_1&quot;</span><span class="nt">&gt;</span>Second string<span class="nt">&lt;/string&gt;</span>
+</pre></div>
+</div>
+<p>The <cite>string-array</cite> that points to the <cite>string</cite> elements should be stored in a different
+file, and not localized.</p>
+<p class="last">This script may help pre-process your existing strings.xml files and translations: <a class="reference external" href="https://gist.github.com/paour/11291062">https://gist.github.com/paour/11291062</a></p>
+</div>
+</div>
+<div class="section" id="apple-os-x-strings">
+<span id="apple"></span><h2>Apple OS X strings<a class="headerlink" href="#apple-os-x-strings" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p id="index-8">Apple specific file format for translating applications, used for both OS X
+and <span class="target" id="index-9"></span>iPhone/<span class="target" id="index-10"></span>iPad application translations.</p>
+<p>Apple OS X strings are usually used as bilingual.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="43%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Typical Weblate <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">Resources/*.lproj/Localizable.strings</span></code></td>
+</tr>
+<tr class="row-odd"><td>Monolingual base language file</td>
+<td><code class="docutils literal notranslate"><span class="pre">Resources/en.lproj/Localizable.strings</span></code></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><cite>Empty</cite></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td><cite>OS X Strings (UTF-8)</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/MaintaingYourOwnStringsFiles/MaintaingYourOwnStringsFiles.html">Apple Strings Files documentation</a>,
+<a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/formats/strings.html" title="(in Translate Toolkit v2.3.1)"><span>Mac OSX strings</span></a></p>
+</div>
+</div>
+<div class="section" id="php-strings">
+<span id="php"></span><h2>PHP strings<a class="headerlink" href="#php-strings" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p id="index-11">PHP translations are usually monolingual, so it is recommended to specify base
+file with English strings.</p>
+<p>Example file:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$LANG</span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
+<span class="nv">$LANG</span><span class="p">[</span><span class="s1">&#39;foo1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;foo bar&#39;</span><span class="p">;</span>
+<span class="nv">$LANG</span><span class="p">[</span><span class="s1">&#39;foo2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;foo bar baz&#39;</span><span class="p">;</span>
+<span class="nv">$LANG</span><span class="p">[</span><span class="s1">&#39;foo3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;foo bar baz bag&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Typical Weblate <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">lang/*/texts.php</span></code></td>
+</tr>
+<tr class="row-odd"><td>Monolingual base language file</td>
+<td><code class="docutils literal notranslate"><span class="pre">lang/en/texts.php</span></code></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><code class="docutils literal notranslate"><span class="pre">lang/en/texts.php</span></code></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td><cite>PHP strings</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>Translate-toolkit currently has some limitations in processing PHP files,
+so please double check that your files won't get corrupted  before using
+Weblate in production setup.</p>
+<p>Following things are known to be broken:</p>
+<ul class="last simple">
+<li>Adding new units to translation, every translation has to contain all strings (even if empty).</li>
+<li>Handling of special chars like newlines.</li>
+</ul>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/formats/php.html" title="(in Translate Toolkit v2.3.1)"><span>PHP</span></a></p>
+</div>
+</div>
+<div class="section" id="json-files">
+<span id="json"></span><h2>JSON files<a class="headerlink" href="#json-files" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded" id="index-12">
+<p><span class="versionmodified">バージョン 2.0 で追加.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 2.16 で変更: </span>Since Weblate 2.16 and with translate-toolkit at least 2.2.4 nested
+structure JSON files are supported as well.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 2.17 で変更: </span>Since Weblate 2.17 and with translate-toolkit at least 2.2.5 i18next
+JSON files with plurals are supported as well.</p>
+</div>
+<p>JSON format is used mostly for translating applications implemented in
+Javascript.</p>
+<p>Weblate currently supports several variants of JSON translations:</p>
+<ul class="simple">
+<li>Simple key / value files.</li>
+<li>Files with nested keys.</li>
+<li>The i18next files with support for plurals.</li>
+</ul>
+<p>JSON translations are usually monolingual, so it is recommended to specify base
+file with English strings.</p>
+<p>Example file:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;Hello, world!\n&quot;</span><span class="p">:</span> <span class="s2">&quot;Ahoj světe!\n&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;Orangutan has %d banana.\n&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;Try Weblate at https://demo.weblate.org/!\n&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;Thank you for using Weblate.&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Nested files are supported as well (see above for requirements), such file can look like:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;weblate&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;hello&quot;</span><span class="p">:</span> <span class="s2">&quot;Ahoj světe!\n&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;orangutan&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;try&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;thanks&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Typical Weblate <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">langs/translation-*.json</span></code></td>
+</tr>
+<tr class="row-odd"><td>Monolingual base language file</td>
+<td><code class="docutils literal notranslate"><span class="pre">langs/translation-en.json</span></code></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><cite>Empty</cite></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td><cite>JSON nested structure file</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/formats/json.html" title="(in Translate Toolkit v2.3.1)"><span>JSON</span></a>,
+<a class="reference external" href="https://www.i18next.com/misc/json-format">i18next JSON Format</a>,
+<a class="reference internal" href="admin/addons.html#addon-weblate-json-customize"><span class="std std-ref">Customize JSON output</span></a>,
+<a class="reference internal" href="admin/addons.html#addon-weblate-cleanup-generic"><span class="std std-ref">Cleanup translation files</span></a>,</p>
+</div>
+</div>
+<div class="section" id="webextension-json">
+<span id="webex"></span><h2>WebExtension JSON<a class="headerlink" href="#webextension-json" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.16 で追加: </span>This is supported since Weblate 2.16 and with translate-toolkit at least 2.2.4.</p>
+</div>
+<p>File format used when translating extensions for Google Chrome or Mozilla Firefox.</p>
+<p>Example file:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;hello&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Ahoj světe!\n&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Description&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;orangutan&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Description&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;try&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Description&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;thanks&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Description&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Typical Weblate <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">_locales/*/messages.json</span></code></td>
+</tr>
+<tr class="row-odd"><td>Monolingual base language file</td>
+<td><code class="docutils literal notranslate"><span class="pre">_locales/en/messages.json</span></code></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><cite>Empty</cite></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td><cite>WebExtension JSON file</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/formats/json.html" title="(in Translate Toolkit v2.3.1)"><span>JSON</span></a>,
+<a class="reference external" href="https://developer.chrome.com/extensions/i18n">Google chrome.i18n</a>,
+<a class="reference external" href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Internationalization">Mozilla Extensions Internationalization</a></p>
+</div>
+</div>
+<div class="section" id="net-resource-files">
+<span id="dotnet"></span><h2>.Net Resource files<a class="headerlink" href="#net-resource-files" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded" id="index-13">
+<p><span class="versionmodified">バージョン 2.3 で追加.</span></p>
+</div>
+<p>.Net Resource (.resx) file is a monolingual XML file format used in Microsoft
+.Net Applications. It works with .resw files as well as they use identical
+syntax to .resx.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Typical Weblate <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">Resources/Language.*.resx</span></code></td>
+</tr>
+<tr class="row-odd"><td>Monolingual base language file</td>
+<td><code class="docutils literal notranslate"><span class="pre">Resources/Language.resx</span></code></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><cite>Empty</cite></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td><cite>.Net resource file</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/formats/resx.html" title="(in Translate Toolkit v2.3.1)"><span>.NET Resource files (.resx)</span></a>,
+<a class="reference internal" href="admin/addons.html#addon-weblate-cleanup-generic"><span class="std std-ref">Cleanup translation files</span></a>,</p>
+</div>
+</div>
+<div class="section" id="csv-files">
+<span id="csv"></span><h2>CSV files<a class="headerlink" href="#csv-files" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded" id="index-14">
+<p><span class="versionmodified">バージョン 2.4 で追加.</span></p>
+</div>
+<p>CSV files can contain a simple list of source and translation. Weblate supports
+the following files:</p>
+<ul class="simple">
+<li>Files with header defining fields (source, translation, location, ...)</li>
+<li>Files with two fields - source and translation (in this order), choose
+<span class="guilabel">Simple CSV file</span> as file format</li>
+<li>Files with fields as defined by translate-toolkit: location, source,
+target, id, fuzzy, context, translator_comments, developer_comments</li>
+</ul>
+<p>Example file:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Thank you for using Weblate.,Děkujeme za použití Weblate.
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Typical Weblate <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">locale/*.csv</span></code></td>
+</tr>
+<tr class="row-odd"><td>Monolingual base language file</td>
+<td><cite>Empty</cite></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><code class="docutils literal notranslate"><span class="pre">locale/en.csv</span></code></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td><cite>CSV file</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/formats/csv.html" title="(in Translate Toolkit v2.3.1)"><span>CSV</span></a></p>
+</div>
+</div>
+<div class="section" id="yaml-files">
+<span id="yaml"></span><h2>YAML files<a class="headerlink" href="#yaml-files" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded" id="index-15">
+<p><span class="versionmodified">バージョン 2.9 で追加.</span></p>
+</div>
+<p>There are several variants of using YAML as a translation format. Weblate
+currently supports following:</p>
+<ul class="simple">
+<li>Plain YAML files with string keys and values</li>
+<li>Ruby i18n YAML files with language as root node</li>
+</ul>
+<p>Example YAML file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">weblate</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">hello</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">orangutan&quot;</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">try&quot;</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">thanks&quot;</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
+</pre></div>
+</div>
+<p>Example Ruby i18n YAML file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">cs</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">weblate</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">hello</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">orangutan</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">try</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">thanks</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Typical Weblate <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">translations/messages.*.yml</span></code></td>
+</tr>
+<tr class="row-odd"><td>Monolingual base language file</td>
+<td><code class="docutils literal notranslate"><span class="pre">translations/messages.en.yml</span></code></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><cite>Empty</cite></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td><cite>YAML file</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/formats/yaml.html" title="(in Translate Toolkit v2.3.1)"><span>YAML</span></a></p>
+</div>
+</div>
+<div class="section" id="dtd-files">
+<span id="dtd"></span><h2>DTD files<a class="headerlink" href="#dtd-files" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded" id="index-16">
+<p><span class="versionmodified">バージョン 2.18 で追加.</span></p>
+</div>
+<p>Example DTD file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">&lt;!ENTITY hello &quot;&quot;&gt;</span>
+<span class="l l-Scalar l-Scalar-Plain">&lt;!ENTITY orangutan &quot;&quot;&gt;</span>
+<span class="l l-Scalar l-Scalar-Plain">&lt;!ENTITY try &quot;&quot;&gt;</span>
+<span class="l l-Scalar l-Scalar-Plain">&lt;!ENTITY thanks &quot;&quot;&gt;</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Typical Weblate <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">locale/*.dtd</span></code></td>
+</tr>
+<tr class="row-odd"><td>Monolingual base language file</td>
+<td><code class="docutils literal notranslate"><span class="pre">locale/en.dtd</span></code></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><cite>Empty</cite></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td><cite>DTD file</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/formats/dtd.html" title="(in Translate Toolkit v2.3.1)"><span>Mozilla DTD format</span></a></p>
+</div>
+</div>
+<div class="section" id="windows-rc-files">
+<span id="winrc"></span><h2>Windows RC files<a class="headerlink" href="#windows-rc-files" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.0 で追加: </span>Experimental support has been added in Weblate 3.0, not supported on Python 3.</p>
+</div>
+<p id="index-17">Example Windows RC file:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>LANGUAGE LANG_CZECH, SUBLANG_DEFAULT
+
+STRINGTABLE DISCARDABLE
+BEGIN
+
+IDS_MSG1 &quot;Hello, world!\n&quot;
+IDS_MSG2 &quot;Orangutan has %d banana.\n&quot;
+IDS_MSG3 &quot;Try Weblate at http://demo.weblate.org/!\n&quot;
+IDS_MSG4 &quot;Thank you for using Weblate.&quot;
+END
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Typical Weblate <a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">lang/*.rc</span></code></td>
+</tr>
+<tr class="row-odd"><td>Monolingual base language file</td>
+<td><code class="docutils literal notranslate"><span class="pre">lang/en-US.rc</span></code></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><code class="docutils literal notranslate"><span class="pre">lang/en-US.rc</span></code></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td><cite>RC file</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/formats/rc.html" title="(in Translate Toolkit v2.3.1)"><span>Windows RC files</span></a></p>
+</div>
+</div>
+<div class="section" id="excel-open-xml">
+<span id="xlsx"></span><h2>Excel Open XML<a class="headerlink" href="#excel-open-xml" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.2 で追加.</span></p>
+</div>
+<p>Weblate can import and export Excel Open XML (xlsx) files.</p>
+<p>When using xlsx files for translation upload, be aware that only the active
+worksheet is considered and there must be at least a column called <code class="docutils literal notranslate"><span class="pre">source</span></code>
+(which contains the source string) and a column called <code class="docutils literal notranslate"><span class="pre">target</span></code> (which
+contains the translation). Additionally there should be the column <code class="docutils literal notranslate"><span class="pre">context</span></code>
+(which contains the context path of the translation unit). If you use the xlsx
+download for exporting the translations into an Excel workbook, you already get
+a file with the correct file format.</p>
+</div>
+<div class="section" id="others">
+<h2>Others<a class="headerlink" href="#others" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Most formats supported by translate-toolkit which support serializing can be
+easily supported, but they did not (yet) receive any testing. In most cases
+some thin layer is needed in Weblate to hide differences in behavior of
+different translate-toolkit storages.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/formats/index.html" title="(in Translate Toolkit v2.3.1)"><span>Translation Related File Formats</span></a></p>
+</div>
+</div>
+<div class="section" id="adding-new-translations">
+<span id="new-translations"></span><h2>Adding new translations<a class="headerlink" href="#adding-new-translations" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 2.18 で変更: </span>In versions prior to 2.18 the behaviour of adding new translations was file
+format specific.</p>
+</div>
+<p>Weblate can automatically start new translation for all of the file
+formats.</p>
+<p>Some formats expect to start with empty file and only translated
+strings to be included (eg. <a class="reference internal" href="#aresource"><span class="std std-ref">Android string resources</span></a>), while others expect to have all
+keys present (eg. <a class="reference internal" href="#gettext"><span class="std std-ref">GNU Gettext</span></a>). In some situations this really doesn't depend
+on the format, but rather on framework you use to handle the translation (eg. with
+<a class="reference internal" href="#json"><span class="std std-ref">JSON files</span></a>).</p>
+<p>When you specify <span class="guilabel">Base file for new translations</span> in
+<a class="reference internal" href="admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a>, Weblate will use this file to start new translations. Any
+exiting translations will be removed from the file when doing so.</p>
+<p>When <span class="guilabel">Base file for new translations</span> is empty and file format
+supports it, empty file is created where new units will be added once they are
+translated.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vcs.html" class="btn btn-neutral float-right" title="Version control integration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="faq.html" class="btn btn-neutral" title="よくある質問" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

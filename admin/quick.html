@@ -1,0 +1,455 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quick setup guide &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Installation instructions" href="install.html" />
+    <link rel="prev" title="Administrators guide" href="index.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrators guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Quick setup guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#choosing-installation-method">Choosing installation method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-in-a-virtualenv">Installing in a virtualenv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-from-sources">Installing from sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-using-docker">Installing using Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-on-openshift-2">Installing on OpenShift 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-translation">Adding translation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access.html">Access control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html">翻訳プロジェクト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html">継続的トランスレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks and fixups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html">Machine translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html">Addons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html">Management commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Administrators guide</a> &raquo;</li>
+        
+      <li>Quick setup guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/admin/quick.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quick-setup-guide">
+<h1>Quick setup guide<a class="headerlink" href="#quick-setup-guide" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">This is just a quick guide for installing and starting to use Weblate for
+testing purposes. Please check <a class="reference internal" href="install.html#install"><span class="std std-ref">Installation instructions</span></a> for more real world setup
+instructions.</p>
+</div>
+<div class="section" id="choosing-installation-method">
+<h2>Choosing installation method<a class="headerlink" href="#choosing-installation-method" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Choose best installation method depending on your environment and customization you need:</p>
+<ol class="arabic simple">
+<li>Choose Docker if you are familiar with that and if you are not going to change Weblate code, see <a class="reference internal" href="#quick-docker"><span class="std std-ref">Installing using Docker</span></a>.</li>
+<li>If you are not going to change Weblate code, but want to avoid Docker install in virtual env, see <a class="reference internal" href="#quick-virtualenv"><span class="std std-ref">Installing in a virtualenv</span></a>.</li>
+<li>If you want to develop and/or change Weblate code, grab Weblate from Git, see <a class="reference internal" href="#quick-source"><span class="std std-ref">Installing from sources</span></a>.</li>
+</ol>
+</div>
+<div class="section" id="installing-in-a-virtualenv">
+<span id="quick-virtualenv"></span><h2>Installing in a virtualenv<a class="headerlink" href="#installing-in-a-virtualenv" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>If you'd just like to do a quick installation locally on your device to find
+out if Weblate is for you, you can install it using a virtual environment for
+Python 2, a simple (and slow!) SQLite database, and the lightweight Django
+development server.</p>
+<ol class="arabic">
+<li><p class="first">Install development files for libraries needed for building some
+Python modules:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Debian/Ubuntu:</span>
+apt install libxml2-dev libxslt-dev libfreetype6-dev libjpeg-dev libz-dev libyaml-dev python-dev
+
+<span class="c1"># openSUSE/SLES:</span>
+zypper install libxslt-devel libxml2-devel freetype-devel libjpeg-devel zlib-devel libyaml-devel python-devel
+
+<span class="c1"># Fedora/RHEL/CentOS:</span>
+dnf install libxslt-devel libxml2-devel freetype-devel libjpeg-devel zlib-devel libyaml-devel python-devel
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install pip and virtualenv. Usually they are shipped by your distribution or
+with Python:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Debian/Ubuntu:</span>
+apt-get install python-pip python-virtualenv
+
+<span class="c1"># openSUSE/SLES:</span>
+zypper install python-pip python-virtualenv
+
+<span class="c1"># Fedora/RHEL/CentOS:</span>
+dnf install python-pip python-virtualenv
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create the virtualenv for Weblate:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>virtualenv ~/weblate-env
+</pre></div>
+</div>
+</li>
+<li><p class="first">Activate the virtualenv for Weblate, so Weblate will look for Python libraries there first:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>. ~/weblate-env/bin/activate
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install Weblate including all dependencies. You can also use pip to install
+the optional dependencies:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install Weblate
+<span class="c1"># Optional deps</span>
+pip install pytz python-bidi PyYAML pyuca
+</pre></div>
+</div>
+</li>
+<li><p class="first">Copy the file <code class="file docutils literal notranslate"><span class="pre">~/weblate-env/lib/python2.7/site-packages/weblate/settings-example.py</span></code>
+to <code class="file docutils literal notranslate"><span class="pre">~/weblate-env/lib/python2.7/site-packages/weblate/settings.py</span></code></p>
+</li>
+<li><p class="first">Optionally, adjust the values in the new <code class="file docutils literal notranslate"><span class="pre">settings.py</span></code> file.</p>
+</li>
+<li><p class="first">Create the SQLite database and its structure for Weblate:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>weblate migrate
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create the administrator user account and copy the password it outputs
+to the clipboard, and maybe also save it to a text file for later use:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>weblate createadmin
+</pre></div>
+</div>
+</li>
+<li><p class="first">Start the development server:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>weblate runserver
+</pre></div>
+</div>
+</li>
+<li><p class="first">Open a web browser, go to <a class="reference external" href="http://localhost:8000/accounts/login/">http://localhost:8000/accounts/login/</a>
+and login with the user name <cite>admin</cite> and paste the password in.</p>
+</li>
+<li><p class="first">Proceed with <a class="reference internal" href="#add-translatable-contents"><span class="std std-ref">Adding translation</span></a> to add some translatable contents to
+your test installation.</p>
+</li>
+</ol>
+<p>You can stop the test server with Ctrl+C, and leave the virtual environment with <code class="docutils literal notranslate"><span class="pre">deactivate</span></code>.
+If you want to resume testing later, you need to repeat the steps 4, 8 and 11 each time to start the development server.</p>
+</div>
+<div class="section" id="installing-from-sources">
+<span id="quick-source"></span><h2>Installing from sources<a class="headerlink" href="#installing-from-sources" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">Grab Weblate sources (either using Git or download a tarball) and unpack
+them, see <a class="reference internal" href="install.html#install-weblate"><span class="std std-ref">Installing Weblate</span></a>.</p>
+</li>
+<li><p class="first">Install all required dependencies into an virtual env (also see <a class="reference internal" href="install.html#requirements"><span class="std std-ref">Software requirements</span></a>):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>virtualenv .venv
+. .venv/bin/activate
+pip install -r /path/to/weblate/requirements.txt
+</pre></div>
+</div>
+</li>
+<li><p class="first">Copy <code class="file docutils literal notranslate"><span class="pre">weblate/settings_example.py</span></code> to <code class="file docutils literal notranslate"><span class="pre">weblate/settings.py</span></code> and
+adjust it to match your setup. You will at least need to configure the database
+connection (possibly adding user and creating the database). Check
+<a class="reference internal" href="config.html#config"><span class="std std-ref">設定について</span></a> for Weblate specific configuration options.</p>
+</li>
+<li><p class="first">Create the database which will be used by Weblate, see <a class="reference internal" href="install.html#database-setup"><span class="std std-ref">Database setup for Weblate</span></a>.</p>
+</li>
+<li><p class="first">Build Django tables, static files and initial data (see
+<a class="reference internal" href="install.html#tables-setup"><span class="std std-ref">Filling up the database</span></a> and <a class="reference internal" href="install.html#id2"><span class="std std-ref">Serving static files</span></a>):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py migrate
+./manage.py collectstatic
+./scripts/generate-locales <span class="c1"># If you are using Git checkout</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Configure webserver to serve Weblate, see <a class="reference internal" href="install.html#server"><span class="std std-ref">Running server</span></a>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="installing-using-docker">
+<span id="quick-docker"></span><h2>Installing using Docker<a class="headerlink" href="#installing-using-docker" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">Clone weblate-docker repo:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/WeblateOrg/docker-compose.git weblate-docker
+<span class="nb">cd</span> weblate-docker
+</pre></div>
+</div>
+</li>
+<li><p class="first">Start Weblate containers:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker-compose up
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">See <a class="reference internal" href="deployments.html#docker"><span class="std std-ref">Running Weblate in the Docker</span></a> for more detailed instructions and customization options.</p>
+</div>
+</div>
+<div class="section" id="installing-on-openshift-2">
+<span id="quick-openshift"></span><h2>Installing on OpenShift 2<a class="headerlink" href="#installing-on-openshift-2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">You can install Weblate on OpenShift PaaS directly from its Git repository using the OpenShift Client Tools:</p>
+<pre class="literal-block">
+rhc -aweblate app create -t python-2.7 --from-code https://github.com/WeblateOrg/weblate.git --no-git
+</pre>
+</li>
+<li><p class="first">After installation everything should be preconfigured and you can immediately start to add a translation
+project as described below.</p>
+</li>
+</ol>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<blockquote class="last">
+<div>For more information, including on how to retrieve the generated admin password, see <a class="reference internal" href="deployments.html#openshift"><span class="std std-ref">Running Weblate on OpenShift 2</span></a>.</div></blockquote>
+</div>
+</div>
+<div class="section" id="adding-translation">
+<span id="add-translatable-contents"></span><h2>Adding translation<a class="headerlink" href="#adding-translation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">Open admin interface (<a class="reference external" href="http://localhost/admin/">http://localhost/admin/</a>) and create project you
+want to translate. See <a class="reference internal" href="projects.html#project"><span class="std std-ref">プロジェクトの設定</span></a> for more details.</p>
+<p>All you need to specify here is project name and its website.</p>
+</li>
+<li><p class="first">Create component which is the real object for translating - it points to
+VCS repository and selects which files to translate. See <a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a>
+for more details.</p>
+<p>The important fields here being component name, VCS repository address and
+mask for finding translatable files. Weblate supports a wide range of formats
+including Gettext PO files, Android resource strings, OS X string properties,
+Java properties or Qt Linguist files, see <a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートされるフォーマット</span></a> for more details.</p>
+</li>
+<li><p class="first">Once the above is completed (it can be lengthy process depending on size of
+your VCS repository and number of messages to translate), you can start
+translating.</p>
+</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="install.html" class="btn btn-neutral float-right" title="Installation instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Administrators guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

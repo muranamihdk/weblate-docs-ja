@@ -1,0 +1,1081 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Sample configuration &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Management commands" href="management.html" />
+    <link rel="prev" title="設定について" href="config.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrators guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access.html">Access control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html">翻訳プロジェクト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html">継続的トランスレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks and fixups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html">Machine translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html">Addons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Sample configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html">Management commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Administrators guide</a> &raquo;</li>
+        
+      <li>Sample configuration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/admin/sample.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sample-configuration">
+<span id="id1"></span><h1>Sample configuration<a class="headerlink" href="#sample-configuration" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>The following example is shipped as <code class="file docutils literal notranslate"><span class="pre">weblate/settings_example.py</span></code> with Weblate:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright © 2012 - 2018 Michal Čihař &lt;michal@cihar.com&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of Weblate &lt;https://weblate.org/&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">#</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+<span class="kn">import</span> <span class="nn">platform</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">logging.handlers</span> <span class="kn">import</span> <span class="n">SysLogHandler</span>
+
+<span class="c1">#</span>
+<span class="c1"># Django settings for Weblate project.</span>
+<span class="c1">#</span>
+
+<span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="n">ADMINS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="c1"># (&#39;Your Name&#39;, &#39;your_email@example.com&#39;),</span>
+<span class="p">)</span>
+
+<span class="n">MANAGERS</span> <span class="o">=</span> <span class="n">ADMINS</span>
+
+<span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># Use &#39;postgresql&#39;, &#39;mysql&#39;, &#39;sqlite3&#39; or &#39;oracle&#39;.</span>
+        <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.sqlite3&#39;</span><span class="p">,</span>
+        <span class="c1"># Database name or path to database file if using sqlite3.</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;weblate.db&#39;</span><span class="p">,</span>
+        <span class="c1"># Database user, not used with sqlite3.</span>
+        <span class="s1">&#39;USER&#39;</span><span class="p">:</span> <span class="s1">&#39;weblate&#39;</span><span class="p">,</span>
+        <span class="c1"># Database password, not used with sqlite3.</span>
+        <span class="s1">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="s1">&#39;weblate&#39;</span><span class="p">,</span>
+        <span class="c1"># Set to empty string for localhost. Not used with sqlite3.</span>
+        <span class="s1">&#39;HOST&#39;</span><span class="p">:</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
+        <span class="c1"># Set to empty string for default. Not used with sqlite3.</span>
+        <span class="s1">&#39;PORT&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="c1"># Customizations for databases</span>
+        <span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># Uncomment for MySQL older than 5.7:</span>
+            <span class="c1"># &#39;init_command&#39;: &quot;SET sql_mode=&#39;STRICT_TRANS_TABLES&#39;&quot;,</span>
+            <span class="c1"># Set emoji capable charset for MySQL:</span>
+            <span class="c1"># &#39;charset&#39;: &#39;utf8mb4&#39;,</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">BASE_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+
+<span class="c1"># Data directory</span>
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+
+<span class="c1"># Local time zone for this installation. Choices can be found here:</span>
+<span class="c1"># http://en.wikipedia.org/wiki/List_of_tz_zones_by_name</span>
+<span class="c1"># although not all choices may be available on all operating systems.</span>
+<span class="c1"># In a Windows environment this must be set to your system time zone.</span>
+<span class="n">TIME_ZONE</span> <span class="o">=</span> <span class="s1">&#39;UTC&#39;</span>
+
+<span class="c1"># Language code for this installation. All choices can be found here:</span>
+<span class="c1"># http://www.i18nguy.com/unicode/language-identifiers.html</span>
+<span class="n">LANGUAGE_CODE</span> <span class="o">=</span> <span class="s1">&#39;en-us&#39;</span>
+
+<span class="n">LANGUAGES</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="s1">&#39;ar&#39;</span><span class="p">,</span> <span class="s1">&#39;العربية&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;az&#39;</span><span class="p">,</span> <span class="s1">&#39;Azərbaycan&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;be&#39;</span><span class="p">,</span> <span class="s1">&#39;Беларуская&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;be@latin&#39;</span><span class="p">,</span> <span class="s1">&#39;Biełaruskaja&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;bg&#39;</span><span class="p">,</span> <span class="s1">&#39;Български&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;br&#39;</span><span class="p">,</span> <span class="s1">&#39;Brezhoneg&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;ca&#39;</span><span class="p">,</span> <span class="s1">&#39;Català&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;cs&#39;</span><span class="p">,</span> <span class="s1">&#39;Čeština&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;da&#39;</span><span class="p">,</span> <span class="s1">&#39;Dansk&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;de&#39;</span><span class="p">,</span> <span class="s1">&#39;Deutsch&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;en&#39;</span><span class="p">,</span> <span class="s1">&#39;English&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;en-gb&#39;</span><span class="p">,</span> <span class="s1">&#39;English (United Kingdom)&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;el&#39;</span><span class="p">,</span> <span class="s1">&#39;Ελληνικά&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;es&#39;</span><span class="p">,</span> <span class="s1">&#39;Español&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;fi&#39;</span><span class="p">,</span> <span class="s1">&#39;Suomi&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;fr&#39;</span><span class="p">,</span> <span class="s1">&#39;Français&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;fy&#39;</span><span class="p">,</span> <span class="s1">&#39;Frysk&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;gl&#39;</span><span class="p">,</span> <span class="s1">&#39;Galego&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;he&#39;</span><span class="p">,</span> <span class="s1">&#39;עברית&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;hu&#39;</span><span class="p">,</span> <span class="s1">&#39;Magyar&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;Indonesia&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;it&#39;</span><span class="p">,</span> <span class="s1">&#39;Italiano&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;ja&#39;</span><span class="p">,</span> <span class="s1">&#39;日本語&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="s1">&#39;한국어&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;ksh&#39;</span><span class="p">,</span> <span class="s1">&#39;Kölsch&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;nb&#39;</span><span class="p">,</span> <span class="s1">&#39;Norsk bokmål&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;nl&#39;</span><span class="p">,</span> <span class="s1">&#39;Nederlands&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;pl&#39;</span><span class="p">,</span> <span class="s1">&#39;Polski&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;pt&#39;</span><span class="p">,</span> <span class="s1">&#39;Português&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;pt-br&#39;</span><span class="p">,</span> <span class="s1">&#39;Português brasileiro&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;ru&#39;</span><span class="p">,</span> <span class="s1">&#39;Русский&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;sk&#39;</span><span class="p">,</span> <span class="s1">&#39;Slovenčina&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;sl&#39;</span><span class="p">,</span> <span class="s1">&#39;Slovenščina&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;sr&#39;</span><span class="p">,</span> <span class="s1">&#39;Српски&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;sv&#39;</span><span class="p">,</span> <span class="s1">&#39;Svenska&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;tr&#39;</span><span class="p">,</span> <span class="s1">&#39;Türkçe&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;uk&#39;</span><span class="p">,</span> <span class="s1">&#39;Українська&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;zh-hans&#39;</span><span class="p">,</span> <span class="s1">&#39;简体字&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;zh-hant&#39;</span><span class="p">,</span> <span class="s1">&#39;正體字&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">SITE_ID</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># If you set this to False, Django will make some optimizations so as not</span>
+<span class="c1"># to load the internationalization machinery.</span>
+<span class="n">USE_I18N</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c1"># If you set this to False, Django will not format dates, numbers and</span>
+<span class="c1"># calendars according to the current locale.</span>
+<span class="n">USE_L10N</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c1"># If you set this to False, Django will not use timezone-aware datetimes.</span>
+<span class="n">USE_TZ</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c1"># URL prefix to use, please see documentation for more details</span>
+<span class="n">URL_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+<span class="c1"># Absolute filesystem path to the directory that will hold user-uploaded files.</span>
+<span class="c1"># Example: &quot;/home/media/media.lawrence.com/media/&quot;</span>
+<span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s1">&#39;media&#39;</span><span class="p">)</span>
+
+<span class="c1"># URL that handles the media served from MEDIA_ROOT. Make sure to use a</span>
+<span class="c1"># trailing slash.</span>
+<span class="c1"># Examples: &quot;http://media.lawrence.com/media/&quot;, &quot;http://example.com/media/&quot;</span>
+<span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s1">&#39;{0}/media/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">URL_PREFIX</span><span class="p">)</span>
+
+<span class="c1"># Absolute path to the directory static files should be collected to.</span>
+<span class="c1"># Don&#39;t put anything in this directory yourself; store your static files</span>
+<span class="c1"># in apps&#39; &quot;static/&quot; subdirectories and in STATICFILES_DIRS.</span>
+<span class="c1"># Example: &quot;/home/media/media.lawrence.com/static/&quot;</span>
+<span class="n">STATIC_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s1">&#39;static&#39;</span><span class="p">)</span>
+
+<span class="c1"># URL prefix for static files.</span>
+<span class="c1"># Example: &quot;http://media.lawrence.com/static/&quot;</span>
+<span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s1">&#39;{0}/static/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">URL_PREFIX</span><span class="p">)</span>
+
+<span class="c1"># Additional locations of static files</span>
+<span class="n">STATICFILES_DIRS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="c1"># Put strings here, like &quot;/home/html/static&quot; or &quot;C:/www/django/static&quot;.</span>
+    <span class="c1"># Always use forward slashes, even on Windows.</span>
+    <span class="c1"># Don&#39;t forget to use absolute paths, not relative paths.</span>
+<span class="p">)</span>
+
+<span class="c1"># List of finder classes that know how to find static files in</span>
+<span class="c1"># various locations.</span>
+<span class="n">STATICFILES_FINDERS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;django.contrib.staticfiles.finders.FileSystemFinder&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.staticfiles.finders.AppDirectoriesFinder&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;compressor.finders.CompressorFinder&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Make this unique, and don&#39;t share it with anybody.</span>
+<span class="c1"># You can generate it using examples/generate-secret-key</span>
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;jm8fqjlg+5!#xu</span><span class="si">%e</span><span class="s1">-oh#7!$aa7!6avf7ud*_v=chdrb9qdco6(&#39;</span>  <span class="c1"># noqa</span>
+
+<span class="n">TEMPLATES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s1">&#39;django.template.backends.django.DjangoTemplates&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;DIRS&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s1">&#39;weblate&#39;</span><span class="p">,</span> <span class="s1">&#39;templates&#39;</span><span class="p">),</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;context_processors&#39;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s1">&#39;django.contrib.auth.context_processors.auth&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;django.template.context_processors.debug&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;django.template.context_processors.i18n&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;django.template.context_processors.request&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;django.template.context_processors.csrf&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;django.contrib.messages.context_processors.messages&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;weblate.trans.context_processors.weblate_context&#39;</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="s1">&#39;loaders&#39;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">(</span><span class="s1">&#39;django.template.loaders.cached.Loader&#39;</span><span class="p">,</span> <span class="p">[</span>
+                    <span class="s1">&#39;django.template.loaders.filesystem.Loader&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;django.template.loaders.app_directories.Loader&#39;</span><span class="p">,</span>
+                <span class="p">]),</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">]</span>
+
+
+<span class="c1"># GitHub username for sending pull requests.</span>
+<span class="c1"># Please see the documentation for more details.</span>
+<span class="n">GITHUB_USERNAME</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1"># Authentication configuration</span>
+<span class="n">AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;social_core.backends.email.EmailAuth&#39;</span><span class="p">,</span>
+    <span class="c1"># &#39;social_core.backends.google.GoogleOAuth2&#39;,</span>
+    <span class="c1"># &#39;social_core.backends.github.GithubOAuth2&#39;,</span>
+    <span class="c1"># &#39;social_core.backends.bitbucket.BitbucketOAuth&#39;,</span>
+    <span class="c1"># &#39;social_core.backends.suse.OpenSUSEOpenId&#39;,</span>
+    <span class="c1"># &#39;social_core.backends.ubuntu.UbuntuOpenId&#39;,</span>
+    <span class="c1"># &#39;social_core.backends.fedora.FedoraOpenId&#39;,</span>
+    <span class="c1"># &#39;social_core.backends.facebook.FacebookOAuth2&#39;,</span>
+    <span class="s1">&#39;weblate.accounts.auth.WeblateUserBackend&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Custom user model</span>
+<span class="n">AUTH_USER_MODEL</span> <span class="o">=</span> <span class="s1">&#39;weblate_auth.User&#39;</span>
+
+<span class="c1"># Social auth backends setup</span>
+<span class="n">SOCIAL_AUTH_GITHUB_KEY</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">SOCIAL_AUTH_GITHUB_SECRET</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">SOCIAL_AUTH_GITHUB_SCOPE</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user:email&#39;</span><span class="p">]</span>
+
+<span class="n">SOCIAL_AUTH_BITBUCKET_KEY</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">SOCIAL_AUTH_BITBUCKET_SECRET</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">SOCIAL_AUTH_BITBUCKET_VERIFIED_EMAILS_ONLY</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="n">SOCIAL_AUTH_FACEBOOK_KEY</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">SOCIAL_AUTH_FACEBOOK_SECRET</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">SOCIAL_AUTH_FACEBOOK_SCOPE</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;public_profile&#39;</span><span class="p">]</span>
+<span class="n">SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fields&#39;</span><span class="p">:</span> <span class="s1">&#39;id,name,email&#39;</span><span class="p">}</span>
+<span class="n">SOCIAL_AUTH_FACEBOOK_API_VERSION</span> <span class="o">=</span> <span class="s1">&#39;3.1&#39;</span>
+
+<span class="n">SOCIAL_AUTH_GOOGLE_OAUTH2_KEY</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+<span class="c1"># Social auth settings</span>
+<span class="n">SOCIAL_AUTH_PIPELINE</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;social_core.pipeline.social_auth.social_details&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.pipeline.social_auth.social_uid&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.pipeline.social_auth.auth_allowed&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.pipeline.social_auth.social_user&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.pipeline.store_params&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.pipeline.verify_open&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.pipeline.user.get_username&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.pipeline.require_email&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.pipeline.mail.mail_validation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.pipeline.revoke_mail_code&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.pipeline.ensure_valid&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.pipeline.remove_account&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.pipeline.social_auth.associate_by_email&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.pipeline.reauthenticate&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.pipeline.verify_username&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.pipeline.user.create_user&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.pipeline.social_auth.associate_user&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.pipeline.social_auth.load_extra_data&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.pipeline.cleanup_next&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.pipeline.user_full_name&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.pipeline.store_email&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.pipeline.notify_connect&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.pipeline.password_reset&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">SOCIAL_AUTH_DISCONNECT_PIPELINE</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;social_core.pipeline.disconnect.allowed_to_disconnect&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.pipeline.disconnect.get_entries&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.pipeline.disconnect.revoke_tokens&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.pipeline.cycle_session&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.pipeline.adjust_primary_mail&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.pipeline.notify_disconnect&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.pipeline.disconnect.disconnect&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.pipeline.cleanup_next&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Custom authentication strategy</span>
+<span class="n">SOCIAL_AUTH_STRATEGY</span> <span class="o">=</span> <span class="s1">&#39;weblate.accounts.strategy.WeblateStrategy&#39;</span>
+
+<span class="c1"># Raise exceptions so that we can handle them later</span>
+<span class="n">SOCIAL_AUTH_RAISE_EXCEPTIONS</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="n">SOCIAL_AUTH_EMAIL_VALIDATION_FUNCTION</span> <span class="o">=</span> \
+    <span class="s1">&#39;weblate.accounts.pipeline.send_validation&#39;</span>
+<span class="n">SOCIAL_AUTH_EMAIL_VALIDATION_URL</span> <span class="o">=</span> \
+    <span class="s1">&#39;{0}/accounts/email-sent/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">URL_PREFIX</span><span class="p">)</span>
+<span class="n">SOCIAL_AUTH_LOGIN_ERROR_URL</span> <span class="o">=</span> \
+    <span class="s1">&#39;{0}/accounts/login/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">URL_PREFIX</span><span class="p">)</span>
+<span class="n">SOCIAL_AUTH_EMAIL_FORM_URL</span> <span class="o">=</span> \
+    <span class="s1">&#39;{0}/accounts/email/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">URL_PREFIX</span><span class="p">)</span>
+<span class="n">SOCIAL_AUTH_NEW_ASSOCIATION_REDIRECT_URL</span> <span class="o">=</span> \
+    <span class="s1">&#39;{0}/accounts/profile/#auth&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">URL_PREFIX</span><span class="p">)</span>
+<span class="n">SOCIAL_AUTH_PROTECTED_USER_FIELDS</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,)</span>
+<span class="n">SOCIAL_AUTH_SLUGIFY_USERNAMES</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">SOCIAL_AUTH_SLUGIFY_FUNCTION</span> <span class="o">=</span> <span class="s1">&#39;weblate.accounts.pipeline.slugify_username&#39;</span>
+
+<span class="c1"># Password validation configuration</span>
+<span class="n">AUTH_PASSWORD_VALIDATORS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;django.contrib.auth.password_validation.UserAttributeSimilarityValidator&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;django.contrib.auth.password_validation.MinimumLengthValidator&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;min_length&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;django.contrib.auth.password_validation.CommonPasswordValidator&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;django.contrib.auth.password_validation.NumericPasswordValidator&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;weblate.accounts.password_validation.CharsPasswordValidator&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;weblate.accounts.password_validation.PastPasswordsValidator&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="c1"># Optional password strength validation by django-zxcvbn-password</span>
+    <span class="c1"># {</span>
+    <span class="c1">#     &#39;NAME&#39;: &#39;zxcvbn_password.ZXCVBNValidator&#39;,</span>
+    <span class="c1">#     &#39;OPTIONS&#39;: {</span>
+    <span class="c1">#         &#39;min_score&#39;: 3,</span>
+    <span class="c1">#         &#39;user_attributes&#39;: (&#39;username&#39;, &#39;email&#39;, &#39;full_name&#39;)</span>
+    <span class="c1">#     }</span>
+    <span class="c1"># },</span>
+<span class="p">]</span>
+
+<span class="c1"># Allow new user registrations</span>
+<span class="n">REGISTRATION_OPEN</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c1"># Middleware</span>
+<span class="n">MIDDLEWARE</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;weblate.middleware.ProxyMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.middleware.security.SecurityMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.sessions.middleware.SessionMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.middleware.common.CommonMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.middleware.locale.LocaleMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.middleware.csrf.CsrfViewMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.middleware.AuthenticationMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.messages.middleware.MessageMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.middleware.clickjacking.XFrameOptionsMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_django.middleware.SocialAuthExceptionMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.middleware.RequireLoginMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.middleware.SecurityMiddleware&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">ROOT_URLCONF</span> <span class="o">=</span> <span class="s1">&#39;weblate.urls&#39;</span>
+
+<span class="c1"># Django and Weblate apps</span>
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.sites&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.messages&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.admin.apps.SimpleAdminConfig&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.admindocs&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.sitemaps&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_django&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;crispy_forms&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;compressor&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;rest_framework&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;rest_framework.authtoken&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.addons&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.auth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.checks&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.formats&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.machinery&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.trans&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.lang&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.langdata&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.memory&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.screenshots&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.utils&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.vcs&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.wladmin&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate&#39;</span><span class="p">,</span>
+
+    <span class="c1"># Optional: Git exporter</span>
+    <span class="c1"># &#39;weblate.gitexport&#39;,</span>
+<span class="p">)</span>
+
+<span class="c1"># Path to locales</span>
+<span class="n">LOCALE_PATHS</span> <span class="o">=</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s1">&#39;weblate&#39;</span><span class="p">,</span> <span class="s1">&#39;locale&#39;</span><span class="p">),</span> <span class="p">)</span>
+
+<span class="c1"># Custom exception reporter to include some details</span>
+<span class="n">DEFAULT_EXCEPTION_REPORTER_FILTER</span> <span class="o">=</span> \
+    <span class="s1">&#39;weblate.trans.debug.WeblateExceptionReporterFilter&#39;</span>
+
+<span class="c1"># Default logging of Weblate messages</span>
+<span class="c1"># - to syslog in production (if available)</span>
+<span class="c1"># - otherwise to console</span>
+<span class="c1"># - you can also choose &#39;logfile&#39; to log into separate file</span>
+<span class="c1">#   after configuring it below</span>
+
+<span class="c1"># Detect if we can connect to syslog</span>
+<span class="n">HAVE_SYSLOG</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;Windows&#39;</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">handler</span> <span class="o">=</span> <span class="n">SysLogHandler</span><span class="p">(</span>
+            <span class="n">address</span><span class="o">=</span><span class="s1">&#39;/dev/log&#39;</span><span class="p">,</span> <span class="n">facility</span><span class="o">=</span><span class="n">SysLogHandler</span><span class="o">.</span><span class="n">LOG_LOCAL2</span>
+        <span class="p">)</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">HAVE_SYSLOG</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+        <span class="n">HAVE_SYSLOG</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="k">if</span> <span class="n">DEBUG</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">HAVE_SYSLOG</span><span class="p">:</span>
+    <span class="n">DEFAULT_LOG</span> <span class="o">=</span> <span class="s1">&#39;console&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">DEFAULT_LOG</span> <span class="o">=</span> <span class="s1">&#39;syslog&#39;</span>
+
+<span class="c1"># A sample logging configuration. The only tangible logging</span>
+<span class="c1"># performed by this configuration is to send an email to</span>
+<span class="c1"># the site admins on every HTTP 500 error when DEBUG=False.</span>
+<span class="c1"># See http://docs.djangoproject.com/en/stable/topics/logging for</span>
+<span class="c1"># more details on how to customize your logging configuration.</span>
+<span class="n">LOGGING</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;disable_existing_loggers&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+    <span class="s1">&#39;filters&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;require_debug_false&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;()&#39;</span><span class="p">:</span> <span class="s1">&#39;django.utils.log.RequireDebugFalse&#39;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;formatters&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;syslog&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;weblate[</span><span class="si">%(process)d</span><span class="s1">]: </span><span class="si">%(levelname)s</span><span class="s1"> </span><span class="si">%(message)s</span><span class="s1">&#39;</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;simple&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(levelname)s</span><span class="s1"> </span><span class="si">%(message)s</span><span class="s1">&#39;</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;logfile&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(levelname)s</span><span class="s1"> </span><span class="si">%(message)s</span><span class="s1">&#39;</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;django.server&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;()&#39;</span><span class="p">:</span> <span class="s1">&#39;django.utils.log.ServerFormatter&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;[</span><span class="si">%(server_time)s</span><span class="s1">] </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;handlers&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;mail_admins&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="s1">&#39;ERROR&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;filters&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;require_debug_false&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;django.utils.log.AdminEmailHandler&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;include_html&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;console&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;logging.StreamHandler&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;formatter&#39;</span><span class="p">:</span> <span class="s1">&#39;simple&#39;</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;django.server&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="s1">&#39;INFO&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;logging.StreamHandler&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;formatter&#39;</span><span class="p">:</span> <span class="s1">&#39;django.server&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;syslog&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;logging.handlers.SysLogHandler&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;formatter&#39;</span><span class="p">:</span> <span class="s1">&#39;syslog&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="s1">&#39;/dev/log&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;facility&#39;</span><span class="p">:</span> <span class="n">SysLogHandler</span><span class="o">.</span><span class="n">LOG_LOCAL2</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="c1"># Logging to a file</span>
+        <span class="c1"># &#39;logfile&#39;: {</span>
+        <span class="c1">#     &#39;level&#39;:&#39;DEBUG&#39;,</span>
+        <span class="c1">#     &#39;class&#39;:&#39;logging.handlers.RotatingFileHandler&#39;,</span>
+        <span class="c1">#     &#39;filename&#39;: &quot;/var/log/weblate/weblate.log&quot;,</span>
+        <span class="c1">#     &#39;maxBytes&#39;: 100000,</span>
+        <span class="c1">#     &#39;backupCount&#39;: 3,</span>
+        <span class="c1">#     &#39;formatter&#39;: &#39;logfile&#39;,</span>
+        <span class="c1"># },</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;loggers&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;django.request&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;handlers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;mail_admins&#39;</span><span class="p">,</span> <span class="n">DEFAULT_LOG</span><span class="p">],</span>
+            <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="s1">&#39;ERROR&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;propagate&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;django.server&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;handlers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;django.server&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="s1">&#39;INFO&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;propagate&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="c1"># Logging database queries</span>
+        <span class="c1"># &#39;django.db.backends&#39;: {</span>
+        <span class="c1">#     &#39;handlers&#39;: [DEFAULT_LOG],</span>
+        <span class="c1">#     &#39;level&#39;: &#39;DEBUG&#39;,</span>
+        <span class="c1"># },</span>
+        <span class="s1">&#39;weblate&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;handlers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">DEFAULT_LOG</span><span class="p">],</span>
+            <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="c1"># Logging VCS operations</span>
+        <span class="c1"># &#39;weblate-vcs&#39;: {</span>
+        <span class="c1">#     &#39;handlers&#39;: [DEFAULT_LOG],</span>
+        <span class="c1">#     &#39;level&#39;: &#39;DEBUG&#39;,</span>
+        <span class="c1"># },</span>
+        <span class="c1"># Python Social Auth logging</span>
+        <span class="c1"># &#39;social&#39;: {</span>
+        <span class="c1">#     &#39;handlers&#39;: [DEFAULT_LOG],</span>
+        <span class="c1">#     &#39;level&#39;: &#39;DEBUG&#39;,</span>
+        <span class="c1"># },</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Logging of management commands to console</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DJANGO_IS_MANAGEMENT_COMMAND&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span> <span class="ow">and</span>
+        <span class="s1">&#39;console&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">LOGGING</span><span class="p">[</span><span class="s1">&#39;loggers&#39;</span><span class="p">][</span><span class="s1">&#39;weblate&#39;</span><span class="p">][</span><span class="s1">&#39;handlers&#39;</span><span class="p">]):</span>
+    <span class="n">LOGGING</span><span class="p">[</span><span class="s1">&#39;loggers&#39;</span><span class="p">][</span><span class="s1">&#39;weblate&#39;</span><span class="p">][</span><span class="s1">&#39;handlers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;console&#39;</span><span class="p">)</span>
+
+<span class="c1"># Remove syslog setup if it&#39;s not present</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">HAVE_SYSLOG</span><span class="p">:</span>
+    <span class="k">del</span> <span class="n">LOGGING</span><span class="p">[</span><span class="s1">&#39;handlers&#39;</span><span class="p">][</span><span class="s1">&#39;syslog&#39;</span><span class="p">]</span>
+
+<span class="c1"># List of machine translations</span>
+<span class="c1"># MT_SERVICES = (</span>
+<span class="c1">#     &#39;weblate.machinery.apertium.ApertiumAPYTranslation&#39;,</span>
+<span class="c1">#     &#39;weblate.machinery.baidu.BaiduTranslation&#39;,</span>
+<span class="c1">#     &#39;weblate.machinery.deepl.DeepLTranslation&#39;,</span>
+<span class="c1">#     &#39;weblate.machinery.glosbe.GlosbeTranslation&#39;,</span>
+<span class="c1">#     &#39;weblate.machinery.google.GoogleTranslation&#39;,</span>
+<span class="c1">#     &#39;weblate.machinery.microsoft.MicrosoftCognitiveTranslation&#39;,</span>
+<span class="c1">#     &#39;weblate.machinery.microsoftterminology.MicrosoftTerminologyService&#39;,</span>
+<span class="c1">#     &#39;weblate.machinery.mymemory.MyMemoryTranslation&#39;,</span>
+<span class="c1">#     &#39;weblate.machinery.netease.NeteaseSightTranslation&#39;,</span>
+<span class="c1">#     &#39;weblate.machinery.tmserver.AmagamaTranslation&#39;,</span>
+<span class="c1">#     &#39;weblate.machinery.tmserver.TMServerTranslation&#39;,</span>
+<span class="c1">#     &#39;weblate.machinery.yandex.YandexTranslation&#39;,</span>
+<span class="c1">#     &#39;weblate.machinery.weblatetm.WeblateTranslation&#39;,</span>
+<span class="c1">#     &#39;weblate.machinery.saptranslationhub.SAPTranslationHub&#39;,</span>
+<span class="c1">#     &#39;weblate.machinery.youdao.YoudaoTranslation&#39;,</span>
+<span class="c1">#     &#39;weblate.memory.machine.WeblateMemory&#39;,</span>
+<span class="c1"># )</span>
+
+<span class="c1"># Machine translation API keys</span>
+
+<span class="c1"># URL of the Apertium APy server</span>
+<span class="n">MT_APERTIUM_APY</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1"># DeepL API key</span>
+<span class="n">MT_DEEPL_KEY</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1"># Microsoft Cognitive Services Translator API, register at</span>
+<span class="c1"># https://portal.azure.com/</span>
+<span class="n">MT_MICROSOFT_COGNITIVE_KEY</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1"># MyMemory identification email, see</span>
+<span class="c1"># https://mymemory.translated.net/doc/spec.php</span>
+<span class="n">MT_MYMEMORY_EMAIL</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1"># Optional MyMemory credentials to access private translation memory</span>
+<span class="n">MT_MYMEMORY_USER</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">MT_MYMEMORY_KEY</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1"># Google API key for Google Translate API</span>
+<span class="n">MT_GOOGLE_KEY</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1"># Baidu app key and secret</span>
+<span class="n">MT_BAIDU_ID</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">MT_BAIDU_SECRET</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1"># Youdao Zhiyun app key and secret</span>
+<span class="n">MT_YOUDAO_ID</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">MT_YOUDAO_SECRET</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1"># Netease Sight (Jianwai) app key and secret</span>
+<span class="n">MT_NETEASE_KEY</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">MT_NETEASE_SECRET</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1"># API key for Yandex Translate API</span>
+<span class="n">MT_YANDEX_KEY</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1"># tmserver URL</span>
+<span class="n">MT_TMSERVER</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1"># SAP Translation Hub</span>
+<span class="n">MT_SAP_BASE_URL</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">MT_SAP_SANDBOX_APIKEY</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">MT_SAP_USERNAME</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">MT_SAP_PASSWORD</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">MT_SAP_USE_MT</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c1"># Title of site to use</span>
+<span class="n">SITE_TITLE</span> <span class="o">=</span> <span class="s1">&#39;Weblate&#39;</span>
+
+<span class="c1"># Whether site uses https</span>
+<span class="n">ENABLE_HTTPS</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="c1"># Use HTTPS when creating redirect URLs for social authentication, see</span>
+<span class="c1"># documentation for more details:</span>
+<span class="c1"># https://python-social-auth-docs.readthedocs.io/en/latest/configuration/settings.html#processing-redirects-and-urlopen</span>
+<span class="n">SOCIAL_AUTH_REDIRECT_IS_HTTPS</span> <span class="o">=</span> <span class="n">ENABLE_HTTPS</span>
+
+<span class="c1"># Make CSRF cookie HttpOnly, see documentation for more details:</span>
+<span class="c1"># https://docs.djangoproject.com/en/1.11/ref/settings/#csrf-cookie-httponly</span>
+<span class="n">CSRF_COOKIE_HTTPONLY</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">CSRF_COOKIE_SECURE</span> <span class="o">=</span> <span class="n">ENABLE_HTTPS</span>
+<span class="c1"># Store CSRF token in session (since Django 1.11)</span>
+<span class="n">CSRF_USE_SESSIONS</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">SESSION_COOKIE_SECURE</span> <span class="o">=</span> <span class="n">ENABLE_HTTPS</span>
+<span class="c1"># SSL redirect</span>
+<span class="n">SECURE_SSL_REDIRECT</span> <span class="o">=</span> <span class="n">ENABLE_HTTPS</span>
+<span class="c1"># Session cookie age (in seconds)</span>
+<span class="n">SESSION_COOKIE_AGE</span> <span class="o">=</span> <span class="mi">1209600</span>
+
+<span class="c1"># Some security headers</span>
+<span class="n">SECURE_BROWSER_XSS_FILTER</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">X_FRAME_OPTIONS</span> <span class="o">=</span> <span class="s1">&#39;DENY&#39;</span>
+<span class="n">SECURE_CONTENT_TYPE_NOSNIFF</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c1"># Optionally enable HSTS</span>
+<span class="n">SECURE_HSTS_SECONDS</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">SECURE_HSTS_PRELOAD</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">SECURE_HSTS_INCLUDE_SUBDOMAINS</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="c1"># URL of login</span>
+<span class="n">LOGIN_URL</span> <span class="o">=</span> <span class="s1">&#39;{0}/accounts/login/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">URL_PREFIX</span><span class="p">)</span>
+
+<span class="c1"># URL of logout</span>
+<span class="n">LOGOUT_URL</span> <span class="o">=</span> <span class="s1">&#39;{0}/accounts/logout/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">URL_PREFIX</span><span class="p">)</span>
+
+<span class="c1"># Default location for login</span>
+<span class="n">LOGIN_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">&#39;{0}/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">URL_PREFIX</span><span class="p">)</span>
+
+<span class="c1"># Anonymous user name</span>
+<span class="n">ANONYMOUS_USER_NAME</span> <span class="o">=</span> <span class="s1">&#39;anonymous&#39;</span>
+
+<span class="c1"># Reverse proxy settings</span>
+<span class="n">IP_PROXY_HEADER</span> <span class="o">=</span> <span class="s1">&#39;HTTP_X_FORWARDED_FOR&#39;</span>
+<span class="n">IP_BEHIND_REVERSE_PROXY</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">IP_PROXY_OFFSET</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Sending HTML in mails</span>
+<span class="n">EMAIL_SEND_HTML</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c1"># Subject of emails includes site title</span>
+<span class="n">EMAIL_SUBJECT_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;[{0}] &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">SITE_TITLE</span><span class="p">)</span>
+
+<span class="c1"># Enable remote hooks</span>
+<span class="n">ENABLE_HOOKS</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c1"># Number of nearby messages to show in each direction</span>
+<span class="n">NEARBY_MESSAGES</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># Use simple language codes for default language/country combinations</span>
+<span class="n">SIMPLIFY_LANGUAGES</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c1"># Render forms using bootstrap</span>
+<span class="n">CRISPY_TEMPLATE_PACK</span> <span class="o">=</span> <span class="s1">&#39;bootstrap3&#39;</span>
+
+<span class="c1"># List of quality checks</span>
+<span class="c1"># CHECK_LIST = (</span>
+<span class="c1">#     &#39;weblate.checks.same.SameCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.chars.BeginNewlineCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.chars.EndNewlineCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.chars.BeginSpaceCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.chars.EndSpaceCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.chars.EndStopCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.chars.EndColonCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.chars.EndQuestionCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.chars.EndExclamationCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.chars.EndEllipsisCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.chars.EndSemicolonCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.chars.MaxLengthCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.format.PythonFormatCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.format.PythonBraceFormatCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.format.PHPFormatCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.format.CFormatCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.format.PerlFormatCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.format.JavascriptFormatCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.format.CSharpFormatCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.format.JavaFormatCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.format.JavaMessageFormatCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.angularjs.AngularJSInterpolationCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.consistency.PluralsCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.consistency.SamePluralsCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.consistency.ConsistencyCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.consistency.TranslatedCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.chars.NewlineCountingCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.markup.BBCodeCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.chars.ZeroWidthSpaceCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.markup.XMLValidityCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.markup.XMLTagsCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.source.OptionalPluralCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.source.EllipsisCheck&#39;,</span>
+<span class="c1">#     &#39;weblate.checks.source.MultipleFailingCheck&#39;,</span>
+<span class="c1"># )</span>
+
+<span class="c1"># List of automatic fixups</span>
+<span class="c1"># AUTOFIX_LIST = (</span>
+<span class="c1">#     &#39;weblate.trans.autofixes.whitespace.SameBookendingWhitespace&#39;,</span>
+<span class="c1">#     &#39;weblate.trans.autofixes.chars.ReplaceTrailingDotsWithEllipsis&#39;,</span>
+<span class="c1">#     &#39;weblate.trans.autofixes.chars.RemoveZeroSpace&#39;,</span>
+<span class="c1">#     &#39;weblate.trans.autofixes.chars.RemoveControlChars&#39;,</span>
+<span class="c1"># )</span>
+
+<span class="c1"># List of enabled addons</span>
+<span class="c1"># WEBLATE_ADDONS = (</span>
+<span class="c1">#     &#39;weblate.addons.gettext.GenerateMoAddon&#39;,</span>
+<span class="c1">#     &#39;weblate.addons.gettext.UpdateLinguasAddon&#39;,</span>
+<span class="c1">#     &#39;weblate.addons.gettext.UpdateConfigureAddon&#39;,</span>
+<span class="c1">#     &#39;weblate.addons.gettext.MsgmergeAddon&#39;,</span>
+<span class="c1">#     &#39;weblate.addons.gettext.GettextCustomizeAddon&#39;,</span>
+<span class="c1">#     &#39;weblate.addons.gettext.GettextAuthorComments&#39;,</span>
+<span class="c1">#     &#39;weblate.addons.cleanup.CleanupAddon&#39;,</span>
+<span class="c1">#     &#39;weblate.addons.consistency.LangaugeConsistencyAddon&#39;,</span>
+<span class="c1">#     &#39;weblate.addons.discovery.DiscoveryAddon&#39;,</span>
+<span class="c1">#     &#39;weblate.addons.flags.SourceEditAddon&#39;,</span>
+<span class="c1">#     &#39;weblate.addons.flags.TargetEditAddon&#39;,</span>
+<span class="c1">#     &#39;weblate.addons.generate.GenerateFileAddon&#39;,</span>
+<span class="c1">#     &#39;weblate.addons.json.JSONCustomizeAddon&#39;,</span>
+<span class="c1">#     &#39;weblate.addons.properties.PropertiesSortAddon&#39;,</span>
+<span class="c1"># )</span>
+
+<span class="c1"># E-mail address that error messages come from.</span>
+<span class="n">SERVER_EMAIL</span> <span class="o">=</span> <span class="s1">&#39;noreply@example.com&#39;</span>
+
+<span class="c1"># Default email address to use for various automated correspondence from</span>
+<span class="c1"># the site managers. Used for registration emails.</span>
+<span class="n">DEFAULT_FROM_EMAIL</span> <span class="o">=</span> <span class="s1">&#39;noreply@example.com&#39;</span>
+
+<span class="c1"># List of URLs your site is supposed to serve</span>
+<span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Example configuration for caching</span>
+<span class="c1"># CACHES = {</span>
+<span class="c1"># Recommended redis + hiredis:</span>
+<span class="c1">#     &#39;default&#39;: {</span>
+<span class="c1">#         &#39;BACKEND&#39;: &#39;django_redis.cache.RedisCache&#39;,</span>
+<span class="c1">#         &#39;LOCATION&#39;: &#39;redis://127.0.0.1:6379/0&#39;,</span>
+<span class="c1">#         # If redis is running on same host as Weblate, you might</span>
+<span class="c1">#         # want to use unix sockets instead:</span>
+<span class="c1">#         # &#39;LOCATION&#39;: &#39;unix:///var/run/redis/redis.sock?db=0&#39;,</span>
+<span class="c1">#         &#39;OPTIONS&#39;: {</span>
+<span class="c1">#             &#39;CLIENT_CLASS&#39;: &#39;django_redis.client.DefaultClient&#39;,</span>
+<span class="c1">#             &#39;PARSER_CLASS&#39;: &#39;redis.connection.HiredisParser&#39;,</span>
+<span class="c1">#         }</span>
+<span class="c1">#     },</span>
+<span class="c1"># Memcached alternative:</span>
+<span class="c1">#     &#39;default&#39;: {</span>
+<span class="c1">#         &#39;BACKEND&#39;: &#39;django.core.cache.backends.memcached.MemcachedCache&#39;,</span>
+<span class="c1">#         &#39;LOCATION&#39;: &#39;127.0.0.1:11211&#39;,</span>
+<span class="c1">#     },</span>
+<span class="c1">#     &#39;avatar&#39;: {</span>
+<span class="c1">#         &#39;BACKEND&#39;: &#39;django.core.cache.backends.filebased.FileBasedCache&#39;,</span>
+<span class="c1">#         &#39;LOCATION&#39;: os.path.join(DATA_DIR, &#39;avatar-cache&#39;),</span>
+<span class="c1">#         &#39;TIMEOUT&#39;: 3600,</span>
+<span class="c1">#         &#39;OPTIONS&#39;: {</span>
+<span class="c1">#             &#39;MAX_ENTRIES&#39;: 1000,</span>
+<span class="c1">#         },</span>
+<span class="c1">#     }</span>
+<span class="c1"># }</span>
+
+<span class="c1"># REST framework settings for API</span>
+<span class="n">REST_FRAMEWORK</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Use Django&#39;s standard `django.contrib.auth` permissions,</span>
+    <span class="c1"># or allow read-only access for unauthenticated users.</span>
+    <span class="s1">&#39;DEFAULT_PERMISSION_CLASSES&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;rest_framework.permissions.IsAuthenticatedOrReadOnly&#39;</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;DEFAULT_AUTHENTICATION_CLASSES&#39;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="s1">&#39;rest_framework.authentication.TokenAuthentication&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;weblate.api.authentication.BearerAuthentication&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;rest_framework.authentication.SessionAuthentication&#39;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="s1">&#39;DEFAULT_THROTTLE_CLASSES&#39;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="s1">&#39;rest_framework.throttling.AnonRateThrottle&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;rest_framework.throttling.UserRateThrottle&#39;</span>
+    <span class="p">),</span>
+    <span class="s1">&#39;DEFAULT_THROTTLE_RATES&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;anon&#39;</span><span class="p">:</span> <span class="s1">&#39;100/day&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="s1">&#39;1000/day&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;DEFAULT_PAGINATION_CLASS&#39;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="s1">&#39;rest_framework.pagination.PageNumberPagination&#39;</span>
+    <span class="p">),</span>
+    <span class="s1">&#39;PAGE_SIZE&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s1">&#39;VIEW_DESCRIPTION_FUNCTION&#39;</span><span class="p">:</span> <span class="s1">&#39;weblate.api.views.get_view_description&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;UNAUTHENTICATED_USER&#39;</span><span class="p">:</span> <span class="s1">&#39;weblate.auth.models.get_anonymous&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Example for restricting access to logged in users</span>
+<span class="c1"># LOGIN_REQUIRED_URLS = (</span>
+<span class="c1">#     r&#39;/(.*)$&#39;,</span>
+<span class="c1"># )</span>
+
+<span class="c1"># In such case you will want to include some of the exceptions</span>
+<span class="c1"># LOGIN_REQUIRED_URLS_EXCEPTIONS = (</span>
+<span class="c1">#    r&#39;/accounts/(.*)$&#39;,        # Required for login</span>
+<span class="c1">#    r&#39;/admin/login/(.*)$&#39;,     # Required for admin login</span>
+<span class="c1">#    r&#39;/static/(.*)$&#39;,          # Required for development mode</span>
+<span class="c1">#    r&#39;/widgets/(.*)$&#39;,         # Allowing public access to widgets</span>
+<span class="c1">#    r&#39;/data/(.*)$&#39;,            # Allowing public access to data exports</span>
+<span class="c1">#    r&#39;/hooks/(.*)$&#39;,           # Allowing public access to notification hooks</span>
+<span class="c1">#    r&#39;/healthz/$&#39;,             # Allowing public access to health check</span>
+<span class="c1">#    r&#39;/api/(.*)$&#39;,             # Allowing access to API</span>
+<span class="c1">#    r&#39;/js/i18n/$&#39;,             # Javascript localization</span>
+<span class="c1">#    r&#39;/contact/$&#39;,             # Optional for contact form</span>
+<span class="c1">#    r&#39;/legal/(.*)$&#39;,           # Optional for legal app</span>
+<span class="c1"># )</span>
+
+<span class="c1"># Celery worker configuration for testing</span>
+<span class="n">CELERY_TASK_ALWAYS_EAGER</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">CELERY_BROKER_URL</span> <span class="o">=</span> <span class="s1">&#39;memory://&#39;</span>
+<span class="n">CELERY_EAGER_PROPAGATES_EXCEPTIONS</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="c1"># Celery worker configuration for production</span>
+<span class="c1"># CELERY_TASK_ALWAYS_EAGER = False</span>
+<span class="c1"># CELERY_BROKER_URL = &#39;redis://localhost:6379&#39;</span>
+<span class="c1"># CELERY_RESULT_BACKEND = CELERY_BROKER_URL</span>
+
+<span class="c1"># Celery settings, it is not recommended to change these</span>
+<span class="n">CELERY_WORKER_PREFETCH_MULTIPLIER</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">CELERY_BEAT_SCHEDULE_FILENAME</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="n">DATA_DIR</span><span class="p">,</span> <span class="s1">&#39;celery&#39;</span><span class="p">,</span> <span class="s1">&#39;beat-schedule&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="management.html" class="btn btn-neutral float-right" title="Management commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="config.html" class="btn btn-neutral" title="設定について" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

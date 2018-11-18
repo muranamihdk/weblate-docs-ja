@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Translation progress reporting &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Administrators guide" href="../admin/index.html" />
+    <link rel="prev" title="Promoting the translation" href="share.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Application developer guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="starting.html">Starting with internationalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alerts.html">Translation component alerts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translations.html">Managing translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="review.html">Reviewing source strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="share.html">Promoting the translation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Translation progress reporting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#translator-credits">Translator credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#contributor-stats">Contributor stats</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Application developer guide</a> &raquo;</li>
+        
+      <li>Translation progress reporting</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/devel/reporting.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="translation-progress-reporting">
+<h1>Translation progress reporting<a class="headerlink" href="#translation-progress-reporting" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>It is often useful to be able to see how translation progresses over given
+period. For this purpose Weblate includes reporting features, where you can
+obtain summaries of contributions to given component over time. You can find
+the reporting tool in the <span class="guilabel">Insights</span> menu for a translation component:</p>
+<img alt="../_images/reporting.png" src="../_images/reporting.png" />
+<p>Several reporting tools are available on this page and all can produce output
+in HTML, reStructuredText or JSON. The first two formats are suitable for
+embedding into existing documentation, while JSON is useful for further
+processing of the data.</p>
+<div class="section" id="translator-credits">
+<span id="credits"></span><h2>Translator credits<a class="headerlink" href="#translator-credits" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Generates a document usable for crediting translators - sorted by language
+and listing all contributors to given language:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="m">*</span> Czech
+
+    <span class="m">*</span> Michal Čihař &lt;michal@cihar.com&gt;
+    <span class="m">*</span> Weblate Admin &lt;admin@example.com&gt;
+
+<span class="m">*</span> Dutch
+
+    <span class="m">*</span> Weblate Admin &lt;admin@example.com&gt;
+</pre></div>
+</div>
+<p>And it will get rendered as:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">Czech</p>
+<blockquote>
+<div><ul class="simple">
+<li>Michal Čihař &lt;<a class="reference external" href="mailto:michal&#37;&#52;&#48;cihar&#46;com">michal<span>&#64;</span>cihar<span>&#46;</span>com</a>&gt;</li>
+<li>Weblate Admin &lt;<a class="reference external" href="mailto:admin&#37;&#52;&#48;example&#46;com">admin<span>&#64;</span>example<span>&#46;</span>com</a>&gt;</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Dutch</p>
+<blockquote>
+<div><ul class="simple">
+<li>Weblate Admin &lt;<a class="reference external" href="mailto:admin&#37;&#52;&#48;example&#46;com">admin<span>&#64;</span>example<span>&#46;</span>com</a>&gt;</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="contributor-stats">
+<span id="stats"></span><h2>Contributor stats<a class="headerlink" href="#contributor-stats" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Generates number of words and units translated by translators:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>======================================== ======================================== ========== ==========
+Name                                     Email                                    Words      Count
+======================================== ======================================== ========== ==========
+Michal Čihař                             michal@cihar.com                               2332        421
+Weblate Admin                            admin@example.com                                25          8
+======================================== ======================================== ========== ==========
+</pre></div>
+</div>
+<p>And it will get rendered as:</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="40%" />
+<col width="10%" />
+<col width="10%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Email</th>
+<th class="head">Words</th>
+<th class="head">Count</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Michal Čihař</td>
+<td><a class="reference external" href="mailto:michal&#37;&#52;&#48;cihar&#46;com">michal<span>&#64;</span>cihar<span>&#46;</span>com</a></td>
+<td>2332</td>
+<td>421</td>
+</tr>
+<tr class="row-odd"><td>Weblate Admin</td>
+<td><a class="reference external" href="mailto:admin&#37;&#52;&#48;example&#46;com">admin<span>&#64;</span>example<span>&#46;</span>com</a></td>
+<td>25</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../admin/index.html" class="btn btn-neutral float-right" title="Administrators guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="share.html" class="btn btn-neutral" title="Promoting the translation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

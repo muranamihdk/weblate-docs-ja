@@ -1,0 +1,556 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Starting with internationalization &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Translation component alerts" href="alerts.html" />
+    <link rel="prev" title="Application developer guide" href="index.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Application developer guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Starting with internationalization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#choosing-internationalization-framework">Choosing internationalization framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#translating-software-using-gnu-gettext">Translating software using GNU Gettext</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sample-program">Sample program</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#extracting-translatable-strings">Extracting translatable strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#starting-new-translation">Starting new translation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#updating-strings">Updating strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#importing-to-weblate">Importing to Weblate</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#translating-documentation-using-sphinx">Translating documentation using Sphinx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#integrating-with-weblate">Integrating with Weblate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#getting-translations-updates-from-weblate">Getting translations updates from Weblate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pushing-string-changes-to-weblate">Pushing string changes to Weblate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="alerts.html">Translation component alerts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translations.html">Managing translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="review.html">Reviewing source strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="share.html">Promoting the translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reporting.html">Translation progress reporting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Application developer guide</a> &raquo;</li>
+        
+      <li>Starting with internationalization</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/devel/starting.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="starting-with-internationalization">
+<span id="starting"></span><h1>Starting with internationalization<a class="headerlink" href="#starting-with-internationalization" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>You have a project and want to to translate it into several languages? This
+guide will help you to do so. We will showcase several typical situations, but
+most of the examples are generic and can be applied to other scenarios as
+well.</p>
+<p>Before translating any software, you should realize that languages around the
+world are really different and you should not make any assumption based on
+your experience. For most of languages it will look weird if you try to
+concatenate a sentence out of translated segments. You also should properly
+handle plural forms because many languages have complex rules for that and the
+internationalization framework you end up using should support this.</p>
+<p>Last but not least, sometimes it might be necessary to add some context to the
+translated string. Imagine a translator would get string <code class="docutils literal notranslate"><span class="pre">Sun</span></code> to translate.
+Without context most people would translate that as our closest star, but it
+might be actually used as an abbreviation for Sunday.</p>
+<div class="section" id="choosing-internationalization-framework">
+<h2>Choosing internationalization framework<a class="headerlink" href="#choosing-internationalization-framework" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Choose whatever is standard on your platform, try to avoid reinventing the
+wheel by creating your own framework to handle localizations. Weblate supports
+most of the widely used frameworks, see <a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートされるフォーマット</span></a> for more information.</p>
+<p>Following chapters describe two use cases - GNU Gettext and Sphinx, but many of
+the steps are quite generic and apply to the other frameworks as well.</p>
+</div>
+<div class="section" id="translating-software-using-gnu-gettext">
+<h2>Translating software using GNU Gettext<a class="headerlink" href="#translating-software-using-gnu-gettext" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference external" href="https://www.gnu.org/software/gettext/">GNU Gettext</a> is one of the most widely used tool for internationalization of
+free software. It provides a simple yet flexible way to localize the software.
+It has great support for plurals, it can add further context to the translated
+string and there are quite a lot of tools built around it. Of course it has
+great support in Weblate (see <a class="reference internal" href="../formats.html#gettext"><span class="std std-ref">GNU Gettext</span></a> file format description).</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">If you are about to use it in proprietary software, please consult
+licensing first, it might not be suitable for you.</p>
+</div>
+<p>GNU Gettext can be used from variety of languages (C, Python, PHP, Ruby,
+Javascript and much more) and usually the UI frameworks already come with some
+support for it. The standard usage is though the <cite>gettext()</cite> function call,
+which is often aliased to <cite>_()</cite> to make the code simpler and easier to read.</p>
+<p>Additionally it provides <cite>pgettext()</cite> call to provide additional context to
+translators and <cite>ngettext()</cite> which can handle plural types as defined for
+target language.</p>
+<p>As a widely spread tool, it has many wrappers which make its usage really
+simple, instead of manual invoking of Gettext described below, you might want
+to try one of them, for example <a class="reference external" href="https://freedesktop.org/wiki/Software/intltool/">intltool</a>.</p>
+<div class="section" id="sample-program">
+<h3>Sample program<a class="headerlink" href="#sample-program" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The simple program in C using Gettext might look like following:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;libintl.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;locale.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">setlocale</span><span class="p">(</span><span class="n">LC_ALL</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">);</span>
+    <span class="n">bindtextdomain</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">,</span> <span class="s">&quot;/usr/share/locale&quot;</span><span class="p">);</span>
+    <span class="n">textdomain</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span>
+        <span class="n">ngettext</span><span class="p">(</span>
+            <span class="s">&quot;Orangutan has %d banana.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+            <span class="s">&quot;Orangutan has %d bananas.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+            <span class="n">count</span>
+        <span class="p">),</span>
+        <span class="n">count</span>
+    <span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">gettext</span><span class="p">(</span><span class="s">&quot;Thank you for using Weblate.&quot;</span><span class="p">));</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extracting-translatable-strings">
+<h3>Extracting translatable strings<a class="headerlink" href="#extracting-translatable-strings" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Once you have code using the gettext calls, you can use <strong class="program">xgettext</strong> to
+extract messages from it and store them into a <a class="reference external" href="https://www.gnu.org/software/gettext/manual/gettext.html#index-files_002c-_002epot">.pot</a>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> xgettext main.c -o po/hello.pot
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">There are alternative programs to extract strings from the code, for example
+<a class="reference external" href="http://babel.pocoo.org/">pybabel</a>.</p>
+</div>
+<p>This creates a template file, which you can use for starting new translations
+(using <strong class="program">msginit</strong>) or updating existing ones after code change (you
+would use <strong class="program">msgmerge</strong> for that). The resulting file is simply
+a structured text file:</p>
+<div class="highlight-po notranslate"><div class="highlight"><pre><span></span><span class="c1"># SOME DESCRIPTIVE TITLE.</span>
+<span class="c1"># Copyright (C) YEAR THE PACKAGE&#39;S COPYRIGHT HOLDER</span>
+<span class="c1"># This file is distributed under the same license as the PACKAGE package.</span>
+<span class="c1"># FIRST AUTHOR &lt;EMAIL@ADDRESS&gt;, YEAR.</span>
+<span class="c1">#</span>
+<span class="kt">#, fuzzy</span>
+<span class="nv">msgid</span> <span class="s">&quot;&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;&quot;</span>
+<span class="s">&quot;</span><span class="py">Project-Id-Version:</span><span class="s"> PACKAGE VERSION\n&quot;</span>
+<span class="s">&quot;</span><span class="py">Report-Msgid-Bugs-To:</span><span class="s"> \n&quot;</span>
+<span class="s">&quot;</span><span class="py">POT-Creation-Date:</span><span class="s"> 2015-10-23 11:02+0200\n&quot;</span>
+<span class="s">&quot;</span><span class="py">PO-Revision-Date:</span><span class="s"> YEAR-MO-DA HO:MI+ZONE\n&quot;</span>
+<span class="s">&quot;</span><span class="py">Last-Translator:</span><span class="s"> FULL NAME &lt;EMAIL@ADDRESS&gt;\n&quot;</span>
+<span class="s">&quot;</span><span class="py">Language-Team:</span><span class="s"> LANGUAGE &lt;LL@li.org&gt;\n&quot;</span>
+<span class="s">&quot;</span><span class="py">Language:</span><span class="s"> \n&quot;</span>
+<span class="s">&quot;</span><span class="py">MIME-Version:</span><span class="s"> 1.0\n&quot;</span>
+<span class="s">&quot;</span><span class="py">Content-Type:</span><span class="s"> text/plain; charset=CHARSET\n&quot;</span>
+<span class="s">&quot;</span><span class="py">Content-Transfer-Encoding:</span><span class="s"> 8bit\n&quot;</span>
+<span class="s">&quot;</span><span class="py">Plural-Forms:</span><span class="s"> nplurals=INTEGER; plural=EXPRESSION;\n&quot;</span>
+
+<span class="kd">#: main.c:14</span>
+<span class="kt">#, c-format</span>
+<span class="nv">msgid</span> <span class="s">&quot;Orangutan has %d banana.\n&quot;</span>
+<span class="nv">msgid_plural</span> <span class="s">&quot;Orangutan has %d bananas.\n&quot;</span>
+<span class="nv">msgstr[</span><span class="mi">0</span><span class="nv">]</span> <span class="s">&quot;&quot;</span>
+<span class="nv">msgstr[</span><span class="mi">1</span><span class="nv">]</span> <span class="s">&quot;&quot;</span>
+
+<span class="kd">#: main.c:20</span>
+<span class="nv">msgid</span> <span class="s">&quot;Thank you for using Weblate.&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;&quot;</span>
+</pre></div>
+</div>
+<p>Each <code class="docutils literal notranslate"><span class="pre">msgid</span></code> line defines a string to translate, the special empty string
+in the beginning is the file header containing metadata about the translation.</p>
+</div>
+<div class="section" id="starting-new-translation">
+<h3>Starting new translation<a class="headerlink" href="#starting-new-translation" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>With the template in place, we can start our first translation:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> msginit -i po/hello.pot -l cs --no-translator -o po/cs.po
+<span class="go">Created cs.po.</span>
+</pre></div>
+</div>
+<p>The just created <code class="file docutils literal notranslate"><span class="pre">cs.po</span></code> already has some information filled in. Most
+importantly it got the proper plural forms definition for chosen language and you
+can see number of plurals have changed according to that:</p>
+<div class="highlight-po notranslate"><div class="highlight"><pre><span></span><span class="c1"># Czech translations for PACKAGE package.</span>
+<span class="c1"># Copyright (C) 2015 THE PACKAGE&#39;S COPYRIGHT HOLDER</span>
+<span class="c1"># This file is distributed under the same license as the PACKAGE package.</span>
+<span class="c1"># Automatically generated, 2015.</span>
+<span class="c1">#</span>
+<span class="nv">msgid</span> <span class="s">&quot;&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;&quot;</span>
+<span class="s">&quot;</span><span class="py">Project-Id-Version:</span><span class="s"> PACKAGE VERSION\n&quot;</span>
+<span class="s">&quot;</span><span class="py">Report-Msgid-Bugs-To:</span><span class="s"> \n&quot;</span>
+<span class="s">&quot;</span><span class="py">POT-Creation-Date:</span><span class="s"> 2015-10-23 11:02+0200\n&quot;</span>
+<span class="s">&quot;</span><span class="py">PO-Revision-Date:</span><span class="s"> 2015-10-23 11:02+0200\n&quot;</span>
+<span class="s">&quot;</span><span class="py">Last-Translator:</span><span class="s"> Automatically generated\n&quot;</span>
+<span class="s">&quot;</span><span class="py">Language-Team:</span><span class="s"> none\n&quot;</span>
+<span class="s">&quot;</span><span class="py">Language:</span><span class="s"> cs\n&quot;</span>
+<span class="s">&quot;</span><span class="py">MIME-Version:</span><span class="s"> 1.0\n&quot;</span>
+<span class="s">&quot;</span><span class="py">Content-Type:</span><span class="s"> text/plain; charset=ASCII\n&quot;</span>
+<span class="s">&quot;</span><span class="py">Content-Transfer-Encoding:</span><span class="s"> 8bit\n&quot;</span>
+<span class="s">&quot;</span><span class="py">Plural-Forms:</span><span class="s"> nplurals=3; plural=(n==1) ? 0 : (n&gt;=2 &amp;&amp; n&lt;=4) ? 1 : 2;\n&quot;</span>
+
+<span class="kd">#: main.c:14</span>
+<span class="kt">#, c-format</span>
+<span class="nv">msgid</span> <span class="s">&quot;Orangutan has %d banana.\n&quot;</span>
+<span class="nv">msgid_plural</span> <span class="s">&quot;Orangutan has %d bananas.\n&quot;</span>
+<span class="nv">msgstr[</span><span class="mi">0</span><span class="nv">]</span> <span class="s">&quot;&quot;</span>
+<span class="nv">msgstr[</span><span class="mi">1</span><span class="nv">]</span> <span class="s">&quot;&quot;</span>
+<span class="nv">msgstr[</span><span class="mi">2</span><span class="nv">]</span> <span class="s">&quot;&quot;</span>
+
+<span class="kd">#: main.c:20</span>
+<span class="nv">msgid</span> <span class="s">&quot;Thank you for using Weblate.&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;&quot;</span>
+</pre></div>
+</div>
+<p>This file is compiled into an optimized binary form, the <a class="reference external" href="https://www.gnu.org/software/gettext/manual/gettext.html#MO-Files">.mo</a>
+file used by the <a class="reference external" href="https://www.gnu.org/software/gettext/">GNU Gettext</a> functions at runtime.</p>
+</div>
+<div class="section" id="updating-strings">
+<h3>Updating strings<a class="headerlink" href="#updating-strings" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Once you add more strings or change some strings in your program, you execute again
+<strong class="program">xgettext</strong> which regenerates the template file:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> xgettext main.c -o po/hello.pot
+</pre></div>
+</div>
+<p>Then you can update individual translation files to match newly created templates
+(this includes reordering the strings to match new template):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> msgmerge --previous --update po/cs.po po/hello.pot
+</pre></div>
+</div>
+</div>
+<div class="section" id="importing-to-weblate">
+<h3>Importing to Weblate<a class="headerlink" href="#importing-to-weblate" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>To import such translation into Weblate, all you need to define are the following
+fields when creating component (see <a class="reference internal" href="../admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a> for detailed description
+of the fields):</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Source code repository</td>
+<td>URL of the VCS repository with your project</td>
+</tr>
+<tr class="row-odd"><td>File mask</td>
+<td><code class="docutils literal notranslate"><span class="pre">po/*.po</span></code></td>
+</tr>
+<tr class="row-even"><td>Base file for new translations</td>
+<td><code class="docutils literal notranslate"><span class="pre">po/hello.pot</span></code></td>
+</tr>
+<tr class="row-odd"><td>File format</td>
+<td>Choose <span class="guilabel">Gettext PO file</span></td>
+</tr>
+<tr class="row-even"><td>New language</td>
+<td>Choose <span class="guilabel">Automatically add language file</span></td>
+</tr>
+</tbody>
+</table>
+<p>And that's it, you're now ready to start translating your software!</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">You can find a Gettext example with many languages in the Weblate Hello project on
+GitHub: &lt;<a class="reference external" href="https://github.com/WeblateOrg/hello">https://github.com/WeblateOrg/hello</a>&gt;.</p>
+</div>
+</div>
+</div>
+<div class="section" id="translating-documentation-using-sphinx">
+<h2>Translating documentation using Sphinx<a class="headerlink" href="#translating-documentation-using-sphinx" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference external" href="http://www.sphinx-doc.org/">Sphinx</a> is a tool for creating beautiful documentation. It uses simple
+reStructuredText syntax and can generate output in many formats. If you're
+looking for an example, this documentation is also build using it. The very
+useful companion for using Sphinx is the <a class="reference external" href="https://readthedocs.org/">Read the Docs</a> service, which will
+build and publish your documentation for free.</p>
+<p>I will not focus on writing documentation itself, if you need guidance with
+that, just follow instructions on the <a class="reference external" href="http://www.sphinx-doc.org/">Sphinx</a> website. Once you have
+documentation ready, translating it is quite easy as Sphinx comes with support
+for this and it is quite nicely covered in their <a class="reference external" href="http://www.sphinx-doc.org/en/stable/intl.html#intl" title="(in Sphinx v1.8.0)"><span>Internationalization</span></a>.  It's
+matter of few configuration directives and invoking of the <code class="docutils literal notranslate"><span class="pre">sphinx-intl</span></code>
+tool.</p>
+<p>If you are using Read the Docs service, you can start building translated
+documentation on the Read the Docs. Their <a class="reference external" href="https://docs.readthedocs.io/en/latest/localization.html" title="(in Read the Docs v2.7)"><span>Localization of Documentation</span></a> covers pretty
+much everything you need - creating another project, set its language and link
+it from master project as a translation.</p>
+<p>Now all you need is translating the documentation content. As Sphinx splits
+the translation files per source file, you might end up with dozen of files,
+which might be challenging to import using the Weblate's web interface. For
+that reason, there is the <a class="reference internal" href="../admin/management.html#django-admin-import_project"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">import_project</span></code></a> management command.</p>
+<p>Depending on exact setup, importing of the translation might look like:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ./manage.py import_project --name-template <span class="s1">&#39;Documentation: %s&#39;</span> <span class="se">\</span>
+    --file-format po <span class="se">\</span>
+    project https://github.com/project/docs.git master <span class="se">\</span>
+    <span class="s1">&#39;docs/locale/*/LC_MESSAGES/**.po&#39;</span>
+</pre></div>
+</div>
+<p>If you have more complex document structure, importing different folders is not
+directly supported, you currently have to list them separately:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ./manage.py import_project --name-template <span class="s1">&#39;Directory 1: %s&#39;</span> <span class="se">\</span>
+    --file-format po <span class="se">\</span>
+    project https://github.com/project/docs.git master <span class="se">\</span>
+    <span class="s1">&#39;docs/locale/*/LC_MESSAGES/dir1/**.po&#39;</span>
+<span class="gp">$</span> ./manage.py import_project --name-template <span class="s1">&#39;Directory 2: %s&#39;</span> <span class="se">\</span>
+    --file-format po <span class="se">\</span>
+    project https://github.com/project/docs.git master <span class="se">\</span>
+    <span class="s1">&#39;docs/locale/*/LC_MESSAGES/dir2/**.po&#39;</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">The <a class="reference external" href="https://github.com/nijel/odorik/">Odorik</a> python module documentation is built using Sphinx, Read the
+Docs and translated using Weblate.</p>
+</div>
+</div>
+<div class="section" id="integrating-with-weblate">
+<h2>Integrating with Weblate<a class="headerlink" href="#integrating-with-weblate" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="getting-translations-updates-from-weblate">
+<h3>Getting translations updates from Weblate<a class="headerlink" href="#getting-translations-updates-from-weblate" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>To fetch updated strings from Weblate you can simply fetch the underlying
+repository (either from filesystem or it can be made available through
+<a class="reference internal" href="../admin/optionals.html#git-exporter"><span class="std std-ref">Git exporter</span></a>). Prior to this, you might want to commit any pending
+changes (see <a class="reference internal" href="../admin/continuous.html#lazy-commit"><span class="std std-ref">省力コミット</span></a>). This can be achieved in the user interface
+(in the <span class="guilabel">Repository maintenance</span>) or from command line using <a class="reference internal" href="../wlc.html#wlc"><span class="std std-ref">Weblate Client</span></a>.</p>
+<p>This can be automated if you grant Weblate push access to your repository and
+configure <span class="guilabel">Push URL</span> in the <a class="reference internal" href="../admin/projects.html#component"><span class="std std-ref">コンポーネント設定</span></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../admin/continuous.html#continuous-translation"><span class="std std-ref">継続的トランスレーション</span></a></p>
+</div>
+</div>
+<div class="section" id="pushing-string-changes-to-weblate">
+<h3>Pushing string changes to Weblate<a class="headerlink" href="#pushing-string-changes-to-weblate" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>To push newly updated strings to Weblate, just let it to pull from the upstream
+repo. This can be achieved in the user interface (in the <span class="guilabel">Repository
+maintenance</span>) or from command line using <a class="reference internal" href="../wlc.html#wlc"><span class="std std-ref">Weblate Client</span></a>.</p>
+<p>This can be automated by installing a webhook on your repository to trigger
+Weblate whenever there is new commit, see <a class="reference internal" href="../admin/continuous.html#update-vcs"><span class="std std-ref">リポジトリを更新する</span></a> for more details.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../admin/continuous.html#continuous-translation"><span class="std std-ref">継続的トランスレーション</span></a></p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="alerts.html" class="btn btn-neutral float-right" title="Translation component alerts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Application developer guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

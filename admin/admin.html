@@ -1,0 +1,312 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Django admin interface &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Translation workflows" href="../workflows.html" />
+    <link rel="prev" title="Optional Weblate modules" href="optionals.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrators guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access.html">Access control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html">翻訳プロジェクト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html">継続的トランスレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks and fixups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html">Machine translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html">Addons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html">Management commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Django admin interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#adding-project">Adding project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bilingual-components">Bilingual components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#monolingual-components">Monolingual components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Administrators guide</a> &raquo;</li>
+        
+      <li>Django admin interface</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/admin/admin.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="django-admin-interface">
+<span id="admin-interface"></span><h1>Django admin interface<a class="headerlink" href="#django-admin-interface" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Administration of Weblate is done through standard Django admin interface,
+which is available under <code class="file docutils literal notranslate"><span class="pre">/admin/</span></code> URL. Once logged in as user with
+proper privileges, you can access it using the wrench icon in top navigation:</p>
+<img alt="../_images/admin-wrench.png" src="../_images/admin-wrench.png" />
+<p>Here you can manage objects stored in the database, such as users, translations
+and other settings:</p>
+<img alt="../_images/admin.png" src="../_images/admin.png" />
+<p>In the <span class="guilabel">Reports</span> section you can check the status of your site, tweak
+it for <a class="reference internal" href="install.html#production"><span class="std std-ref">Production setup</span></a> or manage SSH keys to access <a class="reference internal" href="../vcs.html#vcs-repos"><span class="std std-ref">Accessing repositories</span></a>.</p>
+<p>With all sections below you can manage database objects. The most interesting one is
+probably <span class="guilabel">Weblate translations</span>, where you can manage translatable
+projects, see <a class="reference internal" href="projects.html#project"><span class="std std-ref">プロジェクトの設定</span></a> and <a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a>.</p>
+<p>Another section, <span class="guilabel">Weblate languages</span> holds language definitions, see
+<a class="reference internal" href="languages.html#languages"><span class="std std-ref">Language definitions</span></a> for more details.</p>
+<div class="section" id="adding-project">
+<h2>Adding project<a class="headerlink" href="#adding-project" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>First you have to add project, which will serve as container for all
+components. Usually you create one project for one piece of software or book
+(see <a class="reference internal" href="projects.html#project"><span class="std std-ref">プロジェクトの設定</span></a> for information on individual parameters):</p>
+<img alt="../_images/add-project.png" src="../_images/add-project.png" />
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="projects.html#project"><span class="std std-ref">プロジェクトの設定</span></a></p>
+</div>
+</div>
+<div class="section" id="bilingual-components">
+<span id="bilingual"></span><h2>Bilingual components<a class="headerlink" href="#bilingual-components" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Once you have added a project, you can add translation components to it
+(see <a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a> for information on individual parameters):</p>
+<img alt="../_images/add-component.png" src="../_images/add-component.png" />
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a>,
+<a class="reference internal" href="../formats.html#bimono"><span class="std std-ref">Bilingual and monolingual formats</span></a></p>
+</div>
+</div>
+<div class="section" id="monolingual-components">
+<span id="monolingual"></span><h2>Monolingual components<a class="headerlink" href="#monolingual-components" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>For easier translating of monolingual formats, you should provide a template
+file, which contains mapping of message IDs to source language (usually
+English) (see <a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a> for information on individual parameters):</p>
+<img alt="../_images/add-component-mono.png" src="../_images/add-component-mono.png" />
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a>,
+<a class="reference internal" href="../formats.html#bimono"><span class="std std-ref">Bilingual and monolingual formats</span></a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../workflows.html" class="btn btn-neutral float-right" title="Translation workflows" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="optionals.html" class="btn btn-neutral" title="Optional Weblate modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

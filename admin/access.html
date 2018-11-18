@@ -1,0 +1,635 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Access control &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="翻訳プロジェクト" href="projects.html" />
+    <link rel="prev" title="Authentication" href="auth.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrators guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Authentication</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Access control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#most-usual-setups">Most usual setups</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#locking-down-weblate">Locking down Weblate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#site-wide-permissions">Site wide permissions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#per-project-permissions">Per project permissions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-permissions-to-languages-projects-or-component-sets">Adding permissions to languages, projects or component sets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#per-project-access-control">Per project access control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#automatic-group-assignments">Automatic group assignments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#users-roles-groups-and-permissions">Users, roles, groups and permissions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#permission-checking">Permission checking</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#checking-access-to-a-project">Checking access to a project</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#managing-users-and-groups">Managing users and groups</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#managing-per-project-access-control">Managing per project access control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#predefined-groups">Predefined groups</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-access-control">Custom access control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-groups-and-roles">Default groups and roles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#list-of-privileges">List of privileges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#list-of-groups">List of groups</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html">翻訳プロジェクト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html">継続的トランスレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks and fixups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html">Machine translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html">Addons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html">Management commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Administrators guide</a> &raquo;</li>
+        
+      <li>Access control</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/admin/access.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="access-control">
+<span id="privileges"></span><h1>Access control<a class="headerlink" href="#access-control" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 3.0 で変更: </span>Before Weblate 3.0, the privileges system was based on Django, but now it
+is built specifically for Weblate. If you are using older version, please
+consult documentation for that version, information here will not apply.</p>
+</div>
+<p>Weblate comes with a fine grained privileges system to assign users permissions
+globally or in limited scope.</p>
+<p>The permission system is groups and roles based, where roles define set of
+permissions and groups assign them to users and translations, see
+<a class="reference internal" href="#auth-model"><span class="std std-ref">Users, roles, groups and permissions</span></a> for more details.</p>
+<p>Just after installation default set of groups is created and you can use those
+to assign users global roles (see <a class="reference internal" href="#default-groups"><span class="std std-ref">Default groups and roles</span></a>). Additionally when
+<a class="reference internal" href="#acl"><span class="std std-ref">Per project access control</span></a> is enabled, you can assign users to specific translation projects.
+More fine grained configuration can be achieved using <a class="reference internal" href="#custom-acl"><span class="std std-ref">Custom access control</span></a></p>
+<div class="section" id="most-usual-setups">
+<h2>Most usual setups<a class="headerlink" href="#most-usual-setups" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="locking-down-weblate">
+<h3>Locking down Weblate<a class="headerlink" href="#locking-down-weblate" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>To completely lock down your Weblate installation you can use
+<a class="reference internal" href="config.html#std:setting-LOGIN_REQUIRED_URLS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">LOGIN_REQUIRED_URLS</span></code></a> for forcing users to login and
+<a class="reference internal" href="config.html#std:setting-REGISTRATION_OPEN"><code class="xref std std-setting docutils literal notranslate"><span class="pre">REGISTRATION_OPEN</span></code></a> for disallowing new registrations.</p>
+</div>
+<div class="section" id="site-wide-permissions">
+<h3>Site wide permissions<a class="headerlink" href="#site-wide-permissions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>To manage site wide permissions, just add users to the <cite>Users</cite> (this is done
+by default using <a class="reference internal" href="#autogroup"><span class="std std-ref">Automatic group assignments</span></a>), <cite>Reviewers</cite> and <cite>Managers</cite> groups. Keep
+all projects configured as <cite>Public</cite> (see <a class="reference internal" href="#acl"><span class="std std-ref">Per project access control</span></a>).</p>
+</div>
+<div class="section" id="per-project-permissions">
+<h3>Per project permissions<a class="headerlink" href="#per-project-permissions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Configure your projects to <cite>Protected</cite> or <cite>Private</cite> and manage users per
+project in the Weblate interface.</p>
+</div>
+<div class="section" id="adding-permissions-to-languages-projects-or-component-sets">
+<h3>Adding permissions to languages, projects or component sets<a class="headerlink" href="#adding-permissions-to-languages-projects-or-component-sets" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>You can additionally grant permissions to some user based on project, language
+or a component set. To achieve this, create new group (eg. <cite>Czech
+translators</cite>) and configure it for given object. Any assigned permissions will
+be granted to members of that group on selected objects.</p>
+<p>This will work just fine without additional setup if using per project
+permissions, for site wide permissions, you will probably also want to remove
+these permissions from the <cite>Users</cite> group or change automatic assignment of all
+users to that group (see <a class="reference internal" href="#autogroup"><span class="std std-ref">Automatic group assignments</span></a>).</p>
+</div>
+</div>
+<div class="section" id="per-project-access-control">
+<span id="acl"></span><h2>Per project access control<a class="headerlink" href="#per-project-access-control" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">By enabling ACL, all users are prohibited from accessing anything within a given
+project unless you add the permissions for them to do that.</p>
+</div>
+<p>You can limit user's access to individual projects. This feature is enabled by
+<span class="guilabel">Access control</span> at Project configuration. This automatically
+creates several groups for this project, see <a class="reference internal" href="#groups"><span class="std std-ref">Predefined groups</span></a>.</p>
+<p>There are following choices for <span class="guilabel">Access control</span>:</p>
+<dl class="docutils">
+<dt>Public</dt>
+<dd>Publicly visible and translatable</dd>
+<dt>Protected</dt>
+<dd>Publicly visible but translatable only for selected users</dd>
+<dt>Private</dt>
+<dd>Visible and translatable only for selected users</dd>
+<dt>Custom</dt>
+<dd>Weblate does not manage users, see <a class="reference internal" href="#custom-acl"><span class="std std-ref">Custom access control</span></a>.</dd>
+</dl>
+<img alt="../_images/project-access.png" src="../_images/project-access.png" />
+<p>To allow access to this project, you have to add the privilege to do so either
+directly to the given user or group of users in Django admin interface, or by using
+user management on the project page as described in <a class="reference internal" href="#manage-acl"><span class="std std-ref">Managing per project access control</span></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>Even with ACL enabled some summary information will be available about your project:</p>
+<ul class="last simple">
+<li>Site wide statistics includes counts for all projects</li>
+<li>Site wide languages summary includes counts for all projects</li>
+</ul>
+</div>
+</div>
+<div class="section" id="automatic-group-assignments">
+<span id="autogroup"></span><h2>Automatic group assignments<a class="headerlink" href="#automatic-group-assignments" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>You can configure Weblate to automatically add users to groups based on their
+email. This automatic assignment happens only at the time of account creation.</p>
+<p>This can be configured in the Django admin interface (in the
+<span class="guilabel">Accounts</span> section).</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">The automatic group assignment for the <cite>Users</cite> and <cite>Viewers</cite> groups will
+be always created by Weblate on migrations, in case you want to disable
+it, simply set the regular expression to <code class="docutils literal notranslate"><span class="pre">^$</span></code>, what will never match.</p>
+</div>
+</div>
+<div class="section" id="users-roles-groups-and-permissions">
+<span id="auth-model"></span><h2>Users, roles, groups and permissions<a class="headerlink" href="#users-roles-groups-and-permissions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The authentication models consist of several objects:</p>
+<dl class="docutils">
+<dt><cite>Permission</cite></dt>
+<dd>Individual permissions defined by Weblate. You can not assign individual
+permissions, this can be done only through roles.</dd>
+<dt><cite>Role</cite></dt>
+<dd>Role defines set of a permissions. This allows to reuse these sets in
+several places and makes the administration easier.</dd>
+<dt><cite>User</cite></dt>
+<dd>Users can be members of several groups.</dd>
+<dt><cite>Group</cite></dt>
+<dd>Groups connect roles, users and authentication objects (projects,
+languages and component lists).</dd>
+</dl>
+graph auth {
+
+    &quot;User&quot; -- &quot;Group&quot;;
+    &quot;Group&quot; -- &quot;Role&quot;;
+    &quot;Role&quot; -- &quot;Permission&quot;;
+    &quot;Group&quot; -- &quot;Project&quot;;
+    &quot;Group&quot; -- &quot;Language&quot;;
+    &quot;Group&quot; -- &quot;Component list&quot;;
+}<div class="section" id="permission-checking">
+<h3>Permission checking<a class="headerlink" href="#permission-checking" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Whenever permission is checked to be able to perform given action, the check
+is performed based on scope, following checks are performed:</p>
+<dl class="docutils">
+<dt><cite>Project</cite></dt>
+<dd><p class="first">Compared against scope project, if not set, this matches none project.</p>
+<p class="last">You can use <span class="guilabel">Project selection</span> to automate including all
+projects.</p>
+</dd>
+<dt><cite>Component list</cite></dt>
+<dd><p class="first">Scope component is matched against this list, if not set this is ignored.</p>
+<p class="last">Obviously this has no effect when checking access on the project scope,
+so you will have to grant access to view all projects in a component list
+by other means. By default this is achieved by the <cite>Viewers</cite> group, see
+<a class="reference internal" href="#default-groups"><span class="std std-ref">Default groups and roles</span></a>).</p>
+</dd>
+<dt><cite>Language</cite></dt>
+<dd><p class="first">Compared against scope translation, if not set, this matches none
+language.</p>
+<p class="last">You can use <span class="guilabel">Language selection</span> to automate including all
+languages.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="checking-access-to-a-project">
+<h3>Checking access to a project<a class="headerlink" href="#checking-access-to-a-project" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>User has to be a member of a group linked to the project. Only membership is
+enough, no specific permissions are needed to access a project (this is used
+in the default <cite>Viewers</cite> group, see <a class="reference internal" href="#default-groups"><span class="std std-ref">Default groups and roles</span></a>).</p>
+</div>
+</div>
+<div class="section" id="managing-users-and-groups">
+<h2>Managing users and groups<a class="headerlink" href="#managing-users-and-groups" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>All users and groups can be managed using Django admin interface, which is
+available under <code class="file docutils literal notranslate"><span class="pre">/admin/</span></code> URL.</p>
+<div class="section" id="managing-per-project-access-control">
+<span id="manage-acl"></span><h3>Managing per project access control<a class="headerlink" href="#managing-per-project-access-control" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">This feature only works for ACL controlled projects, see <a class="reference internal" href="#acl"><span class="std std-ref">Per project access control</span></a>.</p>
+</div>
+<p>Users with <span class="guilabel">Can manage ACL rules for a project</span> privilege (see
+<a class="reference internal" href="#privileges"><span class="std std-ref">Access control</span></a>) can also manage users in projects with access control
+enabled on the project page. You can add or remove users to the project or make
+them owners.</p>
+<p>The user management is available in <span class="guilabel">Tools</span> menu of a project:</p>
+<img alt="../_images/manage-users.png" src="../_images/manage-users.png" />
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#acl"><span class="std std-ref">Per project access control</span></a></p>
+</div>
+</div>
+<div class="section" id="predefined-groups">
+<span id="groups"></span><h3>Predefined groups<a class="headerlink" href="#predefined-groups" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate comes with predefined set of groups for a project where you can assign
+users.</p>
+<dl class="describe">
+<dt>
+<code class="descname">Administration</code></dt>
+<dd><p>Has all permissions on the project.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<code class="descname">Glossary</code></dt>
+<dd><p>Can manage glossary (add or remove entries or upload glossary).</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<code class="descname">Languages</code></dt>
+<dd><p>Can manage translated languages - add or remove translations.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<code class="descname">Screenshots</code></dt>
+<dd><p>Can manage screenshots - add or remove them and associate them to source
+strings.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<code class="descname">Template</code></dt>
+<dd><p>Can edit translation template in <a class="reference internal" href="admin.html#monolingual"><span class="std std-ref">Monolingual components</span></a> and source string
+information.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<code class="descname">Translate</code></dt>
+<dd><p>Can translate project, including upload of offline translations.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<code class="descname">VCS</code></dt>
+<dd><p>Can manage VCS and access exported repository.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<code class="descname">Review</code></dt>
+<dd><p>Can approve translations during review.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<code class="descname">Billing</code></dt>
+<dd><p>Can access billing information (see <a class="reference internal" href="optionals.html#billing"><span class="std std-ref">Billing</span></a>).</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="custom-access-control">
+<span id="custom-acl"></span><h2>Custom access control<a class="headerlink" href="#custom-access-control" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>By choosing <span class="guilabel">Custom</span> as <span class="guilabel">Access control</span>, Weblate will stop
+managing access for given project and you can setup custom rules in Django
+admin interface. This can be used for defining more complex access control or
+having shared access policy for all projects in single Weblate instance. If you
+want to enable this for all projects by default please configure the
+<a class="reference internal" href="config.html#std:setting-DEFAULT_ACCESS_CONTROL"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DEFAULT_ACCESS_CONTROL</span></code></a>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">By enabling this, Weblate will remove all <a class="reference internal" href="#acl"><span class="std std-ref">Per project access control</span></a> it has created for
+this project. If you are doing this without global admin permission, you
+will instantly loose access to manage the project.</p>
+</div>
+</div>
+<div class="section" id="default-groups-and-roles">
+<span id="default-groups"></span><h2>Default groups and roles<a class="headerlink" href="#default-groups-and-roles" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="list-of-privileges">
+<h3>List of privileges<a class="headerlink" href="#list-of-privileges" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<dl class="docutils">
+<dt>Billing (see <a class="reference internal" href="optionals.html#billing"><span class="std std-ref">Billing</span></a>)</dt>
+<dd>View billing information [<cite>Administration</cite>, <cite>Billing</cite>]</dd>
+<dt>Changes</dt>
+<dd>Download changes [<cite>Administration</cite>]</dd>
+<dt>Comments</dt>
+<dd>Post comment [<cite>Administration</cite>, <cite>Edit source</cite>, <cite>Power user</cite>, <cite>Review strings</cite>, <cite>Translate</cite>]
+Delete comment [<cite>Administration</cite>]</dd>
+<dt>Component</dt>
+<dd>Edit component settings [<cite>Administration</cite>]
+Lock component from translating [<cite>Administration</cite>]</dd>
+<dt>Glossary</dt>
+<dd>Add glossary entry [<cite>Administration</cite>, <cite>Manage glossary</cite>, <cite>Power user</cite>]
+Edit glossary entry [<cite>Administration</cite>, <cite>Manage glossary</cite>, <cite>Power user</cite>]
+Delete glossary entry [<cite>Administration</cite>, <cite>Manage glossary</cite>, <cite>Power user</cite>]
+Upload glossary entries [<cite>Administration</cite>, <cite>Manage glossary</cite>, <cite>Power user</cite>]</dd>
+<dt>Machinery</dt>
+<dd>Use machine translation services [<cite>Administration</cite>, <cite>Power user</cite>]</dd>
+<dt>Projects</dt>
+<dd>Edit project settings [<cite>Administration</cite>]
+Manage project access [<cite>Administration</cite>]</dd>
+<dt>Reports</dt>
+<dd>Download reports [<cite>Administration</cite>]</dd>
+<dt>Screenshots</dt>
+<dd>Add screenshot [<cite>Administration</cite>, <cite>Manage screenshots</cite>]
+Edit screenshot [<cite>Administration</cite>, <cite>Manage screenshots</cite>]
+Delete screenshot [<cite>Administration</cite>, <cite>Manage screenshots</cite>]</dd>
+<dt>Source strings</dt>
+<dd>Edit info on source strings [<cite>Administration</cite>, <cite>Edit source</cite>]</dd>
+<dt>Strings</dt>
+<dd>Add new string [<cite>Administration</cite>]
+Ignore failing check [<cite>Administration</cite>, <cite>Edit source</cite>, <cite>Power user</cite>, <cite>Review strings</cite>, <cite>Translate</cite>]
+Edit strings [<cite>Administration</cite>, <cite>Edit source</cite>, <cite>Power user</cite>, <cite>Review strings</cite>, <cite>Translate</cite>]
+Review strings [<cite>Administration</cite>, <cite>Review strings</cite>]
+Edit string when suggestions are enforced [<cite>Administration</cite>, <cite>Review strings</cite>]
+Edit source strings [<cite>Administration</cite>, <cite>Edit source</cite>, <cite>Power user</cite>]</dd>
+<dt>Suggestions</dt>
+<dd>Accept suggestion [<cite>Administration</cite>, <cite>Edit source</cite>, <cite>Power user</cite>, <cite>Review strings</cite>, <cite>Translate</cite>]
+Add suggestion [<cite>Add suggestion</cite>, <cite>Administration</cite>, <cite>Edit source</cite>, <cite>Power user</cite>, <cite>Review strings</cite>, <cite>Translate</cite>]
+Delete suggestion [<cite>Administration</cite>]
+Vote suggestion [<cite>Administration</cite>, <cite>Edit source</cite>, <cite>Power user</cite>, <cite>Review strings</cite>, <cite>Translate</cite>]</dd>
+<dt>Translations</dt>
+<dd>Start new translation [<cite>Administration</cite>, <cite>Manage languages</cite>, <cite>Power user</cite>]
+Perform automatic translation [<cite>Administration</cite>, <cite>Manage languages</cite>]
+Delete existing translation [<cite>Administration</cite>, <cite>Manage languages</cite>]
+Start new translation into more languages [<cite>Administration</cite>, <cite>Manage languages</cite>]</dd>
+<dt>Uploads</dt>
+<dd>Define author of translation upload [<cite>Administration</cite>]
+Overwrite existing strings with upload [<cite>Administration</cite>, <cite>Edit source</cite>, <cite>Power user</cite>, <cite>Review strings</cite>, <cite>Translate</cite>]
+Upload translation strings [<cite>Administration</cite>, <cite>Edit source</cite>, <cite>Power user</cite>, <cite>Review strings</cite>, <cite>Translate</cite>]</dd>
+<dt>VCS</dt>
+<dd>Access the internal repository [<cite>Access repository</cite>, <cite>Administration</cite>, <cite>Manage repository</cite>, <cite>Power user</cite>]
+Commit changes to the internal repository [<cite>Administration</cite>, <cite>Manage repository</cite>]
+Push change from the internal repository [<cite>Administration</cite>, <cite>Manage repository</cite>]
+Reset changes in the internal repository [<cite>Administration</cite>, <cite>Manage repository</cite>]
+View upstream repository location [<cite>Access repository</cite>, <cite>Administration</cite>, <cite>Manage repository</cite>, <cite>Power user</cite>]
+Update the internal repository [<cite>Administration</cite>, <cite>Manage repository</cite>]</dd>
+</dl>
+</div>
+<div class="section" id="list-of-groups">
+<h3>List of groups<a class="headerlink" href="#list-of-groups" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The following groups are created on installation (or after executing
+<a class="reference internal" href="management.html#django-admin-setupgroups"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">setupgroups</span></code></a>):</p>
+<dl class="docutils">
+<dt><cite>Guests</cite></dt>
+<dd><p class="first">Defines permissions for not authenticated users.</p>
+<p>This group contains only anonymous user (see <a class="reference internal" href="config.html#std:setting-ANONYMOUS_USER_NAME"><code class="xref std std-setting docutils literal notranslate"><span class="pre">ANONYMOUS_USER_NAME</span></code></a>).</p>
+<p>You can remove roles from this group to limit permissions for not
+authenticated users.</p>
+<p class="last">Default roles: <cite>Add suggestion</cite>, <cite>Access repository</cite></p>
+</dd>
+<dt><cite>Viewers</cite></dt>
+<dd><p class="first">This role ensures visibility of public projects for all users. By default
+all users are members of this group.</p>
+<p>By default all users are members of this group using <a class="reference internal" href="#autogroup"><span class="std std-ref">Automatic group assignments</span></a>.</p>
+<p class="last">Default roles: none</p>
+</dd>
+<dt><cite>Users</cite></dt>
+<dd><p class="first">Default group for all users.</p>
+<p>By default all users are members of this group using <a class="reference internal" href="#autogroup"><span class="std std-ref">Automatic group assignments</span></a>.</p>
+<p class="last">Default roles: <cite>Power user</cite></p>
+</dd>
+<dt><cite>Reviewers</cite></dt>
+<dd><p class="first">Group for reviewers (see <a class="reference internal" href="../workflows.html#workflows"><span class="std std-ref">Translation workflows</span></a>).</p>
+<p class="last">Default roles: <cite>Review strings</cite></p>
+</dd>
+<dt><cite>Managers</cite></dt>
+<dd><p class="first">Group for administrators.</p>
+<p class="last">Default roles: <cite>Administration</cite></p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">Never remove Weblate predefined groups and users, this can lead to
+unexpected problems. If you do not want to use these features, just remove
+all privileges from them.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="projects.html" class="btn btn-neutral float-right" title="翻訳プロジェクト" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="auth.html" class="btn btn-neutral" title="Authentication" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

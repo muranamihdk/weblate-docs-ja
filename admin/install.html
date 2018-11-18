@@ -1,0 +1,1826 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installation instructions &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Weblate deployments" href="deployments.html" />
+    <link rel="prev" title="Quick setup guide" href="quick.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrators guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-requirements">Hardware requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#software-requirements">Software requirements</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#python-dependencies">Python dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other-system-requirements">Other system requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compile-time-dependencies">Compile time dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-weblate">Installing Weblate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installing-in-virtualenv">Installing in virtualenv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installing-weblate-from-git">Installing Weblate from Git</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installing-weblate-by-pip">Installing Weblate by pip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#requirements-on-debian-or-ubuntu">Requirements on Debian or Ubuntu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#requirements-on-opensuse">Requirements on openSUSE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#requirements-on-osx">Requirements on OSX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#requirements-using-pip-installer">Requirements using pip installer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#filesystem-permissions">Filesystem permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#database-setup-for-weblate">Database setup for Weblate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#postgresql">PostgreSQL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mysql-or-mariadb">MySQL or MariaDB</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#other-configurations">Other configurations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#configuring-outgoing-mail">Configuring outgoing mail</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#background-tasks-using-celery">Background tasks using Celery</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filling-up-the-database">Filling up the database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#production-setup">Production setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#disable-debug-mode">Disable debug mode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#properly-configure-admins">Properly configure admins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#set-correct-site-name">Set correct site name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#correctly-configure-https">Correctly configure HTTPS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-powerful-database-engine">Use powerful database engine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enable-caching">Enable caching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#avatar-caching">Avatar caching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-email-addresses">Configure email addresses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allowed-hosts-setup">Allowed hosts setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyuca-library">pyuca library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#django-secret-key">Django secret key</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#static-files">Static files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#home-directory">Home directory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#template-loading">Template loading</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-maintenance-tasks">Running maintenance tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-server">Running server</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#serving-static-files">Serving static files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content-security-policy">Content security policy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-configuration-for-apache">Sample configuration for Apache</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-configuration-for-apache-and-gunicorn">Sample configuration for Apache and gunicorn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-configuration-for-nginx-and-uwsgi">Sample configuration for nginx and uwsgi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-weblate-under-path">Running Weblate under path</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#monitoring-weblate">Monitoring Weblate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collecting-error-reports">Collecting error reports</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sentry">Sentry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rollbar">Rollbar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#migrating-weblate-to-another-server">Migrating Weblate to another server</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#migrating-database">Migrating database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#migrating-vcs-repositories">Migrating VCS repositories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#migrating-fulltext-index">Migrating fulltext index</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other-notes">Other notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access.html">Access control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html">翻訳プロジェクト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html">継続的トランスレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks and fixups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html">Machine translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html">Addons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html">Management commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Administrators guide</a> &raquo;</li>
+        
+      <li>Installation instructions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/admin/install.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installation-instructions">
+<span id="install"></span><h1>Installation instructions<a class="headerlink" href="#installation-instructions" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Looking for quick installation instructions? See <a class="reference external" href="https://docs.weblate.org/en/weblate-3.0.1/admin/quick.html" title="(in Weblate v3.0.1)"><span>Quick setup guide</span></a>.</p>
+<div class="section" id="hardware-requirements">
+<h2>Hardware requirements<a class="headerlink" href="#hardware-requirements" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblate should run on any contemporary hardware without problems, the following is
+the minimal configuration required to run Weblate on single host (Weblate, database
+and web server):</p>
+<ul class="simple">
+<li>2 GB of RAM memory</li>
+<li>2 CPU cores</li>
+<li>1 GB of storage space</li>
+</ul>
+<p>The more memory you have, the better - it will be used for caching on all
+levels (filesystem, database and Weblate).</p>
+<p>If you are going to have many concurrent users, you will need more CPU cores.
+For hundredths of translation components at least 4 GB of memory is
+recommended.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">The actual requirements for your installation heavily vary based on the size of
+translations managed by Weblate.</p>
+</div>
+</div>
+<div class="section" id="software-requirements">
+<span id="requirements"></span><h2>Software requirements<a class="headerlink" href="#software-requirements" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="python-dependencies">
+<span id="python-deps"></span><h3>Python dependencies<a class="headerlink" href="#python-dependencies" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate is written in <a class="reference external" href="https://www.python.org/">Python</a> and supports Python
+2.7, 3.4 or newer. The following dependencies can be installed using pip or your
+distribution packages:</p>
+<dl class="docutils">
+<dt>Django (&gt;= 1.11)</dt>
+<dd><a class="reference external" href="https://www.djangoproject.com/">https://www.djangoproject.com/</a></dd>
+<dt>Celery (&gt;= 4.0)</dt>
+<dd><a class="reference external" href="http://www.celeryproject.org/">http://www.celeryproject.org/</a></dd>
+<dt>celery-batches (&gt;= 0.2)</dt>
+<dd><a class="reference external" href="https://pypi.org/project/celery-batches/">https://pypi.org/project/celery-batches/</a></dd>
+<dt>siphashc (&gt;= 0.8)</dt>
+<dd><a class="reference external" href="https://github.com/WeblateOrg/siphashc">https://github.com/WeblateOrg/siphashc</a></dd>
+<dt>translate-toolkit (&gt;= 2.3.1)</dt>
+<dd><a class="reference external" href="https://toolkit.translatehouse.org/">https://toolkit.translatehouse.org/</a></dd>
+<dt>Six (&gt;= 1.7.0)</dt>
+<dd><a class="reference external" href="https://pypi.org/project/six/">https://pypi.org/project/six/</a></dd>
+<dt>filelock (&gt;= 3.0.1)</dt>
+<dd><a class="reference external" href="https://github.com/benediktschmitt/py-filelock">https://github.com/benediktschmitt/py-filelock</a></dd>
+<dt>Mercurial (&gt;= 2.8) (optional for Mercurial repositories support)</dt>
+<dd><a class="reference external" href="https://www.mercurial-scm.org/">https://www.mercurial-scm.org/</a></dd>
+<dt>social-auth-core (&gt;= 1.3.0)</dt>
+<dd><a class="reference external" href="https://python-social-auth.readthedocs.io/">https://python-social-auth.readthedocs.io/</a></dd>
+<dt>social-auth-app-django (&gt;= 2.0.0)</dt>
+<dd><a class="reference external" href="https://python-social-auth.readthedocs.io/">https://python-social-auth.readthedocs.io/</a></dd>
+<dt>django-appconf (&gt;= 1.0)</dt>
+<dd><a class="reference external" href="https://github.com/django-compressor/django-appconf">https://github.com/django-compressor/django-appconf</a></dd>
+<dt>Whoosh (&gt;= 2.7.0)</dt>
+<dd><a class="reference external" href="https://bitbucket.org/mchaput/whoosh/wiki/Home">https://bitbucket.org/mchaput/whoosh/wiki/Home</a></dd>
+<dt>PIL or Pillow library</dt>
+<dd><a class="reference external" href="https://python-pillow.org/">https://python-pillow.org/</a></dd>
+<dt>lxml (&gt;= 3.1.0)</dt>
+<dd><a class="reference external" href="https://lxml.de/">https://lxml.de/</a></dd>
+<dt>defusedxml (&gt;= 0.4)</dt>
+<dd><a class="reference external" href="https://bitbucket.org/tiran/defusedxml">https://bitbucket.org/tiran/defusedxml</a></dd>
+<dt>dateutil</dt>
+<dd><a class="reference external" href="https://labix.org/python-dateutil">https://labix.org/python-dateutil</a></dd>
+<dt>django_compressor (&gt;= 2.1.1)</dt>
+<dd><a class="reference external" href="https://github.com/django-compressor/django-compressor">https://github.com/django-compressor/django-compressor</a></dd>
+<dt>django-crispy-forms (&gt;= 1.6.1)</dt>
+<dd><a class="reference external" href="https://django-crispy-forms.readthedocs.io/">https://django-crispy-forms.readthedocs.io/</a></dd>
+<dt>Django REST Framework (&gt;=3.8)</dt>
+<dd><a class="reference external" href="https://www.django-rest-framework.org/">https://www.django-rest-framework.org/</a></dd>
+<dt>user-agents (&gt;= 1.1.0)</dt>
+<dd><a class="reference external" href="https://github.com/selwin/python-user-agents">https://github.com/selwin/python-user-agents</a></dd>
+<dt>pyuca (&gt;= 1.1) (optional for proper sorting of strings)</dt>
+<dd><a class="reference external" href="https://github.com/jtauber/pyuca">https://github.com/jtauber/pyuca</a></dd>
+<dt>phply (optional for PHP support)</dt>
+<dd><a class="reference external" href="https://github.com/viraptor/phply">https://github.com/viraptor/phply</a></dd>
+<dt>Database backend</dt>
+<dd>Any database supported in Django will work, see <a class="reference internal" href="#database-setup"><span class="std std-ref">Database setup for Weblate</span></a> and
+backends documentation for more details.</dd>
+<dt>pytz (optional, but recommended by Django)</dt>
+<dd><a class="reference external" href="https://pypi.org/project/pytz/">https://pypi.org/project/pytz/</a></dd>
+<dt>python-bidi (optional for proper rendering of badges in RTL languages)</dt>
+<dd><a class="reference external" href="https://github.com/MeirKriheli/python-bidi">https://github.com/MeirKriheli/python-bidi</a></dd>
+<dt>tesserocr (&gt;= 2.0.0) (optional for screenshots OCR)</dt>
+<dd><a class="reference external" href="https://github.com/sirfz/tesserocr">https://github.com/sirfz/tesserocr</a></dd>
+<dt>akismet (&gt;= 1.0) (optional for suggestion spam protection)</dt>
+<dd><a class="reference external" href="https://github.com/ubernostrum/akismet">https://github.com/ubernostrum/akismet</a></dd>
+<dt>PyYAML (&gt;= 3.0) (optional for <a class="reference internal" href="../formats.html#yaml"><span class="std std-ref">YAML files</span></a>)</dt>
+<dd><a class="reference external" href="https://pyyaml.org/">https://pyyaml.org/</a></dd>
+<dt>backports.csv (needed on Python 2.7)</dt>
+<dd><a class="reference external" href="https://pypi.org/project/backports.csv/">https://pypi.org/project/backports.csv/</a></dd>
+<dt>jellyfish (&gt;= 0.6.1)</dt>
+<dd><a class="reference external" href="https://github.com/jamesturk/jellyfish">https://github.com/jamesturk/jellyfish</a></dd>
+<dt>openpyxl (&gt;=2.5.0) (for XLSX export/import)</dt>
+<dd><a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/">https://openpyxl.readthedocs.io/en/stable/</a></dd>
+<dt>zeep (&gt;=3.0.0) (optional for <a class="reference internal" href="machine.html#ms-terminology"><span class="std std-ref">Microsoft Terminology Service</span></a>)</dt>
+<dd><a class="reference external" href="https://python-zeep.readthedocs.io/">https://python-zeep.readthedocs.io/</a></dd>
+</dl>
+</div>
+<div class="section" id="other-system-requirements">
+<h3>Other system requirements<a class="headerlink" href="#other-system-requirements" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The following dependencies have to be installed on the system:</p>
+<dl class="docutils">
+<dt>Git (&gt;= 1.6)</dt>
+<dd><a class="reference external" href="https://git-scm.com/">https://git-scm.com/</a></dd>
+<dt>hub (optional for sending pull requests to GitHub)</dt>
+<dd><a class="reference external" href="https://hub.github.com/">https://hub.github.com/</a></dd>
+<dt>git-review (optional for Gerrit support)</dt>
+<dd><a class="reference external" href="https://pypi.org/project/git-review/">https://pypi.org/project/git-review/</a></dd>
+<dt>git-svn (&gt;= 2.10.0) (optional for Subversion support)</dt>
+<dd><a class="reference external" href="https://git-scm.com/docs/git-svn">https://git-scm.com/docs/git-svn</a></dd>
+<dt>tesseract and it's data (optional for screenshots OCR)</dt>
+<dd><a class="reference external" href="https://github.com/tesseract-ocr/tesseract">https://github.com/tesseract-ocr/tesseract</a></dd>
+</dl>
+</div>
+<div class="section" id="compile-time-dependencies">
+<h3>Compile time dependencies<a class="headerlink" href="#compile-time-dependencies" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>To compile some of the <a class="reference internal" href="#python-deps"><span class="std std-ref">Python dependencies</span></a> you might need to install their
+dependencies. This depends on how you install them, so please consult
+individual packages for documentation. You won't need those if using prebuilt
+Wheels while installing using pip or when you use distribution packages.</p>
+</div>
+</div>
+<div class="section" id="installing-weblate">
+<span id="install-weblate"></span><h2>Installing Weblate<a class="headerlink" href="#installing-weblate" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Choose an installation method that best fits your environment.</p>
+<p>First choices include complete setup without relying on your system libraries:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#virtualenv"><span class="std std-ref">Installing in virtualenv</span></a></li>
+<li><a class="reference internal" href="deployments.html#docker"><span class="std std-ref">Running Weblate in the Docker</span></a></li>
+<li><a class="reference internal" href="deployments.html#openshift"><span class="std std-ref">Running Weblate on OpenShift 2</span></a></li>
+</ul>
+<p>You can also install Weblate directly on your system either fully using
+distribution packages (currently available for openSUSE only) or mixed setup.</p>
+<p>Choose installation method:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#install-pip"><span class="std std-ref">Installing Weblate by pip</span></a></li>
+<li><a class="reference internal" href="#install-git"><span class="std std-ref">Installing Weblate from Git</span></a> (if you want to run bleeding edge version)</li>
+<li>Alternatively you can use released archives. You can download them from our
+website &lt;<a class="reference external" href="https://weblate.org/">https://weblate.org/</a>&gt;.</li>
+</ul>
+<p>And install dependencies according your platform:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#deps-debian"><span class="std std-ref">Requirements on Debian or Ubuntu</span></a></li>
+<li><a class="reference internal" href="#deps-suse"><span class="std std-ref">Requirements on openSUSE</span></a></li>
+<li><a class="reference internal" href="#deps-osx"><span class="std std-ref">Requirements on OSX</span></a></li>
+<li><a class="reference internal" href="#deps-pip"><span class="std std-ref">Requirements using pip installer</span></a></li>
+</ul>
+<div class="section" id="installing-in-virtualenv">
+<span id="virtualenv"></span><h3>Installing in virtualenv<a class="headerlink" href="#installing-in-virtualenv" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This is recommended method if you don't want to dig into details. This will
+create separate Python environment for Weblate, possibly duplicating some
+system Python libraries.</p>
+<ol class="arabic">
+<li><p class="first">Install development files for libraries we will use during building
+Python modules:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Debian/Ubuntu:</span>
+apt install libxml2-dev libxslt-dev libfreetype6-dev libjpeg-dev libz-dev libyaml-dev python-dev
+
+<span class="c1"># openSUSE/SLES:</span>
+zypper install libxslt-devel libxml2-devel freetype-devel libjpeg-devel zlib-devel libyaml-devel python-devel
+
+<span class="c1"># Fedora/RHEL/CentOS:</span>
+dnf install libxslt-devel libxml2-devel freetype-devel libjpeg-devel zlib-devel libyaml-devel python-devel
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install pip and virtualenv. Usually they are shipped by your distribution or
+with Python:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Debian/Ubuntu:</span>
+apt-get install python-pip python-virtualenv
+
+<span class="c1"># openSUSE/SLES:</span>
+zypper install python-pip python-virtualenv
+
+<span class="c1"># Fedora/RHEL/CentOS:</span>
+dnf install python-pip python-virtualenv
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create and activate virtualenv for Weblate:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>virtualenv ~/weblate-env
+. ~/weblate-env/bin/activate
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install Weblate including all dependencies, you can also use pip to install
+optional dependencies:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install Weblate
+<span class="c1"># Optional deps</span>
+pip install pytz python-bidi PyYAML pyuca
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create your settings (in our example it would be in
+<code class="file docutils literal notranslate"><span class="pre">~/weblate-env/lib/python2.7/site-packages/weblate/settings.py</span></code>
+based on the <code class="file docutils literal notranslate"><span class="pre">settings_example.py</span></code> in same directory).</p>
+</li>
+<li><p class="first">You can now run Weblate commands using <strong class="command">weblate</strong> command, see
+<a class="reference internal" href="management.html#manage"><span class="std std-ref">Management commands</span></a>.</p>
+</li>
+<li><p class="first">To run webserver, use the wsgi wrapper installed with Weblate (in our case
+it is <code class="file docutils literal notranslate"><span class="pre">~/weblate-env/lib/python2.7/site-packages/weblate/wsgi.py</span></code>).
+Don't forget to set Python search path to your virtualenv as well (for
+example using <code class="docutils literal notranslate"><span class="pre">virtualenv</span> <span class="pre">=</span> <span class="pre">/home/user/weblate-env</span></code> in uwsgi).</p>
+</li>
+</ol>
+</div>
+<div class="section" id="installing-weblate-from-git">
+<span id="install-git"></span><h3>Installing Weblate from Git<a class="headerlink" href="#installing-weblate-from-git" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>You can also run the latest version from Git. It is maintained stable and
+production ready. You can usually find it running on
+<a class="reference external" href="https://weblate.org/hosting/">Hosted Weblate</a>.</p>
+<p>To get latest sources using Git use:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/WeblateOrg/weblate.git
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">If you are running a version from Git, you should also regenerate locale
+files every time you are upgrading. You can do this by invoking script
+<code class="file docutils literal notranslate"><span class="pre">./scripts/generate-locales</span></code>.</p>
+</div>
+</div>
+<div class="section" id="installing-weblate-by-pip">
+<span id="install-pip"></span><h3>Installing Weblate by pip<a class="headerlink" href="#installing-weblate-by-pip" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If you decide to install Weblate using pip installer, you will notice some
+differences. Most importantly the command line interface is installed  to the
+system path as <strong class="command">weblate</strong> instead of <strong class="command">./manage.py</strong> as used in
+this documentation. Also when invoking this command, you will have to specify
+settings, either by environment variable <cite>DJANGO_SETTINGS_MODULE</cite> on the
+command line, for example:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">DJANGO_SETTINGS_MODULE</span><span class="o">=</span>yourproject.settings weblate migrate
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="management.html#invoke-manage"><span class="std std-ref">Invoking management commands</span></a></p>
+</div>
+</div>
+<div class="section" id="requirements-on-debian-or-ubuntu">
+<span id="deps-debian"></span><h3>Requirements on Debian or Ubuntu<a class="headerlink" href="#requirements-on-debian-or-ubuntu" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>On recent Debian or Ubuntu, most of requirements are already packaged, to
+install them you can use apt-get:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>apt-get install python-pip python-django translate-toolkit <span class="se">\</span>
+    python-whoosh python-pil <span class="se">\</span>
+    git mercurial <span class="se">\</span>
+    python-django-compressor python-django-crispy-forms <span class="se">\</span>
+    python-djangorestframework python-dateutil python-celery
+
+<span class="c1"># Optional packages for database backend:</span>
+
+<span class="c1"># For PostgreSQL</span>
+apt-get install python-psycopg2
+<span class="c1"># For MySQL on Ubuntu (if using Ubuntu package for Django)</span>
+apt-get install python-pymysql
+<span class="c1"># For MySQL on Debian (or Ubuntu if using upstream Django packages)</span>
+apt-get install python-mysqldb
+</pre></div>
+</div>
+<p>On older versions, some required dependencies are missing or outdated, so you
+need to install several Python modules manually using pip:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dependencies for python-social-auth</span>
+apt-get install python-requests-oauthlib python-six python-openid
+
+<span class="c1"># Social auth</span>
+pip install social-auth-core
+pip install social-auth-app-django
+
+<span class="c1"># In case your distribution has python-django older than 1.9</span>
+pip install Django
+
+<span class="c1"># In case python-django-crispy-forms package is missing</span>
+pip install django-crispy-forms
+
+<span class="c1"># In case python-whoosh package is misssing or older than 2.7</span>
+pip install Whoosh
+
+<span class="c1"># In case your python-django-compressor package is missing,</span>
+<span class="c1"># try installing it by older name or using pip:</span>
+apt-get install python-compressor
+pip install django_compressor
+
+<span class="c1"># Optional for OCR support</span>
+apt-get install tesseract-ocr libtesseract-dev libleptonica-dev cython
+pip install tesserocr
+</pre></div>
+</div>
+<p>For proper sorting of a Unicode strings, it is recommended to install pyuca:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install pyuca
+</pre></div>
+</div>
+<p>Depending on how you intend to run Weblate and what you already have installed,
+you might need additional components:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Web server option 1: nginx and uwsgi</span>
+apt-get install nginx uwsgi uwsgi-plugin-python
+
+<span class="c1"># Web server option 2: Apache with mod_wsgi</span>
+apt-get install apache2 libapache2-mod-wsgi
+
+<span class="c1"># Caching backend: redis</span>
+apt-get install redis-server
+
+<span class="c1"># Database option 1: postgresql</span>
+apt-get install postgresql
+
+<span class="c1"># Database option 2: mariadb</span>
+apt-get install mariadb-server
+
+<span class="c1"># Database option 3: mysql</span>
+apt-get install mysql-server
+
+<span class="c1"># SMTP server</span>
+apt-get install exim4
+
+<span class="c1"># GitHub PR support: hub</span>
+<span class="c1"># See https://hub.github.com/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="requirements-on-opensuse">
+<span id="deps-suse"></span><h3>Requirements on openSUSE<a class="headerlink" href="#requirements-on-opensuse" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Most of requirements are available either directly in openSUSE or in
+<code class="docutils literal notranslate"><span class="pre">devel:languages:python</span></code> repository:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zypper install python-Django translate-toolkit <span class="se">\</span>
+    python-Whoosh python-Pillow <span class="se">\</span>
+    python-social-auth-core python-social-auth-app-django <span class="se">\</span>
+    Git mercurial python-pyuca <span class="se">\</span>
+    python-dateutil python-celery
+
+<span class="c1"># Optional for database backend</span>
+zypper install python-psycopg2      <span class="c1"># For PostgreSQL</span>
+zypper install python-MySQL-python  <span class="c1"># For MySQL</span>
+</pre></div>
+</div>
+<p>Depending on how you intend to run Weblate and what you already have installed,
+you might need additional components:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Web server option 1: nginx and uwsgi</span>
+zypper install nginx uwsgi uwsgi-plugin-python
+
+<span class="c1"># Web server option 2: Apache with mod_wsgi</span>
+zypper install apache2 apache2-mod_wsgi
+
+<span class="c1"># Caching backend: redis</span>
+zypper install redis-server
+
+<span class="c1"># Database option 1: postgresql</span>
+zypper install postgresql
+
+<span class="c1"># Database option 2: mariadb</span>
+zypper install mariadb
+
+<span class="c1"># Database option 3: mysql</span>
+zypper install mysql
+
+<span class="c1"># SMTP server</span>
+zypper install postfix
+
+<span class="c1"># GitHub PR support: hub</span>
+<span class="c1"># See https://hub.github.com/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="requirements-on-osx">
+<span id="deps-osx"></span><h3>Requirements on OSX<a class="headerlink" href="#requirements-on-osx" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If your python was not installed using brew, make sure you have this in
+your <code class="file docutils literal notranslate"><span class="pre">.bash_profile</span></code> file or executed somehow:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="s2">&quot;/usr/local/lib/python2.7/site-packages:</span><span class="nv">$PYTHONPATH</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>This configuration makes the installed libraries available to Python.</p>
+</div>
+<div class="section" id="requirements-using-pip-installer">
+<span id="deps-pip"></span><h3>Requirements using pip installer<a class="headerlink" href="#requirements-using-pip-installer" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Most requirements can be also installed using pip installer:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install -r requirements.txt
+</pre></div>
+</div>
+<p>For building some of the extensions devel files for several libraries are required,
+see <a class="reference internal" href="#virtualenv"><span class="std std-ref">Installing in virtualenv</span></a> for instructions how to install these.</p>
+<p>All optional dependencies (see above) can be installed using:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install -r requirements-optional.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="filesystem-permissions">
+<span id="file-permissions"></span><h2>Filesystem permissions<a class="headerlink" href="#filesystem-permissions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The Weblate process needs to be able to read and write to the directory where it
+keeps data - <a class="reference internal" href="config.html#std:setting-DATA_DIR"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DATA_DIR</span></code></a>.</p>
+<p>The default configuration places them in the same tree as Weblate sources, however
+you might prefer to move these to better location such as
+<code class="file docutils literal notranslate"><span class="pre">/var/lib/weblate</span></code>.</p>
+<p>Weblate tries to create these directories automatically, but it will fail
+when it does not have permissions to do so.</p>
+<p>You should also take care when running <a class="reference internal" href="management.html#manage"><span class="std std-ref">Management commands</span></a>, as they should be run
+under the same user as Weblate itself is running, otherwise permissions on some
+files might be wrong.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#id2"><span class="std std-ref">Serving static files</span></a></p>
+</div>
+</div>
+<div class="section" id="database-setup-for-weblate">
+<span id="database-setup"></span><h2>Database setup for Weblate<a class="headerlink" href="#database-setup-for-weblate" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>It is recommended to run Weblate on some database server. Using SQLite backend
+is really suitable only for testing purposes.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#production-database"><span class="std std-ref">Use powerful database engine</span></a>,
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/databases/" title="(in Django v2.1)"><span>Databases</span></a></p>
+</div>
+<div class="section" id="postgresql">
+<h3>PostgreSQL<a class="headerlink" href="#postgresql" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>PostgreSQL is usually the best choice for Django based sites. It's the reference
+database used for implementing Django database layer.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/databases/#postgresql-notes" title="(in Django v2.1)"><span>PostgreSQL notes</span></a></p>
+</div>
+<div class="section" id="creating-database-in-postgresql">
+<h4>Creating database in PostgreSQL<a class="headerlink" href="#creating-database-in-postgresql" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>It is usually good idea to run Weblate in a separate database and separate user account:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># If PostgreSQL was not installed before, set the master password</span>
+sudo -u postgres psql postgres -c <span class="s2">&quot;\password postgres&quot;</span>
+
+<span class="c1"># Create database user called &quot;weblate&quot;</span>
+sudo -u postgres createuser -D -P weblate
+
+<span class="c1"># Create database &quot;weblate&quot; owned by &quot;weblate&quot;</span>
+sudo -u postgres createdb -O weblate weblate
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuring-weblate-to-use-postgresql">
+<h4>Configuring Weblate to use PostgreSQL<a class="headerlink" href="#configuring-weblate-to-use-postgresql" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>The <code class="file docutils literal notranslate"><span class="pre">settings.py</span></code> snippet for PostgreSQL:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># Database engine</span>
+        <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.postgresql&#39;</span><span class="p">,</span>
+        <span class="c1"># Database name</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;weblate&#39;</span><span class="p">,</span>
+        <span class="c1"># Database user</span>
+        <span class="s1">&#39;USER&#39;</span><span class="p">:</span> <span class="s1">&#39;weblate&#39;</span><span class="p">,</span>
+        <span class="c1"># Database password</span>
+        <span class="s1">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
+        <span class="c1"># Set to empty string for localhost</span>
+        <span class="s1">&#39;HOST&#39;</span><span class="p">:</span> <span class="s1">&#39;database.example.com&#39;</span><span class="p">,</span>
+        <span class="c1"># Set to empty string for default</span>
+        <span class="s1">&#39;PORT&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="mysql-or-mariadb">
+<h3>MySQL or MariaDB<a class="headerlink" href="#mysql-or-mariadb" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>MySQL or MariaDB are quite good choices to run Weblate. However when using MySQL
+you might hit some problems caused by it.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/databases/#mysql-notes" title="(in Django v2.1)"><span>MySQL notes</span></a></p>
+</div>
+<div class="section" id="unicode-issues-in-mysql">
+<h4>Unicode issues in MySQL<a class="headerlink" href="#unicode-issues-in-mysql" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>MySQL by default uses something called <code class="docutils literal notranslate"><span class="pre">utf8</span></code>, what can not store all Unicode
+characters, only those who fit into three bytes in <code class="docutils literal notranslate"><span class="pre">utf-8</span></code> encoding. In case
+you're using emojis or some other higher Unicode symbols you might hit errors
+when saving such data. Depending on MySQL and Python bindings version, the
+error might look like:</p>
+<ul class="simple">
+<li><cite>OperationalError: (1366, &quot;Incorrect string value: '\xF0\xA8\xAB\xA1' for column 'target' at row 1&quot;)</cite></li>
+<li><cite>UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-3: ordinal not in range(128)</cite></li>
+</ul>
+<p>To solve this, you need to change your database to use <code class="docutils literal notranslate"><span class="pre">utf8mb4</span></code> (what is again
+subset of Unicode, but this time which can be stored in four bytes in <code class="docutils literal notranslate"><span class="pre">utf-8</span></code>
+encoding, thus covering all chars currently defined in Unicode).</p>
+<p>This can be achieved at database creation time by creating it with this
+character set (see <a class="reference internal" href="#mysql-create"><span class="std std-ref">Creating database in MySQL</span></a>) and specifying the character set in
+connection settings (see <a class="reference internal" href="#mysql-config"><span class="std std-ref">Configuring Weblate to use MySQL</span></a>).</p>
+<p>In case you have existing database, you can change it to <code class="docutils literal notranslate"><span class="pre">utf8mb4</span></code> by, but
+this won't change collation of existing fields:</p>
+<div class="highlight-mysql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">weblate</span> <span class="k">CHARACTER</span> <span class="kt">SET</span> <span class="n">utf8mb4</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Using this charset might however lead to problems with default MySQL server
+settings as each character is now taking 4 bytest to store and MySQL has limit
+of 767 bytes for an index. In case this happens you will get one of following
+error messages:</p>
+<ul class="simple">
+<li><cite>1071: Specified key was too long; max key length is 767 bytes</cite></li>
+<li><cite>1709: Index column size too large. The maximum column size is 767 bytes.</cite></li>
+</ul>
+<p>There are two ways to workaround this limitation. You can configure MySQL in a
+way to not have this limit, see <a class="reference external" href="https://mechanics.flite.com/blog/2014/07/29/using-innodb-large-prefix-to-avoid-error-1071/">Using Innodb_large_prefix to Avoid ERROR 1071</a>.
+Alternatively you can  also adjust several settings for social-auth in your
+<code class="file docutils literal notranslate"><span class="pre">settings.py</span></code> (see <a class="reference external" href="https://python-social-auth.readthedocs.io/en/latest/configuration/settings.html" title="(in Python Social Auth)"><span>Configuration</span></a>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Limit some social-auth fields to 191 chars to fit</span>
+<span class="c1"># them in 767 bytes</span>
+
+<span class="n">SOCIAL_AUTH_UID_LENGTH</span> <span class="o">=</span> <span class="mi">191</span>
+<span class="n">SOCIAL_AUTH_NONCE_SERVER_URL_LENGTH</span> <span class="o">=</span> <span class="mi">191</span>
+<span class="n">SOCIAL_AUTH_ASSOCIATION_SERVER_URL_LENGTH</span> <span class="o">=</span> <span class="mi">191</span>
+<span class="n">SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH</span> <span class="o">=</span> <span class="mi">191</span>
+<span class="n">SOCIAL_AUTH_EMAIL_LENGTH</span> <span class="o">=</span> <span class="mi">191</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="transaction-locking">
+<h4>Transaction locking<a class="headerlink" href="#transaction-locking" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>MySQL by default uses has different transaction locking scheme than other
+databases and in case you see errors like <cite>Deadlock found when trying to get
+lock; try restarting transaction</cite> it might be good idea to enable
+<cite>STRICT_TRANS_TABLES</cite> mode in MySQL. This can be done in the server
+configuration file (usually <code class="file docutils literal notranslate"><span class="pre">/etc/mysql/my.cnf</span></code> on Linux):</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[mysqld]</span>
+<span class="na">sql-mode</span><span class="o">=</span><span class="s">STRICT_TRANS_TABLES</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/databases/#mysql-sql-mode" title="(in Django v2.1)"><span>Setting sql_mode</span></a></p>
+</div>
+</div>
+<div class="section" id="creating-database-in-mysql">
+<span id="mysql-create"></span><h4>Creating database in MySQL<a class="headerlink" href="#creating-database-in-mysql" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Create <code class="docutils literal notranslate"><span class="pre">weblate</span></code> user to access the <code class="docutils literal notranslate"><span class="pre">weblate</span></code> database:</p>
+<div class="highlight-mysql notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grant all privileges to  weblate user</span>
+<span class="k">GRANT</span> <span class="k">ALL</span> <span class="n">PRIVILEGES</span> <span class="k">ON</span> <span class="n">weblate</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">&#39;weblate&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span>  <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;password&#39;</span><span class="p">;</span>
+
+<span class="c1"># Create database on MySQL &gt;= 5.7.7</span>
+<span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">weblate</span> <span class="k">CHARACTER</span> <span class="kt">SET</span> <span class="n">utf8mb4</span><span class="p">;</span>
+
+<span class="c1"># Use utf8 for older versions</span>
+<span class="c1"># CREATE DATABASE weblate CHARACTER SET utf8;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuring-weblate-to-use-mysql">
+<span id="mysql-config"></span><h4>Configuring Weblate to use MySQL<a class="headerlink" href="#configuring-weblate-to-use-mysql" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>The <code class="file docutils literal notranslate"><span class="pre">settings.py</span></code> snippet for MySQL:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># Database engine</span>
+        <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.mysql&#39;</span><span class="p">,</span>
+        <span class="c1"># Database name</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;weblate&#39;</span><span class="p">,</span>
+        <span class="c1"># Database user</span>
+        <span class="s1">&#39;USER&#39;</span><span class="p">:</span> <span class="s1">&#39;weblate&#39;</span><span class="p">,</span>
+        <span class="c1"># Database password</span>
+        <span class="s1">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
+        <span class="c1"># Set to empty string for localhost</span>
+        <span class="s1">&#39;HOST&#39;</span><span class="p">:</span> <span class="s1">&#39;database.example.com&#39;</span><span class="p">,</span>
+        <span class="c1"># Set to empty string for default</span>
+        <span class="s1">&#39;PORT&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="c1"># Additional database options</span>
+        <span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># In case of older MySQL server which has default MariaDB</span>
+            <span class="c1"># &#39;init_command&#39;: &#39;SET storage_engine=INNODB&#39;,</span>
+            <span class="c1"># If your server supports it, see Unicode issues above</span>
+           <span class="s1">&#39;charset&#39;</span><span class="p">:</span> <span class="s1">&#39;utf8mb4&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="other-configurations">
+<h2>Other configurations<a class="headerlink" href="#other-configurations" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="configuring-outgoing-mail">
+<span id="out-mail"></span><h3>Configuring outgoing mail<a class="headerlink" href="#configuring-outgoing-mail" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate sends out emails on various occasions - for account activation and on
+various notifications configured by users. For this it needs access to the SMTP
+server, which will handle this.</p>
+<p>The mail server setup is configured using settings
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-EMAIL_HOST" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">EMAIL_HOST</span></code></a>, <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-EMAIL_HOST_PASSWORD" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">EMAIL_HOST_PASSWORD</span></code></a>,
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-EMAIL_HOST_USER" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">EMAIL_HOST_USER</span></code></a> and <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-EMAIL_PORT" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">EMAIL_PORT</span></code></a>.  Their
+names are quite self-explanatory, but you can find out more information in the
+Django documentation.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">You can verify whether outgoing mail is working correctly by using
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/django-admin/#django-admin-sendtestemail" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">sendtestemail</span></code></a> management command.</p>
+</div>
+</div>
+<div class="section" id="background-tasks-using-celery">
+<span id="celery"></span><h3>Background tasks using Celery<a class="headerlink" href="#background-tasks-using-celery" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.2 で追加.</span></p>
+</div>
+<p>Weblate uses Celery to process background tasks. The example settings come with
+eager configuration, which does process all tasks in place, but you want to
+change this to something more reasonable for production setup.</p>
+<p>Typical setup using redis as a backend should look like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CELERY_TASK_ALWAYS_EAGER</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">CELERY_BROKER_URL</span> <span class="o">=</span> <span class="s1">&#39;redis://localhost:6379&#39;</span>
+<span class="n">CELERY_RESULT_BACKEND</span> <span class="o">=</span> <span class="n">CELERY_BROKER_URL</span>
+</pre></div>
+</div>
+<p>You should also start the Celery worker to process the tasks and start
+scheduled tasks, this can be done directly on command line (what is mostly
+useful when debugging or developing):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>celery worker --app weblate --loglevel info --beat
+</pre></div>
+</div>
+<p>Most likely you will want to run Celery as a daemon and that is covered by
+<a class="reference external" href="http://docs.celeryproject.org/en/latest/userguide/daemonizing.html" title="(in Celery v4.2)"><span>Daemonization</span></a>. For the most usual Linux setup using
+systemd you can use example files shipped in the <code class="file docutils literal notranslate"><span class="pre">examples</span></code> folder and
+listed below.</p>
+<p>Systemd unit to be placed as <code class="file docutils literal notranslate"><span class="pre">/etc/systemd/system/celery-weblate.service</span></code>:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Celery Service (Weblate)</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+
+<span class="k">[Service]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">forking</span>
+<span class="na">User</span><span class="o">=</span><span class="s">weblate</span>
+<span class="na">Group</span><span class="o">=</span><span class="s">weblate</span>
+<span class="na">EnvironmentFile</span><span class="o">=</span><span class="s">/etc/default/celery-weblate</span>
+<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/home/weblate/weblate</span>
+<span class="na">PermissionsStartOnly</span><span class="o">=</span><span class="s">true</span>
+<span class="na">ExecStartPre</span><span class="o">=</span><span class="s">/bin/mkdir -p /var/run/celery</span>
+<span class="na">ExecStartPre</span><span class="o">=</span><span class="s">/bin/chown -R weblate /var/run/celery/</span>
+<span class="na">ExecStartPre</span><span class="o">=</span><span class="s">/bin/mkdir -p /var/log/celery</span>
+<span class="na">ExecStartPre</span><span class="o">=</span><span class="s">/bin/chown -R weblate /var/log/celery/</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/bin/sh -c &#39;${CELERY_BIN} multi start ${CELERYD_NODES} \</span>
+<span class="s">  -A ${CELERY_APP} --pidfile=${CELERYD_PID_FILE} \</span>
+<span class="s">  --logfile=${CELERYD_LOG_FILE} --loglevel=${CELERYD_LOG_LEVEL} ${CELERYD_OPTS}&#39;</span>
+<span class="na">ExecStop</span><span class="o">=</span><span class="s">/bin/sh -c &#39;${CELERY_BIN} multi stopwait ${CELERYD_NODES} \</span>
+<span class="s">  --pidfile=${CELERYD_PID_FILE}&#39;</span>
+<span class="na">ExecReload</span><span class="o">=</span><span class="s">/bin/sh -c &#39;${CELERY_BIN} multi restart ${CELERYD_NODES} \</span>
+<span class="s">  -A ${CELERY_APP} --pidfile=${CELERYD_PID_FILE} \</span>
+<span class="s">  --logfile=${CELERYD_LOG_FILE} --loglevel=${CELERYD_LOG_LEVEL} ${CELERYD_OPTS}&#39;</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</pre></div>
+</div>
+<p>Environment configuration to be placed as <code class="file docutils literal notranslate"><span class="pre">/etc/default/celery-weblate</span></code>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Name of nodes to start</span>
+<span class="c1"># here we have a single node</span>
+<span class="nv">CELERYD_NODES</span><span class="o">=</span><span class="s2">&quot;w1&quot;</span>
+<span class="c1"># or we could have three nodes:</span>
+<span class="c1">#CELERYD_NODES=&quot;w1 w2 w3&quot;</span>
+
+<span class="c1"># Absolute or relative path to the &#39;celery&#39; command:</span>
+<span class="nv">CELERY_BIN</span><span class="o">=</span><span class="s2">&quot;/usr/local/bin/celery&quot;</span>
+
+<span class="c1"># App instance to use</span>
+<span class="c1"># comment out this line if you don&#39;t use an app</span>
+<span class="nv">CELERY_APP</span><span class="o">=</span><span class="s2">&quot;weblate&quot;</span>
+
+<span class="c1"># How to call manage.py</span>
+<span class="nv">CELERYD_MULTI</span><span class="o">=</span><span class="s2">&quot;multi&quot;</span>
+
+<span class="c1"># Extra command-line arguments to the worker</span>
+<span class="nv">CELERYD_OPTS</span><span class="o">=</span><span class="s2">&quot;--beat&quot;</span>
+
+<span class="c1"># - %n will be replaced with the first part of the nodename.</span>
+<span class="c1"># - %I will be replaced with the current child process index</span>
+<span class="c1">#   and is important when using the prefork pool to avoid race conditions.</span>
+<span class="nv">CELERYD_PID_FILE</span><span class="o">=</span><span class="s2">&quot;/var/run/celery/weblate-%n.pid&quot;</span>
+<span class="nv">CELERYD_LOG_FILE</span><span class="o">=</span><span class="s2">&quot;/var/log/celery/weblate-%n%I.log&quot;</span>
+<span class="nv">CELERYD_LOG_LEVEL</span><span class="o">=</span><span class="s2">&quot;INFO&quot;</span>
+
+<span class="nv">CELERY_WORKER_RUNNING</span><span class="o">=</span><span class="s2">&quot;1&quot;</span>
+</pre></div>
+</div>
+<p>Logrotate configuration to be placed as <code class="file docutils literal notranslate"><span class="pre">/etc/logrotate.d/celery</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/var/log/celery/*.log {
+        weekly
+        missingok
+        rotate 12
+        compress
+        notifempty
+}
+</pre></div>
+</div>
+<p>Weblate comes with built in setup for scheduled tasks. You can however define
+additional tasks in <code class="file docutils literal notranslate"><span class="pre">settings.py</span></code>, for example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CELERY_BEAT_SCHEDULE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Unconditionally commit all changes every 2 minutes</span>
+    <span class="s1">&#39;commit&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;task&#39;</span><span class="p">:</span> <span class="s1">&#39;weblate.trans.tasks.commit_pending&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;kwargs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;hours&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+        <span class="s1">&#39;schedule&#39;</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
+     <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="http://docs.celeryproject.org/en/latest/userguide/configuration.html" title="(in Celery v4.2)"><span>Configuration and defaults</span></a>,
+<a class="reference external" href="http://docs.celeryproject.org/en/latest/userguide/workers.html" title="(in Celery v4.2)"><span>Workers Guide</span></a>,
+<a class="reference external" href="http://docs.celeryproject.org/en/latest/userguide/daemonizing.html" title="(in Celery v4.2)"><span>Daemonization</span></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="installation">
+<span id="id1"></span><h2>Installation<a class="headerlink" href="#installation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="sample.html#sample-configuration"><span class="std std-ref">Sample configuration</span></a></p>
+</div>
+<p>Copy <code class="file docutils literal notranslate"><span class="pre">weblate/settings_example.py</span></code> to <code class="file docutils literal notranslate"><span class="pre">weblate/settings.py</span></code> and
+adjust it to match your setup. You will probably want to adjust the following
+options:</p>
+<p id="std:setting-ADMINS"><code class="docutils literal notranslate"><span class="pre">ADMINS</span></code></p>
+<blockquote>
+<div><p>List of site administrators to receive notifications when something goes
+wrong, for example notifications on failed merge or Django errors.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-ADMINS" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">ADMINS</span></code></a></p>
+</div>
+</div></blockquote>
+<p id="std:setting-ALLOWED_HOSTS"><code class="docutils literal notranslate"><span class="pre">ALLOWED_HOSTS</span></code></p>
+<blockquote>
+<div><p>If you are running Django 1.5 or newer, you need to set this to list of
+hosts your site is supposed to serve. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;demo.weblate.org&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-ALLOWED_HOSTS" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">ALLOWED_HOSTS</span></code></a></p>
+</div>
+</div></blockquote>
+<p id="std:setting-SESSION_ENGINE"><code class="docutils literal notranslate"><span class="pre">SESSION_ENGINE</span></code></p>
+<blockquote>
+<div><p>Configure how your sessions will be stored. In case you keep default
+database backed engine you should schedule
+<strong class="command">./manage.py clearsessions</strong> to remove stale session data from the
+database.</p>
+<p>If you are using redis as cache (see <a class="reference internal" href="#production-cache"><span class="std std-ref">Enable caching</span></a>) it is
+recommended to use it for sessions as well:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SESSION_ENGINE</span> <span class="o">=</span> <span class="s1">&#39;django.contrib.sessions.backends.cache&#39;</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/http/sessions/#configuring-sessions" title="(in Django v2.1)"><span>Configuring the session engine</span></a>,
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-SESSION_ENGINE" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">SESSION_ENGINE</span></code></a></p>
+</div>
+</div></blockquote>
+<p id="std:setting-DATABASES"><code class="docutils literal notranslate"><span class="pre">DATABASES</span></code></p>
+<blockquote>
+<div><p>Connectivity to database server, please check Django's documentation for more
+details.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#database-setup"><span class="std std-ref">Database setup for Weblate</span></a>,
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DATABASES" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">DATABASES</span></code></a>,
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/databases/" title="(in Django v2.1)"><span>Databases</span></a></p>
+</div>
+</div></blockquote>
+<p id="std:setting-DEBUG"><code class="docutils literal notranslate"><span class="pre">DEBUG</span></code></p>
+<blockquote>
+<div><p>Disable this for production server. With debug mode enabled, Django will
+show backtraces in case of error to users, when you disable it, errors will
+go by email to <code class="docutils literal notranslate"><span class="pre">ADMINS</span></code> (see above).</p>
+<p>Debug mode also slows down Weblate as Django stores much more information
+internally in this case.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEBUG" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">DEBUG</span></code></a>,</p>
+</div>
+</div></blockquote>
+<p id="std:setting-DEFAULT_FROM_EMAIL"><code class="docutils literal notranslate"><span class="pre">DEFAULT_FROM_EMAIL</span></code></p>
+<blockquote>
+<div><p>Email sender address for outgoing email, for example registration emails.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_FROM_EMAIL" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">DEFAULT_FROM_EMAIL</span></code></a>,</p>
+</div>
+</div></blockquote>
+<p id="std:setting-SECRET_KEY"><code class="docutils literal notranslate"><span class="pre">SECRET_KEY</span></code></p>
+<blockquote>
+<div>Key used by Django to sign some information in cookies, see
+<a class="reference internal" href="#production-secret"><span class="std std-ref">Django secret key</span></a> for more information.</div></blockquote>
+<p id="std:setting-SERVER_EMAIL"><code class="docutils literal notranslate"><span class="pre">SERVER_EMAIL</span></code></p>
+<blockquote>
+<div><p>Email used as sender address for sending emails to administrator, for
+example notifications on failed merge.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-SERVER_EMAIL" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">SERVER_EMAIL</span></code></a></p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="filling-up-the-database">
+<span id="tables-setup"></span><h2>Filling up the database<a class="headerlink" href="#filling-up-the-database" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>After your configuration is ready, you can run
+<code class="samp docutils literal notranslate"><span class="pre">./manage.py</span> <span class="pre">migrate</span></code> to create the database structure. Now you should be
+able to create translation projects using the admin interface.</p>
+<p>In case you want to run installation non interactively, you can use
+<code class="samp docutils literal notranslate"><span class="pre">./manage.py</span> <span class="pre">migrate</span> <span class="pre">--noinput</span></code> and then create admin user using
+<a class="reference internal" href="management.html#django-admin-createadmin"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">createadmin</span></code></a> command.</p>
+<p>You should also login to admin interface (on <code class="docutils literal notranslate"><span class="pre">/admin/</span></code> URL) and adjust the
+default site name to match your domain by clicking on <span class="guilabel">Sites</span> and there
+changing the <code class="samp docutils literal notranslate"><span class="pre">example.com</span></code> record to match your real domain name.</p>
+<p>Once you are done, you should also check <span class="guilabel">Performance report</span> in the
+admin interface which will give you hints for non optimal configuration on your
+site.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="config.html#config"><span class="std std-ref">設定について</span></a>, <a class="reference internal" href="access.html#privileges"><span class="std std-ref">Access control</span></a>, <a class="reference internal" href="../faq.html#faq-site"><span class="std std-ref">Why do links contain example.com as the domain?</span></a>, <a class="reference internal" href="#production-site"><span class="std std-ref">Set correct site name</span></a></p>
+</div>
+</div>
+<div class="section" id="production-setup">
+<span id="production"></span><h2>Production setup<a class="headerlink" href="#production-setup" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>For production setup you should do adjustments described in following sections.
+The most critical settings will trigger warning which is indicated by red
+exclamation mark in the top bar if you are logged in as a superuser:</p>
+<img alt="../_images/admin-wrench.png" src="../_images/admin-wrench.png" />
+<p>It is also recommended to inspect checks fired by Django (though you might not
+need to fix all of them):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py check --deploy
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/howto/deployment/checklist/" title="(in Django v2.1)"><span>Deployment checklist</span></a></p>
+</div>
+<div class="section" id="disable-debug-mode">
+<span id="production-debug"></span><h3>Disable debug mode<a class="headerlink" href="#disable-debug-mode" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Disable Django's debug mode (<a class="reference internal" href="#std:setting-DEBUG"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DEBUG</span></code></a>) by:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">False</span>
+</pre></div>
+</div>
+<p>With debug mode Django stores all executed queries and shows users backtraces
+of errors which is not desired in production setup.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#installation"><span class="std std-ref">Installation</span></a></p>
+</div>
+</div>
+<div class="section" id="properly-configure-admins">
+<span id="production-admins"></span><h3>Properly configure admins<a class="headerlink" href="#properly-configure-admins" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Set correct admin addresses to <a class="reference internal" href="#std:setting-ADMINS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">ADMINS</span></code></a> setting for defining who will receive
+mail in case something goes wrong on the server, for example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ADMINS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="s1">&#39;Your Name&#39;</span><span class="p">,</span> <span class="s1">&#39;your_email@example.com&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#installation"><span class="std std-ref">Installation</span></a></p>
+</div>
+</div>
+<div class="section" id="set-correct-site-name">
+<span id="production-site"></span><h3>Set correct site name<a class="headerlink" href="#set-correct-site-name" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Adjust site name in admin interface, otherwise links in RSS or registration
+emails will not work.</p>
+<p>Please open the admin interface and edit default site name and domain under the
+<span class="guilabel">Sites › Sites</span> (or you can do that directly at
+<code class="docutils literal notranslate"><span class="pre">/admin/sites/site/1/</span></code> URL under your Weblate installation). You have to change
+the <span class="guilabel">Domain name</span> to match your setup.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">This setting should contain only the domain name. For configuring protocol
+(enabling HTTPS) use <a class="reference internal" href="config.html#std:setting-ENABLE_HTTPS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">ENABLE_HTTPS</span></code></a> and for changing URL use
+<a class="reference internal" href="config.html#std:setting-URL_PREFIX"><code class="xref std std-setting docutils literal notranslate"><span class="pre">URL_PREFIX</span></code></a>.</p>
+</div>
+<p>Alternatively, you can set the site name from command line using
+<a class="reference internal" href="management.html#django-admin-changesite"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">changesite</span></code></a>. For example, when using built in server:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py changesite --set-name <span class="m">127</span>.0.0.1:8000
+</pre></div>
+</div>
+<p>For production site, you want something like:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py changesite --set-name weblate.example.com
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../faq.html#faq-site"><span class="std std-ref">Why do links contain example.com as the domain?</span></a>, <a class="reference internal" href="management.html#django-admin-changesite"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">changesite</span></code></a>,
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/contrib/sites/" title="(in Django v2.1)"><span>The “sites” framework</span></a></p>
+</div>
+</div>
+<div class="section" id="correctly-configure-https">
+<span id="production-ssl"></span><h3>Correctly configure HTTPS<a class="headerlink" href="#correctly-configure-https" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>It is strongly recommended to run Weblate using encrypted HTTPS protocol. After
+enabling you shoud sed <a class="reference internal" href="config.html#std:setting-ENABLE_HTTPS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">ENABLE_HTTPS</span></code></a> settings which also adjusts
+several other related Django settings in the example configuration.</p>
+<p>You might want to configure HSTS as well, see
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/security/#security-recommendation-ssl" title="(in Django v2.1)"><span>SSL/HTTPS</span></a> for more details.</p>
+</div>
+<div class="section" id="use-powerful-database-engine">
+<span id="production-database"></span><h3>Use powerful database engine<a class="headerlink" href="#use-powerful-database-engine" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Use a powerful database engine (SQLite is usually not good enough for production
+environment), see <a class="reference internal" href="#database-setup"><span class="std std-ref">Database setup for Weblate</span></a> for more information.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#database-setup"><span class="std std-ref">Database setup for Weblate</span></a>,
+<a class="reference internal" href="#installation"><span class="std std-ref">Installation</span></a>,
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/databases/" title="(in Django v2.1)"><span>Databases</span></a></p>
+</div>
+</div>
+<div class="section" id="enable-caching">
+<span id="production-cache"></span><h3>Enable caching<a class="headerlink" href="#enable-caching" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If possible, use redis from Django by adjusting <code class="docutils literal notranslate"><span class="pre">CACHES</span></code> configuration
+variable, for example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CACHES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s1">&#39;django_redis.cache.RedisCache&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;LOCATION&#39;</span><span class="p">:</span> <span class="s1">&#39;redis://127.0.0.1:6379/0&#39;</span><span class="p">,</span>
+        <span class="c1"># If redis is running on same host as Weblate, you might</span>
+        <span class="c1"># want to use unix sockets instead:</span>
+        <span class="c1"># &#39;LOCATION&#39;: &#39;unix:///var/run/redis/redis.sock?db=0&#39;,</span>
+        <span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;CLIENT_CLASS&#39;</span><span class="p">:</span> <span class="s1">&#39;django_redis.client.DefaultClient&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;PARSER_CLASS&#39;</span><span class="p">:</span> <span class="s1">&#39;redis.connection.HiredisParser&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Alternatively you can also use memcached:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CACHES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s1">&#39;django.core.cache.backends.memcached.MemcachedCache&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;LOCATION&#39;</span><span class="p">:</span> <span class="s1">&#39;127.0.0.1:11211&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#production-cache-avatar"><span class="std std-ref">Avatar caching</span></a>,
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/cache/" title="(in Django v2.1)"><span>Django’s cache framework</span></a></p>
+</div>
+</div>
+<div class="section" id="avatar-caching">
+<span id="production-cache-avatar"></span><h3>Avatar caching<a class="headerlink" href="#avatar-caching" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>In addition to caching of Django, Weblate performs caching of avatars. It is
+recommended to use separate, file backed cache for this purpose:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CACHES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># Default caching backend setup, see above</span>
+        <span class="s1">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s1">&#39;django_redis.cache.RedisCache&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;LOCATION&#39;</span><span class="p">:</span> <span class="s1">&#39;unix:///var/run/redis/redis.sock?db=0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;CLIENT_CLASS&#39;</span><span class="p">:</span> <span class="s1">&#39;django_redis.client.DefaultClient&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;PARSER_CLASS&#39;</span><span class="p">:</span> <span class="s1">&#39;redis.connection.HiredisParser&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;avatar&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s1">&#39;django.core.cache.backends.filebased.FileBasedCache&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;LOCATION&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s1">&#39;avatar-cache&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;TIMEOUT&#39;</span><span class="p">:</span> <span class="mi">604800</span><span class="p">,</span>
+        <span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;MAX_ENTRIES&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="config.html#std:setting-ENABLE_AVATARS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">ENABLE_AVATARS</span></code></a>,
+<a class="reference internal" href="config.html#std:setting-AVATAR_URL_PREFIX"><code class="xref std std-setting docutils literal notranslate"><span class="pre">AVATAR_URL_PREFIX</span></code></a>,
+<a class="reference internal" href="optionals.html#avatars"><span class="std std-ref">Avatars</span></a>,
+<a class="reference internal" href="#production-cache"><span class="std std-ref">Enable caching</span></a>,
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/cache/" title="(in Django v2.1)"><span>Django’s cache framework</span></a></p>
+</div>
+</div>
+<div class="section" id="configure-email-addresses">
+<span id="production-email"></span><h3>Configure email addresses<a class="headerlink" href="#configure-email-addresses" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate needs to send out emails on several occasions and these emails should
+have correct sender address, please configure <a class="reference internal" href="#std:setting-SERVER_EMAIL"><code class="xref std std-setting docutils literal notranslate"><span class="pre">SERVER_EMAIL</span></code></a> and
+<a class="reference internal" href="#std:setting-DEFAULT_FROM_EMAIL"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DEFAULT_FROM_EMAIL</span></code></a> to match your environment, for example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SERVER_EMAIL</span> <span class="o">=</span> <span class="s1">&#39;admin@example.org&#39;</span>
+<span class="n">DEFAULT_FROM_EMAIL</span> <span class="o">=</span> <span class="s1">&#39;weblate@example.org&#39;</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#installation"><span class="std std-ref">Installation</span></a>,
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_FROM_EMAIL" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">DEFAULT_FROM_EMAIL</span></code></a>,
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-SERVER_EMAIL" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">SERVER_EMAIL</span></code></a></p>
+</div>
+</div>
+<div class="section" id="allowed-hosts-setup">
+<span id="production-hosts"></span><h3>Allowed hosts setup<a class="headerlink" href="#allowed-hosts-setup" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Django 1.5 and newer require <a class="reference internal" href="#std:setting-ALLOWED_HOSTS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">ALLOWED_HOSTS</span></code></a> to hold a list of domain names
+your site is allowed to serve, having it empty will block any request.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-ALLOWED_HOSTS" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">ALLOWED_HOSTS</span></code></a></p>
+</div>
+</div>
+<div class="section" id="pyuca-library">
+<span id="production-pyuca"></span><h3>pyuca library<a class="headerlink" href="#pyuca-library" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference external" href="https://github.com/jtauber/pyuca">pyuca</a> library is optionally used by Weblate to sort Unicode strings. This
+way language names are properly sorted even in non-ASCII languages like
+Japanese, Chinese or Arabic or for languages with accented letters.</p>
+</div>
+<div class="section" id="django-secret-key">
+<span id="production-secret"></span><h3>Django secret key<a class="headerlink" href="#django-secret-key" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The <a class="reference internal" href="#std:setting-SECRET_KEY"><code class="xref std std-setting docutils literal notranslate"><span class="pre">SECRET_KEY</span></code></a> setting is used by Django to sign cookies and you should
+really generate your own value rather than using the one coming from example setup.</p>
+<p>You can generate new key using <code class="file docutils literal notranslate"><span class="pre">examples/generate-secret-key</span></code> shipped
+with Weblate.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-SECRET_KEY" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">SECRET_KEY</span></code></a></p>
+</div>
+</div>
+<div class="section" id="static-files">
+<span id="production-admin-files"></span><h3>Static files<a class="headerlink" href="#static-files" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If you see purely designed admin interface, the CSS files required for it are
+not loaded. This is usually if you are running in non-debug mode and have not
+configured your web server to serve them. Recommended setup is described in the
+<a class="reference internal" href="#id2"><span class="std std-ref">Serving static files</span></a> chapter.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#server"><span class="std std-ref">Running server</span></a>, <a class="reference internal" href="#id2"><span class="std std-ref">Serving static files</span></a></p>
+</div>
+</div>
+<div class="section" id="home-directory">
+<span id="production-home"></span><h3>Home directory<a class="headerlink" href="#home-directory" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 2.1 で変更: </span>This is no longer required, Weblate now stores all its data in
+<a class="reference internal" href="config.html#std:setting-DATA_DIR"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DATA_DIR</span></code></a>.</p>
+</div>
+<p>The home directory for the user which is running Weblate should be existing and
+writable by this user. This is especially needed if you want to use SSH to
+access private repositories, but Git might need to access this directory as
+well (depends on the Git version you use).</p>
+<p>You can change the directory used by Weblate in <code class="file docutils literal notranslate"><span class="pre">settings.py</span></code>, for
+example to set it to <code class="docutils literal notranslate"><span class="pre">configuration</span></code> directory under Weblate tree:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s1">&#39;configuration&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">On Linux and other UNIX like systems, the path to user's home directory is
+defined in <code class="file docutils literal notranslate"><span class="pre">/etc/passwd</span></code>. Many distributions default to non writable
+directory for users used for serving web content (such as <code class="docutils literal notranslate"><span class="pre">apache</span></code>,
+<code class="docutils literal notranslate"><span class="pre">www-data</span></code> or <code class="docutils literal notranslate"><span class="pre">wwwrun</span></code>, so you either have to run Weblate under
+a different user or change this setting.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="../vcs.html#vcs-repos"><span class="std std-ref">Accessing repositories</span></a></p>
+</div>
+</div>
+<div class="section" id="template-loading">
+<span id="production-templates"></span><h3>Template loading<a class="headerlink" href="#template-loading" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>It is recommended to use cached template loader for Django. It caches parsed
+templates and avoids the need to do the parsing with every single request. You can
+configure it using the following snippet (the <code class="docutils literal notranslate"><span class="pre">loaders</span></code> setting is important here):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">TEMPLATES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s1">&#39;django.template.backends.django.DjangoTemplates&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;DIRS&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s1">&#39;templates&#39;</span><span class="p">),</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;context_processors&#39;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s1">&#39;django.contrib.auth.context_processors.auth&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;django.template.context_processors.debug&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;django.template.context_processors.i18n&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;django.template.context_processors.request&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;django.template.context_processors.csrf&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;django.contrib.messages.context_processors.messages&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;weblate.trans.context_processors.weblate_context&#39;</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="s1">&#39;loaders&#39;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">(</span><span class="s1">&#39;django.template.loaders.cached.Loader&#39;</span><span class="p">,</span> <span class="p">[</span>
+                    <span class="s1">&#39;django.template.loaders.filesystem.Loader&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;django.template.loaders.app_directories.Loader&#39;</span><span class="p">,</span>
+                <span class="p">]),</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/templates/api/#django.template.loaders.cached.Loader" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">django.template.loaders.cached.Loader</span></code></a></p>
+</div>
+</div>
+<div class="section" id="running-maintenance-tasks">
+<span id="production-cron"></span><h3>Running maintenance tasks<a class="headerlink" href="#running-maintenance-tasks" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>For optimal performance, it is good idea to run some maintenance tasks in the
+background.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 3.2 で変更: </span>Since version 3.2 the default way of executing these tasks is using Celery
+and Weblate already comes with proper configuration, see <a class="reference internal" href="#celery"><span class="std std-ref">Background tasks using Celery</span></a>.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="management.html#django-admin-cleanuptrans"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">cleanuptrans</span></code></a>, <a class="reference internal" href="management.html#django-admin-commit_pending"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">commit_pending</span></code></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="running-server">
+<span id="server"></span><h2>Running server<a class="headerlink" href="#running-server" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Running Weblate is not different from running any other Django based
+application. Django is usually executed as uwsgi or fcgi (see examples for
+different webservers below).</p>
+<p>For testing purposes, you can use the Django built-in web server:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py runserver
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">Do not use this in production as this has severe performance limitations.</p>
+</div>
+<div class="section" id="serving-static-files">
+<span id="id2"></span><h3>Serving static files<a class="headerlink" href="#serving-static-files" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 2.4 で変更: </span>Prior to version 2.4 Weblate didn't properly use Django static files
+framework and the setup was more complex.</p>
+</div>
+<p>Django needs to collect its static files to a single directory. To do so,
+execute <code class="samp docutils literal notranslate"><span class="pre">./manage.py</span> <span class="pre">collectstatic</span> <span class="pre">--noinput</span></code>. This will copy the static
+files into directory specified by <code class="docutils literal notranslate"><span class="pre">STATIC_ROOT</span></code> setting (this defaults to
+<code class="docutils literal notranslate"><span class="pre">static</span></code> directory inside <a class="reference internal" href="config.html#std:setting-DATA_DIR"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DATA_DIR</span></code></a>).</p>
+<p>It is recommended to serve static files directly by your web server, you should
+use that for following paths:</p>
+<dl class="docutils">
+<dt><code class="file docutils literal notranslate"><span class="pre">/static/</span></code></dt>
+<dd>Serves static files for Weblate and admin interface
+(from defined by <code class="docutils literal notranslate"><span class="pre">STATIC_ROOT</span></code>).</dd>
+<dt><code class="file docutils literal notranslate"><span class="pre">/media/</span></code></dt>
+<dd>Used for user media uploads (eg. screenshots).</dd>
+<dt><code class="file docutils literal notranslate"><span class="pre">/favicon.ico</span></code></dt>
+<dd>Should be rewritten to rewrite rule to serve <code class="file docutils literal notranslate"><span class="pre">/static/favicon.ico</span></code></dd>
+<dt><code class="file docutils literal notranslate"><span class="pre">/robots.txt</span></code></dt>
+<dd>Should be rewritten to rewrite rule to serve <code class="file docutils literal notranslate"><span class="pre">/static/robots.txt</span></code></dd>
+</dl>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/howto/deployment/" title="(in Django v2.1)"><span>Deploying Django</span></a>,
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/howto/static-files/deployment/" title="(in Django v2.1)"><span>Deploying static files</span></a></p>
+</div>
+</div>
+<div class="section" id="content-security-policy">
+<span id="csp"></span><h3>Content security policy<a class="headerlink" href="#content-security-policy" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Default Weblate configuration enables <code class="docutils literal notranslate"><span class="pre">weblate.middleware.SecurityMiddleware</span></code>
+middleware which sets security related HTTP headers like <code class="docutils literal notranslate"><span class="pre">Content-Security-Policy</span></code>
+or <code class="docutils literal notranslate"><span class="pre">X-XSS-Protection</span></code>. These are set to work with Weblate and it's
+configuration, but this might clash with your customization. If that is your
+case, it is recommended to disable this middleware and set these headers
+manually.</p>
+</div>
+<div class="section" id="sample-configuration-for-apache">
+<h3>Sample configuration for Apache<a class="headerlink" href="#sample-configuration-for-apache" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Following configuration runs Weblate as WSGI, you need to have enabled
+mod_wsgi (available as <code class="file docutils literal notranslate"><span class="pre">examples/apache.conf</span></code>):</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="c">#</span>
+<span class="c"># VirtualHost for weblate</span>
+<span class="c">#</span>
+<span class="c"># This example assumes Weblate is installed in /usr/share/weblate</span>
+<span class="c">#</span>
+<span class="c"># If using virtualenv, you need to add it to search path as well:</span>
+<span class="c"># WSGIPythonPath /usr/share/weblate:/path/to/your/venv/lib/python2.7/site-packages</span>
+<span class="c">#</span>
+<span class="nt">&lt;VirtualHost</span> <span class="s">*:80</span><span class="nt">&gt;</span>
+    <span class="nb">ServerAdmin</span> admin@weblate.example.org
+    <span class="nb">ServerName</span> weblate.example.org
+
+    <span class="c"># DATA_DIR/static/robots.txt</span>
+    <span class="nb">Alias</span> <span class="sx">/robots.txt</span> <span class="sx">/var/lib/weblate/static/robots.txt</span>
+    <span class="c"># DATA_DIR/static/favicon.ico</span>
+    <span class="nb">Alias</span> <span class="sx">/favicon.ico</span> <span class="sx">/var/lib/weblate/static/favicon.ico</span>
+
+    <span class="c"># DATA_DIR/static/</span>
+    <span class="nb">Alias</span> <span class="sx">/static/</span> <span class="sx">/var/lib/weblate/static/</span>
+    <span class="nt">&lt;Directory</span> <span class="s">/var/lib/weblate/static/</span><span class="nt">&gt;</span>
+        <span class="nb">Require</span> <span class="k">all</span> granted
+    <span class="nt">&lt;/Directory&gt;</span>
+
+    <span class="c"># DATA_DIR/media/</span>
+    <span class="nb">Alias</span> <span class="sx">/media/</span> <span class="sx">/var/lib/weblate/media/</span>
+    <span class="nt">&lt;Directory</span> <span class="s">/var/lib/weblate/media/</span><span class="nt">&gt;</span>
+        <span class="nb">Require</span> <span class="k">all</span> granted
+    <span class="nt">&lt;/Directory&gt;</span>
+
+    <span class="nb">WSGIDaemonProcess</span> weblate.example.org python-path=/usr/share/weblate
+    <span class="nb">WSGIProcessGroup</span> weblate.example.org
+    <span class="nb">WSGIApplicationGroup</span> %{GLOBAL}
+
+    <span class="nb">WSGIScriptAlias</span> / <span class="sx">/usr/share/weblate/weblate/wsgi.py</span> process-group=weblate.example.org
+    <span class="nb">WSGIPassAuthorization</span> <span class="k">On</span>
+
+    <span class="nt">&lt;Directory</span> <span class="s">/usr/share/weblate/weblate</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;Files</span> <span class="s">wsgi.py</span><span class="nt">&gt;</span>
+        <span class="nb">Require</span> <span class="k">all</span> granted
+        <span class="nt">&lt;/Files&gt;</span>
+    <span class="nt">&lt;/Directory&gt;</span>
+
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</pre></div>
+</div>
+<p>This configuration is for Apache 2.4 and later. For earlier versions of Apache,
+replace <cite>Require all granted</cite> with <cite>Allow from all</cite>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/howto/deployment/wsgi/modwsgi/" title="(in Django v2.1)"><span>How to use Django with Apache and mod_wsgi</span></a></p>
+</div>
+</div>
+<div class="section" id="sample-configuration-for-apache-and-gunicorn">
+<h3>Sample configuration for Apache and gunicorn<a class="headerlink" href="#sample-configuration-for-apache-and-gunicorn" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Following configuration runs Weblate in gunicorn and Apache 2.4
+(available as <code class="file docutils literal notranslate"><span class="pre">examples/apache.gunicorn.conf</span></code>):</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="c">#</span>
+<span class="c"># VirtualHost for weblate using gunicorn on localhost:8000</span>
+<span class="c">#</span>
+<span class="c"># This example assumes Weblate is installed in /usr/share/weblate</span>
+<span class="c">#</span>
+<span class="c">#</span>
+
+<span class="nt">&lt;VirtualHost</span> <span class="s">*:443</span><span class="nt">&gt;</span>
+    <span class="nb">ServerAdmin</span> admin@weblate.example.org
+    <span class="nb">ServerName</span> weblate.example.org
+
+    <span class="c"># DATA_DIR/static/robots.txt</span>
+    <span class="nb">Alias</span> <span class="sx">/robots.txt</span> <span class="sx">/var/lib/weblate/static/robots.txt</span>
+    <span class="c"># DATA_DIR/static/favicon.ico</span>
+    <span class="nb">Alias</span> <span class="sx">/favicon.ico</span> <span class="sx">/var/lib/weblate/static/favicon.ico</span>
+
+    <span class="c"># DATA_DIR/static/</span>
+    <span class="nb">Alias</span> <span class="sx">/static/</span> <span class="sx">/var/lib/weblate/static/</span>
+    <span class="nt">&lt;Directory</span> <span class="s">/var/lib/weblate/static/</span><span class="nt">&gt;</span>
+        <span class="nb">Require</span> <span class="k">all</span> granted
+    <span class="nt">&lt;/Directory&gt;</span>
+
+    <span class="c"># DATA_DIR/media/</span>
+    <span class="nb">Alias</span> <span class="sx">/media/</span> <span class="sx">/var/lib/weblate/media/</span>
+    <span class="nt">&lt;Directory</span> <span class="s">/var/lib/weblate/media/</span><span class="nt">&gt;</span>
+        <span class="nb">Require</span> <span class="k">all</span> granted
+    <span class="nt">&lt;/Directory&gt;</span>
+
+    <span class="nb">SSLEngine</span> <span class="k">on</span>
+    <span class="nb">SSLCertificateFile</span> <span class="sx">/etc/apache2/ssl/https_cert.cert</span>
+    <span class="nb">SSLCertificateKeyFile</span> <span class="sx">/etc/apache2/ssl/https_key.pem</span>
+    <span class="nb">SSLProxyEngine</span> <span class="k">On</span>
+
+    <span class="nb">ProxyPass</span> <span class="sx">/robots.txt</span> !
+    <span class="nb">ProxyPass</span> <span class="sx">/favicon.ico</span> !
+    <span class="nb">ProxyPass</span> <span class="sx">/static/</span> !
+    <span class="nb">ProxyPass</span> <span class="sx">/media/</span> !
+
+    <span class="nb">ProxyPass</span> / http://localhost:8000/
+    <span class="nb">ProxyPassReverse</span> / http://localhost:8000/
+    <span class="nb">ProxyPreserveHost</span> <span class="k">On</span>
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/howto/deployment/wsgi/gunicorn/" title="(in Django v2.1)"><span>How to use Django with Gunicorn</span></a></p>
+</div>
+</div>
+<div class="section" id="sample-configuration-for-nginx-and-uwsgi">
+<h3>Sample configuration for nginx and uwsgi<a class="headerlink" href="#sample-configuration-for-nginx-and-uwsgi" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The following configuration runs Weblate as uwsgi under nginx webserver.</p>
+<p>Configuration for nginx (also available as <code class="file docutils literal notranslate"><span class="pre">examples/weblate.nginx.conf</span></code>):</p>
+<div class="highlight-nginx notranslate"><div class="highlight"><pre><span></span><span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">weblate</span><span class="p">;</span>
+    <span class="kn">root</span> <span class="s">/usr/share/weblate</span><span class="p">;</span>
+
+    <span class="kn">location</span> <span class="p">~</span> <span class="sr">^/favicon.ico$</span> <span class="p">{</span>
+        <span class="c1"># DATA_DIR/static/favicon.ico</span>
+        <span class="kn">alias</span> <span class="s">/var/lib/weblate/static/favicon.ico</span><span class="p">;</span>
+        <span class="kn">expires</span> <span class="s">30d</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kn">location</span> <span class="p">~</span> <span class="sr">^/robots.txt$</span> <span class="p">{</span>
+        <span class="c1"># DATA_DIR/static/robots.txt</span>
+        <span class="kn">alias</span> <span class="s">/var/lib/weblate/static/robots.txt</span><span class="p">;</span>
+        <span class="kn">expires</span> <span class="s">30d</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kn">location</span> <span class="s">/static/</span> <span class="p">{</span>
+        <span class="c1"># DATA_DIR/static/</span>
+        <span class="kn">alias</span> <span class="s">/var/lib/weblate/static/</span><span class="p">;</span>
+        <span class="kn">expires</span> <span class="s">30d</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kn">location</span> <span class="s">/media/</span> <span class="p">{</span>
+        <span class="c1"># DATA_DIR/media/</span>
+        <span class="kn">alias</span> <span class="s">/var/lib/weblate/media/</span><span class="p">;</span>
+        <span class="kn">expires</span> <span class="s">30d</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+        <span class="kn">include</span> <span class="s">uwsgi_params</span><span class="p">;</span>
+        <span class="c1"># Needed for long running operations in admin interface</span>
+        <span class="kn">uwsgi_read_timeout</span> <span class="mi">3600</span><span class="p">;</span>
+        <span class="c1"># Adjust based to uwsgi configuration:</span>
+        <span class="kn">uwsgi_pass</span> <span class="s">unix:///run/uwsgi/app/weblate/socket</span><span class="p">;</span>
+        <span class="c1"># uwsgi_pass 127.0.0.1:8080;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Configuration for uwsgi (also available as <code class="file docutils literal notranslate"><span class="pre">examples/weblate.uwsgi.ini</span></code>):</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[uwsgi]</span>
+<span class="na">plugins</span>       <span class="o">=</span> <span class="s">python</span>
+<span class="na">master</span>        <span class="o">=</span> <span class="s">true</span>
+<span class="na">protocol</span>      <span class="o">=</span> <span class="s">uwsgi</span>
+<span class="na">socket</span>        <span class="o">=</span> <span class="s">127.0.0.1:8080</span>
+<span class="na">wsgi-file</span>     <span class="o">=</span> <span class="s">/path/to/weblate/weblate/wsgi.py</span>
+<span class="na">python-path</span>   <span class="o">=</span> <span class="s">/path/to/weblate</span>
+<span class="c1"># In case you&#39;re using virtualenv uncomment this:</span>
+<span class="c1"># virtualenv = /path/to/weblate/virtualenv</span>
+<span class="c1"># Needed for OAuth/OpenID</span>
+<span class="na">buffer-size</span>   <span class="o">=</span> <span class="s">8192</span>
+<span class="c1"># Increase number of workers for heavily loaded sites</span>
+<span class="c1"># workers       = 6</span>
+<span class="c1"># Child processes do not need file descriptors</span>
+<span class="na">close-on-exec</span> <span class="o">=</span> <span class="s">true</span>
+<span class="c1"># Avoid default 0000 umask</span>
+<span class="na">umask</span> <span class="o">=</span> <span class="s">0022</span>
+<span class="c1"># Run as weblate user</span>
+<span class="c1"># uid = weblate</span>
+<span class="c1"># gid = weblate</span>
+<span class="c1"># chmod-socket = 666</span>
+
+<span class="c1"># enable harakiri mode</span>
+<span class="c1"># harakiri = 3600</span>
+<span class="c1"># harakiri-verbose = true</span>
+<span class="c1"># enable uWSGI stats server</span>
+<span class="c1"># stats = :1717</span>
+<span class="c1"># stats-http = true</span>
+<span class="c1"># Do not log some errors caused by client disconnects</span>
+<span class="na">ignore-sigpipe</span> <span class="o">=</span> <span class="s">true</span>
+<span class="na">ignore-write-errors</span> <span class="o">=</span> <span class="s">true</span>
+<span class="na">disable-write-exception</span> <span class="o">=</span> <span class="s">true</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://docs.djangoproject.com/en/stable/howto/deployment/wsgi/uwsgi/" title="(in Django v2.1)"><span>How to use Django with uWSGI</span></a></p>
+</div>
+</div>
+<div class="section" id="running-weblate-under-path">
+<h3>Running Weblate under path<a class="headerlink" href="#running-weblate-under-path" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 1.3 で変更: </span>This is supported since Weblate 1.3.</p>
+</div>
+<p>Sample Apache configuration to serve Weblate under <code class="docutils literal notranslate"><span class="pre">/weblate</span></code>.  Again using
+mod_wsgi (also available as <code class="file docutils literal notranslate"><span class="pre">examples/apache-path.conf</span></code>):</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="c"># Example Apache configuration for running Weblate under /weblate path</span>
+
+<span class="nb">WSGIPythonPath</span> <span class="sx">/usr/share/weblate</span>
+<span class="c"># If using virtualenv, you need to add it to search path as well:</span>
+<span class="c"># WSGIPythonPath /usr/share/weblate:/path/to/your/venv/lib/python2.7/site-packages</span>
+<span class="nt">&lt;VirtualHost</span> <span class="s">*:80</span><span class="nt">&gt;</span>
+    <span class="nb">ServerAdmin</span> admin@image.weblate.org
+    <span class="nb">ServerName</span> image.weblate.org
+
+    <span class="c"># DATA_DIR/static/robots.txt</span>
+    <span class="nb">Alias</span> <span class="sx">/weblate/robots.txt</span> <span class="sx">/var/lib/weblate/static/robots.txt</span>
+    <span class="c"># DATA_DIR/static/favicon.ico</span>
+    <span class="nb">Alias</span> <span class="sx">/weblate/favicon.ico</span> <span class="sx">/var/lib/weblate/static/favicon.ico</span>
+
+    <span class="c"># DATA_DIR/static/</span>
+    <span class="nb">Alias</span> <span class="sx">/weblate/static/</span> <span class="sx">/var/lib/weblate/static/</span>
+    <span class="nt">&lt;Directory</span> <span class="s">/var/lib/weblate/static/</span><span class="nt">&gt;</span>
+        <span class="nb">Require</span> <span class="k">all</span> granted
+    <span class="nt">&lt;/Directory&gt;</span>
+
+    <span class="c"># DATA_DIR/media/</span>
+    <span class="nb">Alias</span> <span class="sx">/weblate/media/</span> <span class="sx">/var/lib/weblate/media/</span>
+    <span class="nt">&lt;Directory</span> <span class="s">/var/lib/weblate/media/</span><span class="nt">&gt;</span>
+        <span class="nb">Require</span> <span class="k">all</span> granted
+    <span class="nt">&lt;/Directory&gt;</span>
+
+    <span class="nb">WSGIScriptAlias</span> <span class="sx">/weblate</span> <span class="sx">/usr/share/weblate/weblate/wsgi.py/weblate</span>
+    <span class="nb">WSGIPassAuthorization</span> <span class="k">On</span>
+
+    <span class="nt">&lt;Directory</span> <span class="s">/usr/share/weblate/weblate</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;Files</span> <span class="s">wsgi.py</span><span class="nt">&gt;</span>
+        <span class="nb">Require</span> <span class="k">all</span> granted
+        <span class="nt">&lt;/Files&gt;</span>
+    <span class="nt">&lt;/Directory&gt;</span>
+
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</pre></div>
+</div>
+<p>Additionally, you will have to adjust <code class="file docutils literal notranslate"><span class="pre">weblate/settings.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">URL_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;/weblate&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="monitoring-weblate">
+<h2>Monitoring Weblate<a class="headerlink" href="#monitoring-weblate" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblate provides <code class="docutils literal notranslate"><span class="pre">/healthz/</span></code> URL to be used in simple health checks, for example
+using Kubernetes.</p>
+</div>
+<div class="section" id="collecting-error-reports">
+<span id="collecting-errors"></span><h2>Collecting error reports<a class="headerlink" href="#collecting-error-reports" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>It is good idea to collect errors from any Django application in structured way
+and Weblate is not an exception from this. You might find several services providing
+this, Weblate has basic support for following ones.</p>
+<div class="section" id="sentry">
+<h3>Sentry<a class="headerlink" href="#sentry" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate has built in support for <a class="reference external" href="https://sentry.io/">Sentry</a>. To use
+it it's enough to follow instructions for <a class="reference external" href="https://docs.sentry.io/clients/python/">Sentry for Python</a>.</p>
+<p>In short, you need to adjust <code class="file docutils literal notranslate"><span class="pre">settings.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">raven</span>
+
+<span class="c1"># Add raven to apps:</span>
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="c1"># ... other app classes ...</span>
+    <span class="s1">&#39;raven.contrib.django.raven_compat&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="n">RAVEN_CONFIG</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;dsn&#39;</span><span class="p">:</span> <span class="s1">&#39;https://id:key@your.sentry.example.com/&#39;</span><span class="p">,</span>
+    <span class="c1"># Setting public_dsn will allow collecting user feedback on errors</span>
+    <span class="s1">&#39;public_dsn&#39;</span><span class="p">:</span> <span class="s1">&#39;https://id@your.sentry.example.com/&#39;</span><span class="p">,</span>
+    <span class="c1"># If you are using git, you can also automatically configure the</span>
+    <span class="c1"># release based on the git info.</span>
+    <span class="s1">&#39;release&#39;</span><span class="p">:</span> <span class="n">raven</span><span class="o">.</span><span class="n">fetch_git_sha</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rollbar">
+<h3>Rollbar<a class="headerlink" href="#rollbar" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate has built in support for <a class="reference external" href="https://rollbar.com/">Rollbar</a>. To use
+it it's enough to follow instructions for <a class="reference external" href="https://docs.rollbar.com/docs/python/">Rollbar notifier for Python</a>.</p>
+<p>In short, you need to adjust <code class="file docutils literal notranslate"><span class="pre">settings.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add rollbar as last middleware:</span>
+<span class="n">MIDDLEWARE</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># ... other middleware classes ...</span>
+    <span class="s1">&#39;rollbar.contrib.django.middleware.RollbarNotifierMiddleware&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="c1"># Configure client access</span>
+<span class="n">ROLLBAR</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;access_token&#39;</span><span class="p">:</span> <span class="s1">&#39;POST_SERVER_ITEM_ACCESS_TOKEN&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;client_token&#39;</span><span class="p">:</span> <span class="s1">&#39;POST_CLIENT_ITEM_ACCESS_TOKEN&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;environment&#39;</span><span class="p">:</span> <span class="s1">&#39;development&#39;</span> <span class="k">if</span> <span class="n">DEBUG</span> <span class="k">else</span> <span class="s1">&#39;production&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;branch&#39;</span><span class="p">:</span> <span class="s1">&#39;master&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;root&#39;</span><span class="p">:</span> <span class="s1">&#39;/absolute/path/to/code/root&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Everything else is integrated automatically, you will now collect both server
+and client side errors.</p>
+</div>
+</div>
+<div class="section" id="migrating-weblate-to-another-server">
+<h2>Migrating Weblate to another server<a class="headerlink" href="#migrating-weblate-to-another-server" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Migrating Weblate to another server should be pretty easy, however it stores
+data in few locations which you should migrate carefully. The best approach is
+to stop migrated Weblate for the migration.</p>
+<div class="section" id="migrating-database">
+<h3>Migrating database<a class="headerlink" href="#migrating-database" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Depending on your database backend, you might have several options to migrate
+the database. The most straightforward one is to dump the database on one
+server and import it on the new one. Alternatively you can use replication in
+case your database supports it.</p>
+<p>The best approach is to use database native tools as they are usually the most
+effective (eg. <strong class="command">mysqldump</strong> or <strong class="command">pg_dump</strong>). If you want to
+migrate between different databases, the only option might be to use Django
+management to dump and import the database:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export current data</span>
+./manage.py dumpdata &gt; /tmp/weblate.dump
+<span class="c1"># Import dump</span>
+./manage.py loaddata /tmp/weblate.dump
+</pre></div>
+</div>
+</div>
+<div class="section" id="migrating-vcs-repositories">
+<h3>Migrating VCS repositories<a class="headerlink" href="#migrating-vcs-repositories" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The VCS repositories stored under <a class="reference internal" href="config.html#std:setting-DATA_DIR"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DATA_DIR</span></code></a> need to be migrated as
+well. You can simply copy them or use <strong class="command">rsync</strong> to do the migration
+more effectively.</p>
+</div>
+<div class="section" id="migrating-fulltext-index">
+<h3>Migrating fulltext index<a class="headerlink" href="#migrating-fulltext-index" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>For the fulltext index (stored in <a class="reference internal" href="config.html#std:setting-DATA_DIR"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DATA_DIR</span></code></a>) it is better not to
+migrate it, but rather to generate a fresh one using <a class="reference internal" href="management.html#django-admin-rebuild_index"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">rebuild_index</span></code></a>.</p>
+</div>
+<div class="section" id="other-notes">
+<h3>Other notes<a class="headerlink" href="#other-notes" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Don't forget to move other services which Weblate might have been using like
+redis, memcached, cron jobs or custom authentication backends.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="deployments.html" class="btn btn-neutral float-right" title="Weblate deployments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="quick.html" class="btn btn-neutral" title="Quick setup guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

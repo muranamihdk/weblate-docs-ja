@@ -1,0 +1,510 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HTTP Routing Table &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="about.html" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+ 
+
+    <script type="text/javascript">
+      DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
+    </script>
+
+
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin/index.html">Administrators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>HTTP Routing Table</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+
+   <h1>HTTP Routing Table</h1>
+
+   <div class="modindex-jumpbox">
+   <a href="#cap-/"><strong>/</strong></a> | 
+   <a href="#cap-/api"><strong>/api</strong></a> | 
+   <a href="#cap-/exports"><strong>/exports</strong></a> | 
+   <a href="#cap-/hooks"><strong>/hooks</strong></a>
+   </div>
+
+   <table class="indextable modindextable">
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/"><td></td><td>
+       <strong>/</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#any--"><code class="xref">ANY /</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/api"><td></td><td>
+       <strong>/api</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-"><code class="xref">GET /api/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-changes-"><code class="xref">GET /api/changes/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-changes-(int-pk)-"><code class="xref">GET /api/changes/(int:pk)/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-components-"><code class="xref">GET /api/components/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-components-(string-project)-(string-component)-"><code class="xref">GET /api/components/(string:project)/(string:component)/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-components-(string-project)-(string-component)-changes-"><code class="xref">GET /api/components/(string:project)/(string:component)/changes/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-components-(string-project)-(string-component)-lock-"><code class="xref">GET /api/components/(string:project)/(string:component)/lock/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-components-(string-project)-(string-component)-monolingual_base-"><code class="xref">GET /api/components/(string:project)/(string:component)/monolingual_base/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-components-(string-project)-(string-component)-new_template-"><code class="xref">GET /api/components/(string:project)/(string:component)/new_template/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-components-(string-project)-(string-component)-repository-"><code class="xref">GET /api/components/(string:project)/(string:component)/repository/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-components-(string-project)-(string-component)-statistics-"><code class="xref">GET /api/components/(string:project)/(string:component)/statistics/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-components-(string-project)-(string-component)-translations-"><code class="xref">GET /api/components/(string:project)/(string:component)/translations/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-components-(string-project)-statistics-"><code class="xref">GET /api/components/(string:project)/statistics/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-languages-"><code class="xref">GET /api/languages/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-languages-(string-language)-"><code class="xref">GET /api/languages/(string:language)/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-projects-"><code class="xref">GET /api/projects/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-projects-(string-project)-"><code class="xref">GET /api/projects/(string:project)/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-projects-(string-project)-changes-"><code class="xref">GET /api/projects/(string:project)/changes/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-projects-(string-project)-components-"><code class="xref">GET /api/projects/(string:project)/components/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-projects-(string-project)-repository-"><code class="xref">GET /api/projects/(string:project)/repository/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-screenshots-"><code class="xref">GET /api/screenshots/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-screenshots-(int-pk)-"><code class="xref">GET /api/screenshots/(int:pk)/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-screenshots-(int-pk)-file-"><code class="xref">GET /api/screenshots/(int:pk)/file/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-sources-"><code class="xref">GET /api/sources/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-sources-(int-pk)-"><code class="xref">GET /api/sources/(int:pk)/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-translations-"><code class="xref">GET /api/translations/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-translations-(string-project)-(string-component)-(string-language)-"><code class="xref">GET /api/translations/(string:project)/(string:component)/(string:language)/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-translations-(string-project)-(string-component)-(string-language)-changes-"><code class="xref">GET /api/translations/(string:project)/(string:component)/(string:language)/changes/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-translations-(string-project)-(string-component)-(string-language)-file-"><code class="xref">GET /api/translations/(string:project)/(string:component)/(string:language)/file/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-translations-(string-project)-(string-component)-(string-language)-repository-"><code class="xref">GET /api/translations/(string:project)/(string:component)/(string:language)/repository/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-translations-(string-project)-(string-component)-(string-language)-statistics-"><code class="xref">GET /api/translations/(string:project)/(string:component)/(string:language)/statistics/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-translations-(string-project)-(string-component)-(string-language)-units-"><code class="xref">GET /api/translations/(string:project)/(string:component)/(string:language)/units/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-units-"><code class="xref">GET /api/units/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--api-units-(int-pk)-"><code class="xref">GET /api/units/(int:pk)/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#post--api-components-(string-project)-(string-component)-lock-"><code class="xref">POST /api/components/(string:project)/(string:component)/lock/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#post--api-components-(string-project)-(string-component)-repository-"><code class="xref">POST /api/components/(string:project)/(string:component)/repository/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#post--api-projects-(string-project)-repository-"><code class="xref">POST /api/projects/(string:project)/repository/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#post--api-screenshots-(int-pk)-file-"><code class="xref">POST /api/screenshots/(int:pk)/file/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#post--api-translations-(string-project)-(string-component)-(string-language)-file-"><code class="xref">POST /api/translations/(string:project)/(string:component)/(string:language)/file/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#post--api-translations-(string-project)-(string-component)-(string-language)-repository-"><code class="xref">POST /api/translations/(string:project)/(string:component)/(string:language)/repository/</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/exports"><td></td><td>
+       <strong>/exports</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--exports-rss-"><code class="xref">GET /exports/rss/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--exports-rss-(string-project)-"><code class="xref">GET /exports/rss/(string:project)/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--exports-rss-(string-project)-(string-component)-"><code class="xref">GET /exports/rss/(string:project)/(string:component)/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--exports-rss-(string-project)-(string-component)-(string-language)-"><code class="xref">GET /exports/rss/(string:project)/(string:component)/(string:language)/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--exports-rss-language-(string-language)-"><code class="xref">GET /exports/rss/language/(string:language)/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--exports-stats-(string-project)-(string-component)-"><code class="xref">GET /exports/stats/(string:project)/(string:component)/</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/hooks"><td></td><td>
+       <strong>/hooks</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--hooks-update-(string-project)-"><code class="xref">GET /hooks/update/(string:project)/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#get--hooks-update-(string-project)-(string-component)-"><code class="xref">GET /hooks/update/(string:project)/(string:component)/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#post--hooks-bitbucket-"><code class="xref">POST /hooks/bitbucket/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#post--hooks-github-"><code class="xref">POST /hooks/github/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#post--hooks-gitlab-"><code class="xref">POST /hooks/gitlab/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="api.html#post--hooks-pagure-"><code class="xref">POST /hooks/pagure/</code></a></td><td>
+       <em></em></td></tr>
+   </table>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

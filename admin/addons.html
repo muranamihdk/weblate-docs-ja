@@ -1,0 +1,623 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Addons &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Translation Memory" href="memory.html" />
+    <link rel="prev" title="Machine translation" href="machine.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrators guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access.html">Access control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html">翻訳プロジェクト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html">継続的トランスレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks and fixups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html">Machine translation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Addons</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#built-in-addons">Built in addons</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cleanup-translation-files">Cleanup translation files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#language-consistency">Language consistency</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#component-discovery">Component discovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flag-unchanged-translations-to-need-edit">Flag unchanged translations to need edit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flag-new-source-strings-to-need-edit">Flag new source strings to need edit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flag-new-translations-to-need-edit">Flag new translations to need edit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#statistics-generator">Statistics generator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contributors-in-comment">Contributors in comment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#update-all-linguas-variable-in-the-configure-file">Update ALL_LINGUAS variable in the configure file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#customize-gettext-output">Customize gettext output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#update-linguas-file">Update LINGUAS file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generate-mo-files">Generate MO files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#update-po-files-to-match-pot-msgmerge">Update PO files to match POT (msgmerge)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#customize-json-output">Customize JSON output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#formats-the-java-properties-file">Formats the Java properties file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#customizing-list-of-addons">Customizing list of addons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-addon">Writing addon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#executing-scripts-from-addon">Executing scripts from addon</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#post-update-repository-processing">Post update repository processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pre-commit-processing-of-translations">Pre commit processing of translations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html">Management commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Administrators guide</a> &raquo;</li>
+        
+      <li>Addons</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/admin/addons.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="addons">
+<span id="id1"></span><h1>Addons<a class="headerlink" href="#addons" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.19 で追加.</span></p>
+</div>
+<p>Addons provide ways to customize translation workflow. You can install addons
+to your translation component and they will work behind the scenes. The addon
+management can be found under <span class="guilabel">Manage</span> menu of a translation
+component.</p>
+<img alt="../_images/addons.png" src="../_images/addons.png" />
+<div class="section" id="built-in-addons">
+<h2>Built in addons<a class="headerlink" href="#built-in-addons" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="cleanup-translation-files">
+<span id="addon-weblate-cleanup-generic"></span><h3>Cleanup translation files<a class="headerlink" href="#cleanup-translation-files" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Update all translation files to match the monolingual base file. For most file
+formats, this means removing stale translation keys no longer present in the
+base file.</p>
+</div>
+<div class="section" id="language-consistency">
+<span id="addon-weblate-consistency-languages"></span><h3>Language consistency<a class="headerlink" href="#language-consistency" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This addon ensures that all components within one project have translation to
+same languages.</p>
+<p>Unlike most others, this addon operates on whole project.</p>
+</div>
+<div class="section" id="component-discovery">
+<span id="addon-weblate-discovery-discovery"></span><h3>Component discovery<a class="headerlink" href="#component-discovery" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This addon automatically adds or removes components to the project based on
+file changes in the version control system.</p>
+<p>It is similar to the <a class="reference internal" href="management.html#django-admin-import_project"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">import_project</span></code></a> management command, but the
+major difference is that it is triggered on every VCS update. This way you can
+easily track multiple translation components within one VCS.</p>
+<p>To use component discovery, you first need to create one component which will
+act as master and others will use <a class="reference internal" href="../vcs.html#internal-urls"><span class="std std-ref">Weblate internal URLs</span></a> to it as a VCS
+configuration. You should choose the one which is less likely to disappear in
+the future here.</p>
+<p>Once you have one component from the target VCS, you can configure the
+discovery addon to find all translation components in the VCS. The matching is
+done using regular expression so it can be quite powerful, but it can be complex
+to configure. You can use examples in the addon help for some common use cases.</p>
+<p>Once you hit save, you will be presented with a preview of matched components,
+so you can check whether the configuration actually matches your needs:</p>
+<img alt="../_images/addon-discovery.png" src="../_images/addon-discovery.png" />
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="projects.html#markup"><span class="std std-ref">Template markup</span></a></p>
+</div>
+</div>
+<div class="section" id="flag-unchanged-translations-to-need-edit">
+<span id="addon-weblate-flags-same-edit"></span><h3>Flag unchanged translations to need edit<a class="headerlink" href="#flag-unchanged-translations-to-need-edit" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 3.1 で追加.</span></p>
+</div>
+<p>Whenever a new translation string is imported from the VCS and it matches
+source strings, it is flagged as needing editing in Weblate. This is especially
+useful for file formats including all strings even if they are not translated.</p>
+</div>
+<div class="section" id="flag-new-source-strings-to-need-edit">
+<span id="addon-weblate-flags-source-edit"></span><h3>Flag new source strings to need edit<a class="headerlink" href="#flag-new-source-strings-to-need-edit" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Whenever a new source string is imported from the VCS, it is flagged as needing
+editing in Weblate. This way you can easily filter and edit source strings
+written by the developers.</p>
+</div>
+<div class="section" id="flag-new-translations-to-need-edit">
+<span id="addon-weblate-flags-target-edit"></span><h3>Flag new translations to need edit<a class="headerlink" href="#flag-new-translations-to-need-edit" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Whenever a new translation string is imported from the VCS, it is flagged as
+needing editing in Weblate. This way you can easily filter and edit
+translations created by the developers.</p>
+</div>
+<div class="section" id="statistics-generator">
+<span id="addon-weblate-generate-generate"></span><h3>Statistics generator<a class="headerlink" href="#statistics-generator" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This addon generates a file containing detailed information about the
+translation. You can use Django template in both filename and content, see
+<a class="reference internal" href="projects.html#markup"><span class="std std-ref">Template markup</span></a> for detailed markup description.</p>
+<p>For example generating summary file for each translations:</p>
+<dl class="docutils">
+<dt>Name of generated file</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">locale/{{</span> <span class="pre">language_code</span> <span class="pre">}}.json</span></code></dd>
+<dt>Content</dt>
+<dd><div class="first last highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;language&quot;</span><span class="p">:</span> <span class="s2">&quot;{{ language_code }}&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;strings&quot;</span><span class="p">:</span> <span class="s2">&quot;{{ stats.all }}&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;translated&quot;</span><span class="p">:</span> <span class="s2">&quot;{{ stats.translated }}&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;last_changed&quot;</span><span class="p">:</span> <span class="s2">&quot;{{ stats.last_changed }}&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;last_author&quot;</span><span class="p">:</span> <span class="s2">&quot;{{ stats.last_author }}&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="projects.html#markup"><span class="std std-ref">Template markup</span></a></p>
+</div>
+</div>
+<div class="section" id="contributors-in-comment">
+<span id="addon-weblate-gettext-authors"></span><h3>Contributors in comment<a class="headerlink" href="#contributors-in-comment" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Update comment in the PO file header to include contributor name and years of
+contributions.</p>
+</div>
+<div class="section" id="update-all-linguas-variable-in-the-configure-file">
+<span id="addon-weblate-gettext-configure"></span><h3>Update ALL_LINGUAS variable in the configure file<a class="headerlink" href="#update-all-linguas-variable-in-the-configure-file" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Updates the ALL_LINGUAS variable in configure, configure.in or configure.ac
+files, when a new translation is added.</p>
+</div>
+<div class="section" id="customize-gettext-output">
+<span id="addon-weblate-gettext-customize"></span><h3>Customize gettext output<a class="headerlink" href="#customize-gettext-output" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Allows customization of gettext output behavior, for example line wrapping.</p>
+</div>
+<div class="section" id="update-linguas-file">
+<span id="addon-weblate-gettext-linguas"></span><h3>Update LINGUAS file<a class="headerlink" href="#update-linguas-file" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Updates the LINGUAS file when a new translation is added.</p>
+</div>
+<div class="section" id="generate-mo-files">
+<span id="addon-weblate-gettext-mo"></span><h3>Generate MO files<a class="headerlink" href="#generate-mo-files" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Automatically generates MO file for every changed PO file.</p>
+</div>
+<div class="section" id="update-po-files-to-match-pot-msgmerge">
+<span id="addon-weblate-gettext-msgmerge"></span><h3>Update PO files to match POT (msgmerge)<a class="headerlink" href="#update-po-files-to-match-pot-msgmerge" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Update all PO files to match the POT file using msgmerge. This is triggered
+whenever new changes are pulled from the upstream repository.</p>
+</div>
+<div class="section" id="customize-json-output">
+<span id="addon-weblate-json-customize"></span><h3>Customize JSON output<a class="headerlink" href="#customize-json-output" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Allows to customize JSON output behavior, for example indentation or sorting.</p>
+</div>
+<div class="section" id="formats-the-java-properties-file">
+<span id="addon-weblate-properties-sort"></span><h3>Formats the Java properties file<a class="headerlink" href="#formats-the-java-properties-file" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This addon sorts the Java properties file.</p>
+</div>
+</div>
+<div class="section" id="customizing-list-of-addons">
+<h2>Customizing list of addons<a class="headerlink" href="#customizing-list-of-addons" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>List of addons is configured by <a class="reference internal" href="config.html#std:setting-WEBLATE_ADDONS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">WEBLATE_ADDONS</span></code></a>, to add another addon
+simply include class absolute name in this setting.</p>
+</div>
+<div class="section" id="writing-addon">
+<h2>Writing addon<a class="headerlink" href="#writing-addon" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>You can write own addons as well, all you need to do is subclass <code class="docutils literal notranslate"><span class="pre">BaseAddon</span></code>,
+define addon metadata and implement callback which will do the processing.</p>
+<p>You can look at example addon for more information:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright © 2012 - 2018 Michal Čihař &lt;michal@cihar.com&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of Weblate &lt;https://weblate.org/&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">#</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+
+<span class="kn">from</span> <span class="nn">django.utils.translation</span> <span class="kn">import</span> <span class="n">ugettext_lazy</span> <span class="k">as</span> <span class="n">_</span>
+
+<span class="kn">from</span> <span class="nn">weblate.addons.base</span> <span class="kn">import</span> <span class="n">BaseAddon</span>
+<span class="kn">from</span> <span class="nn">weblate.addons.events</span> <span class="kn">import</span> <span class="n">EVENT_PRE_COMMIT</span>
+
+
+<span class="k">class</span> <span class="nc">ExampleAddon</span><span class="p">(</span><span class="n">BaseAddon</span><span class="p">):</span>
+    <span class="c1"># Filter for compatible components, every key is</span>
+    <span class="c1"># matched against property of component</span>
+    <span class="n">compat</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;file_format&#39;</span><span class="p">:</span> <span class="nb">frozenset</span><span class="p">((</span>
+            <span class="s1">&#39;po&#39;</span><span class="p">,</span> <span class="s1">&#39;po-mono&#39;</span><span class="p">,</span>
+        <span class="p">)),</span>
+    <span class="p">}</span>
+    <span class="c1"># List of events addon should receive</span>
+    <span class="n">events</span> <span class="o">=</span> <span class="p">(</span><span class="n">EVENT_PRE_COMMIT</span><span class="p">,)</span>
+    <span class="c1"># Addon unique identifier</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;weblate.example.example&#39;</span>
+    <span class="c1"># Verbose name shown in the user interface</span>
+    <span class="n">verbose</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Example addon&#39;</span><span class="p">)</span>
+    <span class="c1"># Detailed addon description</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;This addon does nothing it is just an example.&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Callback to implement custom behavior</span>
+    <span class="k">def</span> <span class="nf">pre_commit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">translation</span><span class="p">,</span> <span class="n">author</span><span class="p">):</span>
+        <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="executing-scripts-from-addon">
+<span id="addon-script"></span><h2>Executing scripts from addon<a class="headerlink" href="#executing-scripts-from-addon" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>You can also use addons to execute external scripts. This used to be
+integrated in Weblate, but now you have to write little code to wrap your
+script with an addon.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright © 2012 - 2018 Michal Čihař &lt;michal@cihar.com&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of Weblate &lt;https://weblate.org/&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Example pre commit script</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+
+<span class="kn">from</span> <span class="nn">django.utils.translation</span> <span class="kn">import</span> <span class="n">ugettext_lazy</span> <span class="k">as</span> <span class="n">_</span>
+
+<span class="kn">from</span> <span class="nn">weblate.addons.events</span> <span class="kn">import</span> <span class="n">EVENT_PRE_COMMIT</span>
+<span class="kn">from</span> <span class="nn">weblate.addons.scripts</span> <span class="kn">import</span> <span class="n">BaseScriptAddon</span>
+
+
+<span class="k">class</span> <span class="nc">ExamplePreAddon</span><span class="p">(</span><span class="n">BaseScriptAddon</span><span class="p">):</span>
+    <span class="c1"># Event used to trigger the script</span>
+    <span class="n">events</span> <span class="o">=</span> <span class="p">(</span><span class="n">EVENT_PRE_COMMIT</span><span class="p">,)</span>
+    <span class="c1"># Name of the addon, has to be unique</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;weblate.example.pre&#39;</span>
+    <span class="c1"># Verbose name and long descrption</span>
+    <span class="n">verbose</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Execute script before commit&#39;</span><span class="p">)</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;This addon executes a script.&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Script to execute</span>
+    <span class="n">script</span> <span class="o">=</span> <span class="s1">&#39;/bin/true&#39;</span>
+    <span class="c1"># File to add in commit (for pre commit event)</span>
+    <span class="c1"># does not have to be set</span>
+    <span class="n">add_file</span> <span class="o">=</span> <span class="s1">&#39;po/{{ language_code }}.po&#39;</span>
+</pre></div>
+</div>
+<p>The script is executed with the current directory set to the root of the VCS repository
+for given component.</p>
+<p>Additionally, the following environment variables are available:</p>
+<dl class="envvar">
+<dt id="envvar-WL_VCS">
+<code class="descname">WL_VCS</code><a class="headerlink" href="#envvar-WL_VCS" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Version control system used.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WL_REPO">
+<code class="descname">WL_REPO</code><a class="headerlink" href="#envvar-WL_REPO" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Upstream repository URL.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WL_PATH">
+<code class="descname">WL_PATH</code><a class="headerlink" href="#envvar-WL_PATH" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Absolute path to VCS repository.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WL_BRANCH">
+<code class="descname">WL_BRANCH</code><a class="headerlink" href="#envvar-WL_BRANCH" title="この定義へのパーマリンク">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified">バージョン 2.11 で追加.</span></p>
+</div>
+<p>Repository branch configured in the current component.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WL_FILEMASK">
+<code class="descname">WL_FILEMASK</code><a class="headerlink" href="#envvar-WL_FILEMASK" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>File mask for current component.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WL_TEMPLATE">
+<code class="descname">WL_TEMPLATE</code><a class="headerlink" href="#envvar-WL_TEMPLATE" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>File name of template for monolingual translations (can be empty).</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WL_NEW_BASE">
+<code class="descname">WL_NEW_BASE</code><a class="headerlink" href="#envvar-WL_NEW_BASE" title="この定義へのパーマリンク">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified">バージョン 2.14 で追加.</span></p>
+</div>
+<p>File name of the file which is used for creating new translations (can be
+empty).</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WL_FILE_FORMAT">
+<code class="descname">WL_FILE_FORMAT</code><a class="headerlink" href="#envvar-WL_FILE_FORMAT" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>File format used in current component.</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WL_LANGUAGE">
+<code class="descname">WL_LANGUAGE</code><a class="headerlink" href="#envvar-WL_LANGUAGE" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Language of currently processed translation (not available for component
+level hooks).</p>
+</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-WL_PREVIOUS_HEAD">
+<code class="descname">WL_PREVIOUS_HEAD</code><a class="headerlink" href="#envvar-WL_PREVIOUS_HEAD" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Previous HEAD on update (available only available when running post update hook).</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></p>
+</div>
+<div class="section" id="post-update-repository-processing">
+<h3>Post update repository processing<a class="headerlink" href="#post-update-repository-processing" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Post update repository processing can be used to update translation files on
+the source change. To achieve this, please remember that Weblate only sees
+files which are committed to the VCS, so you need to commit changes as a part
+of the script.</p>
+<p>For example with gulp you can do it using following code:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#! /bin/sh</span>
+gulp --gulpfile gulp-i18n-extract.js
+git commit -m <span class="s1">&#39;Update source strings&#39;</span> src/languages/en.lang.json
+</pre></div>
+</div>
+</div>
+<div class="section" id="pre-commit-processing-of-translations">
+<h3>Pre commit processing of translations<a class="headerlink" href="#pre-commit-processing-of-translations" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>In many cases you might want to automatically do some changes to the translation
+before it is committed to the repository. The pre commit script is exactly the
+place to achieve this.</p>
+<p>It is passed a single parameter consisting of file name of current translation.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="memory.html" class="btn btn-neutral float-right" title="Translation Memory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="machine.html" class="btn btn-neutral" title="Machine translation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Translators guide &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Weblate の基本" href="basic.html" />
+    <link rel="prev" title="Weblate について" href="../about.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Translators guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic.html">Weblate の基本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profile.html">Registration and user profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translating using Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="files.html">Downloading and uploading translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks and fixups</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Translators guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/user/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="translators-guide">
+<h1>Translators guide<a class="headerlink" href="#translators-guide" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basic.html">Weblate の基本</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic.html#project-structure">プロジェクトの構造</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="profile.html">Registration and user profile</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="profile.html#registration">Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profile.html#dashboard">Dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profile.html#user-profile">User profile</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="profile.html#translated-languages">Translated languages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="profile.html#secondary-languages">Secondary languages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="profile.html#default-dashboard-view">Default dashboard view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="profile.html#subscriptions">Subscriptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="profile.html#authentication">Authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="profile.html#avatar">Avatar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="profile.html#editor-link">Editor link</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="translating.html">Translating using Weblate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="translating.html#translation-projects">Translation projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html#translation-links">Translation links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html#suggestions">Suggestions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html#translating">Translating</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="translating.html#plurals">Plurals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="translating.html#keyboard-shortcuts">Keyboard shortcuts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="translating.html#visual-keyboard">Visual keyboard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="translating.html#translation-context">Translation context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="translating.html#translation-history">Translation history</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html#glossary">Glossary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="translating.html#managing-glossaries">Managing glossaries</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html#machine-translation">Machine translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html#automatic-translation">Automatic translation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Downloading and uploading translations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="files.html#downloading-translations">Downloading translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="files.html#uploading-translations">Uploading translations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="files.html#import-methods">Import methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="checks.html">Checks and fixups</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="checks.html#automatic-fixups">Automatic fixups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html#quality-checks">Quality checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html#translation-checks">Translation checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#unchanged-translation">Unchanged translation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#starting-or-trailing-newline">Starting or trailing newline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#starting-spaces">Starting spaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#trailing-space">Trailing space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#trailing-stop">Trailing stop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#trailing-colon">Trailing colon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#trailing-question-mark">Trailing question mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#trailing-exclamation">Trailing exclamation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#trailing-ellipsis">Trailing ellipsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#trailing-semicolon">Trailing semicolon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#maximum-length">Maximum Length</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#formatted-strings">Formatted strings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="checks.html#python-format">Python format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="checks.html#python-brace-format">Python brace format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="checks.html#php-format">PHP format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="checks.html#c-format">C format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="checks.html#perl-format">Perl format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="checks.html#javascript-format">Javascript format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="checks.html#angularjs-interpolation-string">AngularJS interpolation string</a></li>
+<li class="toctree-l4"><a class="reference internal" href="checks.html#id2">C# format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="checks.html#java-format">Java format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="checks.html#java-messageformat">Java MessageFormat</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#missing-plurals">Missing plurals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#same-plurals">Same plurals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#inconsistent">Inconsistent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#has-been-translated">Has been translated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#mismatched-n">Mismatched \n</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#mismatched-bbcode">Mismatched BBCode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#zero-width-space">Zero-width space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#invalid-xml-markup">Invalid XML markup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#xml-tags-mismatch">XML tags mismatch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html#source-checks">Source checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#optional-plural">Optional plural</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#ellipsis">Ellipsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html#multiple-failing-checks">Multiple failing checks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="basic.html" class="btn btn-neutral float-right" title="Weblate の基本" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../about.html" class="btn btn-neutral" title="Weblate について" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

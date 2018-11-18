@@ -1,0 +1,486 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Version control integration &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="about.html" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="Weblate&#39;s Web API" href="api.html" />
+    <link rel="prev" title="サポートされるフォーマット" href="formats.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin/index.html">Administrators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Version control integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-repositories">Accessing repositories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#weblate-internal-urls">Weblate internal URLs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ssh-repositories">SSH repositories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#generating-ssh-keys">Generating SSH keys</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verifying-ssh-host-keys">Verifying SSH host keys</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#https-repositories">HTTPS repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-proxy">Using proxy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#git">Git</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#github-repositories">GitHub repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#git-remote-helpers">Git remote helpers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#github">GitHub</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pushing-changes-to-github-as-pull-request">Pushing changes to GitHub as pull request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-up-hub">Setting up hub</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mercurial">Mercurial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#subversion">Subversion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subversion-credentials">Subversion Credentials</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Version control integration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/vcs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="version-control-integration">
+<span id="vcs"></span><h1>Version control integration<a class="headerlink" href="#version-control-integration" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Weblate currently supports <a class="reference internal" href="#vcs-git"><span class="std std-ref">Git</span></a> (with extended support for
+<a class="reference internal" href="#vcs-github"><span class="std std-ref">GitHub</span></a>) and <a class="reference internal" href="#vcs-mercurial"><span class="std std-ref">Mercurial</span></a> as version control backends.</p>
+<div class="section" id="accessing-repositories">
+<span id="vcs-repos"></span><h2>Accessing repositories<a class="headerlink" href="#accessing-repositories" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The VCS repository you want to use has to be accessible to Weblate. With a
+publicly available repository you just need to enter correct URL (for example
+<code class="docutils literal notranslate"><span class="pre">git://github.com/WeblateOrg/weblate.git</span></code> or
+<code class="docutils literal notranslate"><span class="pre">https://github.com/WeblateOrg/weblate.git</span></code>), but for private repositories the
+setup might be more complex.</p>
+<div class="section" id="weblate-internal-urls">
+<span id="internal-urls"></span><h3>Weblate internal URLs<a class="headerlink" href="#weblate-internal-urls" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>To share one repository between different components you can use a special URL
+like <code class="docutils literal notranslate"><span class="pre">weblate://project/component</span></code>. This way, the component will share the VCS
+repository configuration with referenced component and the VCS repository will
+be stored just once on the disk.</p>
+</div>
+<div class="section" id="ssh-repositories">
+<h3>SSH repositories<a class="headerlink" href="#ssh-repositories" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The most frequently used method to access private repositories is based on SSH. To
+have access to such a repository, you generate SSH key for Weblate and authorize
+it to access the repository. Weblate also needs to know the host key to avoid
+man in the middle attacks. This all can be done in the Weblate administration
+interface:</p>
+<img alt="_images/ssh-keys.png" src="_images/ssh-keys.png" />
+<div class="section" id="generating-ssh-keys">
+<h4>Generating SSH keys<a class="headerlink" href="#generating-ssh-keys" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>You can generate or display the key currently used by Weblate in the admin
+interface (follow <span class="guilabel">SSH keys</span> link on main admin page). Once you've
+done this, Weblate should be able to access your repository.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">The keys need to be without password to make it work, so be sure they are
+well protected against malicious usage.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">On GitHub, you can add the key to only one repository. See the following
+sections for other solutions for GitHub.</p>
+</div>
+</div>
+<div class="section" id="verifying-ssh-host-keys">
+<h4>Verifying SSH host keys<a class="headerlink" href="#verifying-ssh-host-keys" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Before connecting to the repository, you also need to verify SSH host keys of
+servers you are going to access in the same section of the admin interface.
+You can do this in the <span class="guilabel">Add host key</span> section. Just enter hostname
+you are going to access (eg. <code class="docutils literal notranslate"><span class="pre">gitlab.com</span></code>) and press <span class="guilabel">Submit</span>.
+After adding it please verify that the fingerprint matches the server you're
+adding, the fingerprints will be displayed in the confirmation message:</p>
+<img alt="_images/ssh-keys-added.png" src="_images/ssh-keys-added.png" />
+</div>
+</div>
+<div class="section" id="https-repositories">
+<h3>HTTPS repositories<a class="headerlink" href="#https-repositories" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>To access protected HTTPS repositories, you need to include the username and password
+in the URL. Don't worry, Weblate will strip this information when showing the URL
+to the users (if they are allowed to see the repository URL at all).</p>
+<p>For example the GitHub URL with authentication might look like
+<code class="docutils literal notranslate"><span class="pre">https://user:your_access_token&#64;github.com/WeblateOrg/weblate.git</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">In case your username or password contains special chars, those have to be
+URL encoded, for example
+<code class="docutils literal notranslate"><span class="pre">https://user%40example.com:%24password%23&#64;bitbucket.org/...`</span></code>.</p>
+</div>
+</div>
+<div class="section" id="using-proxy">
+<h3>Using proxy<a class="headerlink" href="#using-proxy" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If you need to access http/https VCS repositories using a proxy server, you
+need to configure the VCS to use it.</p>
+<p>This can be configured using the <code class="docutils literal notranslate"><span class="pre">http_proxy</span></code>, <code class="docutils literal notranslate"><span class="pre">https_proxy</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">all_proxy</span></code> environment variables (check cURL documentation for more details)
+or by enforcing it in VCS configuration, for example:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git config --global http.proxy http://user:password@proxy.example.com:80
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">The proxy setting needs to be done in the same context which is used to execute
+Weblate. For the environment it should be set for both server and cron
+jobs. The VCS configuration has to be set for the user which is running
+Weblate.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://curl.haxx.se/docs/manpage.html">curl manpage</a>,
+<a class="reference external" href="https://git-scm.com/docs/git-config">git config documentation</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="git">
+<span id="vcs-git"></span><h2>Git<a class="headerlink" href="#git" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Git is first VCS backend that was available in Weblate and is still the most
+stable and tested one.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">See <a class="reference internal" href="#vcs-repos"><span class="std std-ref">Accessing repositories</span></a> for information how to access different kind of
+repositories.</p>
+</div>
+<div class="section" id="github-repositories">
+<span id="vcs-repos-github"></span><h3>GitHub repositories<a class="headerlink" href="#github-repositories" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>You can access GitHub repositories by SSH as mentioned above, but in case you
+need to access more repositories, you will hit a GitHub limitation on the SSH key
+usage (one key can be used only for one repository). There are several ways to
+work around this limitation.</p>
+<p>For smaller deployments, you can use HTTPS authentication using a personal access
+token and your account, see <a class="reference external" href="https://help.github.com/articles/creating-an-access-token-for-command-line-use/">Creating an access token for command-line use</a>.</p>
+<p>For a bigger setup, it is usually better to create dedicated user for Weblate,
+assign him the SSH key generated in Weblate and grant him access to all
+repositories you want.</p>
+</div>
+<div class="section" id="git-remote-helpers">
+<span id="vcs-git-helpers"></span><h3>Git remote helpers<a class="headerlink" href="#git-remote-helpers" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>You can also use Git <a class="reference external" href="https://git-scm.com/docs/git-remote-helpers">remote helpers</a> for supporting other VCS as well, but
+this usually leads to other problems, so be prepared to debug them.</p>
+<p>At this time, helpers for Bazaar and Mercurial are available within separate
+repositories on GitHub: <a class="reference external" href="https://github.com/felipec/git-remote-hg">git-remote-hg</a> and <a class="reference external" href="https://github.com/felipec/git-remote-bzr">git-remote-bzr</a>. You can
+download them manually and put somewhere in your search path (for example
+<code class="file docutils literal notranslate"><span class="pre">~/bin</span></code>). You also need to have installed appropriate version control
+programs as well.</p>
+<p>Once you have these installed, you can use such remotes to specify repository
+in Weblate.</p>
+<p>To clone <code class="docutils literal notranslate"><span class="pre">gnuhello</span></code> project from Launchpad with Bazaar use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bzr</span><span class="p">::</span><span class="n">lp</span><span class="p">:</span><span class="n">gnuhello</span>
+</pre></div>
+</div>
+<p>For <code class="docutils literal notranslate"><span class="pre">hello</span></code> repository from selenic.com with Mercurial use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hg</span><span class="p">::</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">selenic</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">repo</span><span class="o">/</span><span class="n">hello</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">Please be prepared to some inconvenience when using Git remote helpers,
+for example with Mercurial, the remote helper sometimes tends to create new
+tip when pushing changes back.</p>
+</div>
+</div>
+</div>
+<div class="section" id="github">
+<span id="vcs-github"></span><h2>GitHub<a class="headerlink" href="#github" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.3 で追加.</span></p>
+</div>
+<p>This just adds a thin layer on top of <a class="reference internal" href="#vcs-git"><span class="std std-ref">Git</span></a> to allow push translation
+changes as pull requests instead of pushing directory to the repository.
+It currently uses the <a class="reference external" href="https://hub.github.com/">hub</a> tool to do the integration.</p>
+<p>There is no need to use this to access Git repositories, ordinary
+<a class="reference internal" href="#vcs-git"><span class="std std-ref">Git</span></a> works the same, the only difference is how pushing to a repository is
+handled. With <a class="reference internal" href="#vcs-git"><span class="std std-ref">Git</span></a> changes are pushed directly to the repository, while
+<a class="reference internal" href="#vcs-github"><span class="std std-ref">GitHub</span></a> creates pull requests.</p>
+<div class="section" id="pushing-changes-to-github-as-pull-request">
+<span id="github-push"></span><h3>Pushing changes to GitHub as pull request<a class="headerlink" href="#pushing-changes-to-github-as-pull-request" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If you are translating a project that's hosted on GitHub and don't want to
+push translations to the repository, you can have them sent as a pull request instead.</p>
+<p>You need to configure the <a class="reference external" href="https://hub.github.com/">hub</a> command line tool and set
+<a class="reference internal" href="admin/config.html#std:setting-GITHUB_USERNAME"><code class="xref std std-setting docutils literal notranslate"><span class="pre">GITHUB_USERNAME</span></code></a> for this to work.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="admin/config.html#std:setting-GITHUB_USERNAME"><code class="xref std std-setting docutils literal notranslate"><span class="pre">GITHUB_USERNAME</span></code></a>, <a class="reference internal" href="#hub-setup"><span class="std std-ref">Setting up hub</span></a> for configuration instructions</p>
+</div>
+</div>
+<div class="section" id="setting-up-hub">
+<span id="hub-setup"></span><h3>Setting up hub<a class="headerlink" href="#setting-up-hub" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference internal" href="#github-push"><span class="std std-ref">Pushing changes to GitHub as pull request</span></a> requires a configured <a class="reference external" href="https://hub.github.com/">hub</a> installation on your server.
+Follow the installation instructions at <a class="reference external" href="https://hub.github.com/">https://hub.github.com/</a> and perform an
+action with <a class="reference external" href="https://hub.github.com/">hub</a> to finish the configuration, for example:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">HOME</span><span class="o">=</span><span class="si">${</span><span class="nv">DATA_DIR</span><span class="si">}</span>/home hub clone octocat/Spoon-Knife
+</pre></div>
+</div>
+<p>The <a class="reference external" href="https://hub.github.com/">hub</a> will ask you for your GitHub credentials, retrieve a token and
+store it into <code class="file docutils literal notranslate"><span class="pre">~/.config/hub</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Use the username you configured <span class="guilabel">hub</span> with as <a class="reference internal" href="admin/config.html#std:setting-GITHUB_USERNAME"><code class="xref std std-setting docutils literal notranslate"><span class="pre">GITHUB_USERNAME</span></code></a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="mercurial">
+<span id="vcs-mercurial"></span><h2>Mercurial<a class="headerlink" href="#mercurial" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.1 で追加.</span></p>
+</div>
+<p>Mercurial is another VCS you can use directly in Weblate.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">It should work with any Mercurial version, but there are sometimes
+incompatible changes to the command line interface which break Weblate.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last">See <a class="reference internal" href="#vcs-repos"><span class="std std-ref">Accessing repositories</span></a> for information how to access different kind of
+repositories.</p>
+</div>
+</div>
+<div class="section" id="subversion">
+<span id="vcs-git-svn"></span><h2>Subversion<a class="headerlink" href="#subversion" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.8 で追加.</span></p>
+</div>
+<p>Thanks to <a class="reference external" href="https://git-scm.com/docs/git-svn">git-svn</a>, Weblate can work with <a class="reference external" href="https://subversion.apache.org/">subversion</a> repositories. Git-svn
+is a Perl script that enables the usage of subversion with a git client, enabling
+users to have a full clone of the internal repository and commit locally.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Weblate tries to detect Subversion repository layout automatically - it
+supports both direct URLs for branch or repositories with standard layout
+(branches/, tags/ and trunk/). See <a class="reference external" href="https://git-scm.com/docs/git-svn#git-svn---stdlayout">git-svn documentation</a> for more
+information.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 2.19 で変更: </span>In older versions only repositories with standard layout were supported.</p>
+</div>
+<div class="section" id="subversion-credentials">
+<h3>Subversion Credentials<a class="headerlink" href="#subversion-credentials" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Weblate expects you to have accepted the certificate upfront and inserted your
+credential, if needed. It will look into the DATA_DIR directory. To insert your
+credential and accept the certificate, you can run svn once with the <cite>$HOME</cite>
+environment variable set to the DATA_DIR:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>HOME=${DATA_DIR}/home svn co https://svn.example.com/example
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="admin/config.html#std:setting-DATA_DIR"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DATA_DIR</span></code></a></p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api.html" class="btn btn-neutral float-right" title="Weblate&#39;s Web API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="formats.html" class="btn btn-neutral" title="サポートされるフォーマット" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

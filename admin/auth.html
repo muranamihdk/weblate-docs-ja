@@ -1,0 +1,634 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Authentication &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="author" title="このドキュメントについて" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Access control" href="access.html" />
+    <link rel="prev" title="Backing up and moving Weblate" href="backup.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Weblate Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Weblate について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">Translators guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Application developer guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrators guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Authentication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#user-registration">User registration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#authentication-backends">Authentication backends</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#social-authentication">Social authentication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#openid-authentication">OpenID authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#github-authentication">GitHub authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bitbucket-authentication">Bitbucket authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#google-oauth2">Google OAuth2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#facebook-oauth2">Facebook OAuth2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gitlab-oauth2">GitLab OAuth2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#password-authentication">Password authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ldap-authentication">LDAP authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cas-authentication">CAS authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-third-party-django-authentication">Configuring third party Django authentication</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="access.html">Access control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects.html">翻訳プロジェクト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous.html">継続的トランスレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks and fixups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine.html">Machine translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html">Addons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html">Management commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Translation workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートされるフォーマット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">Version control integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate's Web API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate's Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weblate Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Administrators guide</a> &raquo;</li>
+        
+      <li>Authentication</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/admin/auth.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="authentication">
+<h1>Authentication<a class="headerlink" href="#authentication" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="user-registration">
+<h2>User registration<a class="headerlink" href="#user-registration" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The default setup for Weblate is to use python-social-auth for handling new
+users. This allows them to register using a form on the website and after
+confirming their email they can contribute or authenticate by using some
+third party service.</p>
+<p>You can also completely disable new users registration using
+<a class="reference internal" href="config.html#std:setting-REGISTRATION_OPEN"><code class="xref std std-setting docutils literal notranslate"><span class="pre">REGISTRATION_OPEN</span></code></a>.</p>
+<p>The authentication attempts are subjects to <a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">Rate limiting</span></a>.</p>
+</div>
+<div class="section" id="authentication-backends">
+<h2>Authentication backends<a class="headerlink" href="#authentication-backends" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>By default Weblate uses the Django built-in authentication and includes various
+social authentication options. Thanks to using Django authentication, you can
+also import user database from other Django based projects (see
+<a class="reference internal" href="upgrade.html#pootle-migration"><span class="std std-ref">Migrating from Pootle</span></a>).</p>
+<p>Django can be additionally configured to authenticate against other means as
+well.</p>
+</div>
+<div class="section" id="social-authentication">
+<h2>Social authentication<a class="headerlink" href="#social-authentication" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Thanks to <a class="reference external" href="https://python-social-auth.readthedocs.io/en/latest/index.html" title="(in Python Social Auth)"><span>Welcome to Python Social Auth’s documentation!</span></a>, Weblate support authentication using many third
+party services such as Facebook, GitHub, Google or Bitbucket.</p>
+<p>Please check their documentation for generic configuration instructions
+in <a class="reference external" href="https://python-social-auth.readthedocs.io/en/latest/configuration/django.html" title="(in Python Social Auth)"><span>Django Framework</span></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>By default, Weblate relies on third-party authentication services to
+provide a validated email address, in case some of the services you want to use
+do not support this, please enforce email validation on Weblate side
+by configuring FORCE_EMAIL_VALIDATION for them. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SOCIAL_AUTH_OPENSUSE_FORCE_EMAIL_VALIDATION</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+<div class="last admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://python-social-auth.readthedocs.io/en/latest/pipeline.html" title="(in Python Social Auth)"><span>Pipeline</span></a></p>
+</div>
+</div>
+<p>Enabling individual backends is quite easy, it's just a matter of adding an entry to
+the <code class="docutils literal notranslate"><span class="pre">AUTHENTICATION_BACKENDS</span></code> setting and possibly adding keys needed for given
+authentication. Please note that some backends do not provide user email by
+default, you have to request it explicitly, otherwise Weblate will not be able
+to properly credit users contributions.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://python-social-auth.readthedocs.io/en/latest/backends/index.html" title="(in Python Social Auth)"><span class="xref std std-doc">Python Social Auth backend</span></a></p>
+</div>
+<div class="section" id="openid-authentication">
+<h3>OpenID authentication<a class="headerlink" href="#openid-authentication" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>For OpenID based services it's usually just a matter of enabling them. The following
+section enables OpenID authentication for OpenSUSE, Fedora and Ubuntu:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authentication configuration</span>
+<span class="n">AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;social_core.backends.email.EmailAuth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.backends.suse.OpenSUSEOpenId&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.backends.ubuntu.UbuntuOpenId&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.backends.fedora.FedoraOpenId&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.auth.WeblateUserBackend&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://python-social-auth.readthedocs.io/en/latest/backends/openid.html" title="(in Python Social Auth)"><span>OpenId</span></a></p>
+</div>
+</div>
+<div class="section" id="github-authentication">
+<span id="github-auth"></span><h3>GitHub authentication<a class="headerlink" href="#github-authentication" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>You need to register an application on GitHub and then tell Weblate all the secrets:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authentication configuration</span>
+<span class="n">AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;social_core.backends.github.GithubOAuth2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.backends.email.EmailAuth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.auth.WeblateUserBackend&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Social auth backends setup</span>
+<span class="n">SOCIAL_AUTH_GITHUB_KEY</span> <span class="o">=</span> <span class="s1">&#39;GitHub Client ID&#39;</span>
+<span class="n">SOCIAL_AUTH_GITHUB_SECRET</span> <span class="o">=</span> <span class="s1">&#39;GitHub Client Secret&#39;</span>
+<span class="n">SOCIAL_AUTH_GITHUB_SCOPE</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user:email&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://python-social-auth.readthedocs.io/en/latest/backends/github.html" title="(in Python Social Auth)"><span>GitHub</span></a></p>
+</div>
+</div>
+<div class="section" id="bitbucket-authentication">
+<span id="bitbucket-auth"></span><h3>Bitbucket authentication<a class="headerlink" href="#bitbucket-authentication" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>You need to register an application on Bitbucket and then tell Weblate all the secrets:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authentication configuration</span>
+<span class="n">AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;social_core.backends.bitbucket.BitbucketOAuth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.backends.email.EmailAuth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.auth.WeblateUserBackend&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Social auth backends setup</span>
+<span class="n">SOCIAL_AUTH_BITBUCKET_KEY</span> <span class="o">=</span> <span class="s1">&#39;Bitbucket Client ID&#39;</span>
+<span class="n">SOCIAL_AUTH_BITBUCKET_SECRET</span> <span class="o">=</span> <span class="s1">&#39;Bitbucket Client Secret&#39;</span>
+<span class="n">SOCIAL_AUTH_BITBUCKET_VERIFIED_EMAILS_ONLY</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://python-social-auth.readthedocs.io/en/latest/backends/bitbucket.html" title="(in Python Social Auth)"><span>Bitbucket</span></a></p>
+</div>
+</div>
+<div class="section" id="google-oauth2">
+<span id="google-auth"></span><h3>Google OAuth2<a class="headerlink" href="#google-oauth2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>For using Google OAuth2, you need to register an application on
+&lt;<a class="reference external" href="https://console.developers.google.com/">https://console.developers.google.com/</a>&gt; and enable Google+ API.</p>
+<p>The redirect URL is <code class="docutils literal notranslate"><span class="pre">https://WEBLATE</span> <span class="pre">SERVER/accounts/complete/google-oauth2/</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authentication configuration</span>
+<span class="n">AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;social_core.backends.google.GoogleOAuth2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.backends.email.EmailAuth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.auth.WeblateUserBackend&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Social auth backends setup</span>
+<span class="n">SOCIAL_AUTH_GOOGLE_OAUTH2_KEY</span> <span class="o">=</span> <span class="s1">&#39;Client ID&#39;</span>
+<span class="n">SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET</span> <span class="o">=</span> <span class="s1">&#39;Client secret&#39;</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://python-social-auth.readthedocs.io/en/latest/backends/google.html" title="(in Python Social Auth)"><span>Google</span></a></p>
+</div>
+</div>
+<div class="section" id="facebook-oauth2">
+<span id="facebook-auth"></span><h3>Facebook OAuth2<a class="headerlink" href="#facebook-oauth2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>As usual with OAuth2 services, you need to register your application with
+Facebook. Once this is done, you can configure Weblate to use it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authentication configuration</span>
+<span class="n">AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;social_core.backends.facebook.FacebookOAuth2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.backends.email.EmailAuth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.auth.WeblateUserBackend&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Social auth backends setup</span>
+<span class="n">SOCIAL_AUTH_FACEBOOK_KEY</span> <span class="o">=</span> <span class="s1">&#39;key&#39;</span>
+<span class="n">SOCIAL_AUTH_FACEBOOK_SECRET</span> <span class="o">=</span> <span class="s1">&#39;secret&#39;</span>
+<span class="n">SOCIAL_AUTH_FACEBOOK_SCOPE</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;public_profile&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://python-social-auth.readthedocs.io/en/latest/backends/facebook.html" title="(in Python Social Auth)"><span>Facebook</span></a></p>
+</div>
+</div>
+<div class="section" id="gitlab-oauth2">
+<span id="gitlab-auth"></span><h3>GitLab OAuth2<a class="headerlink" href="#gitlab-oauth2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>For using Gitlab OAuth2, you need to register application on
+&lt;<a class="reference external" href="https://gitlab.com/profile/applications">https://gitlab.com/profile/applications</a>&gt;.</p>
+<p>The redirect URL is <code class="docutils literal notranslate"><span class="pre">https://WEBLATE</span> <span class="pre">SERVER/accounts/complete/gitlab/</span></code> and
+ensure to mark the <cite>read_user</cite> scope.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authentication configuration</span>
+<span class="n">AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;social_core.backends.gitlab.GitLabOAuth2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.backends.email.EmailAuth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.auth.WeblateUserBackend&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Social auth backends setup</span>
+<span class="n">SOCIAL_AUTH_GITLAB_KEY</span> <span class="o">=</span> <span class="s1">&#39;Application ID&#39;</span>
+<span class="n">SOCIAL_AUTH_GITLAB_SECRET</span> <span class="o">=</span> <span class="s1">&#39;Secret&#39;</span>
+<span class="n">SOCIAL_AUTH_GITLAB_SCOPE</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;api&#39;</span><span class="p">]</span>
+
+<span class="c1"># If your using own GitLab</span>
+<span class="c1"># SOCIAL_AUTH_GITLAB_API_URL = &#39;https://gitlab.example.com/&#39;</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://python-social-auth.readthedocs.io/en/latest/backends/gitlab.html" title="(in Python Social Auth)"><span>GitLab</span></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="password-authentication">
+<h2>Password authentication<a class="headerlink" href="#password-authentication" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The default <code class="file docutils literal notranslate"><span class="pre">settings.py</span></code> comes with reasonable set of
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-AUTH_PASSWORD_VALIDATORS" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">AUTH_PASSWORD_VALIDATORS</span></code></a>:</p>
+<ul class="simple">
+<li>Password can't be too similar to your other personal information.</li>
+<li>Password must contain at least 6 characters.</li>
+<li>Password can't be a commonly used password.</li>
+<li>Password can't be entirely numeric.</li>
+<li>Password can't consist of single character or whitespace only.</li>
+<li>Password can't match password you have used in the past.</li>
+</ul>
+<p>You can customize this setting to match your password policy.</p>
+<p>Additionally you can also install
+<a class="reference external" href="https://pypi.org/project/django-zxcvbn-password/">django-zxcvbn-password</a>
+which gives quite realistic estimates of password difficulty and allows to reject
+passwords below certain threshold.</p>
+</div>
+<div class="section" id="ldap-authentication">
+<span id="ldap-auth"></span><h2>LDAP authentication<a class="headerlink" href="#ldap-authentication" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>LDAP authentication can be best achieved using <cite>django-auth-ldap</cite> package. You
+can install it by usual means:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using PyPI</span>
+pip install django-auth-ldap&gt;<span class="o">=</span><span class="m">1</span>.3.0
+
+<span class="c1"># Using apt-get</span>
+apt-get install python-django-auth-ldap
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">With django-auth-ldap older than 1.3.0 the <a class="reference internal" href="access.html#autogroup"><span class="std std-ref">Automatic group assignments</span></a> will not work
+properly for newly created users.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">There are some incompatibilities in Python LDAP module 3.1.0 which might
+prevent you from using that version. If you get error <a class="reference external" href="https://github.com/python-ldap/python-ldap/issues/226">AttributeError:
+'module' object has no attribute '_trace_level'</a>, downgrading
+python-ldap to 3.0.0 might help.</p>
+</div>
+<p>Once you have the package installed, you can hook it to Django authentication:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add LDAP backed, keep Django one if you want to be able to login</span>
+<span class="c1"># even without LDAP for admin account</span>
+<span class="n">AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;django_auth_ldap.backend.LDAPBackend&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.auth.WeblateUserBackend&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># LDAP server address</span>
+<span class="n">AUTH_LDAP_SERVER_URI</span> <span class="o">=</span> <span class="s1">&#39;ldaps://ldap.example.net&#39;</span>
+
+<span class="c1"># DN to use for authentication</span>
+<span class="n">AUTH_LDAP_USER_DN_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;cn=</span><span class="si">%(user)s</span><span class="s1">,o=Example&#39;</span>
+<span class="c1"># Depending on your LDAP server, you might use different DN</span>
+<span class="c1"># like:</span>
+<span class="c1"># AUTH_LDAP_USER_DN_TEMPLATE = &#39;ou=users,dc=example,dc=com&#39;</span>
+
+<span class="c1"># List of attributes to import from LDAP on login</span>
+<span class="c1"># Weblate stores full user name in the full_name attribute</span>
+<span class="n">AUTH_LDAP_USER_ATTR_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;full_name&#39;</span><span class="p">:</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+    <span class="c1"># Use following if your LDAP server does not have full name</span>
+    <span class="c1"># Weblate will merge them later</span>
+    <span class="c1"># &#39;first_name&#39;: &#39;givenName&#39;,</span>
+    <span class="c1"># &#39;last_name&#39;: &#39;sn&#39;,</span>
+    <span class="c1"># Email is required for Weblate (used in VCS commits)</span>
+    <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="s1">&#39;mail&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you can not use direct bind for authentication, you will need to use search
+and provide user to bind for the search. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ldap</span>
+<span class="kn">from</span> <span class="nn">django_auth_ldap.config</span> <span class="kn">import</span> <span class="n">LDAPSearch</span>
+
+<span class="n">AUTH_LDAP_BIND_DN</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">AUTH_LDAP_BIND_PASSWORD</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">AUTH_LDAP_USER_SEARCH</span> <span class="o">=</span> <span class="n">LDAPSearch</span><span class="p">(</span><span class="s2">&quot;ou=users,dc=example,dc=com&quot;</span><span class="p">,</span>
+    <span class="n">ldap</span><span class="o">.</span><span class="n">SCOPE_SUBTREE</span><span class="p">,</span> <span class="s2">&quot;(uid=</span><span class="si">%(user)s</span><span class="s2">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">You should remove <code class="docutils literal notranslate"><span class="pre">'social_core.backends.email.EmailAuth'</span></code> from the
+<code class="docutils literal notranslate"><span class="pre">AUTHENTICATION_BACKENDS</span></code> setting, otherwise users will be able to set
+their password in Weblate and authenticate using that. Keeping
+<code class="docutils literal notranslate"><span class="pre">'weblate.accounts.auth.WeblateUserBackend'</span></code> is still needed in order to
+make permissions and anonymous user work correctly. It will also allow you
+to login using local admin account if you have created it (eg. by using
+<a class="reference internal" href="management.html#django-admin-createadmin"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">createadmin</span></code></a>).</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://django-auth-ldap.readthedocs.io/en/latest/index.html" title="(in django-auth-ldap v1.7)"><span>Django Authentication Using LDAP</span></a>, <a class="reference external" href="https://django-auth-ldap.readthedocs.io/en/latest/authentication.html" title="(in django-auth-ldap v1.7)"><span>Authentication</span></a></p>
+</div>
+</div>
+<div class="section" id="cas-authentication">
+<span id="cas-auth"></span><h2>CAS authentication<a class="headerlink" href="#cas-authentication" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>CAS authentication can be achieved using a package such as <cite>django-cas-ng</cite>.</p>
+<p>Step one is disclosing the email field of the user via CAS. This has to be
+configured on the CAS server itself and requires you run at least CAS v2 since
+CAS v1 doesn't support attributes at all.</p>
+<p>Step two is updating Weblate to use your CAS server and attributes.</p>
+<p>To install <cite>django-cas-ng</cite>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install django-cas-ng
+</pre></div>
+</div>
+<p>Once you have the package installed you can hook it up to the Django
+authentication system by modifying the <code class="file docutils literal notranslate"><span class="pre">settings.py</span></code> file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add CAS backed, keep Django one if you want to be able to login</span>
+<span class="c1"># even without LDAP for admin account</span>
+<span class="n">AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;django_cas_ng.backends.CASBackend&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.auth.WeblateUserBackend&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># CAS server address</span>
+<span class="n">CAS_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;https://cas.example.net/cas/&#39;</span>
+
+<span class="c1"># Add django_cas_ng somewhere in the list of INSTALLED_APPS</span>
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="o">...</span><span class="p">,</span>
+    <span class="s1">&#39;django_cas_ng&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, a signal can be used to map the email field to the user object. For
+this to work you have to import the signal from the <cite>django-cas-ng</cite> package and
+connect your code with this signal. Doing this inside your settings file can
+cause problems, therefore it's suggested to put it:</p>
+<ul class="simple">
+<li>in your app config's <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/applications/#django.apps.AppConfig.ready" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">django.apps.AppConfig.ready()</span></code></a> method (Django 1.7 and higher)</li>
+<li>at the end of your <code class="file docutils literal notranslate"><span class="pre">models.py</span></code> file (Django 1.6 and lower)</li>
+<li>in the project's <code class="file docutils literal notranslate"><span class="pre">urls.py</span></code> file (when no models exist)</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django_cas_ng.signals</span> <span class="kn">import</span> <span class="n">cas_user_authenticated</span>
+<span class="kn">from</span> <span class="nn">django.dispatch</span> <span class="kn">import</span> <span class="n">receiver</span>
+<span class="nd">@receiver</span><span class="p">(</span><span class="n">cas_user_authenticated</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_user_email_address</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="c1"># If your CAS server does not always include the email attribute</span>
+    <span class="c1"># you can wrap the next two lines of code in a try/catch block.</span>
+    <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span>
+    <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://github.com/mingchen/django-cas-ng">Django CAS NG</a></p>
+</div>
+</div>
+<div class="section" id="configuring-third-party-django-authentication">
+<h2>Configuring third party Django authentication<a class="headerlink" href="#configuring-third-party-django-authentication" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Generally any Django authentication plugin should work with Weblate. Just
+follow instructions for the plugin, just remember to keep Weblate user backend
+installed.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="#ldap-auth"><span class="std std-ref">LDAP authentication</span></a>,
+<a class="reference internal" href="#cas-auth"><span class="std std-ref">CAS authentication</span></a></p>
+</div>
+<p>Typically the installation will consist of adding authentication backend to
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-AUTHENTICATION_BACKENDS" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">AUTHENTICATION_BACKENDS</span></code></a> and installing authentication app (if
+there is any) into <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-INSTALLED_APPS" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">INSTALLED_APPS</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="c1"># Add authentication backend here</span>
+    <span class="s1">&#39;weblate.accounts.auth.WeblateUserBackend&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="o">...</span>
+    <span class="s1">&#39;weblate&#39;</span><span class="p">,</span>
+    <span class="c1"># Install authentication app here</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="access.html" class="btn btn-neutral float-right" title="Access control" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="backup.html" class="btn btn-neutral" title="Backing up and moving Weblate" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012 - 2018 Michal Čihař
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
