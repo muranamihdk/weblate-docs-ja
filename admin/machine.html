@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Machine translation &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  <title>機械翻訳 &mdash; Weblate Documentation 3.3 ドキュメント</title>
   
 
   
@@ -30,7 +30,7 @@
     <link rel="author" title="このドキュメントについて" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="Addons" href="addons.html" />
+    <link rel="next" title="アドオン" href="addons.html" />
     <link rel="prev" title="チェックと修正" href="checks.html" /> 
 
   
@@ -102,7 +102,7 @@
 <li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
 <li class="toctree-l2"><a class="reference internal" href="checks.html">チェックと修正</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Machine translation</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">機械翻訳</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#amagama">Amagama</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#apertium">Apertium</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#aws">AWS</a></li>
@@ -123,7 +123,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#custom-machine-translation">Custom machine translation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="addons.html">Addons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html">アドオン</a></li>
 <li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
@@ -137,7 +137,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../workflows.html">翻訳ワークフロー</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートするフォーマット</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vcs.html">バージョン管理との統合</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">バージョン管理の統合</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate ウェブ API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate クライアント</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate Python API</a></li>
@@ -192,7 +192,7 @@
         
           <li><a href="index.html">管理者のためのガイド</a> &raquo;</li>
         
-      <li>Machine translation</li>
+      <li>機械翻訳</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -212,12 +212,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="machine-translation">
-<span id="machine-translation-setup"></span><h1>Machine translation<a class="headerlink" href="#machine-translation" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>Weblate has built in support for several machine translation services and it's
-up to the administrator to enable them. The services have different terms of use, so
-please check whether you are allowed to use them before enabling them in Weblate.
-The individual services are enabled using <a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a>.</p>
-<p>The source language can be configured at <a class="reference internal" href="projects.html#project"><span class="std std-ref">プロジェクトの設定</span></a>.</p>
+<span id="machine-translation-setup"></span><h1>機械翻訳<a class="headerlink" href="#machine-translation" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Weblate はいくつかの機械翻訳サービスを組み込みでサポートしており、これを有効にするかどうかは管理者次第です。それらのサービスはそれぞれに違った利用規約を持っていますので、それを Weblate で有効にする前に、利用が許可されているかどうかを確認してください。それぞれのサービスは、<a class="reference internal" href="config.html#std:setting-MT_SERVICES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">MT_SERVICES</span></code></a> を使うことにより有効にされます。</p>
+<p>原文の言語は <a class="reference internal" href="projects.html#project"><span class="std std-ref">プロジェクトの設定</span></a> で設定することができます。</p>
 <div class="section" id="amagama">
 <h2>Amagama<a class="headerlink" href="#amagama" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Special installation of <a class="reference internal" href="#tmserver"><span class="std std-ref">tmserver</span></a> run by Virtaal authors.</p>
@@ -544,7 +541,7 @@ will start using that.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="addons.html" class="btn btn-neutral float-right" title="Addons" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="addons.html" class="btn btn-neutral float-right" title="アドオン" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="checks.html" class="btn btn-neutral" title="チェックと修正" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

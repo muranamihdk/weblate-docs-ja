@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Addons &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  <title>アドオン &mdash; Weblate Documentation 3.3 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
     <link rel="next" title="Translation Memory" href="memory.html" />
-    <link rel="prev" title="Machine translation" href="machine.html" /> 
+    <link rel="prev" title="機械翻訳" href="machine.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -102,9 +102,9 @@
 <li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
 <li class="toctree-l2"><a class="reference internal" href="checks.html">チェックと修正</a></li>
-<li class="toctree-l2"><a class="reference internal" href="machine.html">Machine translation</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Addons</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#built-in-addons">Built in addons</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="machine.html">機械翻訳</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">アドオン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#built-in-addons">組み込みアドオン</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cleanup-translation-files">Cleanup translation files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#language-consistency">Language consistency</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#component-discovery">Component discovery</a></li>
@@ -123,8 +123,8 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#customizing-list-of-addons">Customizing list of addons</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#writing-addon">Writing addon</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#executing-scripts-from-addon">Executing scripts from addon</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#writing-addon">アドオンを書く</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#executing-scripts-from-addon">アドオンからスクリプトを実行する</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#post-update-repository-processing">Post update repository processing</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pre-commit-processing-of-translations">Pre commit processing of translations</a></li>
 </ul>
@@ -144,7 +144,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../workflows.html">翻訳ワークフロー</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">よくある質問</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../formats.html">サポートするフォーマット</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vcs.html">バージョン管理との統合</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vcs.html">バージョン管理の統合</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">Weblate ウェブ API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../wlc.html">Weblate クライアント</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python.html">Weblate Python API</a></li>
@@ -199,7 +199,7 @@
         
           <li><a href="index.html">管理者のためのガイド</a> &raquo;</li>
         
-      <li>Addons</li>
+      <li>アドオン</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -219,17 +219,14 @@
            <div itemprop="articleBody">
             
   <div class="section" id="addons">
-<span id="id1"></span><h1>Addons<a class="headerlink" href="#addons" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="id1"></span><h1>アドオン<a class="headerlink" href="#addons" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="versionadded">
 <p><span class="versionmodified">バージョン 2.19 で追加.</span></p>
 </div>
-<p>Addons provide ways to customize translation workflow. You can install addons
-to your translation component and they will work behind the scenes. The addon
-management can be found under <span class="guilabel">Manage</span> menu of a translation
-component.</p>
+<p>アドオンは翻訳のワークフローをカスタマイズする手段を提供します。アドオンは翻訳コンポーネントにインストールすることができ、これによりアドオンは舞台裏で働きを開始します。アドオンの管理メニューは翻訳コンポーネントの <span class="guilabel">Manage</span> メニューの中にあります。</p>
 <img alt="../_images/addons.png" src="../_images/addons.png" />
 <div class="section" id="built-in-addons">
-<h2>Built in addons<a class="headerlink" href="#built-in-addons" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>組み込みアドオン<a class="headerlink" href="#built-in-addons" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="cleanup-translation-files">
 <span id="addon-weblate-cleanup-generic"></span><h3>Cleanup translation files<a class="headerlink" href="#cleanup-translation-files" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Update all translation files to match the monolingual base file. For most file
@@ -354,10 +351,9 @@ whenever new changes are pulled from the upstream repository.</p>
 simply include class absolute name in this setting.</p>
 </div>
 <div class="section" id="writing-addon">
-<h2>Writing addon<a class="headerlink" href="#writing-addon" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>You can write own addons as well, all you need to do is subclass <code class="docutils literal notranslate"><span class="pre">BaseAddon</span></code>,
-define addon metadata and implement callback which will do the processing.</p>
-<p>You can look at example addon for more information:</p>
+<h2>アドオンを書く<a class="headerlink" href="#writing-addon" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>自分でアドオンを書くこともできますが、そのために必要なのは、<code class="docutils literal notranslate"><span class="pre">BaseAddon</span></code> のサブクラスを作成し、アドオンのためのメタデータを定義し、実際の処理を行うコールバックを実装することだけです。</p>
+<p>より詳しくは、次のアドオン例をご覧ください。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="c1">#</span>
 <span class="c1"># Copyright © 2012 - 2018 Michal Čihař &lt;michal@cihar.com&gt;</span>
@@ -410,10 +406,8 @@ define addon metadata and implement callback which will do the processing.</p>
 </div>
 </div>
 <div class="section" id="executing-scripts-from-addon">
-<span id="addon-script"></span><h2>Executing scripts from addon<a class="headerlink" href="#executing-scripts-from-addon" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>You can also use addons to execute external scripts. This used to be
-integrated in Weblate, but now you have to write little code to wrap your
-script with an addon.</p>
+<span id="addon-script"></span><h2>アドオンからスクリプトを実行する<a class="headerlink" href="#executing-scripts-from-addon" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>アドオンを外部スクリプトを実行するために使うこともできます。この機能は以前は Weblate の一部でしたが、現在はアドオンとスクリプトをラップするコードを少しばかり書かなければなりません。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="c1">#</span>
 <span class="c1"># Copyright © 2012 - 2018 Michal Čihař &lt;michal@cihar.com&gt;</span>
@@ -461,25 +455,24 @@ script with an addon.</p>
     <span class="n">add_file</span> <span class="o">=</span> <span class="s1">&#39;po/{{ language_code }}.po&#39;</span>
 </pre></div>
 </div>
-<p>The script is executed with the current directory set to the root of the VCS repository
-for given component.</p>
-<p>Additionally, the following environment variables are available:</p>
+<p>スクリプトは、そのコンポーネントの VCS リポジトリのルートディレクトリをカレントディレクトリとして実行されます。</p>
+<p>加えて、以下の環境変数を使うことができます。</p>
 <dl class="envvar">
 <dt id="envvar-WL_VCS">
 <code class="descname">WL_VCS</code><a class="headerlink" href="#envvar-WL_VCS" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Version control system used.</p>
+<dd><p>使用しているバージョン管理システム。</p>
 </dd></dl>
 
 <dl class="envvar">
 <dt id="envvar-WL_REPO">
 <code class="descname">WL_REPO</code><a class="headerlink" href="#envvar-WL_REPO" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Upstream repository URL.</p>
+<dd><p>上流のリポジトリのURL。</p>
 </dd></dl>
 
 <dl class="envvar">
 <dt id="envvar-WL_PATH">
 <code class="descname">WL_PATH</code><a class="headerlink" href="#envvar-WL_PATH" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Absolute path to VCS repository.</p>
+<dd><p>VCS リポジトリの絶対パス。</p>
 </dd></dl>
 
 <dl class="envvar">
@@ -488,19 +481,19 @@ for given component.</p>
 <dd><div class="versionadded">
 <p><span class="versionmodified">バージョン 2.11 で追加.</span></p>
 </div>
-<p>Repository branch configured in the current component.</p>
+<p>現在のコンポーネント内で設定されたリポジトリのブランチ。</p>
 </dd></dl>
 
 <dl class="envvar">
 <dt id="envvar-WL_FILEMASK">
 <code class="descname">WL_FILEMASK</code><a class="headerlink" href="#envvar-WL_FILEMASK" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>File mask for current component.</p>
+<dd><p>現在のコンポーネントのためのファイルマスク。</p>
 </dd></dl>
 
 <dl class="envvar">
 <dt id="envvar-WL_TEMPLATE">
 <code class="descname">WL_TEMPLATE</code><a class="headerlink" href="#envvar-WL_TEMPLATE" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>File name of template for monolingual translations (can be empty).</p>
+<dd><p>単一言語翻訳テンプレートのファイル名（値が空のこともあります）。</p>
 </dd></dl>
 
 <dl class="envvar">
@@ -509,27 +502,25 @@ for given component.</p>
 <dd><div class="versionadded">
 <p><span class="versionmodified">バージョン 2.14 で追加.</span></p>
 </div>
-<p>File name of the file which is used for creating new translations (can be
-empty).</p>
+<p>新しい翻訳の作成に使われるファイルのファイル名（値が空の場合もあります）。</p>
 </dd></dl>
 
 <dl class="envvar">
 <dt id="envvar-WL_FILE_FORMAT">
 <code class="descname">WL_FILE_FORMAT</code><a class="headerlink" href="#envvar-WL_FILE_FORMAT" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>File format used in current component.</p>
+<dd><p>現在のコンポーネントで使われているファイル形式。</p>
 </dd></dl>
 
 <dl class="envvar">
 <dt id="envvar-WL_LANGUAGE">
 <code class="descname">WL_LANGUAGE</code><a class="headerlink" href="#envvar-WL_LANGUAGE" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Language of currently processed translation (not available for component
-level hooks).</p>
+<dd><p>現在処理中の翻訳の言語（コンポーネントのレベルのフックでは使えません）。</p>
 </dd></dl>
 
 <dl class="envvar">
 <dt id="envvar-WL_PREVIOUS_HEAD">
 <code class="descname">WL_PREVIOUS_HEAD</code><a class="headerlink" href="#envvar-WL_PREVIOUS_HEAD" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Previous HEAD on update (available only available when running post update hook).</p>
+<dd><p>前回のアップデートの HEAD（アップデート後に実行するフックでのみ利用可能です）。</p>
 </dd></dl>
 
 <div class="admonition seealso">
@@ -570,7 +561,7 @@ place to achieve this.</p>
         <a href="memory.html" class="btn btn-neutral float-right" title="Translation Memory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="machine.html" class="btn btn-neutral" title="Machine translation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="machine.html" class="btn btn-neutral" title="機械翻訳" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
