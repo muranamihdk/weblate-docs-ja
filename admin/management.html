@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Management commands &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  <title>管理コマンド &mdash; Weblate Documentation 3.3 ドキュメント</title>
   
 
   
@@ -107,7 +107,7 @@
 <li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Management commands</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">管理コマンド</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#invoking-management-commands">Invoking management commands</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#add-suggestions">add_suggestions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#auto-translate">auto_translate</a></li>
@@ -147,7 +147,7 @@
 <li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django 管理インターフェイス</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows.html">翻訳ワークフロー</a></li>
@@ -208,7 +208,7 @@
         
           <li><a href="index.html">管理者のためのガイド</a> &raquo;</li>
         
-      <li>Management commands</li>
+      <li>管理コマンド</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -228,12 +228,10 @@
            <div itemprop="articleBody">
             
   <div class="section" id="management-commands">
-<span id="manage"></span><h1>Management commands<a class="headerlink" href="#management-commands" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="manage"></span><h1>管理コマンド<a class="headerlink" href="#management-commands" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">Running management commands under a different user than is running your
-webserver can cause wrong permissions on some files, please check
-<a class="reference internal" href="install.html#file-permissions"><span class="std std-ref">Filesystem permissions</span></a> for more details.</p>
+<p class="last">ウェブサーバを実行しているユーザとは別のユーザで管理コマンドを実行すると、ファイルによっては権限間違いを引き起こす可能性があります。より詳しくは <a class="reference internal" href="install.html#file-permissions"><span class="std std-ref">Filesystem permissions</span></a> を確認してください。</p>
 </div>
 <p>Django comes with a management script (available as <code class="file docutils literal notranslate"><span class="pre">./manage.py</span></code> in
 sources or installed as <strong class="command">weblate</strong> when Weblate is installed). It

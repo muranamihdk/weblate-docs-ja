@@ -179,11 +179,11 @@
 <li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="management.html">Management commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html">管理コマンド</a></li>
 <li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django 管理インターフェイス</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows.html">翻訳ワークフロー</a></li>
@@ -462,7 +462,7 @@ pip install pytz python-bidi PyYAML pyuca
 based on the <code class="file docutils literal notranslate"><span class="pre">settings_example.py</span></code> in same directory).</p>
 </li>
 <li><p class="first">You can now run Weblate commands using <strong class="command">weblate</strong> command, see
-<a class="reference internal" href="management.html#manage"><span class="std std-ref">Management commands</span></a>.</p>
+<a class="reference internal" href="management.html#manage"><span class="std std-ref">管理コマンド</span></a>.</p>
 </li>
 <li><p class="first">To run webserver, use the wsgi wrapper installed with Weblate (in our case
 it is <code class="file docutils literal notranslate"><span class="pre">~/weblate-env/lib/python2.7/site-packages/weblate/wsgi.py</span></code>).
@@ -658,7 +658,7 @@ you might prefer to move these to better location such as
 <code class="file docutils literal notranslate"><span class="pre">/var/lib/weblate</span></code>.</p>
 <p>Weblate tries to create these directories automatically, but it will fail
 when it does not have permissions to do so.</p>
-<p>You should also take care when running <a class="reference internal" href="management.html#manage"><span class="std std-ref">Management commands</span></a>, as they should be run
+<p>You should also take care when running <a class="reference internal" href="management.html#manage"><span class="std std-ref">管理コマンド</span></a>, as they should be run
 under the same user as Weblate itself is running, otherwise permissions on some
 files might be wrong.</p>
 <div class="admonition seealso">

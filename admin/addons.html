@@ -125,8 +125,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#customizing-list-of-addons">Customizing list of addons</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#writing-addon">アドオンを書く</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#executing-scripts-from-addon">アドオンからスクリプトを実行する</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#post-update-repository-processing">Post update repository processing</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pre-commit-processing-of-translations">Pre commit processing of translations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#post-update-repository-processing">更新後のリポジトリ処理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pre-commit-processing-of-translations">コミット前の翻訳処理</a></li>
 </ul>
 </li>
 </ul>
@@ -134,11 +134,11 @@
 <li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="management.html">Management commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="management.html">管理コマンド</a></li>
 <li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="admin.html">Django admin interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django 管理インターフェイス</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows.html">翻訳ワークフロー</a></li>
@@ -493,7 +493,7 @@ simply include class absolute name in this setting.</p>
 <dl class="envvar">
 <dt id="envvar-WL_TEMPLATE">
 <code class="descname">WL_TEMPLATE</code><a class="headerlink" href="#envvar-WL_TEMPLATE" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>単一言語翻訳テンプレートのファイル名（値が空のこともあります）。</p>
+<dd><p>単一言語翻訳テンプレートのファイル名（この値は空のこともあります）。</p>
 </dd></dl>
 
 <dl class="envvar">
@@ -502,7 +502,7 @@ simply include class absolute name in this setting.</p>
 <dd><div class="versionadded">
 <p><span class="versionmodified">バージョン 2.14 で追加.</span></p>
 </div>
-<p>新しい翻訳の作成に使われるファイルのファイル名（値が空の場合もあります）。</p>
+<p>新しい翻訳の作成に使われるファイルのファイル名（この値は空のこともあります）。</p>
 </dd></dl>
 
 <dl class="envvar">
@@ -520,7 +520,7 @@ simply include class absolute name in this setting.</p>
 <dl class="envvar">
 <dt id="envvar-WL_PREVIOUS_HEAD">
 <code class="descname">WL_PREVIOUS_HEAD</code><a class="headerlink" href="#envvar-WL_PREVIOUS_HEAD" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>前回のアップデートの HEAD（アップデート後に実行するフックでのみ利用可能です）。</p>
+<dd><p>前回更新の HEAD（更新後に実行するフックでのみ利用可能です）。</p>
 </dd></dl>
 
 <div class="admonition seealso">
@@ -528,12 +528,9 @@ simply include class absolute name in this setting.</p>
 <p class="last"><a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a></p>
 </div>
 <div class="section" id="post-update-repository-processing">
-<h3>Post update repository processing<a class="headerlink" href="#post-update-repository-processing" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>Post update repository processing can be used to update translation files on
-the source change. To achieve this, please remember that Weblate only sees
-files which are committed to the VCS, so you need to commit changes as a part
-of the script.</p>
-<p>For example with gulp you can do it using following code:</p>
+<h3>更新後のリポジトリ処理<a class="headerlink" href="#post-update-repository-processing" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>原文が変更されたときは、翻訳ファイルを更新するために、更新後リポジトリ処理を使うことができます。これを行うためには、Weblate は VCS にコミットされたファイルだけを見ていることを覚えておいてください。このためスクリプトの一部で変更をコミットする必要があるのです。</p>
+<p>例えば gulp を使った以下のようなコードでこれを行うことができます。</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#! /bin/sh</span>
 gulp --gulpfile gulp-i18n-extract.js
 git commit -m <span class="s1">&#39;Update source strings&#39;</span> src/languages/en.lang.json
@@ -541,11 +538,9 @@ git commit -m <span class="s1">&#39;Update source strings&#39;</span> src/langua
 </div>
 </div>
 <div class="section" id="pre-commit-processing-of-translations">
-<h3>Pre commit processing of translations<a class="headerlink" href="#pre-commit-processing-of-translations" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>In many cases you might want to automatically do some changes to the translation
-before it is committed to the repository. The pre commit script is exactly the
-place to achieve this.</p>
-<p>It is passed a single parameter consisting of file name of current translation.</p>
+<h3>コミット前の翻訳処理<a class="headerlink" href="#pre-commit-processing-of-translations" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>リポジトリに翻訳をコミットする前に、多くの場合で自動的に翻訳に何か変更を加えたいかもしれません。コミット前スクリプトがまさにこれをできる場となります。</p>
+<p>現在の翻訳のファイル名で構成される単一のパラメータが渡されます。</p>
 </div>
 </div>
 </div>
