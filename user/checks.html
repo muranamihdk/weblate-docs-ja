@@ -93,8 +93,8 @@
 <li class="toctree-l2"><a class="reference internal" href="files.html">Downloading and uploading translations</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">チェックと修正</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#automatic-fixups">Automatic fixups</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#quality-checks">Quality checks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#translation-checks">Translation checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#quality-checks">品質チェック</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#translation-checks">翻訳チェック</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#unchanged-translation">Unchanged translation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#starting-or-trailing-newline">Starting or trailing newline</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#starting-spaces">Starting spaces</a></li>
@@ -209,15 +209,13 @@
             
   <div class="section" id="checks-and-fixups">
 <h1>チェックと修正<a class="headerlink" href="#checks-and-fixups" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>The quality checks help catch common translator errors, ensuring the
-translation is in good shape. The checks are divided into three levels of severity,
-and can be ignored in case of false positives.</p>
+<p>品質チェックはよくある翻訳者の間違いを見つける手助けとなり、翻訳が質の良いものとなることを確実にします。チェックは深刻度によって3段階に分けられており、検出間違いの場合は無視することができます。</p>
 <p>Once submitting a translation with a failing check, this is immediately shown to
 the user:</p>
 <img alt="../_images/checks.png" src="../_images/checks.png" />
 <div class="section" id="automatic-fixups">
 <span id="autofix"></span><h2>Automatic fixups<a class="headerlink" href="#automatic-fixups" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>In addition to <a class="reference internal" href="#checks"><span class="std std-ref">Quality checks</span></a>, Weblate can also fix some common
+<p>In addition to <a class="reference internal" href="#checks"><span class="std std-ref">品質チェック</span></a>, Weblate can also fix some common
 errors in translated strings automatically. Use it with caution to not have
 it add errors.</p>
 <div class="admonition seealso">
@@ -226,7 +224,7 @@ it add errors.</p>
 </div>
 </div>
 <div class="section" id="quality-checks">
-<span id="checks"></span><h2>Quality checks<a class="headerlink" href="#quality-checks" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="checks"></span><h2>品質チェック<a class="headerlink" href="#quality-checks" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Weblate employs a wide range of quality checks on strings. The following section
 describes them all in further detail. There are also language specific checks.
 Please file a bug if anything is reported in error.</p>
@@ -236,7 +234,7 @@ Please file a bug if anything is reported in error.</p>
 </div>
 </div>
 <div class="section" id="translation-checks">
-<h2>Translation checks<a class="headerlink" href="#translation-checks" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>翻訳チェック<a class="headerlink" href="#translation-checks" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Executed upon every translation change, helping translators maintain
 good quality translations.</p>
 <div class="section" id="unchanged-translation">

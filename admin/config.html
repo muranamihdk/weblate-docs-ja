@@ -191,7 +191,7 @@
 <li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="admin.html">Django 管理インターフェイス</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django 管理画面</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows.html">翻訳ワークフロー</a></li>
@@ -525,7 +525,7 @@ change. To apply the change to the stored translations, you need to run
 </div>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="../user/checks.html#checks"><span class="std std-ref">Quality checks</span></a>, <a class="reference internal" href="checks.html#custom-checks"><span class="std std-ref">Customizing behavior</span></a></p>
+<p class="last"><a class="reference internal" href="../user/checks.html#checks"><span class="std std-ref">品質チェック</span></a>, <a class="reference internal" href="checks.html#custom-checks"><span class="std std-ref">Customizing behavior</span></a></p>
 </div>
 </div>
 <div class="section" id="commit-pending-hours">
@@ -709,7 +709,9 @@ updates.</p>
 <p>Hide repository credentials in the web interface. In case you have repository
 URL with user and password, Weblate will hide it when showing it to the users.</p>
 <p>For example instead of <code class="docutils literal notranslate"><span class="pre">https://user:password&#64;git.example.com/repo.git</span></code> it
-will show just <code class="docutils literal notranslate"><span class="pre">https://git.example.com/repo.git</span></code>.</p>
+will show just <code class="docutils literal notranslate"><span class="pre">https://git.example.com/repo.git</span></code>. It tries to cleanup VCS
+error messages as well in similar manner.</p>
+<p>This is enabled by default.</p>
 </div>
 <div class="section" id="ip-behind-reverse-proxy">
 <span id="std:setting-IP_BEHIND_REVERSE_PROXY"></span><h2>IP_BEHIND_REVERSE_PROXY<a class="headerlink" href="#ip-behind-reverse-proxy" title="このヘッドラインへのパーマリンク">¶</a></h2>

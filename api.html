@@ -95,7 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="vcs.html">バージョン管理の統合</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Weblate ウェブ API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#rest-api">REST API</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#authentication-and-generic-parameters">Authentication and generic parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#authentication-and-generic-parameters">認証と共通パラメータ</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#authentication-examples">Authentication examples</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#passing-parameters-examples">Passing Parameters Examples</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#rate-limiting">Rate limiting</a></li>
@@ -192,17 +192,12 @@
 <div class="section" id="rest-api">
 <span id="index-0"></span><h2>REST API<a class="headerlink" href="#rest-api" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="versionadded">
-<p><span class="versionmodified">バージョン 2.6 で追加: </span>The API is available since Weblate 2.6.</p>
+<p><span class="versionmodified">バージョン 2.6 で追加: </span>この API は Weblate 2.6 以降で利用可能です。</p>
 </div>
-<p>The API is accessible on the <code class="docutils literal notranslate"><span class="pre">/api/</span></code> URL and it is based on
-<a class="reference external" href="https://www.django-rest-framework.org/">Django REST framework</a>.
-You can use it directly or by <a class="reference internal" href="wlc.html#wlc"><span class="std std-ref">Weblate クライアント</span></a>.</p>
+<p>API は <code class="docutils literal notranslate"><span class="pre">/api/</span></code> の URL から利用可能です。これは <a class="reference external" href="https://www.django-rest-framework.org/">Django REST framework</a> に基づいています。URL から直接使うこともできますし、<a class="reference internal" href="wlc.html#wlc"><span class="std std-ref">Weblate クライアント</span></a> を通して使うこともできます。</p>
 <div class="section" id="authentication-and-generic-parameters">
-<span id="api-generic"></span><h3>Authentication and generic parameters<a class="headerlink" href="#authentication-and-generic-parameters" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>The public project API is available without authentication, though
-unauthenticated requests are heavily throttled (by default to 100 requests per
-day), so it is recommended to use authentication. The authentication uses a
-token, which you can get in your profile. Use it in the <code class="docutils literal notranslate"><span class="pre">Authorization</span></code> header:</p>
+<span id="api-generic"></span><h3>認証と共通パラメータ<a class="headerlink" href="#authentication-and-generic-parameters" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>公開プロジェクトの API は認証なしに使うことができますが、認証されていないリクエストの数は大きく制限されていますので（初期設定では1日あたり100リクエストまでです）、認証を使うことをおすすめします。認証はトークンを利用して行われます。トークンはあなたのプロファイルページで入手できますので、これを <code class="docutils literal notranslate"><span class="pre">Authorization</span></code> ヘッダに含めてください。</p>
 <dl class="any">
 <dt id="any--">
 <code class="descname">ANY </code><code class="descname">/</code><a class="headerlink" href="#any--" title="この定義へのパーマリンク">¶</a></dt>
@@ -389,7 +384,7 @@ for more details how to configure it.</p>
 <dd><p>Returns a list of all languages.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 <p class="last">Language object attributes are documented at <a class="reference internal" href="#get--api-languages-(string-language)-" title="GET /api/languages/(string:language)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/languages/(string:language)/</span></code></a>.</p>
 </div>
 </dd></dl>
@@ -418,7 +413,7 @@ for more details how to configure it.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 <p><strong>Example JSON data:</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -441,7 +436,7 @@ for more details how to configure it.</p>
 <dd><p>Returns a list of all projects.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 <p class="last">Project object attributes are documented at <a class="reference internal" href="#get--api-projects-(string-project)-" title="GET /api/projects/(string:project)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/projects/(string:project)/</span></code></a>.</p>
 </div>
 </dd></dl>
@@ -475,7 +470,7 @@ for more details how to configure it.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 <p><strong>Example JSON data:</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -519,7 +514,7 @@ for more details how to configure it.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 </dd></dl>
 
@@ -550,7 +545,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 <p><strong>Example JSON data:</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -591,7 +586,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 <p><strong>CURL example:</strong></p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl <span class="se">\</span>
@@ -649,7 +644,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 </dd></dl>
 
@@ -696,7 +691,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 <dd><p>Returns a list of translation components.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 <p class="last">Component object attributes are documented at <a class="reference internal" href="#get--api-components-(string-project)-(string-component)-" title="GET /api/components/(string:project)/(string:component)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/components/(string:project)/(string:component)/</span></code></a>.</p>
 </div>
 </dd></dl>
@@ -741,7 +736,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 <p><strong>Example JSON data:</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -802,7 +797,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 </dd></dl>
 
@@ -830,7 +825,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 <p><strong>Example JSON data:</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -865,7 +860,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 </dd></dl>
 
@@ -899,7 +894,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 </dd></dl>
 
@@ -934,7 +929,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 </dd></dl>
 
@@ -956,7 +951,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 </dd></dl>
 
@@ -978,7 +973,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 </dd></dl>
 
@@ -1006,7 +1001,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 </dd></dl>
 
@@ -1046,7 +1041,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 <dd><p>Returns a list of translations.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 <p class="last">Translation object attributes are documented at <a class="reference internal" href="#get--api-translations-(string-project)-(string-component)-(string-language)-" title="GET /api/translations/(string:project)/(string:component)/(string:language)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/translations/(string:project)/(string:component)/(string:language)/</span></code></a>.</p>
 </div>
 </dd></dl>
@@ -1102,7 +1097,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 <p><strong>Example JSON data:</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -1196,7 +1191,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 </dd></dl>
 
@@ -1225,7 +1220,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 </dd></dl>
 
@@ -1263,7 +1258,7 @@ as stored in VCS.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 </dd></dl>
 
@@ -1293,7 +1288,7 @@ as stored in VCS.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 <p><strong>CURL example:</strong></p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl -X POST <span class="se">\</span>
@@ -1324,7 +1319,7 @@ as stored in VCS.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 </dd></dl>
 
@@ -1360,7 +1355,7 @@ as stored in VCS.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 </dd></dl>
 
@@ -1418,7 +1413,7 @@ as stored in VCS.</p>
 <dd><p>Returns list of translation units.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 <p class="last">Unit object attributes are documented at <a class="reference internal" href="#get--api-units-(int-pk)-" title="GET /api/units/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/units/(int:pk)/</span></code></a>.</p>
 </div>
 </dd></dl>
@@ -1478,7 +1473,7 @@ as stored in VCS.</p>
 <dd><p>Returns a list of translation changes.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 <p class="last">Change object attributes are documented at <a class="reference internal" href="#get--api-changes-(int-pk)-" title="GET /api/changes/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/changes/(int:pk)/</span></code></a>.</p>
 </div>
 </dd></dl>
@@ -1528,7 +1523,7 @@ as stored in VCS.</p>
 <dd><p>Returns a list of source string information.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 <p class="last">Sources object attributes are documented at <a class="reference internal" href="#get--api-sources-(int-pk)-" title="GET /api/sources/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/sources/(int:pk)/</span></code></a>.</p>
 </div>
 </dd></dl>
@@ -1574,7 +1569,7 @@ as stored in VCS.</p>
 <dd><p>Returns a list of screenshot string information.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 <p class="last">Sources object attributes are documented at <a class="reference internal" href="#get--api-screenshots-(int-pk)-" title="GET /api/screenshots/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/screenshots/(int:pk)/</span></code></a>.</p>
 </div>
 </dd></dl>
@@ -1645,7 +1640,7 @@ as stored in VCS.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">Authentication and generic parameters</span></a>.</p>
+<p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
 <p><strong>CURL example:</strong></p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl -X POST <span class="se">\</span>

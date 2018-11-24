@@ -97,7 +97,7 @@
 <li class="toctree-l2"><a class="reference internal" href="auth.html">Authentication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="access.html">Access control</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">翻訳プロジェクト</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#translation-organization">翻訳の編成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#translation-organization">翻訳の構成</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#adding-translation-projects-and-components">翻訳プロジェクトとコンポーネントを追加する</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#project-configuration">プロジェクトの設定</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#adjusting-interaction">インタラクションの調整</a></li>
@@ -129,7 +129,7 @@
 <li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="admin.html">Django 管理インターフェイス</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">Django 管理画面</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows.html">翻訳ワークフロー</a></li>
@@ -212,15 +212,8 @@
   <div class="section" id="translation-projects">
 <h1>翻訳プロジェクト<a class="headerlink" href="#translation-projects" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="translation-organization">
-<h2>翻訳の編成<a class="headerlink" href="#translation-organization" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Weblate organizes translatable content into tree like structure. The top level
-object is <a class="reference internal" href="#project"><span class="std std-ref">プロジェクトの設定</span></a>, which should hold all translations which belong
-together (for example translation of an application in several versions
-and/or documentation). On the next level, there is <a class="reference internal" href="#component"><span class="std std-ref">コンポーネント設定</span></a>, which is
-actually the component to translate. Here you define the VCS repository to use and
-mask of files to translate. Below <a class="reference internal" href="#component"><span class="std std-ref">コンポーネント設定</span></a> there are individual
-translations, which are handled automatically by Weblate as the translation
-files (matching mask defined in <a class="reference internal" href="#component"><span class="std std-ref">コンポーネント設定</span></a>) appear in VCS repository.</p>
+<h2>翻訳の構成<a class="headerlink" href="#translation-organization" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblate では翻訳の対象をツリーのような構造に組織します。最上位の構成要素は <a class="reference internal" href="#project"><span class="std std-ref">プロジェクトの設定</span></a> です。これは例えば、アプリケーションやドキュメントのバージョン違いの翻訳など、同じ対象に属するすべての翻訳を保持します。次の階層には <a class="reference internal" href="#component"><span class="std std-ref">コンポーネント設定</span></a> があります。これが実際に翻訳対象となる部分です。使用する VCS レポジトリや、翻訳すべきファイルを決定するフィルタなどは、ここで定義します。<a class="reference internal" href="#component"><span class="std std-ref">コンポーネント設定</span></a> の下の階層に、個々の翻訳が位置します。ここでは <a class="reference internal" href="#component"><span class="std std-ref">コンポーネント設定</span></a> での定義によって VCS リポジトリから抽出されたファイルが、Weblate によって自動的に翻訳ファイルとして扱われます。</p>
 <p>All translation components need to be available as VCS repositories and are
 organized as project/component structure.</p>
 <p>Weblate supports wide range of translation formats (both bilingual and
@@ -239,7 +232,7 @@ disk space.</p>
 <div class="versionchanged">
 <p><span class="versionmodified">バージョン 3.2 で変更: </span>Since the 3.2 release the interface for adding projects and components is
 included in Weblate and no longer requires you to use
-<a class="reference internal" href="admin.html#admin-interface"><span class="std std-ref">Django 管理インターフェイス</span></a>.</p>
+<a class="reference internal" href="admin.html#admin-interface"><span class="std std-ref">Django 管理画面</span></a>.</p>
 </div>
 <p>Based on your permissions, you can be able to create new translation projects
 and components in Weblate. It is always allowed for superusers and if your
@@ -253,11 +246,11 @@ translation project:</p>
 <img alt="../_images/user-add-project.png" src="../_images/user-add-project.png" />
 <p>プロジェクトを作成することにより、プロジェクトのページに移動します。</p>
 <img alt="../_images/user-add-project-done.png" src="../_images/user-add-project-done.png" />
-<p>新しい翻訳コンポーネントの作成は、そこでワンクリックで開始することができます。今度は翻訳コンポーネントの情報を入力してください。</p>
+<p>ワンクリックで新しい翻訳コンポーネントの作成を開始できますので、今度は翻訳コンポーネントの情報を入力してください。</p>
 <img alt="../_images/user-add-component.png" src="../_images/user-add-component.png" />
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="admin.html#admin-interface"><span class="std std-ref">Django 管理インターフェイス</span></a>,
+<p class="last"><a class="reference internal" href="admin.html#admin-interface"><span class="std std-ref">Django 管理画面</span></a>,
 <a class="reference internal" href="#project"><span class="std std-ref">プロジェクトの設定</span></a>,
 <a class="reference internal" href="#component"><span class="std std-ref">コンポーネント設定</span></a></p>
 </div>
@@ -297,11 +290,11 @@ translation project:</p>
 </div>
 <div class="section" id="component-configuration">
 <span id="component"></span><h2>コンポーネント設定<a class="headerlink" href="#component-configuration" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>実際に翻訳する構成要素がコンポーネントです。VCSレポジトリの場所と、どのファイルを翻訳すべきかのファイルマスクを入力すると、Weblateは自動的にVCSから取得し、マッチするすべての翻訳ファイルを見つけます。</p>
+<p>コンポーネントは実際に翻訳する構成要素です。VCSレポジトリの場所と、どのファイルを翻訳すべきかのファイルマスクを入力すると、Weblateは自動的に VCS から取得し、マッチするすべての翻訳ファイルを見つけます。</p>
 <p>典型的な設定例を <a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートするフォーマット</span></a> のセクションで見ることができます。</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p>コンポーネントは適当なサイズに保つことをお勧めします。それぞれの事例に応じて、個々のアプリケーションやアドオン、本の各章や個々のウェブサイトなど、意味のある基準で翻訳を分割してください。</p>
+<p>コンポーネントは適切なサイズに保つことをお勧めします。個々のアプリケーションやアドオン、本の各章や個々のウェブサイトなど、それぞれのケースに応じて意味のある基準で翻訳を分割してください。</p>
 <p class="last">Weblateは10000単位の翻訳を苦もなく処理できますが、そのような大規模な翻訳では、作業を分割し翻訳者間で調整することはより困難になります。また、一人の翻訳者があるコンポーネントの翻訳に取り組んでいる間、このコンポーネントの翻訳は他の翻訳者からは不可能になります。<a class="reference internal" href="translating.html#locking"><span class="std std-ref">Translation locking</span></a> を参照してください。</p>
 </div>
 <p>Should the language definition for translation be missing, an empty definition is
@@ -319,7 +312,7 @@ next release.</p>
 <dt>リポジトリのプッシュURL</dt>
 <dd>プッシュの際に使われるリポジトリのURLです。これは完全にオプションです。ここを空欄にしておけば、プッシュのサポートは無効化されます。リポジトリのURLをどのように特定するかについてのより詳しい説明は、<a class="reference internal" href="../vcs.html#vcs-repos"><span class="std std-ref">Accessing repositories</span></a> を参照してください。</dd>
 <dt>リポジトリの閲覧</dt>
-<dd><p class="first">ソースファイルを閲覧するためのリポジトリのURLです。メッセージが使われる場所になります。空欄であればそのようなリンクは生成されません。</p>
+<dd><p class="first">ソースファイルを閲覧するためのリポジトリのURL（そのメッセージが使われている場所）です。空欄であればこのリンクは生成されません。</p>
 <p>以下の書式が使用可能です。</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">%(branchs)s</span></code> - 現在のブランチ</li>
@@ -331,13 +324,13 @@ next release.</p>
 <p class="last">例えばGitHubなら、<code class="docutils literal notranslate"><span class="pre">https://github.com/WeblateOrg/hello/blob/%(branch)s/%(file)s#L%(line)s</span></code> のように使うことができます。</p>
 </dd>
 <dt>出力リポジトリのURL</dt>
-<dd>Weblateで行われた変更が出力されるリポジトリのURLです。これは <a class="reference internal" href="continuous.html#continuous-translation"><span class="std std-ref">継続的トランスレーション</span></a> が使われないか、マニュアルで変更をマージしなけれなならない場合に重要です。これをGitリポジトリに対して自動化するためには、<a class="reference internal" href="optionals.html#git-exporter"><span class="std std-ref">Git exporter</span></a> を使うことができます。</dd>
+<dd>Weblateで行われた変更が出力されるリポジトリのURLです。これは <a class="reference internal" href="continuous.html#continuous-translation"><span class="std std-ref">継続的トランスレーション</span></a> を行わないとき、あるいは手動で変更をマージしなけれなならないときに重要です。これをGitリポジトリに対して自動化するためには、<a class="reference internal" href="optionals.html#git-exporter"><span class="std std-ref">Git exporter</span></a> を使うことができます。</dd>
 <dt>リポジトリのブランチ</dt>
 <dd>VCSからチェックアウトして翻訳を探すべきブランチです。</dd>
 <dt>ファイルマスク</dt>
-<dd><p class="first">翻訳すべきファイルのパスを示すマスクです。これは言語コードに置き換えられるべき、ひとつの * を含んでいなければなりません（これがどのように処理されるかについての情報は <a class="reference internal" href="languages.html#languages"><span class="std std-ref">Language definitions</span></a> を参照してください）。リポジトリにひとつ以上の翻訳ファイルがある場合（例えばひとつ以上のGettextドメインがある場合）は、それぞれについて独立したコンポーネントを作成しなければなりません。</p>
-<p>例えば <code class="docutils literal notranslate"><span class="pre">po/*.po</span></code> や <code class="docutils literal notranslate"><span class="pre">locale/*/LC_MESSAGES/django.po</span></code> などといったようになります。</p>
-<p class="last">ファイル名に <cite>[`</cite> や <code class="docutils literal notranslate"><span class="pre">]</span></code> などの特別な文字を含む場合は、これらは <code class="docutils literal notranslate"><span class="pre">[[]</span></code> や <code class="docutils literal notranslate"><span class="pre">[]]</span></code> のようにエスケープされねばなりません。</p>
+<dd><p class="first">翻訳すべきファイルのパスを示すマスクです。これは言語コードに置き換えられる * をひとつ含んでいなければなりません（これがどのように処理されるかについての情報は <a class="reference internal" href="languages.html#languages"><span class="std std-ref">Language definitions</span></a> を参照してください）。リポジトリに複数の翻訳ファイルがある場合（例えば複数のGettextドメインがある場合）は、それぞれ独立してコンポーネントを作成しなければなりません。</p>
+<p>例としては <code class="docutils literal notranslate"><span class="pre">po/*.po</span></code> や <code class="docutils literal notranslate"><span class="pre">locale/*/LC_MESSAGES/django.po</span></code> などといったようになります。</p>
+<p class="last">ファイル名に <code class="docutils literal notranslate"><span class="pre">[</span></code> や <code class="docutils literal notranslate"><span class="pre">]</span></code> などの特別な文字を含む場合は、これらは <code class="docutils literal notranslate"><span class="pre">[[]</span></code> や <code class="docutils literal notranslate"><span class="pre">[]]</span></code> のようにエスケープされなければなりません。</p>
 </dd>
 <dt>Monolingualベース言語ファイル</dt>
 <dd><a class="reference internal" href="admin.html#monolingual"><span class="std std-ref">Monolingual components</span></a> のための言語定義を含んだベースファイルです。</dd>
