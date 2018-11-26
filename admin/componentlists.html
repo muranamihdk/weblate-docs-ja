@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Component Lists &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  <title>コンポーネントリスト &mdash; Weblate Documentation 3.3 ドキュメント</title>
   
 
   
@@ -109,8 +109,8 @@
 <li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="management.html">管理コマンド</a></li>
 <li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Component Lists</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#automatic-component-lists">Automatic component lists</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">コンポーネントリスト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#automatic-component-lists">自動コンポーネントリスト</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
@@ -175,7 +175,7 @@
         
           <li><a href="index.html">管理者のためのガイド</a> &raquo;</li>
         
-      <li>Component Lists</li>
+      <li>コンポーネントリスト</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -195,38 +195,23 @@
            <div itemprop="articleBody">
             
   <div class="section" id="component-lists">
-<span id="componentlists"></span><h1>Component Lists<a class="headerlink" href="#component-lists" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>Weblate allows you to specify multiple lists of components. These will then
-appear as options on the user dashboard, and users can pick a list to be their
-default view when they log in. See <a class="reference internal" href="../user/profile.html#dashboard"><span class="std std-ref">Dashboard</span></a> to learn more about this
-feature.</p>
+<span id="componentlists"></span><h1>コンポーネントリスト<a class="headerlink" href="#component-lists" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Weblateではコンポーネントのグループを複数定義することができ、これを「コンポーネントリスト」と呼んでいます。これらのリストはユーザのダッシュボードにオプションで表示することができ、ユーザはログインしたときのデフォルトビューとしてリストを選ぶことができます。この機能についてより詳しく知るには <a class="reference internal" href="../user/profile.html#dashboard"><span class="std std-ref">Dashboard</span></a> を参照してください。</p>
 <div class="versionchanged">
-<p><span class="versionmodified">バージョン 2.20 で変更: </span>The overview of all component lists status is also available on the
-dashboard.</p>
+<p><span class="versionmodified">バージョン 2.20 で変更: </span>すべてのコンポーネントリストの状態もダッシュボードでまとめて見ることができます。</p>
 </div>
-<p>The names and contents of component lists can be specified in the admin
-interface, in <span class="guilabel">Component lists</span> section. Each component list must
-have a name that is displayed to the user, and a slug that represents it in the
-URL.</p>
+<p>コンポーネントリストの名前と中身は、管理画面の <span class="guilabel">Component lists</span> セクションで設定することができます。個々のコンポーネントリストはそれぞれ、ユーザに表示される名前と、URL の中でコンポーネントリストを示すために使われる短い文字列 (slug) を持たなければなりません。</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">Since version 2.13 you can also change the dashboard settings for the
-anonymous user in the admin interface, this will change what dashboard is
-visible to unauthenticated users.</p>
+<p class="last">バージョン 2.13 から、匿名ユーザのためのダッシュボード設定を、管理画面から変更することができるようになりました。これにより非認証ユーザに表示されるダッシュボード画面が変更されます。</p>
 </div>
 <div class="section" id="automatic-component-lists">
-<h2>Automatic component lists<a class="headerlink" href="#automatic-component-lists" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>自動コンポーネントリスト<a class="headerlink" href="#automatic-component-lists" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="versionadded">
 <p><span class="versionmodified">バージョン 2.13 で追加.</span></p>
 </div>
-<p>Additionally you can create <span class="guilabel">Automatic component list assignment</span>
-rules to automatically add components to the list based on their slug. This can
-be useful for maintaining component lists for large installations or in case
-you want to have component list with all components on your Weblate
-installation.</p>
-<p>To create component list containing all components, you can simply define
-<span class="guilabel">Automatic component list assignment</span> with <code class="docutils literal notranslate"><span class="pre">^.*$</span></code> regular expression
-on both project and component as shown on following image:</p>
+<p>さらに、コンポーネントを slug に基づいて自動でリストに追加するための、<span class="guilabel">Automatic component list assignment</span> ルールを作ることができます。</p>
+<p>すべてのコンポーネントを含むコンポーネントリストを作るには単に、下の画像のように、<span class="guilabel">Automatic component list assignment</span> のプロジェクトとコンポーネントの双方の値を、正規表現で <code class="docutils literal notranslate"><span class="pre">^.*$</span></code> と定義すればよいです。</p>
 <img alt="../_images/componentlist-add.png" src="../_images/componentlist-add.png" />
 </div>
 </div>

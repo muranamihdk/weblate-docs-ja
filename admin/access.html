@@ -105,13 +105,13 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#per-project-access-control">Per project access control</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#automatic-group-assignments">Automatic group assignments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#users-roles-groups-and-permissions">Users, roles, groups and permissions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#users-roles-groups-and-permissions">ユーザ、役割、グループ、権限</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#permission-checking">Permission checking</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#checking-access-to-a-project">Checking access to a project</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#managing-users-and-groups">Managing users and groups</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#managing-per-project-access-control">Managing per project access control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#managing-users-and-groups">ユーザとグループを管理する</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#managing-per-project-access-control">プロジェクトごとのアクセスコントロールを管理する</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#predefined-groups">Predefined groups</a></li>
 </ul>
 </li>
@@ -136,7 +136,7 @@
 <li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="management.html">管理コマンド</a></li>
 <li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="componentlists.html">Component Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="componentlists.html">コンポーネントリスト</a></li>
 <li class="toctree-l2"><a class="reference internal" href="optionals.html">Optional Weblate modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="admin.html">Django 管理画面</a></li>
 </ul>
@@ -229,7 +229,7 @@ consult documentation for that version, information here will not apply.</p>
 globally or in limited scope.</p>
 <p>The permission system is groups and roles based, where roles define set of
 permissions and groups assign them to users and translations, see
-<a class="reference internal" href="#auth-model"><span class="std std-ref">Users, roles, groups and permissions</span></a> for more details.</p>
+<a class="reference internal" href="#auth-model"><span class="std std-ref">ユーザ、役割、グループ、権限</span></a> for more details.</p>
 <p>Just after installation default set of groups is created and you can use those
 to assign users global roles (see <a class="reference internal" href="#default-groups"><span class="std std-ref">Default groups and roles</span></a>). Additionally when
 <a class="reference internal" href="#acl"><span class="std std-ref">Per project access control</span></a> is enabled, you can assign users to specific translation projects.
@@ -289,7 +289,7 @@ creates several groups for this project, see <a class="reference internal" href=
 <img alt="../_images/project-access.png" src="../_images/project-access.png" />
 <p>To allow access to this project, you have to add the privilege to do so either
 directly to the given user or group of users in Django admin interface, or by using
-user management on the project page as described in <a class="reference internal" href="#manage-acl"><span class="std std-ref">Managing per project access control</span></a>.</p>
+user management on the project page as described in <a class="reference internal" href="#manage-acl"><span class="std std-ref">プロジェクトごとのアクセスコントロールを管理する</span></a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
 <p>Even with ACL enabled some summary information will be available about your project:</p>
@@ -313,20 +313,17 @@ it, simply set the regular expression to <code class="docutils literal notransla
 </div>
 </div>
 <div class="section" id="users-roles-groups-and-permissions">
-<span id="auth-model"></span><h2>Users, roles, groups and permissions<a class="headerlink" href="#users-roles-groups-and-permissions" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>The authentication models consist of several objects:</p>
+<span id="auth-model"></span><h2>ユーザ、役割、グループ、権限<a class="headerlink" href="#users-roles-groups-and-permissions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>認証モデルは以下に示す複数のオブジェクトから構成されます。</p>
 <dl class="docutils">
-<dt><cite>Permission</cite></dt>
-<dd>Individual permissions defined by Weblate. You can not assign individual
-permissions, this can be done only through roles.</dd>
-<dt><cite>Role</cite></dt>
-<dd>Role defines set of a permissions. This allows to reuse these sets in
-several places and makes the administration easier.</dd>
-<dt><cite>User</cite></dt>
-<dd>Users can be members of several groups.</dd>
-<dt><cite>Group</cite></dt>
-<dd>Groups connect roles, users and authentication objects (projects,
-languages and component lists).</dd>
+<dt><cite>権限</cite></dt>
+<dd>Weblate によって定義されている個々の権限です。権限を直接ユーザに割り当てることはできません。次の「役割」を通してのみ可能です。</dd>
+<dt><cite>役割</cite></dt>
+<dd>役割は権限の束を定義します。これによりこれらの束を複数の場所で再利用でき、また管理者の作業を容易にします。</dd>
+<dt><cite>ユーザ</cite></dt>
+<dd>ユーザは複数のグループに所属できます。</dd>
+<dt><cite>グループ</cite></dt>
+<dd>グループは「役割」「ユーザ」「権限」オブジェクトを繋ぎます。グループには「プロジェクト」「言語」「コンポーネントリスト」があります。</dd>
 </dl>
 graph auth {
 
@@ -341,19 +338,19 @@ graph auth {
 <p>Whenever permission is checked to be able to perform given action, the check
 is performed based on scope, following checks are performed:</p>
 <dl class="docutils">
-<dt><cite>Project</cite></dt>
+<dt><cite>プロジェクト</cite></dt>
 <dd><p class="first">Compared against scope project, if not set, this matches none project.</p>
 <p class="last">You can use <span class="guilabel">Project selection</span> to automate including all
 projects.</p>
 </dd>
-<dt><cite>Component list</cite></dt>
+<dt><cite>コンポーネントリスト</cite></dt>
 <dd><p class="first">Scope component is matched against this list, if not set this is ignored.</p>
 <p class="last">Obviously this has no effect when checking access on the project scope,
 so you will have to grant access to view all projects in a component list
 by other means. By default this is achieved by the <cite>Viewers</cite> group, see
 <a class="reference internal" href="#default-groups"><span class="std std-ref">Default groups and roles</span></a>).</p>
 </dd>
-<dt><cite>Language</cite></dt>
+<dt><cite>言語</cite></dt>
 <dd><p class="first">Compared against scope translation, if not set, this matches none
 language.</p>
 <p class="last">You can use <span class="guilabel">Language selection</span> to automate including all
@@ -369,11 +366,11 @@ in the default <cite>Viewers</cite> group, see <a class="reference internal" hre
 </div>
 </div>
 <div class="section" id="managing-users-and-groups">
-<h2>Managing users and groups<a class="headerlink" href="#managing-users-and-groups" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>ユーザとグループを管理する<a class="headerlink" href="#managing-users-and-groups" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>All users and groups can be managed using Django admin interface, which is
 available under <code class="file docutils literal notranslate"><span class="pre">/admin/</span></code> URL.</p>
 <div class="section" id="managing-per-project-access-control">
-<span id="manage-acl"></span><h3>Managing per project access control<a class="headerlink" href="#managing-per-project-access-control" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="manage-acl"></span><h3>プロジェクトごとのアクセスコントロールを管理する<a class="headerlink" href="#managing-per-project-access-control" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
 <p class="last">This feature only works for ACL controlled projects, see <a class="reference internal" href="#acl"><span class="std std-ref">Per project access control</span></a>.</p>
