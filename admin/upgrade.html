@@ -31,7 +31,7 @@
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
     <link rel="next" title="Backing up and moving Weblate" href="backup.html" />
-    <link rel="prev" title="Weblate deployments" href="deployments.html" /> 
+    <link rel="prev" title="Weblate のデプロイ" href="deployments.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -90,8 +90,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../devel/index.html">アプリケーション開発者のためのガイド</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">管理者のためのガイド</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">インストール手順</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate のデプロイ</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Upgrading Weblate</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#generic-upgrade-instructions">Generic upgrade instructions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#version-specific-instructions">Version specific instructions</a><ul>
@@ -112,13 +112,13 @@
 <li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="continuous.html">継続的トランスレーション</a></li>
 <li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">翻訳のプロセス</a></li>
 <li class="toctree-l2"><a class="reference internal" href="checks.html">チェックと修正</a></li>
 <li class="toctree-l2"><a class="reference internal" href="machine.html">機械翻訳</a></li>
 <li class="toctree-l2"><a class="reference internal" href="addons.html">アドオン</a></li>
-<li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">翻訳メモリ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">設定例</a></li>
 <li class="toctree-l2"><a class="reference internal" href="management.html">管理コマンド</a></li>
 <li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="componentlists.html">コンポーネントリスト</a></li>
@@ -323,19 +323,19 @@ the disk as it might be incompatible between these two.</p>
 <p>Things which might be problematic include Whoosh indices and file based caches.
 Fortunately these are easy to handle. Recommended upgrade steps:</p>
 <ol class="arabic">
-<li><p class="first">Backup your <a class="reference internal" href="memory.html#translation-memory"><span class="std std-ref">Translation Memory</span></a> using <a class="reference internal" href="management.html#django-admin-dump_memory"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">dump_memory</span></code></a>:</p>
+<li><p class="first">Backup your <a class="reference internal" href="memory.html#translation-memory"><span class="std std-ref">翻訳メモリ</span></a> using <a class="reference internal" href="management.html#django-admin-dump_memory"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">dump_memory</span></code></a>:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py dump_memory &gt; memory.json
 </pre></div>
 </div>
 </li>
 <li><p class="first">Upgrade your installation to Python 3.</p>
 </li>
-<li><p class="first">Delete <a class="reference internal" href="memory.html#translation-memory"><span class="std std-ref">Translation Memory</span></a> database <a class="reference internal" href="management.html#django-admin-delete_memory"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">delete_memory</span></code></a>:</p>
+<li><p class="first">Delete <a class="reference internal" href="memory.html#translation-memory"><span class="std std-ref">翻訳メモリ</span></a> database <a class="reference internal" href="management.html#django-admin-delete_memory"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">delete_memory</span></code></a>:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py delete_memory --all
 </pre></div>
 </div>
 </li>
-<li><p class="first">Restore your <a class="reference internal" href="memory.html#translation-memory"><span class="std std-ref">Translation Memory</span></a> using <a class="reference internal" href="management.html#django-admin-import_memory"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">import_memory</span></code></a>.</p>
+<li><p class="first">Restore your <a class="reference internal" href="memory.html#translation-memory"><span class="std std-ref">翻訳メモリ</span></a> using <a class="reference internal" href="management.html#django-admin-import_memory"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">import_memory</span></code></a>.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./manage.py import_memory memory.json
 </pre></div>
 </div>
@@ -373,7 +373,7 @@ import them using <a class="reference internal" href="management.html#django-adm
         <a href="backup.html" class="btn btn-neutral float-right" title="Backing up and moving Weblate" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="deployments.html" class="btn btn-neutral" title="Weblate deployments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="deployments.html" class="btn btn-neutral" title="Weblate のデプロイ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

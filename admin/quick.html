@@ -30,7 +30,7 @@
     <link rel="author" title="このドキュメントについて" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="Installation instructions" href="install.html" />
+    <link rel="next" title="インストール手順" href="install.html" />
     <link rel="prev" title="管理者のためのガイド" href="index.html" /> 
 
   
@@ -95,11 +95,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#installing-from-sources">Installing from sources</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#installing-using-docker">Installing using Docker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#installing-on-openshift-2">Installing on OpenShift 2</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#adding-translation">Adding translation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-translation">翻訳を追加する</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">インストール手順</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate のデプロイ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auth.html">Authentication</a></li>
@@ -108,13 +108,13 @@
 <li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="continuous.html">継続的トランスレーション</a></li>
 <li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">翻訳のプロセス</a></li>
 <li class="toctree-l2"><a class="reference internal" href="checks.html">チェックと修正</a></li>
 <li class="toctree-l2"><a class="reference internal" href="machine.html">機械翻訳</a></li>
 <li class="toctree-l2"><a class="reference internal" href="addons.html">アドオン</a></li>
-<li class="toctree-l2"><a class="reference internal" href="memory.html">Translation Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">翻訳メモリ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">設定例</a></li>
 <li class="toctree-l2"><a class="reference internal" href="management.html">管理コマンド</a></li>
 <li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="componentlists.html">コンポーネントリスト</a></li>
@@ -204,7 +204,7 @@
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
 <p class="last">This is just a quick guide for installing and starting to use Weblate for
-testing purposes. Please check <a class="reference internal" href="install.html#install"><span class="std std-ref">Installation instructions</span></a> for more real world setup
+testing purposes. Please check <a class="reference internal" href="install.html#install"><span class="std std-ref">インストール手順</span></a> for more real world setup
 instructions.</p>
 </div>
 <div class="section" id="choosing-installation-method">
@@ -291,7 +291,7 @@ to the clipboard, and maybe also save it to a text file for later use:</p>
 <li><p class="first">Open a web browser, go to <a class="reference external" href="http://localhost:8000/accounts/login/">http://localhost:8000/accounts/login/</a>
 and login with the user name <cite>admin</cite> and paste the password in.</p>
 </li>
-<li><p class="first">Proceed with <a class="reference internal" href="#add-translatable-contents"><span class="std std-ref">Adding translation</span></a> to add some translatable contents to
+<li><p class="first">Proceed with <a class="reference internal" href="#add-translatable-contents"><span class="std std-ref">翻訳を追加する</span></a> to add some translatable contents to
 your test installation.</p>
 </li>
 </ol>
@@ -347,7 +347,7 @@ connection (possibly adding user and creating the database). Check
 </ol>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last">See <a class="reference internal" href="deployments.html#docker"><span class="std std-ref">Running Weblate in the Docker</span></a> for more detailed instructions and customization options.</p>
+<p class="last">See <a class="reference internal" href="deployments.html#docker"><span class="std std-ref">Weblate を Docker で動かす</span></a> for more detailed instructions and customization options.</p>
 </div>
 </div>
 <div class="section" id="installing-on-openshift-2">
@@ -369,23 +369,15 @@ project as described below.</p>
 </div>
 </div>
 <div class="section" id="adding-translation">
-<span id="add-translatable-contents"></span><h2>Adding translation<a class="headerlink" href="#adding-translation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="add-translatable-contents"></span><h2>翻訳を追加する<a class="headerlink" href="#adding-translation" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ol class="arabic">
-<li><p class="first">Open admin interface (<a class="reference external" href="http://localhost/admin/">http://localhost/admin/</a>) and create project you
-want to translate. See <a class="reference internal" href="projects.html#project"><span class="std std-ref">プロジェクトの設定</span></a> for more details.</p>
-<p>All you need to specify here is project name and its website.</p>
+<li><p class="first">管理者画面 (<a class="reference external" href="http://localhost/admin/">http://localhost/admin/</a>) を開いて、希望する翻訳のためのプロジェクトを作成してください。より詳しくは <a class="reference internal" href="projects.html#project"><span class="std std-ref">プロジェクトの設定</span></a> を参照してください。</p>
+<p>ここで設定が必須なのはプロジェクト名とそのウェブサイトだけです。</p>
 </li>
-<li><p class="first">Create component which is the real object for translating - it points to
-VCS repository and selects which files to translate. See <a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a>
-for more details.</p>
-<p>The important fields here being component name, VCS repository address and
-mask for finding translatable files. Weblate supports a wide range of formats
-including Gettext PO files, Android resource strings, OS X string properties,
-Java properties or Qt Linguist files, see <a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートするフォーマット</span></a> for more details.</p>
+<li><p class="first">実際に翻訳する対象であるコンポーネントを作成してください。ここでは特定の VCS リポジトリと、そのリポジトリどのファイルを翻訳するかを設定します。より詳しくは <a class="reference internal" href="projects.html#component"><span class="std std-ref">コンポーネント設定</span></a> を参照してください。</p>
+<p>ここでの重要な設定項目は、コンポーネント名、VCS リポジトリのアドレス、翻訳対象ファイルを見つけるためのマスクです。Weblate は Gettext PO ファイル、Android リソースストリング、OS X ストリングプロパティー、Java プロパティー、Qt リンギストファイルなどを含む、幅広いフォーマットをサポートしています。より詳しくは <a class="reference internal" href="../formats.html#formats"><span class="std std-ref">サポートするフォーマット</span></a> を参照してください。</p>
 </li>
-<li><p class="first">Once the above is completed (it can be lengthy process depending on size of
-your VCS repository and number of messages to translate), you can start
-translating.</p>
+<li><p class="first">以上が終了したら（VCS リポジトリのサイズや翻訳すべきメッセージの数によっては時間がかかるかもしれません）、翻訳を開始することができます。</p>
 </li>
 </ol>
 </div>
@@ -399,7 +391,7 @@ translating.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="install.html" class="btn btn-neutral float-right" title="Installation instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="install.html" class="btn btn-neutral float-right" title="インストール手順" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="管理者のためのガイド" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

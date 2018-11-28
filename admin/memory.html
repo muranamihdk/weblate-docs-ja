@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Translation Memory &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  <title>翻訳メモリ &mdash; Weblate Documentation 3.3 ドキュメント</title>
   
 
   
@@ -90,8 +90,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../devel/index.html">アプリケーション開発者のためのガイド</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">管理者のためのガイド</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="quick.html">Quick setup guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html">Installation instructions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">インストール手順</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployments.html">Weblate のデプロイ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="upgrade.html">Upgrading Weblate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backup.html">Backing up and moving Weblate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auth.html">Authentication</a></li>
@@ -100,11 +100,11 @@
 <li class="toctree-l2"><a class="reference internal" href="languages.html">Language definitions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="continuous.html">継続的トランスレーション</a></li>
 <li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="translating.html">Translation process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating.html">翻訳のプロセス</a></li>
 <li class="toctree-l2"><a class="reference internal" href="checks.html">チェックと修正</a></li>
 <li class="toctree-l2"><a class="reference internal" href="machine.html">機械翻訳</a></li>
 <li class="toctree-l2"><a class="reference internal" href="addons.html">アドオン</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Translation Memory</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">翻訳メモリ</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#translation-memory-scopes">Translation memory scopes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#imported-translation-memory">Imported translation memory</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#per-user-translation-memory">Per user translation memory</a></li>
@@ -120,7 +120,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="config.html">設定について</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sample.html">Sample configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">設定例</a></li>
 <li class="toctree-l2"><a class="reference internal" href="management.html">管理コマンド</a></li>
 <li class="toctree-l2"><a class="reference internal" href="whiteboard.html">Whiteboard messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="componentlists.html">コンポーネントリスト</a></li>
@@ -186,7 +186,7 @@
         
           <li><a href="index.html">管理者のためのガイド</a> &raquo;</li>
         
-      <li>Translation Memory</li>
+      <li>翻訳メモリ</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -206,12 +206,11 @@
            <div itemprop="articleBody">
             
   <div class="section" id="translation-memory">
-<span id="id1"></span><h1>Translation Memory<a class="headerlink" href="#translation-memory" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="id1"></span><h1>翻訳メモリ<a class="headerlink" href="#translation-memory" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="versionadded">
 <p><span class="versionmodified">バージョン 2.20 で追加.</span></p>
 </div>
-<p>Weblate comes with a built-in translation memory. It provides you matches
-against it as a <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">機械翻訳</span></a> or in <a class="reference internal" href="../user/translating.html#auto-translation"><span class="std std-ref">Automatic translation</span></a>.</p>
+<p>Weblate には内臓の翻訳メモリがあります。これは <a class="reference internal" href="../user/translating.html#machine-translation"><span class="std std-ref">機械翻訳</span></a> として、あるいは :ref:<a href="#id1"><span class="problematic" id="id2">`</span></a>auto-translation`において、翻訳メモリとの照合を提供します。</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
 <p class="last">Currently the content of the translation memory is not updated by Weblate
