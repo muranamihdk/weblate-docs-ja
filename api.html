@@ -114,7 +114,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#notification-hooks">通知フック</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#exports">エクスポート</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rss-feeds">RSS feeds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rss-feeds">RSS フィード</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="wlc.html">Weblate クライアント</a></li>
@@ -1649,7 +1649,7 @@ as stored in VCS.</p>
 <div class="section" id="notification-hooks">
 <span id="hooks"></span><h2>通知フック<a class="headerlink" href="#notification-hooks" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>通知フックは外部アプリケーションが VCS リポジトリのアップデートを Weblate に通知することを可能にします。</p>
-<p>プロジェクトやコンポーネント、翻訳のためのリポジトリ・エンドポイントを、個々のリポジトリをアップデートするために使うことができます。<a class="reference internal" href="#post--api-projects-(string-project)-repository-" title="POST /api/projects/(string:project)/repository/"><code class="xref http http-post docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/projects/(string:project)/repository/</span></code></a> のドキュメンテーションを参照してください。</p>
+<p>プロジェクトやコンポーネント、翻訳のためのリポジトリ・エンドポイントを、個々のリポジトリをアップデートするために使うことができます。 <a class="reference internal" href="#post--api-projects-(string-project)-repository-" title="POST /api/projects/(string:project)/repository/"><code class="xref http http-post docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/projects/(string:project)/repository/</span></code></a> のドキュメンテーションを参照してください。</p>
 <dl class="get">
 <dt id="get--hooks-update-(string-project)-(string-component)-">
 <code class="descname">GET </code><code class="descname">/hooks/update/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--hooks-update-(string-project)-(string-component)-" title="この定義へのパーマリンク">¶</a></dt>
@@ -1844,8 +1844,8 @@ instead; it allows access to ACL controlled projects as well.</p>
 
 </div>
 <div class="section" id="rss-feeds">
-<span id="rss"></span><h2>RSS feeds<a class="headerlink" href="#rss-feeds" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Changes in translations are exported in RSS feeds.</p>
+<span id="rss"></span><h2>RSS フィード<a class="headerlink" href="#rss-feeds" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>翻訳の変更は RSS フィードにエクスポートされます。</p>
 <dl class="get">
 <dt id="get--exports-rss-(string-project)-(string-component)-(string-language)-">
 <code class="descname">GET </code><code class="descname">/exports/rss/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>language</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--exports-rss-(string-project)-(string-component)-(string-language)-" title="この定義へのパーマリンク">¶</a></dt>
