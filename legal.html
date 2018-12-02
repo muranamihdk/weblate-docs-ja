@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Pythonモジュール索引 &mdash; Weblate Documentation 3.3 ドキュメント</title>
+  <title>Legal documents &mdash; Weblate Documentation 3.3 ドキュメント</title>
   
 
   
@@ -30,9 +30,7 @@
     <link rel="author" title="このドキュメントについて" href="about.html" />
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="検索" href="search.html" />
- 
-
-
+    <link rel="prev" title="ライセンス" href="license.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -85,7 +83,7 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="about.html">Weblate について</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user/index.html">翻訳者のためのガイド</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devel/index.html">アプリケーション開発者のためのガイド</a></li>
@@ -101,7 +99,11 @@
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">貢献する</a></li>
 <li class="toctree-l1"><a class="reference internal" href="internals.html">内部構造</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">ライセンス</a></li>
-<li class="toctree-l1"><a class="reference internal" href="legal.html">Legal documents</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Legal documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#itar-and-other-export-controls">ITAR and other export controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#us-encryption-controls">US encryption controls</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -147,10 +149,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Pythonモジュール索引</li>
+      <li>Legal documents</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/legal.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -162,40 +168,82 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-   <h1>Pythonモジュール索引</h1>
-
-   <div class="modindex-jumpbox">
-   <a href="#cap-w"><strong>w</strong></a>
-   </div>
-
-   <table class="indextable modindextable">
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-w"><td></td><td>
-       <strong>w</strong></td><td></td></tr>
-     <tr>
-       <td><img src="_static/minus.png" class="toggler"
-              id="toggle-1" style="display: none" alt="-" /></td>
-       <td>
-       <a href="python.html#module-wlc"><code class="xref">wlc</code></a></td><td>
-       <em>Weblate API</em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="python.html#module-wlc.config"><code class="xref">wlc.config</code></a></td><td>
-       <em>Configuration parsing</em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="python.html#module-wlc.main"><code class="xref">wlc.main</code></a></td><td>
-       <em>Command line interface</em></td></tr>
-   </table>
+  <div class="section" id="legal-documents">
+<h1>Legal documents<a class="headerlink" href="#legal-documents" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Herein you will find various legal information you might need to
+operate Weblate in certain legal jurisdictions. It is provided as a means of guidance,
+without any warranty of accuracy or correctness. It is ultimately your
+responsibility to ensure that your use of Weblate complies with all applicable
+laws and regulations.</p>
+</div>
+<div class="section" id="itar-and-other-export-controls">
+<h2>ITAR and other export controls<a class="headerlink" href="#itar-and-other-export-controls" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblate can be run within your own datacenter or virtual private cloud. As
+such, it can be used to store ITAR or other export-controlled information,
+however, end users are responsible for ensuring such compliance.</p>
+<p>The Hosted Weblate service has not been audited for compliance with ITAR or
+other export controls, and does not currently offer the ability to restrict
+translations access by country.</p>
+</div>
+<div class="section" id="us-encryption-controls">
+<h2>US encryption controls<a class="headerlink" href="#us-encryption-controls" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Weblate does not contain any cryptographic code, but might be subject
+export controls as it uses third party components utilizing cryptography
+for authentication, data-integrity and -confidentiality.</p>
+<p>Most likely Weblate would be classified as ECCN 5D002 or 5D992 and, as
+publicly available libre software, it should not be subject to EAR (see
+<a class="reference external" href="https://www.bis.doc.gov/index.php/policy-guidance/encryption/1-encryption-items-not-subject-to-the-ear">Encryption items NOT Subject to the EAR</a>.</p>
+<p>Software components used by Weblate (listing only components related to
+cryptographic function):</p>
+<dl class="docutils">
+<dt><a class="reference external" href="https://www.python.org/">Python</a></dt>
+<dd>See <a class="reference external" href="https://wiki.python.org/moin/PythonSoftwareFoundationLicenseFaq#Is_Python_subject_to_export_laws.3F">https://wiki.python.org/moin/PythonSoftwareFoundationLicenseFaq#Is_Python_subject_to_export_laws.3F</a></dd>
+<dt><a class="reference external" href="https://www.gnupg.org/">GnuPG</a></dt>
+<dd>Optionally used by Weblate</dd>
+<dt><a class="reference external" href="https://git-scm.com/">Git</a></dt>
+<dd>Optionally used by Weblate</dd>
+<dt><a class="reference external" href="https://curl.haxx.se/">curl</a></dt>
+<dd>Used by Git</dd>
+<dt><a class="reference external" href="https://www.openssl.org/">OpenSSL</a></dt>
+<dd>Used by Python and cURL</dd>
+</dl>
+<p>The strength of encryption keys depend on the configuration of Weblate and
+the third party components it interacts with, but in any decent setup it will
+include all export restricted cryptographic functions:</p>
+<ul class="simple">
+<li>In excess of 56 bits for a symmetric algorithm</li>
+<li>Factorisation of integers in excess of 512 bits for an asymmetric algorithm</li>
+<li>Computation of discrete logarithms in a multiplicative group of a finite field of size greater than 512 bits for an asymmetric algorithm</li>
+<li>Discrete logarithms in a group different than above in excess of 112 bits for an asymmetric algorithm</li>
+</ul>
+<p>Weblate doesn't have any cryptographic activation feature, but it can be
+configured in a way where no cryptography code would be involved. The
+cryptographic features include:</p>
+<ul class="simple">
+<li>Accessing remote servers using secure protocols (HTTPS)</li>
+<li>Generating signatures for code commits (PGP)</li>
+</ul>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference external" href="https://www.magicsplat.com/blog/ear/">Export Controls (EAR) on Open Source Software</a></p>
+</div>
+</div>
+</div>
 
 
            </div>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="license.html" class="btn btn-neutral" title="ライセンス" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

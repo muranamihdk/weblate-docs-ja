@@ -103,6 +103,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">ライセンス</a></li>
+<li class="toctree-l1"><a class="reference internal" href="legal.html">Legal documents</a></li>
 </ul>
 
             
@@ -173,10 +174,13 @@
 <p class="first admonition-title">注釈</p>
 <p class="last">この章では、Weblate の内部構造の、基本的な概要を説明します。</p>
 </div>
-<p>Weblate は ' Django'_ に基づいており、そのコード構造のほとんどはそこから来ています。Django に馴染みがない場合は、そのファイル構造について基本的な理解を得るために、<a class="reference external" href="https://docs.djangoproject.com/en/stable/intro/overview/" title="(in Django v2.1)"><span>Django at a glance</span></a> をチェックしてみてください。</p>
+<p>Weblate is derives most of its code structure from, and is based on <a class="reference external" href="https://www.djangoproject.com/">Django</a>.
+Familiarize yourself with
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/intro/overview/" title="(in Django v2.1)"><span>Django at a glance</span></a> to get a basic understanding of its file structure.</p>
 <div class="section" id="modules">
 <h2>モジュール<a class="headerlink" href="#modules" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Weblate はいくつかの Django アプリケーションで構成されています（そのうちのいくつかはオプションです。<a class="reference internal" href="admin/optionals.html"><span class="doc">Optional Weblate modules</span></a> を参照してください）。</p>
+<p>Weblate consists of several Django applications (some optional, see
+<a class="reference internal" href="admin/optionals.html"><span class="doc">Optional Weblate modules</span></a>):</p>
 <p><code class="docutils literal notranslate"><span class="pre">accounts</span></code></p>
 <blockquote>
 <div>ユーザーアカウント、プロファイル、および通知。</div></blockquote>
@@ -194,7 +198,7 @@
 <div>オプションの <a class="reference internal" href="admin/optionals.html#billing"><span class="std std-ref">Billing</span></a> モジュール。</div></blockquote>
 <p><code class="docutils literal notranslate"><span class="pre">formats</span></code></p>
 <blockquote>
-<div>translate-toolkit に基づくファイル形式の抽象化レイヤー。</div></blockquote>
+<div>File format abstraction layer based on translate-toolkit.</div></blockquote>
 <p><code class="docutils literal notranslate"><span class="pre">gitexport</span></code></p>
 <blockquote>
 <div>オプションの <a class="reference internal" href="admin/optionals.html#git-exporter"><span class="std std-ref">Git exporter</span></a> モジュール。</div></blockquote>
@@ -209,10 +213,10 @@
 <div>オプションの <a class="reference internal" href="admin/optionals.html#legal"><span class="std std-ref">Legal</span></a> モジュール。</div></blockquote>
 <p><code class="docutils literal notranslate"><span class="pre">machinery</span></code></p>
 <blockquote>
-<div>機械翻訳サービスの統合。</div></blockquote>
+<div>Integration of machine translation services.</div></blockquote>
 <p><code class="docutils literal notranslate"><span class="pre">memory</span></code></p>
 <blockquote>
-<div>内臓の翻訳メモリ。<a class="reference internal" href="admin/memory.html#translation-memory"><span class="std std-ref">Translation Memory</span></a> を参照してください。</div></blockquote>
+<div>内臓の翻訳メモリ。<a class="reference internal" href="admin/memory.html#translation-memory"><span class="std std-ref">翻訳メモリ</span></a> を参照してください。</div></blockquote>
 <p><code class="docutils literal notranslate"><span class="pre">permissions</span></code></p>
 <blockquote>
 <div>現在使われていません。</div></blockquote>

@@ -125,6 +125,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">貢献する</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">ライセンス</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal documents</a></li>
 </ul>
 
             
@@ -364,6 +365,7 @@
 <li class="toctree-l3"><a class="reference internal" href="auth.html#google-oauth2">Google OAuth2</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auth.html#facebook-oauth2">Facebook OAuth2</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auth.html#gitlab-oauth2">GitLab OAuth2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auth.html#disabling-password-authentication">Disabling password authentication</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="auth.html#password-authentication">Password authentication</a></li>
@@ -452,7 +454,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="translating.html">翻訳のプロセス</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="translating.html#suggestion-voting">提案の投票</a></li>
-<li class="toctree-l2"><a class="reference internal" href="translating.html#translation-locking">Translation locking</a></li>
 <li class="toctree-l2"><a class="reference internal" href="translating.html#additional-information-on-source-strings">Additional information on source strings</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="translating.html#strings-prioritization">Strings prioritization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="translating.html#translation-flags">翻訳フラグ</a></li>
@@ -547,8 +548,6 @@
 <li class="toctree-l2"><a class="reference internal" href="config.html#ratelimit-lockout">RATELIMIT_LOCKOUT</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#auth-token-valid">AUTH_TOKEN_VALID</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#auth-password-days">AUTH_PASSWORD_DAYS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="config.html#auto-lock">AUTO_LOCK</a></li>
-<li class="toctree-l2"><a class="reference internal" href="config.html#auto-lock-time">AUTO_LOCK_TIME</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#autofix-list">AUTOFIX_LIST</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#base-dir">BASE_DIR</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#check-list">CHECK_LIST</a></li>
@@ -563,15 +562,12 @@
 <li class="toctree-l2"><a class="reference internal" href="config.html#enable-hooks">ENABLE_HOOKS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#enable-https">ENABLE_HTTPS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#enable-sharing">ENABLE_SHARING</a></li>
-<li class="toctree-l2"><a class="reference internal" href="config.html#git-root">GIT_ROOT</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#github-username">GITHUB_USERNAME</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#google-analytics-id">GOOGLE_ANALYTICS_ID</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#hide-repo-credentials">HIDE_REPO_CREDENTIALS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#ip-behind-reverse-proxy">IP_BEHIND_REVERSE_PROXY</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#ip-proxy-header">IP_PROXY_HEADER</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#ip-proxy-offset">IP_PROXY_OFFSET</a></li>
-<li class="toctree-l2"><a class="reference internal" href="config.html#lazy-commits">LAZY_COMMITS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="config.html#lock-time">LOCK_TIME</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#login-required-urls">LOGIN_REQUIRED_URLS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#login-required-urls-exceptions">LOGIN_REQUIRED_URLS_EXCEPTIONS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#mt-services">MT_SERVICES</a></li>
@@ -614,7 +610,6 @@
 <li class="toctree-l2"><a class="reference internal" href="config.html#weblate-addons">WEBLATE_ADDONS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#weblate-formats">WEBLATE_FORMATS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#weblate-gpg-identity">WEBLATE_GPG_IDENTITY</a></li>
-<li class="toctree-l2"><a class="reference internal" href="config.html#whoosh-index">WHOOSH_INDEX</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sample.html">設定例</a></li>
@@ -679,7 +674,7 @@
 <li class="toctree-l2"><a class="reference internal" href="optionals.html#avatars">Avatars</a></li>
 <li class="toctree-l2"><a class="reference internal" href="optionals.html#spam-protection">Spam protection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="optionals.html#signing-git-commits-by-gnupg">Signing Git commits by GnuPG</a></li>
-<li class="toctree-l2"><a class="reference internal" href="optionals.html#rate-limiting">Rate limiting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="optionals.html#rate-limiting">レート制限</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="optionals.html#ip-address-for-rate-limiting">IP address for rate limiting</a></li>
 </ul>
 </li>

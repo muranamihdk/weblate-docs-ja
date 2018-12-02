@@ -108,6 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">貢献する</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">ライセンス</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal documents</a></li>
 </ul>
 
             
@@ -176,22 +177,20 @@
             
   <div class="section" id="translation-component-alerts">
 <span id="alerts"></span><h1>Translation component alerts<a class="headerlink" href="#translation-component-alerts" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>The alerts are there to tell you there is something wrong with your translation
-component. They can indicate problem in Weblate configuration or in your
-translation project and they will give you a guidance how to address found issue.</p>
-<p>The alerts currently cover following areas:</p>
+<p>Shows errors in the Weblate configuration or the translation project for any given translation component.
+Guidance on how to address found issues is also offered.</p>
+<p>Currently the following is covered:</p>
 <ul class="simple">
-<li>Duplicate source strings in translation files</li>
-<li>Duplicate languages within translations</li>
-<li>Merge or update failure on the repository</li>
+<li>Duplicated source strings in translation files</li>
+<li>Duplicated languages within translations</li>
+<li>Merge or update failures in the source repository</li>
 <li>Unused new base in component settings</li>
-<li>Parse error in the translation files</li>
+<li>Parse errors in the translation files</li>
 </ul>
-<p>You can find alerts on the component page as <span class="guilabel">Alerts</span>. If there is no
-such tab, no alert was triggered on this particular component. There is no way
-to ignore an alert, it will disappear automatically after underlying problem
-has been fixed.</p>
-<p>For example component having both duplicate strinsg and languages will have this:</p>
+<p>Alerts are listed on each respective component page as <span class="guilabel">Alerts</span>.
+If it is missing, the component clears all current checks. Alerts can not be ignored,
+but will disappear once the underlying problem has been fixed.</p>
+<p>A component with both duplicated strings and languages looks like this:</p>
 <img alt="../_images/alerts.png" src="../_images/alerts.png" />
 </div>
 

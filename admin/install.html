@@ -197,6 +197,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">貢献する</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">ライセンス</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal documents</a></li>
 </ul>
 
             
@@ -1576,29 +1577,40 @@ replace <cite>Require all granted</cite> with <cite>Allow from all</cite>.</p>
 <span class="na">master</span>        <span class="o">=</span> <span class="s">true</span>
 <span class="na">protocol</span>      <span class="o">=</span> <span class="s">uwsgi</span>
 <span class="na">socket</span>        <span class="o">=</span> <span class="s">127.0.0.1:8080</span>
-<span class="na">wsgi-file</span>     <span class="o">=</span> <span class="s">/path/to/weblate/weblate/wsgi.py</span>
-<span class="na">python-path</span>   <span class="o">=</span> <span class="s">/path/to/weblate</span>
+<span class="na">wsgi-file</span>     <span class="o">=</span> <span class="s">/usr/local/lib/python3.6/dist-packages/weblate/wsgi.py</span>
+
+<span class="c1"># Add path to Weblate checkout if you did not install</span>
+<span class="c1"># Weblate by pip</span>
+<span class="c1"># python-path   = /path/to/weblate</span>
+
 <span class="c1"># In case you&#39;re using virtualenv uncomment this:</span>
 <span class="c1"># virtualenv = /path/to/weblate/virtualenv</span>
+
 <span class="c1"># Needed for OAuth/OpenID</span>
 <span class="na">buffer-size</span>   <span class="o">=</span> <span class="s">8192</span>
+
 <span class="c1"># Increase number of workers for heavily loaded sites</span>
 <span class="c1"># workers       = 6</span>
+
 <span class="c1"># Child processes do not need file descriptors</span>
 <span class="na">close-on-exec</span> <span class="o">=</span> <span class="s">true</span>
+
 <span class="c1"># Avoid default 0000 umask</span>
 <span class="na">umask</span> <span class="o">=</span> <span class="s">0022</span>
+
 <span class="c1"># Run as weblate user</span>
 <span class="c1"># uid = weblate</span>
 <span class="c1"># gid = weblate</span>
 <span class="c1"># chmod-socket = 666</span>
 
-<span class="c1"># enable harakiri mode</span>
+<span class="c1"># Enable harakiri mode (kill requests after some time)</span>
 <span class="c1"># harakiri = 3600</span>
 <span class="c1"># harakiri-verbose = true</span>
-<span class="c1"># enable uWSGI stats server</span>
+
+<span class="c1"># Enable uWSGI stats server</span>
 <span class="c1"># stats = :1717</span>
 <span class="c1"># stats-http = true</span>
+
 <span class="c1"># Do not log some errors caused by client disconnects</span>
 <span class="na">ignore-sigpipe</span> <span class="o">=</span> <span class="s">true</span>
 <span class="na">ignore-write-errors</span> <span class="o">=</span> <span class="s">true</span>

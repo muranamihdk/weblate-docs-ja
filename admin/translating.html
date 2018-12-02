@@ -102,7 +102,6 @@
 <li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing translations</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">翻訳のプロセス</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#suggestion-voting">提案の投票</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#translation-locking">Translation locking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#additional-information-on-source-strings">Additional information on source strings</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#strings-prioritization">Strings prioritization</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#translation-flags">翻訳フラグ</a></li>
@@ -135,6 +134,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">貢献する</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">ライセンス</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal documents</a></li>
 </ul>
 
             
@@ -235,18 +235,6 @@ number of votes for automatic accepting.</li>
 this case it can be optionally used by users when they are not sure about
 translation (they can suggest more of them).</li>
 </ul>
-</div>
-<div class="section" id="translation-locking">
-<span id="locking"></span><h2>Translation locking<a class="headerlink" href="#translation-locking" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>To improve collaboration, it is good to prevent duplicate effort on
-translation. To achieve this, translation can be locked for a single translator.
-This can be either done manually on translation page or is done automatically
-when somebody starts to work on translation. The automatic locking needs to be
-enabled using <a class="reference internal" href="config.html#std:setting-AUTO_LOCK"><code class="xref std std-setting docutils literal notranslate"><span class="pre">AUTO_LOCK</span></code></a>.</p>
-<p>The automatic lock is valid for <a class="reference internal" href="config.html#std:setting-AUTO_LOCK_TIME"><code class="xref std std-setting docutils literal notranslate"><span class="pre">AUTO_LOCK_TIME</span></code></a> seconds and is
-automatically extended on every translation made and while user has opened
-translation page.</p>
-<p>A user can also explicitly lock a translation for <a class="reference internal" href="config.html#std:setting-LOCK_TIME"><code class="xref std std-setting docutils literal notranslate"><span class="pre">LOCK_TIME</span></code></a> seconds.</p>
 </div>
 <div class="section" id="additional-information-on-source-strings">
 <span id="additional"></span><h2>Additional information on source strings<a class="headerlink" href="#additional-information-on-source-strings" title="このヘッドラインへのパーマリンク">¶</a></h2>

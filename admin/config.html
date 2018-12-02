@@ -116,8 +116,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#ratelimit-lockout">RATELIMIT_LOCKOUT</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#auth-token-valid">AUTH_TOKEN_VALID</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#auth-password-days">AUTH_PASSWORD_DAYS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#auto-lock">AUTO_LOCK</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#auto-lock-time">AUTO_LOCK_TIME</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#autofix-list">AUTOFIX_LIST</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#base-dir">BASE_DIR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#check-list">CHECK_LIST</a></li>
@@ -132,15 +130,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#enable-hooks">ENABLE_HOOKS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#enable-https">ENABLE_HTTPS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#enable-sharing">ENABLE_SHARING</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#git-root">GIT_ROOT</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#github-username">GITHUB_USERNAME</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#google-analytics-id">GOOGLE_ANALYTICS_ID</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#hide-repo-credentials">HIDE_REPO_CREDENTIALS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ip-behind-reverse-proxy">IP_BEHIND_REVERSE_PROXY</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ip-proxy-header">IP_PROXY_HEADER</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ip-proxy-offset">IP_PROXY_OFFSET</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#lazy-commits">LAZY_COMMITS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#lock-time">LOCK_TIME</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#login-required-urls">LOGIN_REQUIRED_URLS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#login-required-urls-exceptions">LOGIN_REQUIRED_URLS_EXCEPTIONS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mt-services">MT_SERVICES</a></li>
@@ -183,7 +178,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#weblate-addons">WEBLATE_ADDONS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#weblate-formats">WEBLATE_FORMATS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#weblate-gpg-identity">WEBLATE_GPG_IDENTITY</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#whoosh-index">WHOOSH_INDEX</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="sample.html">設定例</a></li>
@@ -205,6 +199,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">貢献する</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">ライセンス</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal documents</a></li>
 </ul>
 
             
@@ -315,7 +310,7 @@ user with too many password reset attempts.</li>
 <p>Defaults to 10.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">Rate limiting</span></a>,</p>
+<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">レート制限</span></a>,</p>
 </div>
 </div>
 <div class="section" id="auto-update">
@@ -324,7 +319,7 @@ user with too many password reset attempts.</li>
 <p><span class="versionmodified">バージョン 3.2 で追加.</span></p>
 </div>
 <p>Automatically update all repositories on daily basis. This can be useful if you
-do not use <a class="reference internal" href="../api.html#hooks"><span class="std std-ref">Notification hooks</span></a> to update Weblate repositories automatically.</p>
+do not use <a class="reference internal" href="../api.html#hooks"><span class="std std-ref">通知フック</span></a> to update Weblate repositories automatically.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
 <p class="last">This requires <a class="reference internal" href="install.html#celery"><span class="std std-ref">Background tasks using Celery</span></a> working and you will have to restart celery for
@@ -358,7 +353,7 @@ known to work:</p>
 <p>Defaults to 5.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">Rate limiting</span></a>,
+<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">レート制限</span></a>,
 <a class="reference internal" href="#std:setting-RATELIMIT_WINDOW"><code class="xref std std-setting docutils literal notranslate"><span class="pre">RATELIMIT_WINDOW</span></code></a>,
 <a class="reference internal" href="#std:setting-RATELIMIT_LOCKOUT"><code class="xref std std-setting docutils literal notranslate"><span class="pre">RATELIMIT_LOCKOUT</span></code></a></p>
 </div>
@@ -372,7 +367,7 @@ known to work:</p>
 <p>Defaults to 300 (5 minutes).</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">Rate limiting</span></a>,
+<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">レート制限</span></a>,
 <a class="reference internal" href="#std:setting-RATELIMIT_ATTEMPTS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">RATELIMIT_ATTEMPTS</span></code></a>,
 <a class="reference internal" href="#std:setting-RATELIMIT_LOCKOUT"><code class="xref std std-setting docutils literal notranslate"><span class="pre">RATELIMIT_LOCKOUT</span></code></a></p>
 </div>
@@ -386,7 +381,7 @@ known to work:</p>
 <p>Defaults to 600 (10 minutes).</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">Rate limiting</span></a>,
+<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">レート制限</span></a>,
 <a class="reference internal" href="#std:setting-RATELIMIT_ATTEMPTS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">RATELIMIT_ATTEMPTS</span></code></a>,
 <a class="reference internal" href="#std:setting-RATELIMIT_WINDOW"><code class="xref std std-setting docutils literal notranslate"><span class="pre">RATELIMIT_WINDOW</span></code></a></p>
 </div>
@@ -411,29 +406,6 @@ known to work:</p>
 policy, it is valid only</p>
 </div>
 <p>Defaults to 180 days.</p>
-</div>
-<div class="section" id="auto-lock">
-<span id="std:setting-AUTO_LOCK"></span><h2>AUTO_LOCK<a class="headerlink" href="#auto-lock" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="deprecated">
-<p><span class="versionmodified">バージョン 2.18 で非推奨.</span></p>
-</div>
-<p>Enables automatic locking of translation when somebody is working on it.</p>
-<div class="admonition seealso">
-<p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="translating.html#locking"><span class="std std-ref">Translation locking</span></a></p>
-</div>
-</div>
-<div class="section" id="auto-lock-time">
-<span id="std:setting-AUTO_LOCK_TIME"></span><h2>AUTO_LOCK_TIME<a class="headerlink" href="#auto-lock-time" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="deprecated">
-<p><span class="versionmodified">バージョン 2.18 で非推奨.</span></p>
-</div>
-<p>Time in seconds for how long the automatic lock for translation will be active.
-Defaults to 60 seconds.</p>
-<div class="admonition seealso">
-<p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="translating.html#locking"><span class="std std-ref">Translation locking</span></a></p>
-</div>
 </div>
 <div class="section" id="autofix-list">
 <span id="std:setting-AUTOFIX_LIST"></span><h2>AUTOFIX_LIST<a class="headerlink" href="#autofix-list" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -542,10 +514,6 @@ change. To apply the change to the stored translations, you need to run
 </div>
 <div class="section" id="data-dir">
 <span id="std:setting-DATA_DIR"></span><h2>DATA_DIR<a class="headerlink" href="#data-dir" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="versionadded">
-<p><span class="versionmodified">バージョン 2.1 で追加: </span>In previous versions the directories were configured separately as
-<a class="reference internal" href="#std:setting-GIT_ROOT"><code class="xref std std-setting docutils literal notranslate"><span class="pre">GIT_ROOT</span></code></a> and <a class="reference internal" href="#std:setting-WHOOSH_INDEX"><code class="xref std std-setting docutils literal notranslate"><span class="pre">WHOOSH_INDEX</span></code></a>.</p>
-</div>
 <p>Directory where Weblate stores all data. This consists of VCS repositories,
 fulltext index and various configuration files for external tools.</p>
 <p>The following subdirectories usually exist:</p>
@@ -666,7 +634,7 @@ this.</p>
 <p>Whether to enable anonymous remote hooks.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="../api.html#hooks"><span class="std std-ref">Notification hooks</span></a></p>
+<p class="last"><a class="reference internal" href="../api.html#hooks"><span class="std std-ref">通知フック</span></a></p>
 </div>
 </div>
 <div class="section" id="enable-https">
@@ -681,14 +649,6 @@ affects sent mails and generated absolute URLs.</p>
 <div class="section" id="enable-sharing">
 <span id="std:setting-ENABLE_SHARING"></span><h2>ENABLE_SHARING<a class="headerlink" href="#enable-sharing" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Whether to show links to share translation progress on social networks.</p>
-</div>
-<div class="section" id="git-root">
-<span id="std:setting-GIT_ROOT"></span><h2>GIT_ROOT<a class="headerlink" href="#git-root" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="deprecated">
-<p><span class="versionmodified">バージョン 2.1 で非推奨: </span>This setting is no longer used, use <a class="reference internal" href="#std:setting-DATA_DIR"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DATA_DIR</span></code></a> instead.</p>
-</div>
-<p>Path where Weblate will store the cloned VCS repositories. Defaults to
-<code class="file docutils literal notranslate"><span class="pre">repos</span></code> subdirectory.</p>
 </div>
 <div class="section" id="github-username">
 <span id="std:setting-GITHUB_USERNAME"></span><h2>GITHUB_USERNAME<a class="headerlink" href="#github-username" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -726,7 +686,7 @@ address.</p>
 <p>Defaults to False.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">Rate limiting</span></a>,
+<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">レート制限</span></a>,
 <a class="reference internal" href="optionals.html#rate-ip"><span class="std std-ref">IP address for rate limiting</span></a></p>
 </div>
 </div>
@@ -740,7 +700,7 @@ address.</p>
 <p>Defaults to <code class="docutils literal notranslate"><span class="pre">HTTP_X_FORWARDED_FOR</span></code>.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">Rate limiting</span></a>,
+<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">レート制限</span></a>,
 <a class="reference internal" href="optionals.html#rate-ip"><span class="std std-ref">IP address for rate limiting</span></a></p>
 </div>
 </div>
@@ -757,33 +717,8 @@ which address from the header is client IP address.</p>
 <p>Defaults to 0.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">Rate limiting</span></a>,
+<p class="last"><a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">レート制限</span></a>,
 <a class="reference internal" href="optionals.html#rate-ip"><span class="std std-ref">IP address for rate limiting</span></a></p>
-</div>
-</div>
-<div class="section" id="lazy-commits">
-<span id="std:setting-LAZY_COMMITS"></span><h2>LAZY_COMMITS<a class="headerlink" href="#lazy-commits" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="deprecated">
-<p><span class="versionmodified">バージョン 2.20 で非推奨: </span>This setting can no longer be configured and is enabled permanently.</p>
-</div>
-<p>Delay creating VCS commits until necessary. This heavily reduces
-number of commits generated by Weblate at expense of temporarily not being
-able to merge some changes as they are not yet committed.</p>
-<div class="admonition seealso">
-<p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="continuous.html#lazy-commit"><span class="std std-ref">省力コミット</span></a></p>
-</div>
-</div>
-<div class="section" id="lock-time">
-<span id="std:setting-LOCK_TIME"></span><h2>LOCK_TIME<a class="headerlink" href="#lock-time" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="deprecated">
-<p><span class="versionmodified">バージョン 2.18 で非推奨.</span></p>
-</div>
-<p>Time in seconds for how long the translation will be locked for single
-translator when locked manually.</p>
-<div class="admonition seealso">
-<p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="translating.html#locking"><span class="std std-ref">Translation locking</span></a></p>
 </div>
 </div>
 <div class="section" id="login-required-urls">
@@ -1209,13 +1144,6 @@ configured.</p>
 <p class="first admonition-title">参考</p>
 <p class="last"><a class="reference internal" href="optionals.html#gpg-sign"><span class="std std-ref">Signing Git commits by GnuPG</span></a></p>
 </div>
-</div>
-<div class="section" id="whoosh-index">
-<span id="std:setting-WHOOSH_INDEX"></span><h2>WHOOSH_INDEX<a class="headerlink" href="#whoosh-index" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="deprecated">
-<p><span class="versionmodified">バージョン 2.1 で非推奨: </span>This setting is no longer used, use <a class="reference internal" href="#std:setting-DATA_DIR"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DATA_DIR</span></code></a> instead.</p>
-</div>
-<p>Directory where Whoosh fulltext indices will be stored. Defaults to <code class="file docutils literal notranslate"><span class="pre">whoosh-index</span></code> subdirectory.</p>
 </div>
 </div>
 

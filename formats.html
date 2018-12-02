@@ -130,6 +130,7 @@
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">貢献する</a></li>
 <li class="toctree-l1"><a class="reference internal" href="internals.html">内部構造</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">ライセンス</a></li>
+<li class="toctree-l1"><a class="reference internal" href="legal.html">Legal documents</a></li>
 </ul>
 
             
@@ -219,11 +220,12 @@
 <p>以下は可能な翻訳タイプを、サポートするすべてのフォーマットで一覧にしたものです。</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="34%" />
-<col width="19%" />
-<col width="16%" />
-<col width="15%" />
-<col width="16%" />
+<col width="24%" />
+<col width="14%" />
+<col width="11%" />
+<col width="10%" />
+<col width="11%" />
+<col width="29%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">フォーマット</th>
@@ -231,6 +233,7 @@
 <th class="head">注釈</th>
 <th class="head">文脈</th>
 <th class="head">場所</th>
+<th class="head">Additional states <a class="footnote-reference" href="#a" id="id1">[1]</a></th>
 </tr>
 </thead>
 <tbody valign="top">
@@ -239,22 +242,26 @@
 <td>はい</td>
 <td>はい</td>
 <td>はい</td>
+<td>needs editing</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#mono-gettext"><span class="std std-ref">単一言語 Gettext</span></a></td>
 <td>単一</td>
 <td>はい</td>
 <td>はい</td>
 <td>はい</td>
+<td>needs editing</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#xliff"><span class="std std-ref">XLIFF</span></a></td>
 <td>両方</td>
 <td>はい</td>
 <td>はい</td>
-<td>&#160;</td>
+<td>はい</td>
+<td>needs editing, approved</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#javaprop"><span class="std std-ref">Java properties</span></a></td>
 <td>単一</td>
 <td>はい</td>
+<td>いいえ</td>
 <td>いいえ</td>
 <td>&#160;</td>
 </tr>
@@ -263,16 +270,19 @@
 <td>はい</td>
 <td>いいえ</td>
 <td>はい</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#qtling"><span class="std std-ref">Qt Linguist .ts</span></a></td>
 <td>両方</td>
 <td>はい</td>
 <td>いいえ</td>
 <td>はい</td>
+<td>needs editing</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#aresource"><span class="std std-ref">Android string resources</span></a></td>
 <td>単一</td>
 <td>はい</td>
+<td>いいえ</td>
 <td>いいえ</td>
 <td>&#160;</td>
 </tr>
@@ -281,10 +291,12 @@
 <td>はい</td>
 <td>いいえ</td>
 <td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#php"><span class="std std-ref">PHP strings</span></a></td>
 <td>単一</td>
 <td>はい</td>
+<td>いいえ</td>
 <td>いいえ</td>
 <td>&#160;</td>
 </tr>
@@ -293,10 +305,12 @@
 <td>いいえ</td>
 <td>いいえ</td>
 <td>いいえ</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#webex"><span class="std std-ref">WebExtension JSON</span></a></td>
 <td>単一</td>
 <td>はい</td>
+<td>いいえ</td>
 <td>いいえ</td>
 <td>&#160;</td>
 </tr>
@@ -304,22 +318,26 @@
 <td>単一</td>
 <td>はい</td>
 <td>いいえ</td>
+<td>いいえ</td>
 <td>&#160;</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#csv"><span class="std std-ref">CSV files</span></a></td>
-<td>複式</td>
+<td>単一</td>
 <td>はい</td>
-<td>いいえ</td>
 <td>はい</td>
+<td>はい</td>
+<td>needs editing</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#yaml"><span class="std std-ref">YAML files</span></a></td>
 <td>単一</td>
 <td>はい</td>
 <td>いいえ</td>
 <td>いいえ</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#dtd"><span class="std std-ref">DTD files</span></a></td>
 <td>単一</td>
+<td>いいえ</td>
 <td>いいえ</td>
 <td>いいえ</td>
 <td>&#160;</td>
@@ -328,14 +346,22 @@
 <td>単一</td>
 <td>&#160;</td>
 <td>いいえ</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#xlsx"><span class="std std-ref">Excel Open XML</span></a></td>
-<td>&#160;</td>
-<td>&#160;</td>
 <td>いいえ</td>
 <td>&#160;</td>
 </tr>
+<tr class="row-even"><td><a class="reference internal" href="#xlsx"><span class="std std-ref">Excel Open XML</span></a></td>
+<td>単一</td>
+<td>はい</td>
+<td>はい</td>
+<td>はい</td>
+<td>needs editing</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="a" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Additional states supported by the file format in addition to not translated and translated.</td></tr>
 </tbody>
 </table>
 </div>
@@ -450,15 +476,18 @@
 </div>
 </div>
 <div class="section" id="xliff">
-<span id="id1"></span><h2>XLIFF<a class="headerlink" href="#xliff" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id2"></span><h2>XLIFF<a class="headerlink" href="#xliff" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p id="index-3">XML-based format created to standardize translation files, but in the end it
 is one of many standards in this area.</p>
 <p>XLIFF is usually used as bilingual, but Weblate supports it as monolingual as well.</p>
 <div class="section" id="translations-states">
 <h3>Translations states<a class="headerlink" href="#translations-states" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">state</span></code> attribute in the file is completely ignored. It cannot be read and it
-cannot be written by Weblate. That means that a unit is considered translated as
-soon as a <code class="docutils literal notranslate"><span class="pre">&lt;target&gt;</span></code> element exists.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">state</span></code> attribute in the file is partially processed and mapped to needs
+edit state in Weblate (the following states are used to flag the string as
+needing edit if there is some target present: <code class="docutils literal notranslate"><span class="pre">new</span></code>, <code class="docutils literal notranslate"><span class="pre">needs-translation</span></code>,
+<code class="docutils literal notranslate"><span class="pre">needs-adaptation</span></code>, <code class="docutils literal notranslate"><span class="pre">needs-l10n</span></code>). Should the <code class="docutils literal notranslate"><span class="pre">state</span></code> attribute be
+missing a unit is considered translated as soon as a <code class="docutils literal notranslate"><span class="pre">&lt;target&gt;</span></code> element
+exists.</p>
 <p>Also if the translation unit has <code class="docutils literal notranslate"><span class="pre">approved=&quot;yes&quot;</span></code> it will be imported into Weblate
 as approved, anything else will be imported as waiting for review (which matches XLIFF
 specification).</p>

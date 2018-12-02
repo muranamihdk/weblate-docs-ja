@@ -143,6 +143,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">貢献する</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">ライセンス</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal documents</a></li>
 </ul>
 
             
@@ -238,7 +239,7 @@ digraph translations {
     &quot;Weblate&quot; -&gt; &quot;VCS repository&quot; [label=&quot; 6. Push &quot;];
 }<div class="section" id="updating-repositories">
 <span id="update-vcs"></span><h2>リポジトリを更新する<a class="headerlink" href="#updating-repositories" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>バックエンドリポジトリをソースに基づいて更新するために、何らかの方法を設定しておく必要があります。フックを使うこともできますし（<a class="reference internal" href="../api.html#hooks"><span class="std std-ref">Notification hooks</span></a> を参照してください）、単に定期的に <a class="reference internal" href="management.html#django-admin-updategit"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">updategit</span></code></a> を（プロジェクトを選択して、あるいは <cite>--all</cite> ですべてのプロジェクトに対し）実行することもできます。</p>
+<p>バックエンドリポジトリをソースに基づいて更新するために、何らかの方法を設定しておく必要があります。フックを使うこともできますし（<a class="reference internal" href="../api.html#hooks"><span class="std std-ref">通知フック</span></a> を参照してください）、単に定期的に <a class="reference internal" href="management.html#django-admin-updategit"><code class="xref std std-djadmin docutils literal notranslate"><span class="pre">updategit</span></code></a> を（プロジェクトを選択して、あるいは <cite>--all</cite> ですべてのプロジェクトに対し）実行することもできます。</p>
 <p>リポジトリが更新されるとその都度、<span class="guilabel">Post-update script</span> フックが実行されます。</p>
 <p>Gettext po ファイルにおいては、しばしば PO ヘッダの競合に遭遇することになります。これを避けるために、付属のマージドライバ（<code class="file docutils literal notranslate"><span class="pre">examples/git-merge-gettext-po</span></code>）を使うことができます。<code class="file docutils literal notranslate"><span class="pre">.gitconfig</span></code> ファイルに以下の設定を行うだけで、これを使うことができます。</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[merge &quot;merge-gettext-po&quot;]</span>

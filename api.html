@@ -96,24 +96,24 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Weblate ウェブ API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#rest-api">REST API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#authentication-and-generic-parameters">認証と共通パラメータ</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#authentication-examples">Authentication examples</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#passing-parameters-examples">Passing Parameters Examples</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#rate-limiting">Rate limiting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#authentication-examples">認証の例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#passing-parameters-examples">パラメータ渡しの例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rate-limiting">レート制限</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#api-entry-point">API Entry Point</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#languages">Languages</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#projects">Projects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#components">Components</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#translations">Translations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#units">Units</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-entry-point">API エントリーポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#languages">言語</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#projects">プロジェクト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#components">コンポーネント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#translations">翻訳</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#units">ユニット</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#changes">変更履歴</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sources">Sources</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#screenshots">Screenshots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sources">ソース</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#screenshots">スクリーンショット</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#notification-hooks">Notification hooks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#exports">Exports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notification-hooks">通知フック</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exports">エクスポート</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rss-feeds">RSS feeds</a></li>
 </ul>
 </li>
@@ -123,6 +123,7 @@
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">貢献する</a></li>
 <li class="toctree-l1"><a class="reference internal" href="internals.html">内部構造</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">ライセンス</a></li>
+<li class="toctree-l1"><a class="reference internal" href="legal.html">Legal documents</a></li>
 </ul>
 
             
@@ -201,38 +202,31 @@
 <dl class="any">
 <dt id="any--">
 <code class="descname">ANY </code><code class="descname">/</code><a class="headerlink" href="#any--" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Generic request behaviour for the API, the headers, status codes and
-parameters here apply to all endpoints as well.</p>
+<dd><p>以下のヘッダー、ステータスコード、パラメータは、APIに対するリクエスト行為として一般的なものであり、すべてのエントリーポイントに対して同様に適用されます。</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
-<li><strong>format</strong> -- Response format (overrides <a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-5.3.2">Accept</a>).
-Possible values depends on REST framework setup,
-by default <code class="docutils literal notranslate"><span class="pre">json</span></code> and <code class="docutils literal notranslate"><span class="pre">api</span></code> are supported. The
-latter provides web browser interface for API.</li>
+<tr class="field-odd field"><th class="field-name">クエリ・パラメータ:</th><td class="field-body"><ul class="first simple">
+<li><strong>format</strong> -- レスポンスのフォーマット（<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-5.3.2">Accept</a> を上書きします）。可能な値は REST framework の設定に依存しますが、初期値では <code class="docutils literal notranslate"><span class="pre">json</span></code> と <code class="docutils literal notranslate"><span class="pre">api</span></code> がサポートされています。後者は API のためのウェブブラウザ用インターフェースを提供します。</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Request Headers:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<tr class="field-even field"><th class="field-name">リクエスト・ヘッダ:</th><td class="field-body"><ul class="first simple">
 <li><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-5.3.2">Accept</a> -- the response content type depends on
 <a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-5.3.2">Accept</a> header</li>
 <li><a class="reference external" href="https://tools.ietf.org/html/rfc7235#section-4.2">Authorization</a> -- optional token to authenticate</li>
 </ul>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name" colspan="2">Response Headers:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">レスポンス・ヘッダ:</th><td class="field-body"><ul class="first simple">
 <li><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> -- this depends on <a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-5.3.2">Accept</a>
 header of request</li>
 <li><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.4.1">Allow</a> -- list of allowed HTTP methods on object</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
 <li><strong>detail</strong> (<em>string</em>) -- verbose description of failure (for HTTP status codes other than <a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a>)</li>
 <li><strong>count</strong> (<em>int</em>) -- total item count for object lists</li>
@@ -244,7 +238,7 @@ header of request</li>
 </ul>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">ステータス・コード:</th><td class="field-body"><ul class="first last simple">
 <li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> -- when request was correctly handled</li>
 <li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> -- when form parameters are missing</li>
 <li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> -- when access is denied</li>
@@ -257,15 +251,15 @@ header of request</li>
 </dd></dl>
 
 <div class="section" id="authentication-examples">
-<h4>Authentication examples<a class="headerlink" href="#authentication-examples" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p><strong>Example request:</strong></p>
+<h4>認証の例<a class="headerlink" href="#authentication-examples" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><strong>リクエスト例</strong></p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">example.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json, text/javascript</span>
 <span class="na">Authorization</span><span class="o">:</span> <span class="l">Token YOUR-TOKEN</span>
 </pre></div>
 </div>
-<p><strong>Example response:</strong></p>
+<p><strong>レスポンス例</strong></p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.0</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Date</span><span class="o">:</span> <span class="l">Fri, 25 Mar 2016 09:46:12 GMT</span>
 <span class="na">Server</span><span class="o">:</span> <span class="l">WSGIServer/0.1 Python/2.7.11+</span>
@@ -283,7 +277,7 @@ header of request</li>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><strong>CURL example:</strong></p>
+<p><strong>CURL 例</strong></p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl <span class="se">\</span>
     -H <span class="s2">&quot;Authorization: Token TOKEN&quot;</span> <span class="se">\</span>
     https://example.com/api/
@@ -291,11 +285,11 @@ header of request</li>
 </div>
 </div>
 <div class="section" id="passing-parameters-examples">
-<h4>Passing Parameters Examples<a class="headerlink" href="#passing-parameters-examples" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>パラメータ渡しの例<a class="headerlink" href="#passing-parameters-examples" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>For the <a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-4.3.3">POST</a> method the parameters can be specified either as
 form submission (<em class="mimetype">application/x-www-form-urlencoded</em>) or as JSON
 (<em class="mimetype">application/json</em>).</p>
-<p><strong>Form request example:</strong></p>
+<p><strong>フォームリクエスト例</strong></p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/api/projects/hello/repository/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">example.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
@@ -305,7 +299,7 @@ form submission (<em class="mimetype">application/x-www-form-urlencoded</em>) or
 operation=pull
 </pre></div>
 </div>
-<p><strong>JSON request example:</strong></p>
+<p><strong>JSON リクエスト例</strong></p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/api/projects/hello/repository/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">example.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
@@ -316,14 +310,14 @@ operation=pull
 <span class="p">{</span><span class="nt">&quot;operation&quot;</span><span class="p">:</span><span class="s2">&quot;pull&quot;</span><span class="p">}</span>
 </pre></div>
 </div>
-<p><strong>CURL example:</strong></p>
+<p><strong>CURL 例</strong></p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl <span class="se">\</span>
     -d <span class="nv">operation</span><span class="o">=</span>pull <span class="se">\</span>
     -H <span class="s2">&quot;Authorization: Token TOKEN&quot;</span> <span class="se">\</span>
     http://example.com/api/components/hello/weblate/repository/
 </pre></div>
 </div>
-<p><strong>CURL JSON example:</strong></p>
+<p><strong>CURL JSON 例</strong></p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl <span class="se">\</span>
     --data-binary <span class="s1">&#39;{&quot;operation&quot;:&quot;pull&quot;}&#39;</span> <span class="se">\</span>
     -H <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
@@ -333,7 +327,7 @@ operation=pull
 </div>
 </div>
 <div class="section" id="rate-limiting">
-<h4>Rate limiting<a class="headerlink" href="#rate-limiting" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>レート制限<a class="headerlink" href="#rate-limiting" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>The API requests are rate limited; the default configuration limits it to 100
 requests per day for anonymous users and 1000 requests per day for authenticated
 users.</p>
@@ -343,19 +337,19 @@ for more details how to configure it.</p>
 </div>
 </div>
 <div class="section" id="api-entry-point">
-<h3>API Entry Point<a class="headerlink" href="#api-entry-point" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>API エントリーポイント<a class="headerlink" href="#api-entry-point" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <dl class="get">
 <dt id="get--api-">
 <code class="descname">GET </code><code class="descname">/api/</code><a class="headerlink" href="#get--api-" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>The API root entry point.</p>
-<p><strong>Example request:</strong></p>
+<dd><p>API のルート・エントリーポイントです。</p>
+<p><strong>リクエスト例</strong></p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">example.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json, text/javascript</span>
 <span class="na">Authorization</span><span class="o">:</span> <span class="l">Token YOUR-TOKEN</span>
 </pre></div>
 </div>
-<p><strong>Example response:</strong></p>
+<p><strong>レスポンス例</strong></p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.0</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Date</span><span class="o">:</span> <span class="l">Fri, 25 Mar 2016 09:46:12 GMT</span>
 <span class="na">Server</span><span class="o">:</span> <span class="l">WSGIServer/0.1 Python/2.7.11+</span>
@@ -377,11 +371,11 @@ for more details how to configure it.</p>
 
 </div>
 <div class="section" id="languages">
-<h3>Languages<a class="headerlink" href="#languages" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>言語<a class="headerlink" href="#languages" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <dl class="get">
 <dt id="get--api-languages-">
 <code class="descname">GET </code><code class="descname">/api/languages/</code><a class="headerlink" href="#get--api-languages-" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Returns a list of all languages.</p>
+<dd><p>すべての言語のリストを返します。</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
 <p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
@@ -402,7 +396,7 @@ for more details how to configure it.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>code</strong> (<em>string</em>) -- Language code</li>
 <li><strong>direction</strong> (<em>string</em>) -- Text direction</li>
@@ -429,11 +423,11 @@ for more details how to configure it.</p>
 
 </div>
 <div class="section" id="projects">
-<h3>Projects<a class="headerlink" href="#projects" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>プロジェクト<a class="headerlink" href="#projects" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <dl class="get">
 <dt id="get--api-projects-">
 <code class="descname">GET </code><code class="descname">/api/projects/</code><a class="headerlink" href="#get--api-projects-" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Returns a list of all projects.</p>
+<dd><p>すべてのプロジェクトのリストを返します。</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
 <p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
@@ -454,7 +448,7 @@ for more details how to configure it.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>name</strong> (<em>string</em>) -- project name</li>
 <li><strong>slug</strong> (<em>string</em>) -- project slug</li>
@@ -504,7 +498,7 @@ for more details how to configure it.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>results</strong> (<em>array</em>) -- array of component objects; see <a class="reference internal" href="#get--api-changes-(int-pk)-" title="GET /api/changes/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/changes/(int:pk)/</span></code></a></li>
 </ul>
@@ -533,7 +527,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>needs_commit</strong> (<em>boolean</em>) -- whether there are any pending changes to commit</li>
 <li><strong>needs_merge</strong> (<em>boolean</em>) -- whether there are any upstream changes to merge</li>
@@ -576,7 +570,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </ul>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>result</strong> (<em>boolean</em>) -- result of the operation</li>
 </ul>
@@ -588,14 +582,14 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 <p class="first admonition-title">参考</p>
 <p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
-<p><strong>CURL example:</strong></p>
+<p><strong>CURL 例</strong></p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl <span class="se">\</span>
     -d <span class="nv">operation</span><span class="o">=</span>pull <span class="se">\</span>
     -H <span class="s2">&quot;Authorization: Token TOKEN&quot;</span> <span class="se">\</span>
     http://example.com/api/components/hello/weblate/repository/
 </pre></div>
 </div>
-<p><strong>JSON request example:</strong></p>
+<p><strong>JSON リクエスト例</strong></p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/api/projects/hello/repository/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">example.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
@@ -634,7 +628,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>results</strong> (<em>array</em>) -- array of component objects; see <a class="reference internal" href="#get--api-components-(string-project)-(string-component)-" title="GET /api/components/(string:project)/(string:component)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/components/(string:project)/(string:component)/</span></code></a></li>
 </ul>
@@ -664,7 +658,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>results</strong> (<em>array</em>) -- array of translation statistics objects</li>
 <li><strong>language</strong> (<em>string</em>) -- language name</li>
@@ -684,11 +678,11 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 
 </div>
 <div class="section" id="components">
-<h3>Components<a class="headerlink" href="#components" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>コンポーネント<a class="headerlink" href="#components" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <dl class="get">
 <dt id="get--api-components-">
 <code class="descname">GET </code><code class="descname">/api/components/</code><a class="headerlink" href="#get--api-components-" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Returns a list of translation components.</p>
+<dd><p>翻訳コンポーネントのリストを返します。</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
 <p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
@@ -710,7 +704,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>branch</strong> (<em>string</em>) -- VCS repository branch</li>
 <li><strong>file_format</strong> (<em>string</em>) -- file format of translations</li>
@@ -787,7 +781,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>results</strong> (<em>array</em>) -- array of component objects; see <a class="reference internal" href="#get--api-changes-(int-pk)-" title="GET /api/changes/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/changes/(int:pk)/</span></code></a></li>
 </ul>
@@ -815,7 +809,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>locked</strong> (<em>boolean</em>) -- whether component is locked for updates</li>
 </ul>
@@ -879,7 +873,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>needs_commit</strong> (<em>boolean</em>) -- whether there are any pending changes to commit</li>
 <li><strong>needs_merge</strong> (<em>boolean</em>) -- whether there are any upstream changes to merge</li>
@@ -919,7 +913,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </ul>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>result</strong> (<em>boolean</em>) -- result of the operation</li>
 </ul>
@@ -991,7 +985,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>results</strong> (<em>array</em>) -- array of translation objects; see <a class="reference internal" href="#get--api-translations-(string-project)-(string-component)-(string-language)-" title="GET /api/translations/(string:project)/(string:component)/(string:language)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/translations/(string:project)/(string:component)/(string:language)/</span></code></a></li>
 </ul>
@@ -1022,7 +1016,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>results</strong> (<em>array</em>) -- array of translation statistics objects; see <a class="reference internal" href="#get--api-translations-(string-project)-(string-component)-(string-language)-statistics-" title="GET /api/translations/(string:project)/(string:component)/(string:language)/statistics/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/translations/(string:project)/(string:component)/(string:language)/statistics/</span></code></a></li>
 </ul>
@@ -1034,11 +1028,11 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 
 </div>
 <div class="section" id="translations">
-<h3>Translations<a class="headerlink" href="#translations" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>翻訳<a class="headerlink" href="#translations" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <dl class="get">
 <dt id="get--api-translations-">
 <code class="descname">GET </code><code class="descname">/api/translations/</code><a class="headerlink" href="#get--api-translations-" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Returns a list of translations.</p>
+<dd><p>翻訳のリストを返します。</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
 <p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
@@ -1061,7 +1055,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>component</strong> (<em>object</em>) -- component object; see <a class="reference internal" href="#get--api-components-(string-project)-(string-component)-" title="GET /api/components/(string:project)/(string:component)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/components/(string:project)/(string:component)/</span></code></a></li>
 <li><strong>failing_checks</strong> (<em>int</em>) -- number of units failing check</li>
@@ -1181,7 +1175,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>results</strong> (<em>array</em>) -- array of component objects; see <a class="reference internal" href="#get--api-changes-(int-pk)-" title="GET /api/changes/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/changes/(int:pk)/</span></code></a></li>
 </ul>
@@ -1210,7 +1204,7 @@ status use <a class="reference internal" href="#get--api-components-(string-proj
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>results</strong> (<em>array</em>) -- array of component objects; see <a class="reference internal" href="#get--api-units-(int-pk)-" title="GET /api/units/(int:pk)/"><code class="xref http http-get docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/units/(int:pk)/</span></code></a></li>
 </ul>
@@ -1241,8 +1235,7 @@ as stored in VCS.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">クエリ・パラメータ:</th><td class="field-body"><ul class="first simple">
 <li><strong>format</strong> -- File format to use; if not specified no format conversion happens; supported file formats: <code class="docutils literal notranslate"><span class="pre">po</span></code>, <code class="docutils literal notranslate"><span class="pre">mo</span></code>, <code class="docutils literal notranslate"><span class="pre">xliff</span></code>, <code class="docutils literal notranslate"><span class="pre">xliff11</span></code>, <code class="docutils literal notranslate"><span class="pre">tbx</span></code></li>
 </ul>
 </td>
@@ -1290,7 +1283,7 @@ as stored in VCS.</p>
 <p class="first admonition-title">参考</p>
 <p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
-<p><strong>CURL example:</strong></p>
+<p><strong>CURL 例</strong></p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl -X POST <span class="se">\</span>
     -F <span class="nv">file</span><span class="o">=</span>@strings.xml <span class="se">\</span>
     -H <span class="s2">&quot;Authorization: Token TOKEN&quot;</span> <span class="se">\</span>
@@ -1345,7 +1338,7 @@ as stored in VCS.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>result</strong> (<em>boolean</em>) -- result of the operation</li>
 </ul>
@@ -1377,7 +1370,7 @@ as stored in VCS.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>code</strong> (<em>string</em>) -- language code</li>
 <li><strong>failing</strong> (<em>int</em>) -- number of failing checks</li>
@@ -1403,14 +1396,14 @@ as stored in VCS.</p>
 
 </div>
 <div class="section" id="units">
-<h3>Units<a class="headerlink" href="#units" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>ユニット<a class="headerlink" href="#units" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="versionadded">
 <p><span class="versionmodified">バージョン 2.10 で追加.</span></p>
 </div>
 <dl class="get">
 <dt id="get--api-units-">
 <code class="descname">GET </code><code class="descname">/api/units/</code><a class="headerlink" href="#get--api-units-" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Returns list of translation units.</p>
+<dd><p>翻訳ユニットのリストを返します。</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
 <p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
@@ -1431,7 +1424,7 @@ as stored in VCS.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>translation</strong> (<em>string</em>) -- URL of a related translation object</li>
 <li><strong>source</strong> (<em>string</em>) -- source string</li>
@@ -1491,7 +1484,7 @@ as stored in VCS.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>unit</strong> (<em>string</em>) -- URL of a related unit object</li>
 <li><strong>translation</strong> (<em>string</em>) -- URL of a related translation object</li>
@@ -1513,14 +1506,14 @@ as stored in VCS.</p>
 
 </div>
 <div class="section" id="sources">
-<h3>Sources<a class="headerlink" href="#sources" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>ソース<a class="headerlink" href="#sources" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="versionadded">
 <p><span class="versionmodified">バージョン 2.14 で追加.</span></p>
 </div>
 <dl class="get">
 <dt id="get--api-sources-">
 <code class="descname">GET </code><code class="descname">/api/sources/</code><a class="headerlink" href="#get--api-sources-" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Returns a list of source string information.</p>
+<dd><p>ソース文字列の情報のリストを返します。</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
 <p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
@@ -1541,7 +1534,7 @@ as stored in VCS.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>id_hash</strong> (<em>string</em>) -- unique identifier of the unit</li>
 <li><strong>component</strong> (<em>string</em>) -- URL of a related component object</li>
@@ -1559,14 +1552,14 @@ as stored in VCS.</p>
 
 </div>
 <div class="section" id="screenshots">
-<h3>Screenshots<a class="headerlink" href="#screenshots" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>スクリーンショット<a class="headerlink" href="#screenshots" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="versionadded">
 <p><span class="versionmodified">バージョン 2.14 で追加.</span></p>
 </div>
 <dl class="get">
 <dt id="get--api-screenshots-">
 <code class="descname">GET </code><code class="descname">/api/screenshots/</code><a class="headerlink" href="#get--api-screenshots-" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Returns a list of screenshot string information.</p>
+<dd><p>スクリーンショット文字列の情報のリストを返します。</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
 <p>Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
@@ -1587,7 +1580,7 @@ as stored in VCS.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><th class="field-name" colspan="2">レスポンス JSON オブジェクト:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>name</strong> (<em>string</em>) -- name of a screenshot</li>
 <li><strong>component</strong> (<em>string</em>) -- URL of a related component object</li>
@@ -1642,7 +1635,7 @@ as stored in VCS.</p>
 <p class="first admonition-title">参考</p>
 <p class="last">Additional common headers, parameters and status codes are documented at <a class="reference internal" href="#api-generic"><span class="std std-ref">認証と共通パラメータ</span></a>.</p>
 </div>
-<p><strong>CURL example:</strong></p>
+<p><strong>CURL 例</strong></p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl -X POST <span class="se">\</span>
     -F <span class="nv">image</span><span class="o">=</span>@image.png <span class="se">\</span>
     -H <span class="s2">&quot;Authorization: Token TOKEN&quot;</span> <span class="se">\</span>
@@ -1654,12 +1647,9 @@ as stored in VCS.</p>
 </div>
 </div>
 <div class="section" id="notification-hooks">
-<span id="hooks"></span><h2>Notification hooks<a class="headerlink" href="#notification-hooks" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Notification hooks allow external applications to notify Weblate that the VCS
-repository has been updated.</p>
-<p>You can use repository endpoints for projects, components and translations to
-update individual repositories; see
-<a class="reference internal" href="#post--api-projects-(string-project)-repository-" title="POST /api/projects/(string:project)/repository/"><code class="xref http http-post docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/projects/(string:project)/repository/</span></code></a> for documentation.</p>
+<span id="hooks"></span><h2>通知フック<a class="headerlink" href="#notification-hooks" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>通知フックは外部アプリケーションが VCS リポジトリのアップデートを Weblate に通知することを可能にします。</p>
+<p>プロジェクトやコンポーネント、翻訳のためのリポジトリ・エンドポイントを、個々のリポジトリをアップデートするために使うことができます。<a class="reference internal" href="#post--api-projects-(string-project)-repository-" title="POST /api/projects/(string:project)/repository/"><code class="xref http http-post docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/projects/(string:project)/repository/</span></code></a> のドキュメンテーションを参照してください。</p>
 <dl class="get">
 <dt id="get--hooks-update-(string-project)-(string-component)-">
 <code class="descname">GET </code><code class="descname">/hooks/update/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--hooks-update-(string-project)-(string-component)-" title="この定義へのパーマリンク">¶</a></dt>
@@ -1762,8 +1752,8 @@ updating matching components.</p>
 
 </div>
 <div class="section" id="exports">
-<span id="id1"></span><h2>Exports<a class="headerlink" href="#exports" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Weblate provides various exports to allow you to further process the data.</p>
+<span id="id1"></span><h2>エクスポート<a class="headerlink" href="#exports" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>より進んだデータ処理を可能にするために、Weblate は様々なエクスポートを提供しています。</p>
 <dl class="get">
 <dt id="get--exports-stats-(string-project)-(string-component)-">
 <code class="descname">GET </code><code class="descname">/exports/stats/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em class="property">string: </em><em>component</em><span class="sig-paren">)</span><code class="descname">/</code><a class="headerlink" href="#get--exports-stats-(string-project)-(string-component)-" title="この定義へのパーマリンク">¶</a></dt>
@@ -1771,8 +1761,7 @@ updating matching components.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">クエリ・パラメータ:</th><td class="field-body"><ul class="first last simple">
 <li><strong>format</strong> (<em>string</em>) -- Output format: either <code class="docutils literal notranslate"><span class="pre">json</span></code> or <code class="docutils literal notranslate"><span class="pre">csv</span></code></li>
 </ul>
 </td>

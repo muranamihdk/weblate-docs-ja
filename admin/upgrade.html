@@ -137,6 +137,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">貢献する</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">ライセンス</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal documents</a></li>
 </ul>
 
             
@@ -288,7 +289,7 @@ Upgrades skipping this step are not supported and will break.</p>
 <p>Please follow <a class="reference internal" href="#generic-upgrade-instructions"><span class="std std-ref">Generic upgrade instructions</span></a> in order to perform update.</p>
 <p>Notable configuration or dependencies changes:</p>
 <ul class="simple">
-<li>Rate limiting configuration has been changed, please see <a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">Rate limiting</span></a>.</li>
+<li>Rate limiting configuration has been changed, please see <a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">レート制限</span></a>.</li>
 <li>Microsoft Terminology machine translation was moved to separate module and now requires <code class="docutils literal notranslate"><span class="pre">zeep</span></code> module.</li>
 <li>Weblate now uses Celery for several background tasks. There are new dependencies and settings because of this. You should also run Celery worker as standalone process. See <a class="reference internal" href="install.html#celery"><span class="std std-ref">Background tasks using Celery</span></a> for more information.</li>
 <li>There are several changes in <code class="file docutils literal notranslate"><span class="pre">settings_example.py</span></code>, most notable Celery configuration and middleware changes, please adjust your settings accordingly.</li>

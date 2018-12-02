@@ -104,6 +104,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#google-oauth2">Google OAuth2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#facebook-oauth2">Facebook OAuth2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#gitlab-oauth2">GitLab OAuth2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#disabling-password-authentication">Disabling password authentication</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#password-authentication">Password authentication</a></li>
@@ -142,6 +143,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">貢献する</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internals.html">内部構造</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">ライセンス</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal documents</a></li>
 </ul>
 
             
@@ -218,7 +220,7 @@ confirming their email they can contribute or authenticate by using some
 third party service.</p>
 <p>You can also completely disable new users registration using
 <a class="reference internal" href="config.html#std:setting-REGISTRATION_OPEN"><code class="xref std std-setting docutils literal notranslate"><span class="pre">REGISTRATION_OPEN</span></code></a>.</p>
-<p>The authentication attempts are subjects to <a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">Rate limiting</span></a>.</p>
+<p>The authentication attempts are subjects to <a class="reference internal" href="optionals.html#rate-limit"><span class="std std-ref">レート制限</span></a>.</p>
 </div>
 <div class="section" id="authentication-backends">
 <h2>Authentication backends<a class="headerlink" href="#authentication-backends" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -388,6 +390,28 @@ ensure to mark the <cite>read_user</cite> scope.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
 <p class="last"><a class="reference external" href="https://python-social-auth.readthedocs.io/en/latest/backends/gitlab.html" title="(in Python Social Auth)"><span>GitLab</span></a></p>
+</div>
+</div>
+<div class="section" id="disabling-password-authentication">
+<h3>Disabling password authentication<a class="headerlink" href="#disabling-password-authentication" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Email and password authentication can be disabled by removing
+<code class="docutils literal notranslate"><span class="pre">social_core.backends.email.EmailAuth</span></code> from
+<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-AUTHENTICATION_BACKENDS" title="(in Django v2.1)"><code class="docutils literal notranslate"><span class="pre">AUTHENTICATION_BACKENDS</span></code></a>. Always keep
+<code class="docutils literal notranslate"><span class="pre">weblate.accounts.auth.WeblateUserBackend</span></code> there, it is needed for core
+Weblate functionality.</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">You can still use password authentication for the admin interface for users you
+manually create there. Just navigate to <code class="docutils literal notranslate"><span class="pre">/admin/</span></code>.</p>
+</div>
+<p>For example authentication using only openSUSE Open ID provider can be achieved
+using following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authentication configuration</span>
+<span class="n">AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;social_core.backends.suse.OpenSUSEOpenId&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weblate.accounts.auth.WeblateUserBackend&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
 </div>
 </div>
 </div>
